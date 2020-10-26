@@ -2,4 +2,5 @@
 
 ## Opening the app
 cd sportslink
+
 npm start
