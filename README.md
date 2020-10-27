@@ -4,3 +4,6 @@ This web application allows athletes and sports recruiters to showcase their acc
 cd sportslink
 
 npm start
+
+## 3rd party libraries
+We are using React for the front-end of this project.
