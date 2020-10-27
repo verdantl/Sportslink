@@ -4,7 +4,9 @@ import Select from "@material-ui/core/Select"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import FormControl from "@material-ui/core/FormControl"
 import InputLabel from "@material-ui/core/InputLabel"
+import SearchIcon from '@material-ui/icons/Search';
 import "../components-css/SearchBox.css"
+
 
 
 class SearchBox extends React.Component{
@@ -13,17 +15,17 @@ class SearchBox extends React.Component{
         <div className="searchTitle">
             <p className="garamond"> Search</p>
         </div>
-        <FormControlLabel className="checkUser"
+        <FormControlLabel className="boxes"
         control={<Checkbox  name="checkedAthlete" />}
         label="Athletes"
         />
 
-        <FormControlLabel className="checkUser"
+        <FormControlLabel className="boxes"
         control={<Checkbox name="checkedRecruiters" />}
         label="Recruiters"
         />
         
-        <FormControl>
+        <FormControl className='boxes'>
             <InputLabel>
             Filter preferences
             </InputLabel>
@@ -41,6 +43,8 @@ class SearchBox extends React.Component{
                 <option value={30}>Filter preferences </option>
             </Select>
         </FormControl>
+        <div><SearchIcon/></div>
+
 
         </div>
 
