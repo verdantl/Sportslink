@@ -1,8 +1,16 @@
-
+.searchBox{
+    width: fit-content;
+}
 .searchTitle{
     background-color: brown;
+    text-align: center;
+    width: 100%;
 }
 
+.checkUser{
+    margin: 0.8%;
+    
+}
 .garamond{
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
