@@ -1,10 +1,10 @@
 import React from 'react'
 import './App.css';
-import TopBar from './components/TopBar'
+import AthleteDashboard from './components/AthleteDashboard'
 
 class App extends React.Component {
   render(){
-    return <TopBar className="topBar"/>
+    return <div ><AthleteDashboard/></div>
   }
 }
 

@@ -5,7 +5,8 @@ import '../components-css/TopBar.css';
 class TopBar extends React.Component{
 
     render(){
-        return <div>
+        return <div className="topBar">
+
             <HomeIcon className="homeIcon"/>
             <SettingsIcon className="settingsIcon"/>
 
