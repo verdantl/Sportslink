@@ -5,17 +5,15 @@ import '../components-css/DashProfileBox.css'
 class DashProfileBox extends React.Component{
     render(){
         return <div className="profileBox">
-                    <LocationSearchingSharpIcon className="profilePic"/>
-                    <div>
-                        <p> This is my profile name</p>
-                    </div>
 
-                    <div>
-                        <p>Profile</p>
+                    <div className="profileName">
+                        This is my profile name
                     </div>
-
-                    <div>
-                        <p>Log Out</p>
+                    <div className="button">
+                        Profile
+                    </div>
+                    <div className="button">
+                        Log Out
                     </div>
 
                 </div>

@@ -1,8 +1,9 @@
 import React from 'react'
-import TopBar from './TopBar'
 import SearchBox from './SearchBox'
 import DashProfileBox from './DashProfileBox'
+import SingleProfileBox from './SingleProfileBox'
 import "../components-css/AthleteDashboard.css"
+
 // import AthleteDashBoardProfile from './AthleteDashboardProfile'
 
 class AthleteDashboard extends React.Component{
@@ -16,8 +17,14 @@ class AthleteDashboard extends React.Component{
 
     render(){
         return <div className="athleteDashboard">
-            <DashProfileBox className="personalProfile"/>
-            <SearchBox className="searchBox"/>
+            <div className="leftColumn">
+                <DashProfileBox className="personalProfile"/>
+            </div>
+
+            <div className="dashboard">
+                <SearchBox className="searchBox"/>
+                <SingleProfileBox/>
+            </div>
 
             </div>
     }

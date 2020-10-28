@@ -1,5 +1,13 @@
+.profileBox{
+    margin: 20px;
+    width: 400px;
+    height: 150px;
+    display: flex;
+}
 .profilePic{
-    width: 100%;
+    width: 100px;
+    height: 100px;
+    float: left;
 }
 
 .profileName{

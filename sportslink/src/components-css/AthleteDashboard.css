@@ -1,10 +1,15 @@
 .athleteDashboard{
     display: flex;
+    width: 100%;
 
 }
-.personalProfile{
+.leftColumn{
     float: left
 }
 
+.dashboard{
+
+}
 .searchBox{
+    width: 500px;
 }
