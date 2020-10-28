@@ -1,11 +1,14 @@
 .profilePic{
-
+    width: 100%;
 }
 
 .profileName{
-
+    padding: 10px;
+    size: 15px;
 }
 
 .profileDescription{
-    
+    padding: 10px;
+    size: 15px;
+
 }
