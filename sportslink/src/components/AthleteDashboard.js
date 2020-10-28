@@ -9,7 +9,7 @@ class AthleteDashboard extends React.Component{
     render(){
         return <div>
             <TopBar/>
-            <div className="sideBySide">
+            <div className="athleteDashboard">
             <DashProfileBox className="personalProfile"/>
             <SearchBox className="searchBox"/>
             </div>

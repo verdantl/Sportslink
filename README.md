@@ -6,4 +6,4 @@ cd sportslink
 npm start
 
 ## 3rd party libraries
-We are using React for the front-end of this project.
+We are using React as well as some Material UI components (i.e. checkboxes, icons etc.) for the front-end of this project.

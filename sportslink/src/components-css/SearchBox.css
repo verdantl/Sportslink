@@ -1,8 +1,11 @@
 .searchBox{
     width: fit-content;
+    background-color: antiquewhite;
+    margin: 20px;
+    padding: 10px;
 }
 .searchTitle{
-    background-color: brown;
+    background-color: azure;
     text-align: center;
     width: 100%;
 }

@@ -1,5 +1,5 @@
 .athleteDashboard{
-    display: block
+    display: flex;
 
 }
 .personalProfile{
