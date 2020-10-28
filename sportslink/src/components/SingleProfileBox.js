@@ -6,8 +6,9 @@ class SingleProfileBox extends React.Component{
 
     render(){
         return <div className='profileBox'>
-            <img className="profilePic" src="logo512.png"/>
-            <div>
+            <div className='profilePic'> <img src="logo512.png"/></div>
+
+            <div className='subBox'>
                 <p className="profileName"> Username </p>
                 <p className="profileDescription"> Description</p>
             </div>

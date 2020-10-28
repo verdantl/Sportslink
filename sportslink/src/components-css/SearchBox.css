@@ -1,5 +1,6 @@
 .searchBox{
     width: fit-content;
+    height: fit-content;
     background-color: antiquewhite;
     margin: 20px;
     padding: 10px;
@@ -13,6 +14,13 @@
 .boxes{
     padding: 10px;
 }
+
+.searchButton{
+    margin-left: 20px;
+    margin-top: 20px;
+    display: flex;
+}
+
 .garamond{
     font-family: Georgia, 'Times New Roman', Times, serif;
 }

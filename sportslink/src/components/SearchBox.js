@@ -43,7 +43,7 @@ class SearchBox extends React.Component{
                 <option value={30}>Filter preferences </option>
             </Select>
         </FormControl>
-        <div><SearchIcon/></div>
+        <div className="searchButton"><SearchIcon/></div>
 
 
         </div>

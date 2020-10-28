@@ -4,9 +4,11 @@ import '../components-css/DashProfileBox.css'
 
 class DashProfileBox extends React.Component{
     render(){
-        return <div className="profileBox">
-
-                    <div className="profileName">
+        return <div className="personalProfileBox">
+                    <div className="personalPic">
+                        <img src="logo512.png"/>
+                    </div>
+                    <div className="personalProfileName">
                         This is my profile name
                     </div>
                     <div className="button">
