@@ -6,13 +6,18 @@ import "../components-css/AthleteDashboard.css"
 // import AthleteDashBoardProfile from './AthleteDashboardProfile'
 
 class AthleteDashboard extends React.Component{
+    state = {
+
+        users: [
+          {username: 'James Snitcher'},
+          {username: "Mark Kazakevich"}
+        ]
+      }
+
     render(){
-        return <div>
-            <TopBar/>
-            <div className="athleteDashboard">
+        return <div className="athleteDashboard">
             <DashProfileBox className="personalProfile"/>
             <SearchBox className="searchBox"/>
-            </div>
 
             </div>
     }
