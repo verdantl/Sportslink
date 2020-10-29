@@ -4,20 +4,37 @@
     padding: 10px;
     width: 300px;
     height: 400px;
-    align-items: center;
     text-align: center;
     border-radius: 15px;
+    position: relative;
 }
 
 .personalPic img{    
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
+}
+
+.personalProfileName{
+    font-size: xx-large;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .button{
     margin: 10px;
     padding: 10px;
-    background-color: beige;
+    background-color: white;
     width: fit-content;
     height: fit-content;
     text-align: center;
+    font-size: x-large;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+}
+
+.buttons{
+    display: inline-block;
+    align-items: center;
+    
 }

@@ -1,11 +1,15 @@
 .homeIcon{
     margin-left: 20%;
+    transform: scale(2);
+    padding: 10px;
 }
 
 .settingsIcon{
     position: absolute;
     right:0px;
     margin-right: 20%;
+    transform: scale(2);
+    padding: 10px;
 
 }
 

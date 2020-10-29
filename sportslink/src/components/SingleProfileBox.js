@@ -10,7 +10,7 @@ class SingleProfileBox extends React.Component{
 
             <div className='subBox'>
                 <p className="profileName"> Username </p>
-                <p className="profileDescription"> Description</p>
+                <p className="profileDescription"> Description this is a very long long long long long long description</p>
             </div>
 
         </div>

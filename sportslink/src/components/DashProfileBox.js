@@ -9,14 +9,17 @@ class DashProfileBox extends React.Component{
                         <img src="logo512.png"/>
                     </div>
                     <div className="personalProfileName">
-                        This is my profile name
+                        Profile Name
                     </div>
+                    <div className="buttons">
                     <div className="button">
                         Profile
                     </div>
                     <div className="button">
                         Log Out
                     </div>
+                    </div>
+
 
                 </div>
     }

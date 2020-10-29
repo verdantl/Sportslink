@@ -1,7 +1,7 @@
 .profileBox{
     margin: 20px;
-    width: 300px;
-    height: 100px;
+    width: 400px;
+    height: 120px;
     padding: 20px;
     padding-left: 30px;
     padding-right: 30px;
@@ -14,8 +14,8 @@
     float: left;
 }
 .profilePic img{
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
 }
 
 .subBox{
@@ -23,15 +23,22 @@
 }
 
 .profileName{
-    padding: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin: 5px;
-    size: 15px;
+    font-size: x-large;
+    background: white;
+    width: fit-content;
+    border-radius: 10px;
     
 }
 
 .profileDescription{
-    padding: 10px;
+    padding: 5px;
+    width: 200px;
     margin: 5px;
-    size: 15px;
+    font-size: large;
+    ;
 
 }
