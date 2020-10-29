@@ -10,6 +10,7 @@ import "../components-css/SearchBox.css"
 
 
 class SearchBox extends React.Component{
+
     render(){
         return <div className="searchBox">
         <div className="searchTitle">
@@ -43,7 +44,7 @@ class SearchBox extends React.Component{
                 <option value={30}>Filter preferences </option>
             </Select>
         </FormControl>
-        <div className="searchButton"><SearchIcon/></div>
+        <SearchIcon className="searchButton"/>
 
 
         </div>

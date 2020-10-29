@@ -2,25 +2,35 @@
     width: fit-content;
     height: fit-content;
     background-color: antiquewhite;
+    border-radius: 10px;
     margin: 20px;
     padding: 10px;
 }
 .searchTitle{
     background-color: azure;
     text-align: center;
-    width: 100%;
+
+    margin-left: 20px;
+    margin-right: 20px;
+    align-items: center;
 }
 
 .boxes{
     padding: 10px;
+    vertical-align: auto;
+    align-items: center;
 }
 
 .searchButton{
     margin-left: 20px;
     margin-top: 20px;
-    display: flex;
+    transform: scale(1.6);
+    background-color: burlywood;
+    border-radius: 10px;
+    padding: 3px;
 }
 
 .garamond{
     font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: x-large;
 }

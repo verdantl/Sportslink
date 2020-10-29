@@ -23,7 +23,24 @@ class AthleteDashboard extends React.Component{
 
             <div className="dashboard">
                 <SearchBox className="searchBox"/>
+                <div>
                 <SingleProfileBox/>
+                <SingleProfileBox/>
+                </div>
+                <div>
+                <SingleProfileBox/>
+                <SingleProfileBox/>
+                </div>
+                <div>
+                <SingleProfileBox/>
+                <SingleProfileBox/>
+                </div>
+                <div>
+                <SingleProfileBox/>
+                <SingleProfileBox/>
+                </div>
+
+
             </div>
 
             </div>
