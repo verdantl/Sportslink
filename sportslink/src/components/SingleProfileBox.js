@@ -13,6 +13,7 @@ class SingleProfileBox extends React.Component{
                 <p className="profileDescription"> Description this is a very long long long long long long description</p>
             </div>
 
+
         </div>
 
     }
