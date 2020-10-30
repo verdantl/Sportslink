@@ -1,11 +1,19 @@
 .sentMessage{
     max-width: 400px;
     min-height: 50px;
+    border-radius: 10px;
     background-color: antiquewhite;
+    float: right;
 }
 
 .recievedMessage{
     max-width: 400px;
     min-height: 50px;
+    border-radius: 10px;
     background-color: lightblue;
+    float: left;
+}
+
+ul{
+    list-style-type: none;
 }

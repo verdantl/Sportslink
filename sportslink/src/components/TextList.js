@@ -2,15 +2,18 @@ import React from 'react';
 import '../components-css/TextList.css'
 
 class TextList extends React.Component{
-    state = {
-        currUser: this.props.currUser,
-        messages: this.props.messages
-    }
+     constructor (props) {
+         super(props);
+
+         console.log(props)
+     }
 
     render() {
         return (
-            <ul className="temp">
-                {this.props.messages.map(this.displayMessage)}
+            <ul>
+                {
+                    this.props.messages.map(this.displayMessage)
+                }
             </ul>
         )
     }
@@ -21,10 +24,12 @@ class TextList extends React.Component{
                 <div>
                     {message.userID}
                 </div>
-                <div className={message.userID === this.props.currUser ? 'sentMessage' : 'recievedMessage'}>
-                    {message.messageData}
+                <div className={message.userID === "currUserID" ? 'sentMessage' : 'recievedMessage'}>
+                        {message.messageData}
                 </div>
             </li>
         )
     }
 }
+
+export default TextList

@@ -1,5 +1,4 @@
 import React from 'react';
-import TopBar from './TopBar';
 import TextList from './TextList';
 import "../components-css/Messaging.css"
 
@@ -33,9 +32,8 @@ class Messaging extends React.Component{
             <div className="texts">
                 {
                     // TODO: Autogenerate texts through backend
-                    // TODO: Finish layout for texts
                 }
-                <TextList messages={this.messages} currUser={this.currUser}/>
+                <TextList messages={this.state.messages} currUser={this.state.currUser}/>
             </div>
             <div className="sendMessageForm">
                 {
@@ -45,3 +43,4 @@ class Messaging extends React.Component{
         </div>
     }
 }
+export default Messaging

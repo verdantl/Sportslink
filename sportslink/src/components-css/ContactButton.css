@@ -1,0 +1,36 @@
+.contactBox{
+    margin: 20px;
+    width: 400px;
+    height: 120px;
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: antiquewhite;
+    display: inline-block;
+    border-radius: 15px;
+}
+.profilePic{
+    float: left;
+}
+.profilePic img{
+    width: 120px;
+    height: 120px;
+}
+.subBox{
+    float: left;
+}
+.profileName{
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px;
+    font-size: x-large;
+    background: white;
+    width: fit-content;
+    border-radius: 10px;
+}
+.profileDescription{
+    padding: 5px;
+    width: 200px;
+    margin: 5px;
+}
