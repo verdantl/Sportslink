@@ -1,0 +1,11 @@
+.sentMessage{
+    max-width: 400px;
+    min-height: 50px;
+    background-color: antiquewhite;
+}
+
+.recievedMessage{
+    max-width: 400px;
+    min-height: 50px;
+    background-color: lightblue;
+}

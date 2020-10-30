@@ -1,5 +1,6 @@
 .contacts{
     float: left;
+    width: 300px;
 }
 
 .messaging{
@@ -8,5 +9,10 @@
 }
 
 .texts{
-    
+
+}
+
+.contactHeader{
+    height: 100px;
+    width: 100%;
 }
