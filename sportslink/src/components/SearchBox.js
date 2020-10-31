@@ -15,24 +15,36 @@ class SearchBox extends React.Component{
     }
 
     state = {
-        athleteChecked: false,
-        sponsorChecked: false,
+        checked: {"checkedAthlete": false , "checkedRecruiters": false},
         preferences: []
+    }
+
+
+    handleCheck = (event) => {
+        const checkBox = event.target.name
+
+        this.state.checked[checkBox] = event.target.checked
+        console.log(this.state.checked)
+
     }
 
     handleChange = (event) =>{
         const preference = event.target.value
-        console.log(preference)
+
 
         if (this.state.preferences.includes(preference)){
             const index = (element) => element != preference
-            this.state.preferences = this.state.preferences.filter(index)
+            this.setState({preferences: this.state.preferences.filter(index)})
         }
         else{
             this.state.preferences.push(preference)
+            this.setState({preferences: this.state.preferences})
         }
+
         console.log(this.state.preferences)
     }
+
+    displayPreferences = () => this.state.preferences.map((d) => <li key={d.name}>{d}</li>);
 
     render(){
         return <div className={this.props.searchBoxClass}>
@@ -40,16 +52,18 @@ class SearchBox extends React.Component{
             <p className="garamond"> Search</p>
         </div>
         <FormControlLabel className="boxes"
-        control={<Checkbox  name="checkedAthlete" />}
+        control={<Checkbox  onChange={ this.handleCheck } name="checkedAthlete" />}
         label="Athletes"
         />
 
         <FormControlLabel className="boxes"
-        control={<Checkbox name="checkedRecruiters" />}
+        control={<Checkbox onChange={ this.handleCheck } name="checkedRecruiters" />}
         label="Recruiters"
         />
         
-        <FormControl className='boxes'>
+        <FormControl className = 
+        'boxes'
+        >
             <InputLabel>
             Filter preferences
             </InputLabel>
@@ -69,7 +83,15 @@ class SearchBox extends React.Component{
             </Select>
         </FormControl>
         <SearchIcon className="searchButton"/>
-
+        <div className="preferences">
+         {this.state.preferences.map((preference) => {
+             console.log("Hi")
+              return <p className='student'>
+              {preference} 
+            </p>
+            }
+            )}
+        </div>
 
         </div>
 
