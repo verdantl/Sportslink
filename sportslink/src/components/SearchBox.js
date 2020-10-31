@@ -10,9 +10,11 @@ import "../components-css/SearchBox.css"
 
 
 class SearchBox extends React.Component{
-
+    constructor(props){
+        super(props)
+    }
     render(){
-        return <div className="searchBox">
+        return <div className={this.props.searchBoxClass}>
         <div className="searchTitle">
             <p className="garamond"> Search</p>
         </div>

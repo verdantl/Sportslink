@@ -22,7 +22,7 @@ class AthleteDashboard extends React.Component{
             </div>
 
             <div className="dashboard">
-                <SearchBox className="searchBox"/>
+                <SearchBox searchBoxClass="athleteSearchBox"/>
                 <div>
                 <SingleProfileBox/>
                 <SingleProfileBox/>

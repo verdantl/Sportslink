@@ -6,7 +6,7 @@ import SingleAdminBox from './SingleAdminBox'
 class AdminDashboard extends React.Component{
     render(){
         return <div>
-            <SearchBox/>
+            <SearchBox searchBoxClass="adminSearchBox"/>
             <div>
         <SingleAdminBox/>
       </div>

@@ -13,8 +13,10 @@ class App extends React.Component {
       <TopBar/>
       <BrowserRouter>
         <Switch>
-          <Route exact path = '/' render={()=>
+          <Route exact path = '/admin' render={()=>
                           (<AdminDashboard className="adminDashboard"/>)}/>
+          <Route exact path = '/athlete' render={()=>
+                          (<AthleteDashboard className="athleteDashboard"/>)}/>
 
           <Route exact path = '/login' render={() =>
                           (<Login/>)}/>
