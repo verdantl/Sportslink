@@ -31,7 +31,27 @@
     border-bottom-right-radius: 10px;
 }
 
-.adminButton{
+.adminSuspendButton{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    margin-top: 30px;
+    background-color: white;
+    float: left;
+    color: cadetblue;
+    font-size: large;
+}
+.adminRemoveButton{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    margin-top: 30px;
+    background-color: white;
+    color: red;
+    float: left;
+    font-size: large;
+}
+.adminEditButton{
     padding: 10px;
     border-radius: 10px;
     margin: 20px;

@@ -13,14 +13,14 @@ class SingleAdminBox extends React.Component{
             </div>
             </div>
             <div className="adminActions">
-                <div className="adminButton">
+                <div className="adminSuspendButton">
                     Suspend
                 </div>
-                <div className="adminButton">
+                <div className="adminRemoveButton">
                     Remove
                 </div>
 
-                <div className="adminButton">
+                <div className="adminEditButton">
                     Edit
                 </div>
             </div>

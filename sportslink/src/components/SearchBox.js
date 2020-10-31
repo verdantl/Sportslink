@@ -13,6 +13,27 @@ class SearchBox extends React.Component{
     constructor(props){
         super(props)
     }
+
+    state = {
+        athleteChecked: false,
+        sponsorChecked: false,
+        preferences: []
+    }
+
+    handleChange = (event) =>{
+        const preference = event.target.value
+        console.log(preference)
+
+        if (this.state.preferences.includes(preference)){
+            const index = (element) => element != preference
+            this.state.preferences = this.state.preferences.filter(index)
+        }
+        else{
+            this.state.preferences.push(preference)
+        }
+        console.log(this.state.preferences)
+    }
+
     render(){
         return <div className={this.props.searchBoxClass}>
         <div className="searchTitle">
@@ -39,11 +60,12 @@ class SearchBox extends React.Component{
                 name: 'age',
                 id: 'age-native-simple',
                 }}
+                onChange={this.handleChange}
                 >
                 <option aria-label="None" value="" />
-                <option value={10}>Ten</option>
-                <option value={20}>Twenty</option>
-                <option value={30}>Filter preferences </option>
+                <option value={"Same location"}>Filter preferences</option>
+                <option value={"Big brain"}>Big brain       </option>
+                <option value={"Same Sport"}>Same Sport </option>
             </Select>
         </FormControl>
         <SearchIcon className="searchButton"/>
