@@ -1,5 +1,5 @@
 import React from 'react'
-import '../components-css/SingleAdminBox.css'
+import './SingleAdminBox.css'
 
 class SingleAdminBox extends React.Component{
     render(){

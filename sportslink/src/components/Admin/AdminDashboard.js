@@ -1,6 +1,6 @@
 import React from 'react'
-import SearchBox from './SearchBox'
-import '../components-css/AdminDashboard.css'
+import SearchBox from '../SearchBox'
+import './AdminDashboard.css'
 import SingleAdminBox from './SingleAdminBox'
 
 class AdminDashboard extends React.Component{

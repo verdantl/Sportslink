@@ -1,6 +1,5 @@
 import React from 'react'
-import LocationSearchingSharpIcon from '@material-ui/icons/LocationSearchingSharp';
-import '../components-css/DashProfileBox.css'
+import './DashProfileBox.css'
 
 class DashProfileBox extends React.Component{
     render(){

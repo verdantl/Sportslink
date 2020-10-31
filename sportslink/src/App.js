@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css';
-import AthleteDashboard from './components/AthleteDashboard'
-import AdminDashboard from './components/AdminDashboard'
+import AthleteDashboard from './components/Athlete/AthleteDashboard'
+import AdminDashboard from './components/Admin/AdminDashboard'
 import Login from './components/Login/Login'
 import TopBar from './components/TopBar'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';

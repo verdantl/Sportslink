@@ -1,5 +1,5 @@
 import React from 'react'
-import '../components-css/SingleProfileBox.css'
+import './SingleProfileBox.css'
 import '../logo.svg'
 
 class SingleProfileBox extends React.Component{

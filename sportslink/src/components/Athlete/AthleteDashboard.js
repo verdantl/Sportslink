@@ -1,8 +1,8 @@
 import React from 'react'
-import SearchBox from './SearchBox'
+import SearchBox from '../SearchBox'
 import DashProfileBox from './DashProfileBox'
 import SingleProfileBox from './SingleProfileBox'
-import "../components-css/AthleteDashboard.css"
+import "./AthleteDashboard.css"
 
 // import AthleteDashBoardProfile from './AthleteDashboardProfile'
 
