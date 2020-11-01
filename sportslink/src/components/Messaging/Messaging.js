@@ -1,6 +1,6 @@
 import React from 'react';
 import TextList from './TextList';
-import "../components-css/Messaging.css"
+import "./Messaging.css"
 
 class Messaging extends React.Component{
 

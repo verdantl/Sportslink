@@ -1,5 +1,5 @@
 import React from 'react';
-import "../components-css/ContactButton.css"
+import "./ContactButton.css"
 
 class ContactButton extends React.Component{
     render(){

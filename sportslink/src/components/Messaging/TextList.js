@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components-css/TextList.css'
+import './TextList.css'
 
 class TextList extends React.Component{
      constructor (props) {

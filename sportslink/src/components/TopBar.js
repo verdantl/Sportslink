@@ -1,7 +1,7 @@
 import React from 'react'
 import SettingsIcon from '@material-ui/icons/Settings';
 import HomeIcon from '@material-ui/icons/Home';
-import '../components-css/TopBar.css';
+import './TopBar.css';
 class TopBar extends React.Component{
 
     render(){

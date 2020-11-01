@@ -1,6 +1,5 @@
 import React from 'react';
-import ContactButton from './ContactButton';
-import "../components-css/Contacts.css"
+import "./Contacts.css"
 
 class Contacts extends React.Component{
 
@@ -22,7 +21,7 @@ class Contacts extends React.Component{
 
     render(){
         return (
-            <ul>
+            <ul id="contactClickForm">
                 {
                     this.state.contacts.map(this.displayContacts)
                 }
@@ -31,9 +30,15 @@ class Contacts extends React.Component{
     }
 
     displayContacts (contact) {
-        <li className="contactItem">
-            <ContactButton userID={contact.userID} icon={contact.userID} lastMessage={contact.lastMessage}>
-            </ContactButton>
+        <li>
+            {
+                //<ContactButton userID={contact.userID} icon={contact.userID} lastMessage={contact.lastMessage}></ContactButton>
+            }
+            <div className="contactItem">
+                <div className="contactImage"> <img src="logo512.png"></img> </div>
+                <h6 className="contactHeader">{contact.userID}</h6>
+                <p>{contact.lastMessage}</p>
+            </div>
         </li>
     }
 }

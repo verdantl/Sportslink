@@ -5,7 +5,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel"
 import FormControl from "@material-ui/core/FormControl"
 import InputLabel from "@material-ui/core/InputLabel"
 import SearchIcon from '@material-ui/icons/Search';
-import "../components-css/SearchBox.css"
+import "./SearchBox.css"
 
 
 
