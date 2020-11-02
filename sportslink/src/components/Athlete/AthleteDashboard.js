@@ -4,6 +4,7 @@ import DashProfileBox from './DashProfileBox'
 import SingleProfileBox from './SingleProfileBox'
 import "./AthleteDashboard.css"
 import colorwolf from '../images/colorwolf.jpg'
+import SearchResults from "./SearchResults"
 
 
 // import AthleteDashBoardProfile from './AthleteDashboardProfile'
@@ -15,8 +16,9 @@ class AthleteDashboard extends React.Component{
             name: "Lebron James"
         },
         users: [
-          {image: "", username: 'James Snitcher', description: "hello guys"},
-          {image: "", username: "Mark Kazakevich", description: "I like teaching CSC309"}
+          {image: "", name: 'James Snitcher', description: "hello guys"},
+          {image: "", name: "Mark Kazakevich", description: "I like teaching CSC309"},
+          {image: "", name: "Kevin Durant", description: "NBA Player for the Brooklyn Nets"}
         ]
       }
 
@@ -28,22 +30,7 @@ class AthleteDashboard extends React.Component{
 
             <div className="dashboard">
                 <SearchBox searchBoxClass="athleteSearchBox"/>
-                <div>
-                <SingleProfileBox/>
-                <SingleProfileBox/>
-                </div>
-                <div>
-                <SingleProfileBox/>
-                <SingleProfileBox/>
-                </div>
-                <div>
-                <SingleProfileBox/>
-                <SingleProfileBox/>
-                </div>
-                <div>
-                <SingleProfileBox/>
-                <SingleProfileBox/>
-                </div>
+                <SearchResults users={this.state.users}/>
 
 
             </div>
