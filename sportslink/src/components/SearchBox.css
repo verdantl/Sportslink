@@ -28,6 +28,13 @@
     border-radius: 10px;
 }
 
+.table{
+    text-align: justify;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
 .boxes{
     padding: 10px;
     vertical-align: auto;

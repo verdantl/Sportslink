@@ -51,6 +51,7 @@ class SearchBox extends React.Component{
         <div className="searchTitle">
             <p className="garamond"> Search</p>
         </div>
+        <div className='table'>
         <FormControlLabel className="boxes"
         control={<Checkbox  onChange={ this.handleCheck } name="checkedAthlete" />}
         label="Athletes"
@@ -83,12 +84,14 @@ class SearchBox extends React.Component{
             </Select>
         </FormControl>
         <SearchIcon className="searchButton"/>
+
+        </div>
         <div className="preferences">
          {this.state.preferences.map((preference) => {
              console.log("Hi")
-              return <p className='student'>
-              {preference} 
-            </p>
+              return <span className='student'>
+              {preference + ' '} 
+            </span>
             }
             )}
         </div>
