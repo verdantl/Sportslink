@@ -2,13 +2,19 @@ import React from 'react'
 import './DashProfileBox.css'
 
 class DashProfileBox extends React.Component{
+
+    constructor(props){
+        super(props)
+    }
+
+
     render(){
         return <div className="personalProfileBox">
                     <div className="personalPic">
-                        <img src="logo512.png"/>
+                        <img src={this.props.user.image}/>
                     </div>
                     <div className="personalProfileName">
-                        Profile Name
+                        {this.props.user.name}
                     </div>
                     <div className="buttons">
                     <div className="button">

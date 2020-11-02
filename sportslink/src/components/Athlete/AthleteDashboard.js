@@ -8,17 +8,20 @@ import "./AthleteDashboard.css"
 
 class AthleteDashboard extends React.Component{
     state = {
-
+        user: {
+            image: "../logo512.png",
+            name: "Lebron James"
+        },
         users: [
-          {username: 'James Snitcher'},
-          {username: "Mark Kazakevich"}
+          {image: "", username: 'James Snitcher', description: "hello guys"},
+          {image: "", username: "Mark Kazakevich", description: "I like teaching CSC309"}
         ]
       }
 
     render(){
         return <div className="athleteDashboard">
             <div className="leftColumn">
-                <DashProfileBox className="personalProfile"/>
+                <DashProfileBox user={this.state.user} className="personalProfile"/>
             </div>
 
             <div className="dashboard">
