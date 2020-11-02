@@ -48,9 +48,9 @@ class SearchBox extends React.Component{
 
     render(){
         return <div className={this.props.searchBoxClass}>
-        <div className="searchTitle">
-            <p className="garamond"> Search</p>
-        </div>
+
+        <input className="searchTitle" placeholder="Search"/>
+
         <div className='table'>
         <FormControlLabel className="boxes"
         control={<Checkbox  onChange={ this.handleCheck } name="checkedAthlete" />}
@@ -90,7 +90,7 @@ class SearchBox extends React.Component{
          {this.state.preferences.map((preference) => {
              console.log("Hi")
               return <span className='student'>
-              {preference + ' '} 
+              {preference + ''} 
             </span>
             }
             )}
