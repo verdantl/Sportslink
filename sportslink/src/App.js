@@ -5,6 +5,7 @@ import AdminDashboard from './components/Admin/AdminDashboard'
 import Login from './components/Login/Login'
 import Messaging from './components/Messaging/Messaging'
 import TopBar from './components/TopBar'
+import Profile from './components/Profile/Profile'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 
@@ -20,6 +21,8 @@ class App extends React.Component {
                           (<AthleteDashboard className="athleteDashboard"/>)}/>
           <Route exact path = '/login' render={() =>
                           (<Login/>)}/>
+          <Route exact path = '/profile' render={() => 
+                          (<Profile className="profile"/>)}/>
           <Route exact path = '/messaging' render={() => 
                           (<Messaging className="messaging"/>)}/>
         </Switch>

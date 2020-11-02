@@ -23,7 +23,7 @@ class SearchBox extends React.Component{
     handleCheck = (event) => {
         const checkBox = event.target.name
 
-        this.state.checked[checkBox] = event.target.checked
+        this.setState.checked[checkBox] = event.target.checked
         console.log(this.state.checked)
 
     }
