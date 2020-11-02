@@ -3,13 +3,15 @@ import SearchBox from '../SearchBox'
 import DashProfileBox from './DashProfileBox'
 import SingleProfileBox from './SingleProfileBox'
 import "./AthleteDashboard.css"
+import colorwolf from '../images/colorwolf.jpg'
+
 
 // import AthleteDashBoardProfile from './AthleteDashboardProfile'
 
 class AthleteDashboard extends React.Component{
     state = {
         user: {
-            image: "../logo512.png",
+            image: colorwolf,
             name: "Lebron James"
         },
         users: [

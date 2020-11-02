@@ -1,6 +1,7 @@
 import React from 'react'
 import './DashProfileBox.css'
 
+
 class DashProfileBox extends React.Component{
 
     constructor(props){
