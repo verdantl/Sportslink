@@ -16,8 +16,8 @@ class AthleteDashboard extends React.Component{
             name: "Lebron James"
         },
         users: [
-          {image: "", name: 'James Snitcher', description: "hello guys"},
-          {image: "", name: "Mark Kazakevich", description: "I like teaching CSC309"},
+          {image: "", name: 'James Harden', description: "No. 13, Houston Rockets. 3x scoring champion"},
+          {image: "", name: "Kawhi Leonard  ", description: "2x Finals MVP, LA Clippers SF"},
           {image: "", name: "Kevin Durant", description: "NBA Player for the Brooklyn Nets"}
         ]
       }

@@ -2,14 +2,18 @@ import React from 'react'
 import './SingleAdminBox.css'
 
 class SingleAdminBox extends React.Component{
+    constructor(props){
+        super(props)
+    }
+
     render(){
         return <div className="adminBox">
             <div className="adminProfileBox">
             <div className='profilePic'> <img src="logo512.png"/></div>
 
             <div className='subBox'>
-            <p className="adminProfileName"> Username </p>
-            <p className="adminProfileDescription"> Description this is a very long long long long long long description</p>
+            <p className="adminProfileName"> {this.props.user.name} </p>
+            <p className="adminProfileDescription">{this.props.user.description}</p>
             </div>
             </div>
             <div className="adminActions">

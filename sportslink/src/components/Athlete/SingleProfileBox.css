@@ -28,7 +28,6 @@
     padding-right: 10px;
     margin: 5px;
     font-size: x-large;
-    background: white;
     width: fit-content;
     border-radius: 10px;
     
@@ -36,9 +35,10 @@
 
 .profileDescription{
     padding: 5px;
-    width: 200px;
+    width: 250px;
     margin: 5px;
-    font-size: large;
+    font-size: medium;
+    color: gray
     ;
 
 }

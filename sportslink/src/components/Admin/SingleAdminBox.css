@@ -67,7 +67,6 @@
     padding-right: 10px;
     margin: 5px;
     font-size: x-large;
-    background: white;
     width: fit-content;
     border-radius: 10px;
 }
@@ -77,6 +76,7 @@
     width: 350px;
     margin: 5px;
     text-align: left;
-    font-size: large;
+    font-size: medium;
+    color: gray
     ;
 }
