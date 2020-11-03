@@ -9,10 +9,16 @@
 }
 
 .texts{
-
+    width: 100%;
 }
 
 .contactHeader{
     height: 100px;
+    width: 100%;
+    display: block;
+    clear: both;
+}
+
+.rightContent{
     width: 100%;
 }
