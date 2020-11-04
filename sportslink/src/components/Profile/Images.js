@@ -1,6 +1,6 @@
 import React from 'react'
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 
 
 class Images extends React.Component{
@@ -37,13 +37,13 @@ class Images extends React.Component{
 
     render(){
         return <div className='profileImages'>
-            <div onClick={this.previousImage} className="arrow">
-            <ArrowBackIosIcon/>
+            <div onClick={this.previousImage} className="leftarrow">
+            <ArrowLeftIcon className="arrow"/>
             </div>
 
             <img src={this.props.images[this.state.imageNum]} className="oneImage"/>
-            <div onClick={this.nextImage} className="arrow">
-            <ArrowForwardIosIcon />
+            <div onClick={this.nextImage} className="rightarrow">
+            <ArrowRightIcon className="arrow"/>
             </div>
 
         </div>

@@ -3,6 +3,7 @@
     margin-top: 20px;
     padding: 5px;
     text-align: center;
+    height: 100%;
 }
 .image{
     border-radius: 50%;
@@ -23,6 +24,7 @@ img.resize{
     width: 50px;
     height: auto;
 }
+
 .profilePicture .profileName{
     padding: 5px;
 
@@ -41,7 +43,7 @@ img.resize{
 }
 
 .profileCard{
-    background-color: white;
+    background-color: lavender;
     border-radius: 2px;
     width: 80vw;
     padding: 30px;
@@ -51,18 +53,30 @@ img.resize{
 .contactDetails{
     display: inline-block;
     margin: 10px;
-    color: brown;
     font-size: large;
+    background-color: aliceblue;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px gray solid;
 
 }
 .contact{
     margin: 10px;
+    padding: 8px;
+    border-radius: 10px;
+    width: fit-content;
+    background-color: cadetblue;
 
 }
 .personalInfo{
     margin: 10px;
     font-size: large;
     height: 50%;
+    text-align: left;
+}
+.detailsTitle{
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .achievements{
@@ -73,10 +87,10 @@ img.resize{
 }
 
 .profileBio{
-    color: darkslategray;
+    color: black;
     padding: 10px;
     background-color: aliceblue;
-    border: 3px black solid;
+    border: 1px black solid;
     border-radius: 10px;
     width: 50vw;
     text-align: center;
@@ -84,46 +98,68 @@ img.resize{
 }
 
 
-
-.profileImages{
-    background-color: beige;
-    padding: 10px;
-    width: 40vw;
-    margin: 10px;
-    float: left;
-    border-radius: 10px;
-}
-
 .profileCareer{
-    background-color: black;
+    background-color: lavender;
     margin: 10px;
     width: 40vw;
     padding: 10px;
-    color: white;
+    color: black;
     float: right;
     border-radius: 10px;
 }
 
+
+
+
+.accomplishmentCard{
+    margin: 10px;
+    padding: 10px;
+    font-size: large;
+    background-color: white;
+    border-radius: 5px;
+
+}
+.profileImages{
+    background-color: lavender;
+    width: 40vw;
+    height: 15vw;
+    margin: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
 
 .oneImage{
-    display: inline-block;
     border-radius: 5px;
+    margin-top: 5%;
 }
-
 .leftarrow{
-    text-align: center;
-    justify-content: center;
-    background-color: white;
-    border-radius: 10px;
-    margin: 5px;
-    float: left;
-}
 
-.rightarrow{
-    text-align: center;
-    justify-content: center;
     background-color: white;
     border-radius: 10px;
-    margin: 5px;
+    vertical-align: middle;
+    float: left;
+    display: flex;
+    height: 100%;
+    position: absolute;
+
+}
+.arrow{
+    vertical-align: middle;
+    position: relative;
+    top: 40%;
+    transform: scale(1.5);
+}
+.rightarrow{
+
+    background-color: white;
+    border-radius: 10px;
+    right: 0px;
+    top: 0px;
     float: right;
+    height: 100%;   
+    display: flex;
+    position: absolute;
+    
 }
