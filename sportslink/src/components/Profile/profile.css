@@ -1,29 +1,66 @@
 .profile{
-    
+    background-color: white;
+    margin-top: 20px;
     text-align: center;
 }
 .profilePicture{
     width: fit-content;
     height: fit-content;
     display: inline-block;
-}
-.profilePicture .profileName{
     padding: 10px;
 
-    margin: 5px;
-    font-size: x-large;
+    margin: 10px;
+    margin-bottom:  0px;
+
     border-radius: 10px;
-    background-color: aquamarine;
+}
+.profilePicture .profileName{
+    padding: 5px;
+
+    margin: 5px;
+    margin-top: -5px;
+    font-size: x-large;
+}
+
+.profileInfo{
+    margin-top: 10px;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    
+    padding: 30px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    display: inline-block;
+    width: 80vw;
+}
+
+.contactDetails{
+    display: inline-block;
+    margin: 10px;
+    color: brown;
+    font-size: large;
+
+}
+
+.achievements{
+
+    width: fit-content;
+    height: 30vw;
+    display: inline-block;
 }
 
 .profileBio{
-    color: gray;
+    color: darkslategray;
     padding: 10px;
+    background-color: aliceblue;
+    border: 3px black solid;
+    border-radius: 10px;
+    width: 50vw;
+    text-align: center;
+    margin: auto;
 }
 
-.profileDetails{
-    display: inline-block;
-}
+
 
 .profileImages{
     background-color: beige;
@@ -31,6 +68,7 @@
     width: 40vw;
     margin: 10px;
     float: left;
+    border-radius: 10px;
 }
 
 .profileCareer{
@@ -39,5 +77,6 @@
     width: 40vw;
     padding: 10px;
     color: white;
-    float: left;
+    float: right;
+    border-radius: 10px;
 }

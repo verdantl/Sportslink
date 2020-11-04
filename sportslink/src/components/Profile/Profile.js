@@ -9,9 +9,15 @@ import './profile.css'
 class Profile extends React.Component{
     render(){
         return <div className="profile">
+            <div className="profileInfo">
             <ProfilePicture />
+            
+            <div className="contactDetails"> Contact</div>
+            </div>
             <Biography/>
-            <div className="profileDetails">
+
+            <div className="achievements">
+
                 <Images/>
                 <Career/>
             </div>
