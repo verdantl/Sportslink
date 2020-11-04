@@ -24,14 +24,19 @@
 
 .profileInfo{
     margin-top: 10px;
-    background-color: antiquewhite;
-    border-radius: 10px;
-    
-    padding: 30px;
+
     padding-top: 10px;
     padding-bottom: 0px;
     display: inline-block;
+
+}
+
+.profileCard{
+    background-color: antiquewhite;
+    border-radius: 10px;
     width: 80vw;
+    padding: 30px;
+    margin: auto;
 }
 
 .contactDetails{
