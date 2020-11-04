@@ -1,5 +1,6 @@
 import React from 'react';
-import './TextList.css'
+import './TextList.css';
+import { uid } from 'react-uid';
 
 class TextList extends React.Component{
      constructor (props) {
@@ -10,24 +11,24 @@ class TextList extends React.Component{
 
     render() {
         return (
-            <ul>
+            <div>
                 {
                     this.props.messages.map(this.displayMessage)
                 }
-            </ul>
+            </div>
         )
     }
 
     displayMessage (message) {
         return (
-            <li>
-                <div>
+            <div className="textDiv" key={"message-" + uid(message.messageID)}>
+                <div className={message.userID === "currUserID" ? 'sentName' : 'recievedName'}>
                     {message.userID}
                 </div>
                 <div className={message.userID === "currUserID" ? 'sentMessage' : 'recievedMessage'}>
-                        {message.messageData}
+                    {message.messageData}
                 </div>
-            </li>
+            </div>
         )
     }
 }
