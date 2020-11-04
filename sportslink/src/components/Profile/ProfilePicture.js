@@ -5,7 +5,7 @@ class ProfilePicture extends React.Component{
 
     render(){
         return <div className='profilePicture'>
-            <img src={image}
+            <img src={image} className="image"
             />
             <div className="profileName">
                 LeBron James

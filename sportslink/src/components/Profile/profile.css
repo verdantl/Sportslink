@@ -1,7 +1,11 @@
 .profile{
-    background-color: white;
+    background-color: antiquewhite;
     margin-top: 20px;
+    padding: 5px;
     text-align: center;
+}
+.image{
+    border-radius: 50%;
 }
 .profilePicture{
     width: fit-content;
@@ -32,8 +36,8 @@
 }
 
 .profileCard{
-    background-color: antiquewhite;
-    border-radius: 10px;
+    background-color: white;
+    border-radius: 2px;
     width: 80vw;
     padding: 30px;
     margin: auto;
@@ -45,6 +49,15 @@
     color: brown;
     font-size: large;
 
+}
+.contact{
+    margin: 10px;
+
+}
+.personalInfo{
+    margin: 10px;
+    font-size: large;
+    height: 50%;
 }
 
 .achievements{
@@ -84,4 +97,19 @@
     color: white;
     float: right;
     border-radius: 10px;
+}
+
+
+.oneImage{
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.arrow{
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    margin: 5px;
 }
