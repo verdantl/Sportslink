@@ -1,6 +1,6 @@
 .profile{
-    background-color: antiquewhite;
-    margin-top: 20px;
+    background-color: aliceblue;
+    margin-top: 5px;
     padding: 5px;
     text-align: center;
     height: 100%;
@@ -47,6 +47,7 @@ img.resize{
     border-radius: 2px;
     width: 80vw;
     padding: 30px;
+    border: 1px black solid;
     margin: auto;
 }
 
@@ -65,7 +66,8 @@ img.resize{
     padding: 8px;
     border-radius: 10px;
     width: fit-content;
-    background-color: cadetblue;
+    background-color: antiquewhite;
+    border: 1px lavender solid;
 
 }
 .personalInfo{
@@ -82,8 +84,12 @@ img.resize{
 .achievements{
 
     width: fit-content;
-    height: 30vw;
-    display: inline-block;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 8fr 5fr;
+    margin: auto;
+
+    
 }
 
 .profileBio{
@@ -101,14 +107,12 @@ img.resize{
 .profileCareer{
     background-color: lavender;
     margin: 10px;
-    width: 40vw;
+    width: 30vw;
     padding: 10px;
     color: black;
-    float: right;
+    border: 1px grey solid;
     border-radius: 10px;
 }
-
-
 
 
 .accomplishmentCard{
@@ -119,13 +123,40 @@ img.resize{
     border-radius: 5px;
 
 }
+
+.experience{
+    background-color: lavender;
+    width: 55 vw;
+    margin: 10px;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px black solid;
+}
+
+.experienceCard{
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+
+.profileRightColumn{
+    display: inline-block;
+    margin: 10px;
+    width: 40vw;
+    height: auto;
+    
+}
+
 .profileImages{
     background-color: lavender;
-    width: 40vw;
+    border: 1px grey solid;
+    width: 25vw;
     height: 15vw;
     margin: 10px;
     border-radius: 10px;
-    display: inline-block;
     overflow: hidden;
     position: relative;
 }
