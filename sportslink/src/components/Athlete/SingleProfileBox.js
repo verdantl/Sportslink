@@ -9,7 +9,7 @@ class SingleProfileBox extends React.Component{
 
     render(){
         return <div className='profileBox'>
-            <div className='profilePic'> <img src="logo512.png"/></div>
+            <div className='profilePic'> <img src={this.props.user.image}/></div>
 
             <div className='subBox'>
     <p className="profileBoxName"> {this.props.user.name} </p>

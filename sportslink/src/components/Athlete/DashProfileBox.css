@@ -10,8 +10,10 @@
 }
 
 .personalPic img{    
-    width: 150px;
-    height: 150px;
+
+    max-width: 250px;
+    max-width: 250px;
+    border-radius: 50%;
 }
 
 .personalProfileName{

@@ -1,5 +1,5 @@
 import React from 'react'
-import image from '../images/colorwolf.jpg'
+import image from '../images/lebron.jpg'
 
 class ProfilePicture extends React.Component{
 

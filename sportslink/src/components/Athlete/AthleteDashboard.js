@@ -3,7 +3,11 @@ import SearchBox from '../SearchBox'
 import DashProfileBox from './DashProfileBox'
 import SingleProfileBox from './SingleProfileBox'
 import "./AthleteDashboard.css"
-import colorwolf from '../images/colorwolf.jpg'
+import lebron from '../images/lebron.jpg'
+import harden from '../images/harden.jpg'
+import kawhi from '../images/kawhi.jpg'
+import durant from '../images/durant.jpg'
+
 import SearchResults from "./SearchResults"
 
 
@@ -12,13 +16,13 @@ import SearchResults from "./SearchResults"
 class AthleteDashboard extends React.Component{
     state = {
         user: {
-            image: colorwolf,
+            image: lebron,
             name: "Lebron James"
         },
         users: [
-          {image: "", name: 'James Harden', description: "No. 13, Houston Rockets. 3x scoring champion"},
-          {image: "", name: "Kawhi Leonard  ", description: "2x Finals MVP, LA Clippers SF"},
-          {image: "", name: "Kevin Durant", description: "NBA Player for the Brooklyn Nets"}
+          {image: harden, name: 'James Harden', description: "No. 13, Houston Rockets. 3x scoring champion"},
+          {image: kawhi, name: "Kawhi Leonard  ", description: "2x Finals MVP, LA Clippers SF"},
+          {image: durant, name: "Kevin Durant", description: "NBA Player for the Brooklyn Nets"}
         ]
       }
 
