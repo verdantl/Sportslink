@@ -10,12 +10,11 @@ class TopBar extends React.Component{
     }
 
     handleHover = (event) => {
-        console.log(event.target.parentElement)
-        if (event.target.parentElement.classList[0] === 'homeIcon'){
+        if (event.target.parentElement.classList[0] === 'homeIcon' | event.target.parentElement.parentElement.classList[0] === 'homeIcon'){
             this.setState({homeIcon: 'homeIconHover'})
 
         }
-        else if (event.target.parentElement.classList[0] === 'settingsIcon'){
+        else if (event.target.parentElement.classList[0] === 'settingsIcon' | event.target.parentElement.parentElement.classList[0] === 'settingsIcon'){
             this.setState({settingsIcon: 'settingsIconHover'})
 
         }
@@ -23,11 +22,11 @@ class TopBar extends React.Component{
     }
 
     handleHoverOff = (event) => {
-        if (event.target.parentElement.classList[0] === 'homeIconHover'){
+        if (event.target.parentElement.classList[0] === 'homeIconHover' | event.target.parentElement.parentElement.classList[0] === 'homeIconHover'){
             this.setState({homeIcon: 'homeIcon'})
 
         }
-        else if (event.target.parentElement.classList[0] === 'settingsIconHover'){
+        else if (event.target.parentElement.classList[0] === 'settingsIconHover' | event.target.parentElement.parentElement.classList[0] === 'settingsIconHover'){
             this.setState({settingsIcon: 'settingsIcon'})
 
         }

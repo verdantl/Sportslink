@@ -1,9 +1,6 @@
 .home{
     transform: scale(2);
     }
-.icons{
-    display: grid 1fr 1fr;
-}
 .homeIcon{
     text-align: center;
     display: inline-block;
@@ -19,9 +16,7 @@
     cursor: pointer;
     color: aliceblue;
 }
-.ul{
-    
-}
+
 .settings{
     transform: scale(2);
     right: 0px;
@@ -49,6 +44,5 @@
     height: 50px;
     width: 100vw;
     margin: auto;  
-    position: fixed;
     border: 1px black solid;
 }

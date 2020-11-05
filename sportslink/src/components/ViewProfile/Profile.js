@@ -1,16 +1,16 @@
 import React from 'react'
 import ProfilePicture from './ProfilePicture'
-import Biography from '../ViewProfile/Biography'
+import Biography from './Biography'
 import Images from './Images'
 import Career from './Career'
 import PersonalInfo from './PersonalInfo'
 import Experience from './Experience'
-import './profile.css'
+import './viewProfile.css'
 import coolcat from '../images/coolcat.jpg'
 import icedragon from '../images/icedragon.jpg'
 import lebron from '../images/lebron.jpg'
 
-class Profile extends React.Component{
+class ViewProfile extends React.Component{
     state = {
         contactClass: 'contact',
         images: [coolcat, icedragon],
@@ -72,4 +72,4 @@ class Profile extends React.Component{
     }
 }
 
-export default Profile
+export default ViewProfile

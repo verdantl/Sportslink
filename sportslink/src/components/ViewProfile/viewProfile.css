@@ -144,11 +144,9 @@ img.resize{
     border: 1px black solid;
 }
 
-.experienceCardEditable{
+.experienceCard{
     background-color: white;
     padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
     margin: 10px;
     border-radius: 10px;
 }
@@ -231,9 +229,4 @@ img.resize{
     position: absolute;
     cursor: pointer;
     
-}
-
-.addExperienceButton{
-    transform: scale(2);
-    margin-bottom: 10px;
 }
