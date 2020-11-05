@@ -1,19 +1,54 @@
-.homeIcon{
-    margin-left: 20%;
+.home{
     transform: scale(2);
-    padding: 10px;
+    }
+.icons{
+    display: grid 1fr 1fr;
+}
+.homeIcon{
+    text-align: center;
+    display: inline-block;
+    height: fit-content;
+    margin-left: 20%;
+}
+
+.homeIconHover{
+    text-align: center;
+    display: inline-block;
+    height: fit-content;
+    margin-left: 20%;
+    cursor: pointer;
+    color: aliceblue;
+}
+.ul{
+    
+}
+.settings{
+    transform: scale(2);
+    right: 0px;
 }
 
 .settingsIcon{
-    position: absolute;
-    right:0px;
-    margin-right: 20%;
-    transform: scale(2);
-    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    height: fit-content;
+    margin-left: 60%;
+}
 
+.settingsIconHover{
+    text-align: center;
+    display: inline-block;
+    height: fit-content;
+    margin-left: 60%;
+    cursor: pointer;
+    color: aliceblue;
 }
 
 .topBar{
     background-color: antiquewhite;
     padding: 5px;
+    height: 50px;
+    width: 100vw;
+    margin: auto;  
+    position: fixed;
+    border: 1px black solid;
 }
