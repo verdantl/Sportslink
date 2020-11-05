@@ -5,7 +5,9 @@ import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 
 class Images extends React.Component{
     state = {
-        imageNum: 0
+        imageNum: 0,
+        leftArrow: 'leftarrow',
+        rightArrow: 'rightarrow'
     }
     
     constructor(props){
@@ -20,8 +22,6 @@ class Images extends React.Component{
         else{
             this.setState({imageNum: nextNum});
         }
-        console.log(this.state.imageNum)
-        console.log(this.props.images)
     }
 
     previousImage = () => {
@@ -35,14 +35,38 @@ class Images extends React.Component{
         }
     }
 
+    lightUp = (event) => {
+        if (event.target.classList[0] == ('leftarrow') | event.target.parentElement.classList[0] == ('leftarrow')){
+            this.setState({leftArrow: 'leftarrowLight'});
+        }
+        else if (event.target.classList[0] == ('rightarrow') | event.target.parentElement.classList[0] == 'rightarrow'){
+            this.setState({rightArrow: 'rightarrowLight'})
+        }
+    }
+
+    lightOff = (event) => {
+        if (event.target.classList[0] == ('leftarrowLight') | event.target.parentElement.classList[0] == 'leftarrowLight'){
+            this.setState({leftArrow: 'leftarrow'});
+        }
+        else if (event.target.classList[0] == ('rightarrowLight') | event.target.parentElement.classList[0] == 'rightarrowLight'){
+            this.setState({rightArrow: 'rightarrow'})
+        }
+    }
+
     render(){
         return <div className='profileImages'>
-            <div onClick={this.previousImage} className="leftarrow">
+            <div onClick={this.previousImage} 
+            onMouseEnter={this.lightUp}
+            onMouseLeave={this.lightOff}
+            className={this.state.leftArrow}>
             <ArrowLeftIcon className="arrow"/>
             </div>
 
             <img src={this.props.images[this.state.imageNum]} className="oneImage"/>
-            <div onClick={this.nextImage} className="rightarrow">
+            <div onClick={this.nextImage}
+            onMouseEnter={this.lightUp}
+            onMouseLeave={this.lightOff}
+             className={this.state.rightArrow}>
             <ArrowRightIcon className="arrow"/>
             </div>
 

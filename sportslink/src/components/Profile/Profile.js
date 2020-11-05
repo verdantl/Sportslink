@@ -12,6 +12,7 @@ import lebron from '../images/lebron.jpg'
 
 class Profile extends React.Component{
     state = {
+        contactClass: 'contact',
         images: [coolcat, icedragon],
         user: {
             name: "Lebron James",
@@ -33,6 +34,15 @@ class Profile extends React.Component{
             description: 'Took the team to an NBA Finals in 2009, averaged over 25 ppg', years: '2003-2010'}]
             }
     }
+
+    handleButton = (event) => {
+        if (event.target.classList[0] === 'contact'){
+            this.setState({contactClass: 'contactLight'})
+        }
+        else{
+            this.setState({contactClass: 'contact'})
+        }
+    }
     render(){
         return <div className="profile">
             <div className="profileCard">
@@ -40,7 +50,7 @@ class Profile extends React.Component{
             <ProfilePicture image={this.state.user.image} name={this.state.user.name}/>
             
             <div className="contactDetails"> 
-            <div className="contact">Contact </div>
+            <div className={this.state.contactClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButton}>Contact </div>
 
             <PersonalInfo user={this.state.user}/>
             </div>

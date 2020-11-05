@@ -1,6 +1,5 @@
 .profile{
     background-color: aliceblue;
-    margin-top: 5px;
     padding: 5px;
     text-align: center;
     height: 100%;
@@ -66,10 +65,21 @@ img.resize{
     padding: 8px;
     border-radius: 10px;
     width: fit-content;
-    background-color: antiquewhite;
+    background-color: white;
     border: 1px lavender solid;
 
 }
+
+.contactLight{
+    margin: 10px;
+    padding: 8px;
+    border-radius: 10px;
+    width: fit-content;
+    cursor: pointer;
+    background-color: lavender;
+    border: 1px lavender solid;
+}
+
 .personalInfo{
     margin: 10px;
     font-size: large;
@@ -126,7 +136,7 @@ img.resize{
 
 .experience{
     background-color: lavender;
-    width: 55 vw;
+
     margin: 10px;
     display: inline-block;
     padding: 20px;
@@ -153,7 +163,7 @@ img.resize{
 .profileImages{
     background-color: lavender;
     border: 1px grey solid;
-    width: 25vw;
+    width: 31vw;
     height: 15vw;
     margin: 10px;
     border-radius: 10px;
@@ -176,6 +186,19 @@ img.resize{
     position: absolute;
 
 }
+
+.leftarrowLight{
+
+    background-color: azure;
+    border-radius: 10px;
+    vertical-align: middle;
+    float: left;
+    display: flex;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+
+}
 .arrow{
     vertical-align: middle;
     position: relative;
@@ -192,5 +215,18 @@ img.resize{
     height: 100%;   
     display: flex;
     position: absolute;
+    
+}
+
+.rightarrowLight{
+    background-color: azure;
+    border-radius: 10px;
+    right: 0px;
+    top: 0px;
+    float: right;
+    height: 100%;   
+    display: flex;
+    position: absolute;
+    cursor: pointer;
     
 }
