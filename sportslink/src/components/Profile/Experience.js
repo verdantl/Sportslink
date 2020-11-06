@@ -4,7 +4,9 @@ import ExperienceCard from '../ViewProfile/ExperienceCard'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 class Experience extends React.Component{
-
+    state ={
+        
+    }
     render(){
         return <div className="experience">
            <span><h1>Experience </h1>   <AddCircleIcon className="addExperienceButton"/></span> 

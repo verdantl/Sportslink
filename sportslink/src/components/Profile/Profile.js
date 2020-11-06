@@ -4,7 +4,9 @@ import Biography from '../ViewProfile/Biography'
 import Images from './Images'
 import Career from './Career'
 import PersonalInfo from './PersonalInfo'
+import ProfileInfo from './ProfileInfo'
 import Experience from './Experience'
+import Edit from '@material-ui/icons/Edit'
 import './profile.css'
 import coolcat from '../images/coolcat.jpg'
 import icedragon from '../images/icedragon.jpg'
@@ -13,11 +15,12 @@ import lebron from '../images/lebron.jpg'
 class Profile extends React.Component{
     state = {
         contactClass: 'contact',
+        editButtonClass: 'editButton',
         images: [coolcat, icedragon],
         user: {
             name: "Lebron James",
             image: lebron,
-            description: "Stuff",
+            description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
             location: "Los Angeles, California",
             organization: "Los Angeles Lakers",
             sports:"Basketball",
@@ -35,28 +38,36 @@ class Profile extends React.Component{
             }
     }
 
-    handleButton = (event) => {
-        if (event.target.classList[0] === 'contact'){
-            this.setState({contactClass: 'contactLight'})
-        }
-        else{
-            this.setState({contactClass: 'contact'})
-        }
+    handleEditButtonOn = (event) => {
+        this.setState({editButtonClass: 'editButtonLight'})
+
     }
+
+    handleEditButtonOff = (event) => {
+        this.setState({editButtonClass: 'editButton'})
+
+    }
+
+
     render(){
         return <div className="profile">
             <div className="profileCard">
-            <div className="profileInfo">
-            <ProfilePicture image={this.state.user.image} name={this.state.user.name}/>
-            
-            <div className="contactDetails"> 
-            <div className={this.state.contactClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButton}>Contact </div>
+                <ProfileInfo user={this.state.user}/>
+                {/* <div className="profileInfo">
+                <ProfilePicture image={this.state.user.image} name={this.state.user.name}/>
+                    <div className="contactDetails"> 
+                    <div className="editSection">
+                    <div className={this.state.contactClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButton}>Contact </div>
+                    <Edit className={this.state.editButtonClass} onMouseEnter={this.handleEditButtonOn} onMouseLeave={this.handleEditButtonOff} />
+                    </div>
+                    <PersonalInfo user={this.state.user}/>
+                    </div>
+                </div> */}
+                <div className='editSection'>
+                <Biography description={this.state.user.description}/>
+                <Edit className={this.state.editButtonClass} onMouseEnter={this.handleEditButtonOn} onMouseLeave={this.handleEditButtonOff} />
+                </div>
 
-            <PersonalInfo user={this.state.user}/>
-            </div>
-            
-            </div>
-            <Biography/>
             </div>
 
             <div className="achievements">

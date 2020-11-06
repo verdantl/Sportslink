@@ -108,9 +108,10 @@ img.resize{
     background-color: aliceblue;
     border: 1px black solid;
     border-radius: 10px;
-    width: 50vw;
+    max-width: 55vw;
     text-align: center;
     margin: auto;
+    font-size: large;
 }
 
 

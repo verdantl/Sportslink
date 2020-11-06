@@ -17,7 +17,7 @@ class ViewProfile extends React.Component{
         user: {
             name: "Lebron James",
             image: lebron,
-            description: "Stuff",
+            description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
             location: "Los Angeles, California",
             organization: "Los Angeles Lakers",
             sports:"Basketball",
@@ -56,7 +56,7 @@ class ViewProfile extends React.Component{
             </div>
             
             </div>
-            <Biography/>
+            <Biography description={this.state.user.description}/>
             </div>
 
             <div className="achievements">

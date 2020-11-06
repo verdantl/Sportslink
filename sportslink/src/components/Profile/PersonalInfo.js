@@ -1,13 +1,15 @@
 import React from 'react'
+import Edit from '@material-ui/icons/Edit'
 
 class PersonalInfo extends React.Component{
-    constructor(props){
-        super(props)
-    }
+    state = {
 
+
+    }
 
     render(){
         return <div className='personalInfo'>
+
             <div>
             <h4 className="detailsTitle">Location:</h4> {this.props.user.location}
             </div>
