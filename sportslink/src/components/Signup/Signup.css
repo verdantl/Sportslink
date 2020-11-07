@@ -1,0 +1,23 @@
+.signUpContainer{
+    background-color: antiquewhite;
+    text-align: center;
+
+    align-items: center;
+    border-radius: 10px;
+    padding: 50px;
+    width: fit-content;
+    margin: 0 auto
+}
+
+.signUpPage{
+    text-align: center;
+    
+    align-items: center;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.signUpButton {
+    padding: 20px;
+}

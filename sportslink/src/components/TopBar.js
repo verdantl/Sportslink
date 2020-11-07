@@ -1,46 +1,54 @@
 import React from 'react'
 import SettingsIcon from '@material-ui/icons/Settings';
 import HomeIcon from '@material-ui/icons/Home';
+import PersonIcon from '@material-ui/icons/Person';
 import './TopBar.css';
 class TopBar extends React.Component{
 
     state = {
         homeIcon: 'homeIcon',
-        settingsIcon: 'settingsIcon'
+        settingsIcon: 'settingsIcon',
+        userIcon: 'userIcon'
+    }
+    handleHomeHover = (event) => {
+        this.setState({homeIcon: 'homeIconLight'})
     }
 
-    handleHover = (event) => {
-        if (event.target.parentElement.classList[0] === 'homeIcon' | event.target.parentElement.parentElement.classList[0] === 'homeIcon'){
-            this.setState({homeIcon: 'homeIconHover'})
 
-        }
-        else if (event.target.parentElement.classList[0] === 'settingsIcon' | event.target.parentElement.parentElement.classList[0] === 'settingsIcon'){
-            this.setState({settingsIcon: 'settingsIconHover'})
-
-        }
-
+    handleHomeHoverOff = (event) => {
+        this.setState({homeIcon: 'homeIcon'})
     }
 
-    handleHoverOff = (event) => {
-        if (event.target.parentElement.classList[0] === 'homeIconHover' | event.target.parentElement.parentElement.classList[0] === 'homeIconHover'){
-            this.setState({homeIcon: 'homeIcon'})
 
-        }
-        else if (event.target.parentElement.classList[0] === 'settingsIconHover' | event.target.parentElement.parentElement.classList[0] === 'settingsIconHover'){
-            this.setState({settingsIcon: 'settingsIcon'})
-
-        }
+    handleUserHover = (event) => {
+        this.setState({userIcon: 'userIconLight'})
     }
 
+
+    handleUserHoverOff = (event) => {
+        this.setState({userIcon: 'userIcon'})
+    }
+
+    handleSettingsHover = (event) => {
+        this.setState({settingsIcon: 'settingsIconLight'})
+    }
+
+
+    handleSettingsHoverOff = (event) => {
+        this.setState({settingsIcon: 'settingsIcon'})
+    }
 
     render(){
         return <div className="topBar">
             <ul>
-            <li className={this.state.homeIcon}>
-            <HomeIcon className='home' onMouseEnter={this.handleHover} onMouseLeave={this.handleHoverOff}/>
+            <li>
+            <HomeIcon className={this.state.homeIcon} onMouseEnter={this.handleHomeHover} onMouseLeave={this.handleHomeHoverOff}/>
             </li>
-            <li className={this.state.settingsIcon}>
-            <SettingsIcon className='settings' onMouseEnter={this.handleHover} onMouseLeave={this.handleHoverOff}/>
+            <li>
+            <PersonIcon className={this.state.userIcon} onMouseEnter={this.handleUserHover} onMouseLeave={this.handleUserHoverOff}/>
+            </li>
+            <li>
+            <SettingsIcon className={this.state.settingsIcon} onMouseEnter={this.handleSettingsHover} onMouseLeave={this.handleSettingsHoverOff}/>
             </li>
             </ul>
 

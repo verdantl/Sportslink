@@ -5,12 +5,58 @@ import AdminDashboard from './components/Admin/AdminDashboard'
 import Login from './components/Login/Login'
 import Messaging from './components/Messaging/Messaging'
 import TopBar from './components/TopBar'
+import lebron from './components/images/lebron.jpg'
+import kawhi from './components/images/kawhi.jpg'
 import Profile from './components/Profile/Profile'
 import ViewProfile from './components/ViewProfile/Profile'
+import Signup from './components/Signup/Signup'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 
 class App extends React.Component {
+  state = {
+
+    users: {
+      lebron: {
+        name: "Lebron James",
+        image: lebron,
+        description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
+        location: "Los Angeles, California",
+        organization: "Los Angeles Lakers",
+        sports:"Basketball",
+        contact: "",
+        accomplishments: ["4x NBA Champion", '4x NBA Finals MVP', '4x NBA MVP', '16x NBA All Star', '13x All-NBA First Team'],
+        experience: [{title: 'Point Guard', organization: 'Los Angeles Lakers', league: "NBA", stats: {'2019': '25 ppg, 10apg'},
+        description: 'Led Lakers to a championship in the NBA Bubble 2020, averaging almost 30 ppg in the Finals against the Miami Heat',
+        years: '2018-2020'},
+        {title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
+        description: 'Made the NBA Finals in all four years, came back from a 3-1 deficit and won a championship in the 2016 NBA FInals', years: '2014-2018'},
+        {title: 'Small Forward', organization: 'Miami Heat', league: "NBA", stats:{},
+        description: 'Made the NBA Finals in all four years, delivered two championships and won Finals MVP in 2012 and 2013', years: '2010-2014'},
+        {title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
+        description: 'Took the team to an NBA Finals in 2009, averaged over 25 ppg', years: '2003-2010'}]
+        },
+        kawhi: {
+          name: "Kawhi Leonard",
+          image: kawhi,
+          description: 'SF for the Los Angeles Clippers. 2 time NBA champion, 2x Finals MVP, 2x Defensive Player of the Year.',
+          location: "Los Angeles, California",
+          organization: "Los Angeles Clippers",
+          sports:"Basketball",
+          contact: "",
+          accomplishments: ["2x NBA Champion", '2x NBA Finals MVP', '2x NBA DPOY', '4x NBA All Star', '2x All-NBA First Team', '2x NBA All-Defensive First Team'],
+          experience: [{title: 'Short Forward', organization: 'Los Angeles Clippers', league: "NBA", stats: {'2019': '25 ppg, 10apg'},
+          description: 'Led Clippers to 2nd seed in the Western Conference, reached the semifinals of NBA Bubble Playoffs 2020, averaging almost 30 ppg.',
+          years: '2019-2020'},
+          {title: 'Small Forward', organization: 'Toronto Raptors', league: "NBA", stats:{},
+          description: 'Delivered the first championship in team history, won Finals MVP averaging 30ppg in the playoffs.', years: '2018-2019'},
+          {title: 'Small Forward', organization: 'San Antonio Spurs', league: "NBA", stats:{},
+          description: 'Won NBA Finals MVP in 2014 after defeating the Miami Heat in the NBA Finals 4-1', years: '2011-2019'}
+          ]
+          }
+    }
+
+  }
   render(){
     return <div >
       <TopBar/>
@@ -28,6 +74,8 @@ class App extends React.Component {
                           (<ViewProfile className="profile"/>)}/>
           <Route exact path = '/messaging' render={() => 
                           (<Messaging className="messaging"/>)}/>
+          <Route exact path = '/signup' render={() => 
+                          (<Signup className="signup"/>)}/>
         </Switch>
       </BrowserRouter>
       </div>

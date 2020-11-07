@@ -1,43 +1,3 @@
-.home{
-    transform: scale(2);
-    }
-.homeIcon{
-    text-align: center;
-    display: inline-block;
-    height: fit-content;
-    margin-left: 20%;
-}
-
-.homeIconHover{
-    text-align: center;
-    display: inline-block;
-    height: fit-content;
-    margin-left: 20%;
-    cursor: pointer;
-    color: aliceblue;
-}
-
-.settings{
-    transform: scale(2);
-    right: 0px;
-}
-
-.settingsIcon{
-    text-align: center;
-    display: inline-block;
-    height: fit-content;
-    margin-left: 60%;
-}
-
-.settingsIconHover{
-    text-align: center;
-    display: inline-block;
-    height: fit-content;
-    margin-left: 60%;
-    cursor: pointer;
-    color: aliceblue;
-}
-
 .topBar{
     background-color: antiquewhite;
     padding: 5px;
@@ -45,4 +5,43 @@
     width: 100vw;
     margin: auto;  
     border: 1px black solid;
+}
+
+li{
+    display: inline;
+    margin-left: 10%;
+}
+
+.homeIcon{
+    transform: scale(2);
+    margin-left: 30%;
+}
+
+.homeIconLight{
+    transform: scale(2);
+    cursor: pointer;
+    color: aliceblue;
+    margin-left: 30%;
+}
+
+
+.settingsIcon{
+    transform: scale(2);
+}
+
+.settingsIconLight{
+    transform: scale(2);
+    cursor: pointer;
+    color: aliceblue;
+}
+
+
+.userIcon{
+    transform: scale(2);
+    text-align: center;
+}
+.userIconLight{
+    cursor: pointer;
+    transform: scale(2);
+    color: aliceblue;
 }

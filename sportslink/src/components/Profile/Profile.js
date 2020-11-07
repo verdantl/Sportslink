@@ -14,10 +14,11 @@ import EditButton from './EditButton'
 class Profile extends React.Component{
     state = {
         contactClass: 'contact',
-        images: [coolcat, icedragon],
+
         user: {
             name: "Lebron James",
             image: lebron,
+            images: [coolcat, icedragon],
             description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
             location: "Los Angeles, California",
             organization: "Los Angeles Lakers",
@@ -41,16 +42,6 @@ class Profile extends React.Component{
         return <div className="profile">
             <div className="profileCard">
                 <ProfileInfo user={this.state.user}/>
-                {/* <div className="profileInfo">
-                <ProfilePicture image={this.state.user.image} name={this.state.user.name}/>
-                    <div className="contactDetails"> 
-                    <div className="editSection">
-                    <div className={this.state.contactClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButton}>Contact </div>
-                    <Edit className={this.state.editButtonClass} onMouseEnter={this.handleEditButtonOn} onMouseLeave={this.handleEditButtonOff} />
-                    </div>
-                    <PersonalInfo user={this.state.user}/>
-                    </div>
-                </div> */}
                 <div className='editSection'>
                 <Biography description={this.state.user.description}/>
                 <EditButton/>
@@ -62,7 +53,7 @@ class Profile extends React.Component{
                 <div></div>
                 <Experience experience={this.state.user.experience}/>
                 <div className="profileRightColumn">
-                <Images images={this.state.images}/>
+                <Images images={this.state.user.images}/>
                 <Career accomplishments={this.state.user.accomplishments}/>
                 </div>
 
