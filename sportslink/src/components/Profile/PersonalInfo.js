@@ -2,10 +2,6 @@ import React from 'react'
 import Edit from '@material-ui/icons/Edit'
 
 class PersonalInfo extends React.Component{
-    state = {
-
-
-    }
 
     render(){
         return <div className='personalInfo'>

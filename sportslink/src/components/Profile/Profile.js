@@ -6,16 +6,14 @@ import Career from './Career'
 import PersonalInfo from './PersonalInfo'
 import ProfileInfo from './ProfileInfo'
 import Experience from './Experience'
-import Edit from '@material-ui/icons/Edit'
 import './profile.css'
 import coolcat from '../images/coolcat.jpg'
 import icedragon from '../images/icedragon.jpg'
 import lebron from '../images/lebron.jpg'
-
+import EditButton from './EditButton'
 class Profile extends React.Component{
     state = {
         contactClass: 'contact',
-        editButtonClass: 'editButton',
         images: [coolcat, icedragon],
         user: {
             name: "Lebron James",
@@ -38,16 +36,6 @@ class Profile extends React.Component{
             }
     }
 
-    handleEditButtonOn = (event) => {
-        this.setState({editButtonClass: 'editButtonLight'})
-
-    }
-
-    handleEditButtonOff = (event) => {
-        this.setState({editButtonClass: 'editButton'})
-
-    }
-
 
     render(){
         return <div className="profile">
@@ -65,7 +53,7 @@ class Profile extends React.Component{
                 </div> */}
                 <div className='editSection'>
                 <Biography description={this.state.user.description}/>
-                <Edit className={this.state.editButtonClass} onMouseEnter={this.handleEditButtonOn} onMouseLeave={this.handleEditButtonOff} />
+                <EditButton/>
                 </div>
 
             </div>

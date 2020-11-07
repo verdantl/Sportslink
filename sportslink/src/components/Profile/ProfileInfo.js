@@ -1,21 +1,10 @@
 import React from 'react'
 import PersonalInfo from './PersonalInfo'
 import ProfilePicture from './ProfilePicture'
-import Edit from "@material-ui/icons/Edit"
+import EditButton from "./EditButton"
 class ProfileInfo extends React.Component{
     state = {
         contactClass: 'contact',
-        editButtonClass: 'editButton',
-    }
-
-    handleEditButtonOn = (event) => {
-        this.setState({editButtonClass: 'editButtonLight'})
-
-    }
-
-    handleEditButtonOff = (event) => {
-        this.setState({editButtonClass: 'editButton'})
-
     }
 
     handleButton = (event) => {
@@ -33,7 +22,7 @@ class ProfileInfo extends React.Component{
         <ProfilePicture image={this.props.user.image} name={this.props.user.name}/>
             <div className="contactDetails"> 
             <div className="editSection">
-            <Edit className={this.state.editButtonClass} onMouseEnter={this.handleEditButtonOn} onMouseLeave={this.handleEditButtonOff} />
+            <EditButton/>
             </div>
             <PersonalInfo user={this.props.user}/>
             </div>

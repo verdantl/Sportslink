@@ -226,6 +226,15 @@ img.resize{
 .addExperienceButton{
     transform: scale(2);
     margin-bottom: 10px;
+    color: darkcyan;
+}
+
+.addExperienceButtonLight{
+    transform: scale(2);
+    margin-bottom: 10px;
+    color: aliceblue;
+    cursor: pointer;
+
 }
 
 .editButton{
@@ -233,6 +242,25 @@ img.resize{
     margin: 10px;
     padding: 5px;
     vertical-align: middle;
+    color: green;
+}
+
+.deleteButton{
+    border-radius: 50%;
+    margin: 10px;
+    padding: 5px;
+    vertical-align: middle;
+    color: red;
+}
+
+.deleteButtonLight{
+    border-radius: 50%;
+    margin: 10px;
+    padding: 5px;
+    vertical-align: middle;
+    background-color: lightgray;
+    cursor: pointer;
+    color: red;
 }
 
 .editButtonLight{
@@ -242,6 +270,7 @@ img.resize{
     padding: 5px;
     vertical-align: middle;
     cursor: pointer;
+    color: green;
 }
 
 .editSection{
@@ -250,4 +279,11 @@ img.resize{
     width: fit-content;
     margin: auto;
     height: fit-content;
+}
+
+.editDelete{
+    width: auto;
+    margin: auto;
+    padding: 10px;
+
 }
