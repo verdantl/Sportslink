@@ -12,8 +12,8 @@ class Signup extends React.Component{
         password: "",   
         email: '',
         users: [
-            {usern: "user", password: "123"},
-            {usern: "admin", password: "123"}
+            {usern: "user", password: "user"},
+            {usern: "admin", password: "admin"}
         ]
     };
 
