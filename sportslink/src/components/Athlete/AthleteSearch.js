@@ -28,15 +28,13 @@ class AthleteSearch extends React.Component{
 
     render(){
         return <div className="athleteSearch">
-            <div className="leftColumn">
+            <div className="searchLeftColumn">
                 <DashProfileBox user={this.state.user} className="personalProfile"/>
             </div>
 
-            <div className="dashboard">
+            <div className="searchContainer">
                 <SearchBox searchBoxClass="athleteSearchBox"/>
                 <SearchResults users={this.state.users}/>
-
-
             </div>
 
             </div>

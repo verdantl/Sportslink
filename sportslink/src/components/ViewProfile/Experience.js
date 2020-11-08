@@ -6,6 +6,7 @@ class Experience extends React.Component{
 
     render(){
         return <div className="experience">
+            <h1>Experience </h1>
            {this.props.experience.map((entry) => {
               return <ExperienceCard className="experienceCard" experience={entry} key={uid(entry)}/>
 

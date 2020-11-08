@@ -5,11 +5,6 @@
     height: 100%;
 }
 
-img.resize{
-    width: 50px;
-    height: auto;
-}
-
 
 .profileCard{
     background-color: white;
@@ -61,17 +56,6 @@ img.resize{
     margin-bottom: 10px;
 }
 
-.achievements{
-
-    width: fit-content;
-    height: fit-content;
-    display: grid;
-    grid-template-columns: 1fr 8fr 5fr;
-    margin: auto;
-
-    
-}
-
 
 .profileCareer{
     background-color: white;
@@ -84,13 +68,13 @@ img.resize{
 }
 
 
-.accomplishmentCard{
+.accomplishmentCardLight{
     margin: 10px;
     padding: 10px;
     font-size: large;
-    background-color: white;
+    background-color: lightgray;
     border-radius: 5px;
-
+    cursor: pointer;
 }
 
 .experience{
@@ -101,15 +85,6 @@ img.resize{
     padding: 20px;
     border-radius: 10px;
     border: 1px black solid;
-}
-
-.experienceCardEditable{
-    background-color: white;
-    padding: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin: 10px;
-    border-radius: 10px;
 }
 
 

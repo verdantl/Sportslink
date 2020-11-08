@@ -16,8 +16,8 @@ class NewsCard extends React.Component{
     render(){
         return <div className={this.state.className } onMouseEnter={this.handleEnter} onMouseLeave={this.handleLeave}>
             <h2>{this.props.news.title}</h2>
-            <span>{this.props.news.date}</span>
-            <span>{this.props.news.source}</span>
+            <span className="gray">{this.props.news.date}</span>
+            <span className="gray">{this.props.news.source}</span>
         </div>
     }
 }

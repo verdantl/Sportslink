@@ -19,9 +19,9 @@ class Experience extends React.Component{
     }
     render(){
         return <div className="experience">
-           <span><h1>Experience </h1>   <AddCircleIcon className={this.state.addButtonClass} onMouseEnter={this.handleButtonOn} onMouseLeave={this.handleButtonOff}/></span> 
+           <span><h1>Experience </h1> </span> <span>  <AddCircleIcon className={this.state.addButtonClass} onMouseEnter={this.handleButtonOn} onMouseLeave={this.handleButtonOff}/></span> 
            {this.props.experience.map((entry) => {
-              return <ExperienceCard className="experienceCardEditable" experience={entry} key={uid(entry)}/>
+              return <ExperienceCard className="experienceCard" experience={entry} key={uid(entry)}/>
 
             }
             )}

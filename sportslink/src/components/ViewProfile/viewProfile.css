@@ -7,8 +7,9 @@
 .profilePicture{
     display: inline-block;
     position: relative;
-    width: 250px;
-    height: 250px;
+    border: 1px black solid;
+    width: 270px;
+    height: 270px;
     overflow: hidden;
     border-radius: 50%;
 }
@@ -61,7 +62,7 @@
     margin: 10px;
     font-size: large;
     background-color: aliceblue;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
     border: 1px gray solid;
 
@@ -82,7 +83,7 @@
     border-radius: 10px;
     width: fit-content;
     cursor: pointer;
-    background-color: white;
+    background-color: lavender;
     border: 1px white solid;
 }
 
@@ -113,7 +114,7 @@
     padding: 10px;
     background-color: aliceblue;
     border: 1px black solid;
-    border-radius: 10px;
+    border-radius: 5px;
     max-width: 55vw;
     text-align: center;
     margin: auto;
@@ -127,7 +128,7 @@
     width: 30vw;
     padding: 10px;
     color: black;
-    border: 1px grey solid;
+    border: 1px      solid;
     border-radius: 10px;
 }
 
@@ -137,6 +138,7 @@
     padding: 10px;
     font-size: large;
     background-color: white;
+    border: 1px gray solid; 
     border-radius: 5px;
 
 }
@@ -147,15 +149,14 @@
     margin: 10px;
     display: inline-block;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px black solid;
 }
 
 .experienceCard{
-    background-color: white;
     padding: 10px;
     margin: 10px;
-    border-radius: 10px;
+    border-top: 1px gray solid; 
 }
 
 

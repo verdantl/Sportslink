@@ -19,14 +19,15 @@ class ExperienceCard extends React.Component{
 
     render(){
         return <div className={this.props.className} onMouseEnter={this.handleDisplay} onMouseLeave={this.handleHide}>
-            <h2>{this.props.experience.title}</h2>
+            <span><h2>{this.props.experience.title}</h2></span>
+            <span className="editDelete" hidden={this.state.hideButtons}>
+                <EditButton/>
+                <DeleteButton/>
+            </span>
             <h3>{this.props.experience.organization} {this.props.experience.years}</h3>
             <h4>{this.props.experience.league}</h4>
             <p>{this.props.experience.description}</p>
-            <div className="editDelete" hidden={this.state.hideButtons}>
-                <EditButton/>
-                <DeleteButton/>
-            </div>
+
         </div>
     }
 }
