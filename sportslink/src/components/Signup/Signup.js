@@ -32,7 +32,7 @@ class Signup extends React.Component{
 
     render(){
         return <div className="signUpPage">
-            <div className="signUpTitle"><h1>Sportslink</h1> <p>Bringing together the greatest athletic community around the globe</p></div>
+            <div className="signUpTitle"><h1>Sportslink</h1> <p>Bringing together the greatest athletic community around the globe.</p></div>
         {/* <Onboarding/> */}
         <div className="signUpContainer">
             <h1>Sign Up</h1>

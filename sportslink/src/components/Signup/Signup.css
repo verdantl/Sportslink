@@ -34,11 +34,13 @@
 
 .signUpTitle h1{
     color: crimson;
+    text-shadow: 2px 2px rosybrown;
 }
 
 .signUpTitle p{
     color: black;
     font-size: large;
+    
 }
 
 

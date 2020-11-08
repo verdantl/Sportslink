@@ -2,7 +2,7 @@ import React from 'react'
 import SearchBox from '../SearchBox'
 import DashProfileBox from './DashProfileBox'
 import SingleProfileBox from './SingleProfileBox'
-import "./AthleteDashboard.css"
+import "./AthleteSearch.css"
 import lebron from '../images/lebron.jpg'
 import harden from '../images/harden.jpg'
 import kawhi from '../images/kawhi.jpg'
@@ -13,7 +13,7 @@ import SearchResults from "./SearchResults"
 
 // import AthleteDashBoardProfile from './AthleteDashboardProfile'
 
-class AthleteDashboard extends React.Component{
+class AthleteSearch extends React.Component{
     state = {
         user: {
             image: lebron,
@@ -27,7 +27,7 @@ class AthleteDashboard extends React.Component{
       }
 
     render(){
-        return <div className="athleteDashboard">
+        return <div className="athleteSearch">
             <div className="leftColumn">
                 <DashProfileBox user={this.state.user} className="personalProfile"/>
             </div>
@@ -43,4 +43,4 @@ class AthleteDashboard extends React.Component{
     }
 }
 
-export default AthleteDashboard
+export default AthleteSearch

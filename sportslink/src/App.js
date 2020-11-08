@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css';
-import AthleteDashboard from './components/Athlete/AthleteDashboard'
+import AthleteSearch from './components/Athlete/AthleteSearch'
+import Dashboard from './components/Dashboard/Dashboard'
 import AdminDashboard from './components/Admin/AdminDashboard'
 import Login from './components/Login/Login'
 import Messaging from './components/Messaging/Messaging'
@@ -64,8 +65,10 @@ class App extends React.Component {
         <Switch>
           <Route exact path = '/admin' render={()=>
                           (<AdminDashboard className="adminDashboard"/>)}/>
-          <Route exact path = '/athlete' render={()=>
-                          (<div> <TopBar/><AthleteDashboard className="athleteDashboard"/></div>)}/>
+          <Route exact path = '/search' render={()=>
+                          (<div> <TopBar/><AthleteSearch className="athleteSearch"/></div>)}/>
+          <Route exact path = '/dashboard' render={()=>
+                          (<div> <TopBar/><Dashboard className="dashboard"/></div>)}/>
           <Route exact path = '/login' render={() =>
                           (<Login/>)}/>
           <Route exact path = '/profile' render={() => 
