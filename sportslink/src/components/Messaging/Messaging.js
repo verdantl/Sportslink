@@ -1,6 +1,7 @@
 import React from 'react';
-import TextList from './TextList';
 import Contacts from './Contacts';
+import TextList from './TextList';
+import ContactHeader from './ContactHeader';
 import SendMessageForm from './SendMessageForm'
 import "./Messaging.css";
 
@@ -48,6 +49,7 @@ class Messaging extends React.Component{
                     {
                         //TODO: Finish layout for Contact Header
                     }
+                    <ContactHeader currContact={this.state.currContact}/>
                 </div>
                 <div className="texts">
                     <TextList messages={this.state.messages} currUser={this.state.currUser}/>

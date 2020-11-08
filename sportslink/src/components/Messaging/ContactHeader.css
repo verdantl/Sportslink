@@ -1,0 +1,16 @@
+hr {
+    border-top: 3px solid #bbb;
+    margin: 0;
+}
+
+.contactImage{
+    vertical-align: middle;
+}
+.header {
+    vertical-align: middle;
+}
+
+p {
+    display: inline;
+    margin: 0;
+}
