@@ -5,6 +5,15 @@
     margin: auto;  
     border: 1px black solid;
 }
+.searchTitle{
+    background-color: azure;
+    text-align: center;
+    width: 35vw;
+    font-size: normal;
+    margin-left: 20px;
+    align-items: center;
+    border-radius: 10px;
+}
 
 ul{
     padding: 10px;
@@ -17,35 +26,34 @@ li{
 }
 
 .homeIcon{
-    transform: scale(2);
-    margin-left: 30%;
+    transform: scale(1.5);
+
 }
 
 .homeIconLight{
-    transform: scale(2);
+    transform: scale(1.5);
     cursor: pointer;
     color: aliceblue;
-    margin-left: 30%;
 }
 
 
 .settingsIcon{
-    transform: scale(2);
+    transform: scale(1.5);
 }
 
 .settingsIconLight{
-    transform: scale(2);
+    transform: scale(1.5);
     cursor: pointer;
     color: aliceblue;
 }
 
 
 .userIcon{
-    transform: scale(2);
+    transform: scale(1.5);
     text-align: center;
 }
 .userIconLight{
     cursor: pointer;
-    transform: scale(2);
+    transform: scale(1.5);
     color: aliceblue;
 }

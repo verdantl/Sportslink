@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchBox from '../SearchBox'
+import FilterBox from '../FilterBox'
 import DashProfileBox from './DashProfileBox'
 import SingleProfileBox from './SingleProfileBox'
 import "./AthleteSearch.css"
@@ -33,7 +33,7 @@ class AthleteSearch extends React.Component{
             </div>
 
             <div className="searchContainer">
-                <SearchBox searchBoxClass="athleteSearchBox"/>
+                <FilterBox />
                 <SearchResults users={this.state.users}/>
             </div>
 

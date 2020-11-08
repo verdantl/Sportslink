@@ -1,5 +1,4 @@
 import React from 'react'
-import SearchBox from '../SearchBox'
 import './AdminDashboard.css'
 import SingleAdminBox from './SingleAdminBox'
 import AdminSearchResults from "./AdminSearchResults"
@@ -16,7 +15,6 @@ class AdminDashboard extends React.Component{
 
     render(){
         return <div>
-            <SearchBox searchBoxClass="adminSearchBox"/>
           <AdminSearchResults users={this.state.users}/>
 
         </div>

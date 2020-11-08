@@ -5,11 +5,11 @@ import FormControlLabel from "@material-ui/core/FormControlLabel"
 import FormControl from "@material-ui/core/FormControl"
 import InputLabel from "@material-ui/core/InputLabel"
 import SearchIcon from '@material-ui/icons/Search';
-import "./SearchBox.css"
+import "./FilterBox.css"
 
 
 
-class SearchBox extends React.Component{
+class FilterBox extends React.Component{
     constructor(props){
         super(props)
     }
@@ -47,9 +47,8 @@ class SearchBox extends React.Component{
     displayPreferences = () => this.state.preferences.map((d) => <li key={d.name}>{d}</li>);
 
     render(){
-        return <div className={this.props.searchBoxClass}>
-
-        <input className="searchTitle" placeholder="Search"/>
+        return <div className="filterBox">
+            Search Results
 
         <div className='table'>
         <FormControlLabel className="boxes"
@@ -88,7 +87,6 @@ class SearchBox extends React.Component{
         </div>
         <div className="preferences">
          {this.state.preferences.map((preference) => {
-             console.log("Hi")
               return <span className='student'>
               {preference + ''} 
             </span>
@@ -102,4 +100,4 @@ class SearchBox extends React.Component{
     }
 }
 
-export default SearchBox
+export default FilterBox
