@@ -5,6 +5,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel"
 import FormControl from "@material-ui/core/FormControl"
 import InputLabel from "@material-ui/core/InputLabel"
 import "./FilterBox.css"
+import {uid} from 'react-uid'
 
 
 
@@ -80,7 +81,7 @@ class FilterBox extends React.Component{
         </div>
         <div className="preferences">
          {this.state.preferences.map((preference) => {
-              return <span className='preference'>
+              return <span key={uid(preference)} className='preference'>
               {preference + ' '} 
             </span>
             }
