@@ -51,18 +51,18 @@ class FilterBox extends React.Component{
             Search Results
 
         <div className='table'>
-        <FormControlLabel className="boxes"
+        <FormControlLabel className="filterboxes"
         control={<Checkbox  onChange={ this.handleCheck } name="checkedAthlete" />}
         label="Athletes"
         />
 
-        <FormControlLabel className="boxes"
+        <FormControlLabel className="filterboxes"
         control={<Checkbox onChange={ this.handleCheck } name="checkedRecruiters" />}
         label="Recruiters"
         />
         
         <FormControl className = 
-        'boxes'
+        'filterboxes'
         >
             <InputLabel>
             Filter preferences
@@ -82,12 +82,11 @@ class FilterBox extends React.Component{
                 <option value={"Same Sport"}>Same Sport </option>
             </Select>
         </FormControl>
-        <SearchIcon className="searchButton"/>
 
         </div>
         <div className="preferences">
          {this.state.preferences.map((preference) => {
-              return <span className='student'>
+              return <span className='preference'>
               {preference + ''} 
             </span>
             }

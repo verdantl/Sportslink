@@ -11,9 +11,9 @@ class SingleProfileBox extends React.Component{
         return <div className='profileBox'>
             <div className='profilePic'> <img src={this.props.user.image}/></div>
 
-            <div className='subBox'>
-    <p className="profileBoxName"> {this.props.user.name} </p>
-    <p className="profileDescription"> {this.props.user.description}</p>
+            <div className='singleProfileSubBox'>
+            <p className="profileBoxName"> {this.props.user.name} </p>
+            <p className="profileDescription"> {this.props.user.description}</p>
             </div>
 
 

@@ -1,27 +1,36 @@
 .profileBox{
     margin: 20px;
-    width: 400px;
-    height: 120px;
+    width: 380px;
+    height: 90px;
     padding: 20px;
     padding-left: 30px;
     padding-right: 30px;
-    background-color: antiquewhite;
-    display: inline-block;
-    border-radius: 15px;
+    background-color: white;
+    box-shadow: 2px 2px 8px #888888;
+    border-radius: 5px;
+    float: left;
 
 }
 .profilePic{
-    float: left;
+    display: inline-block;
+    position: relative;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
 
 }
 .profilePic img{
-    max-width: 120px;
-    max-height: 120px;
-    border-radius: 50%;
+    width: auto;
+    height: 100%;
+    margin-left: -15px;
+    margin-top: 10px;
+    transform: scale(1.4);
 }
 
-.subBox{
-    float: left;
+.singleProfileSubBox{
+    display: inline-block;
+    vertical-align: top;
 }
 
 .profileBoxName{
@@ -36,10 +45,11 @@
 }
 
 .profileDescription{
+
     padding: 5px;
     width: 250px;
     margin: 5px;
-    font-size: medium;
+    font-size: small;
     color: gray
     ;
 

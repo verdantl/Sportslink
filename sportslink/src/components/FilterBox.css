@@ -17,18 +17,27 @@
     margin-left: 10vw;
     margin-right: 10vw;
 }
-.boxes{
+
+.filterboxes{
     padding: 10px;
     vertical-align: auto;
 
 }
 
 .searchButton{
-    margin-left: 20px;
-    margin-top: 20px;
-    transform: scale(1.6);
-    background-color: burlywood;
-    border-radius: 10px;
+    transform: scale(1.4);
+    background-color: antiquewhite;
+    vertical-align: middle ;
+    margin-left: 10px;
+    border-radius: 50%;
     padding: 3px;
 }
 
+.searchButtonLight{
+    transform: scale(1.4);
+    background-color: lightgray;
+    vertical-align: middle;
+    margin-left: 10px;
+    border-radius: 50%;
+    padding: 3px;
+}

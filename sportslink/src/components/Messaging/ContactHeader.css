@@ -10,7 +10,7 @@ hr {
     vertical-align: middle;
 }
 
-p {
+.header p {
     display: inline;
     margin: 0;
 }

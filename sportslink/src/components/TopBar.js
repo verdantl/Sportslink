@@ -3,6 +3,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import './TopBar.css';
+import SearchIcon from "@material-ui/icons/Search"
 class TopBar extends React.Component{
 
     state = {
@@ -43,6 +44,7 @@ class TopBar extends React.Component{
             <ul>
             <li>
             <input className="searchTitle" placeholder="Search"/>
+            <SearchIcon className="searchButton"/>
             </li>
             <li>
             <HomeIcon className={this.state.homeIcon} onMouseEnter={this.handleHomeHover} onMouseLeave={this.handleHomeHoverOff}/>
