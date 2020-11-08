@@ -2,9 +2,13 @@
     background-color: antiquewhite;
     padding: 5px;
     height: 50px;
-    width: 100vw;
     margin: auto;  
     border: 1px black solid;
+}
+
+ul{
+    padding: 10px;
+    
 }
 
 li{

@@ -17,15 +17,7 @@ class DashProfileBox extends React.Component{
                     <div className="personalProfileName">
                         {this.props.user.name}
                     </div>
-                    <div className="buttons">
-                    <div className="button">
-                        Profile
-                    </div>
-                    <div className="button">
-                        Log Out
-                    </div>
-                    </div>
-
+                    <p>View your profile</p>
 
                 </div>
     }

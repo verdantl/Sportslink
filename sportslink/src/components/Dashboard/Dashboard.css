@@ -1,0 +1,57 @@
+.dashboard{
+    display: flex;
+    background-color: aliceblue;
+    height: 100vh;
+}
+
+.dashboardLeftColumn{
+    flex: 0 0 35%;
+    text-align: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.dashRightColumn{
+    flex-grow: 0.5;
+}
+
+.newsBox{
+    background-color: white;
+    padding: 10px;
+    width: 300px;
+    margin: auto;
+    margin-top: 30px;
+    box-shadow: 2px 2px 8px #888888;
+
+}
+.newsCard{
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    font-size: x-small;
+}
+
+.newsCardLight{
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    font-size: x-small;
+    cursor: pointer;
+}
+h2{
+    margin: 5px;
+    padding: 5px;
+}
+span{
+    margin: 20px;
+    color: gray;
+    padding: 5px;
+}
+
+#newsTitle{
+    font-size: larger;
+    margin: 5px;
+    padding: 5px;
+}
