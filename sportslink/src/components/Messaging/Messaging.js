@@ -7,6 +7,7 @@ class Messaging extends React.Component{
 
     state = {
         currUser : 'currUserID',
+        currContact: 'userIDGoesHere',
         messages : [
             {
                 messageID: '100',
@@ -18,6 +19,18 @@ class Messaging extends React.Component{
                 userID: 'currUserID',
                 messageData: 'This is an outgoing message'
             }
+        ],
+        contacts: [
+            {
+                userID: 'UserIDGoesHere1',
+                icon: '',
+                lastMessage: 'This was the last message sent by UserIDGoesHere1'
+            },
+            {
+                userID: 'UserIDGoesHere2',
+                icon: '',
+                lastMessage: 'This was the last message sent by UserIDGoesHere2'
+            }
         ]
     }
 
@@ -26,9 +39,8 @@ class Messaging extends React.Component{
             <div className="contacts">
                 {
                     // TODO: Add search bar, list of contacts
-                    // TODO: Finish layout for contacts
                 }
-                <Contacts messages={this.state.messages} currUser={this.state.currUser}/>
+                <Contacts contacts={this.state.contacts} currUser={this.state.currUser}/>
             </div>
             <div className="rightContent">
                 <div className="contactHeader">
@@ -46,6 +58,7 @@ class Messaging extends React.Component{
                     {
                         // TODO: Finish layout for sendMessageForm
                     }
+                    
                 </div>
             </div>
         </div>
