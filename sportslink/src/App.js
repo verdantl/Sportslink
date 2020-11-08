@@ -59,21 +59,21 @@ class App extends React.Component {
   }
   render(){
     return <div >
-      <TopBar/>
+
       <BrowserRouter>
         <Switch>
           <Route exact path = '/admin' render={()=>
                           (<AdminDashboard className="adminDashboard"/>)}/>
           <Route exact path = '/athlete' render={()=>
-                          (<AthleteDashboard className="athleteDashboard"/>)}/>
+                          (<div> <TopBar/><AthleteDashboard className="athleteDashboard"/></div>)}/>
           <Route exact path = '/login' render={() =>
                           (<Login/>)}/>
           <Route exact path = '/profile' render={() => 
-                          (<Profile className="profile"/>)}/>
+                          (<div><TopBar/><Profile className="profile"/></div>)}/>
           <Route exact path = '/viewprofile' render={() => 
-                          (<ViewProfile className="profile"/>)}/>
+                          (<div><TopBar/><ViewProfile className="viewProfile"/></div>)}/>
           <Route exact path = '/messaging' render={() => 
-                          (<Messaging className="messaging"/>)}/>
+                          (<div><TopBar/><Messaging className="messaging"/></div>)}/>
           <Route exact path = '/signup' render={() => 
                           (<Signup className="signup"/>)}/>
         </Switch>

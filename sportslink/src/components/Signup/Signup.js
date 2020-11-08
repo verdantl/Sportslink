@@ -31,6 +31,7 @@ class Signup extends React.Component{
 
     render(){
         return <div className="signUpPage">
+            <div className="signUpTitle"><h1>Sportslink</h1> <p>Bringing together the greatest athletic community around the globe.</p></div>
         <div className="signUpContainer">
             <h1>Sign Up</h1>
             <Input
@@ -46,9 +47,9 @@ class Signup extends React.Component{
                 label="Last Name"
             />
             <Input
-                name="usern"
+                name="email"
                 onChange={this.handleChange}
-                label="Username"
+                label="Email"
             />
 
             <Input
@@ -57,11 +58,6 @@ class Signup extends React.Component{
                 label="Password"
             />
             
-            <Input
-                name="email"
-                onChange={this.handleChange}
-                label="Email"
-            />
 
             <Button
                 // onClick={() => login(this)}
