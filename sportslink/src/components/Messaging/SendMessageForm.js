@@ -7,6 +7,7 @@ class SendMessageForm extends React.Component{
     constructor () {
         super()
         this.checkChange = this.checkChange.bind(this)
+        this.submitMessage = this.submitMessage.bind(this)
 
         this.state = {
             message : ''
@@ -35,7 +36,7 @@ class SendMessageForm extends React.Component{
     
     submitMessage(e) {
         e.preventDefault()
-        this.props.sendMessage(this.state.message)
+        // this.props.sendMessage(this.state.message)
         this.setState({
           message: ''
         })
