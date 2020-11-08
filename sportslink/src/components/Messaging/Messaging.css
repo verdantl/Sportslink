@@ -13,6 +13,7 @@
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
+    margin-bottom: 5px;
 }
 
 .texts{
@@ -28,4 +29,8 @@
 
 .rightContent{
     width: 100%;
+}
+
+.sendMessageForm{
+    padding : 5px;
 }
