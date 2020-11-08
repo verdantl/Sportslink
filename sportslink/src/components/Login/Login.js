@@ -32,6 +32,7 @@ class Login extends React.Component{
     render() {
         return (
             <div className="loginPage">
+                <div className='loginTitle'>Sportslink</div>
                 <div className="loginContainer">
                     <h1>Log in</h1>
                     <Input

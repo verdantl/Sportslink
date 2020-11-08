@@ -1,10 +1,7 @@
 import React from 'react'
 import Input from '../Input/Input'
 import Button from '@material-ui/core/Button'
-import './Signup.css'
-import Onboarding from './Onboarding'
-
-class Signup extends React.Component{
+class Onboarding extends React.Component{
     state = {
         firstName: '',
         last_name: '',
@@ -16,7 +13,6 @@ class Signup extends React.Component{
             {usern: "admin", password: "123"}
         ]
     };
-
     handleChange = event => {
         const target = event.target;
         const value = target.value;
@@ -28,14 +24,8 @@ class Signup extends React.Component{
             [name]: value
         });
     };
-
-
     render(){
-        return <div className="signUpPage">
-            <div className="signUpTitle"><h1>Sportslink</h1> <p>Bringing together the greatest athletic community around the globe</p></div>
-        {/* <Onboarding/> */}
-        <div className="signUpContainer">
-            <h1>Sign Up</h1>
+        return <div>
             <Input
                 className="signUpNames"
                 name="firstName"
@@ -59,17 +49,8 @@ class Signup extends React.Component{
                 onChange={this.handleChange}
                 label="Password"
             />
-            
-
-            <Button
-                // onClick={() => login(this)}
-                className="signUpButton"
-            > 
-                Next  
-            </Button>
         </div>
-    </div>
     }
 }
 
-export default Signup
+export default Onboarding
