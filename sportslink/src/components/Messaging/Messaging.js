@@ -1,6 +1,7 @@
 import React from 'react';
 import TextList from './TextList';
 import Contacts from './Contacts';
+import SendMessageForm from './SendMessageForm'
 import "./Messaging.css";
 
 class Messaging extends React.Component{
@@ -49,16 +50,10 @@ class Messaging extends React.Component{
                     }
                 </div>
                 <div className="texts">
-                    {
-                        // TODO: Autogenerate texts through backend
-                    }
                     <TextList messages={this.state.messages} currUser={this.state.currUser}/>
                 </div>
                 <div className="sendMessageForm">
-                    {
-                        // TODO: Finish layout for sendMessageForm
-                    }
-                    
+                    <SendMessageForm/>
                 </div>
             </div>
         </div>
