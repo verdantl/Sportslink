@@ -44,7 +44,6 @@ class TopBar extends React.Component{
             <ul>
             <li>
             <input className="searchTitle" placeholder="Search"/>
-            <SearchIcon className="searchButton"/>
             </li>
             <li>
             <HomeIcon className={this.state.homeIcon} onMouseEnter={this.handleHomeHover} onMouseLeave={this.handleHomeHoverOff}/>

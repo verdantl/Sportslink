@@ -20,9 +20,9 @@ class AthleteSearch extends React.Component{
             name: "Lebron James"
         },
         users: [
-          {image: harden, name: 'James Harden', description: "No. 13, Houston Rockets. 3x scoring champion"},
-          {image: kawhi, name: "Kawhi Leonard  ", description: "2x Finals MVP, LA Clippers SF"},
-          {image: durant, name: "Kevin Durant", description: "NBA Player for the Brooklyn Nets"}
+          {image: harden, userType: "athlete", name: 'James Harden', description: "No. 13, Houston Rockets. 3x scoring champion"},
+          {image: kawhi, userType: "athelete", name: "Kawhi Leonard  ", description: "2x Finals MVP, LA Clippers SF"},
+          {image: durant, userType: "athlete", name: "Kevin Durant", description: "NBA Player for the Brooklyn Nets"}
         ]
       }
 

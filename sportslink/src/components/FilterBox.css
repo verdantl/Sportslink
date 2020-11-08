@@ -41,3 +41,11 @@
     border-radius: 50%;
     padding: 3px;
 }
+
+.preferences .preference{
+    background-color: antiquewhite;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 8px goldenrod;
+}

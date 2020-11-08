@@ -4,18 +4,14 @@ import Select from "@material-ui/core/Select"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import FormControl from "@material-ui/core/FormControl"
 import InputLabel from "@material-ui/core/InputLabel"
-import SearchIcon from '@material-ui/icons/Search';
 import "./FilterBox.css"
 
 
 
 class FilterBox extends React.Component{
-    constructor(props){
-        super(props)
-    }
-
     state = {
-        checked: {"checkedAthlete": false , "checkedRecruiters": false},
+        checkedAthlete: false,
+        checkedRecruiters: false,
         preferences: []
     }
 
@@ -23,8 +19,7 @@ class FilterBox extends React.Component{
     handleCheck = (event) => {
         const checkBox = event.target.name
 
-        this.setState.checked[checkBox] = event.target.checked
-        console.log(this.state.checked)
+        this.setState({checkBox : event.target.checked})
 
     }
 
@@ -41,7 +36,6 @@ class FilterBox extends React.Component{
             this.setState({preferences: this.state.preferences})
         }
 
-        console.log(this.state.preferences)
     }
 
     displayPreferences = () => this.state.preferences.map((d) => <li key={d.name}>{d}</li>);
@@ -77,9 +71,9 @@ class FilterBox extends React.Component{
                 onChange={this.handleChange}
                 >
                 <option aria-label="None" value="" />
-                <option value={"Same location"}>Filter preferences</option>
-                <option value={"Big brain"}>Big brain       </option>
-                <option value={"Same Sport"}>Same Sport </option>
+                <option value={"Same Location"}>Same location</option>
+                <option value={"Same Sport"}>Same Sport</option>
+                <option value={"Same Organization"}>Same Organization</option>
             </Select>
         </FormControl>
 
@@ -87,7 +81,7 @@ class FilterBox extends React.Component{
         <div className="preferences">
          {this.state.preferences.map((preference) => {
               return <span className='preference'>
-              {preference + ''} 
+              {preference + ' '} 
             </span>
             }
             )}
