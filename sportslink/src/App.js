@@ -24,7 +24,7 @@ class App extends React.Component {
     search: '',
     user:
     {
-      username: 'user',
+      username: 'TheRealLebronJames',
       suspended: false,
       name: "Lebron James",
       image: lebron,
@@ -46,7 +46,7 @@ class App extends React.Component {
       },
     users: [
       {
-        username: 'user',
+        username: 'TheRealLebronJames',
         suspended: false,
         name: "Lebron James",
         image: lebron,
@@ -67,6 +67,7 @@ class App extends React.Component {
         description: 'Took the team to an NBA Finals in 2009, averaged over 25 ppg', years: '2003-2010'}]
         },
         {
+          username: 'rapsowemeone',
           name: "Kawhi Leonard",
           username: 'kaw',
           suspended: false,
@@ -87,8 +88,8 @@ class App extends React.Component {
           ]
           },
         {
+            username: 'xXx_JamesHarden_xXx',
             name: "James Harden",
-            username: 'jam',
             suspended: false,
             image: harden,
             description: 'SG for the Houston Rockets. 3x NBA Scoring Champion, 2017-2018 MVP',
@@ -105,9 +106,9 @@ class App extends React.Component {
             ]
             },
           {
+            username: 'coolguy123',
             suspended: false,
             name: "Kevin Durant",
-            username: 'kev',
             image: durant,
             description: 'SF for the Brooklyn Nets. 2x NBA Finals MVP, 2x NBA Champion, 10x NBA All-Star',
             location: "Brooklyn NY, USA",
@@ -152,22 +153,22 @@ class App extends React.Component {
           <Route exact path = '/' render={() =>
                           (<Login global={this}/>)}/>
 
-          <Route exact path = '/profile/leb' render={() => 
+          <Route exact path = '/profile/TheRealLebronJames' render={() => 
                           (<div><TopBar search={this.search}/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
-          <Route exact path = '/profile/kaw' render={() => 
+          <Route exact path = '/profile/rapsowemeone' render={() => 
                           (<div><TopBar search={this.search}/><Profile className="profile" global={this.state.users[1]}/></div>)}/>
-          <Route exact path = '/profile/jam' render={() => 
+          <Route exact path = '/profile/xXx_JamesHarden_xXx' render={() => 
                           (<div><TopBar search={this.search}/><Profile className="profile" global={this.state.users[2]}/></div>)}/>
-          <Route exact path = '/profile/kev' render={() => 
+          <Route exact path = '/profile/coolguy123' render={() => 
                           (<div><TopBar search={this.search}/><Profile className="profile" global={this.state.users[3]}/></div>)}/>
           
-          <Route exact path = '/viewprofile/leb' render={() => 
+          <Route exact path = '/viewprofile/TheRealLebronJames' render={() => 
                           (<div><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
-          <Route exact path = '/viewprofile/kaw' render={() => 
+          <Route exact path = '/viewprofile/rapsowemeone' render={() => 
                           (<div><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
-          <Route exact path = '/viewprofile/jam' render={() => 
+          <Route exact path = '/viewprofile/xXx_JamesHarden_xXx' render={() => 
                           (<div><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[2]}/></div>)}/>
-          <Route exact path = '/viewprofile/kev' render={() => 
+          <Route exact path = '/viewprofile/coolguy123' render={() => 
                           (<div><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[3]}/></div>)}/>
           
           <Route exact path = '/messaging' render={() => 
