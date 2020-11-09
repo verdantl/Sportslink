@@ -69,7 +69,6 @@ class App extends React.Component {
         {
           username: 'rapsowemeone',
           name: "Kawhi Leonard",
-          username: 'kaw',
           suspended: false,
           image: kawhi,
           description: 'SF for the Los Angeles Clippers. 2 time NBA champion, 2x Finals MVP, 2x Defensive Player of the Year.',
