@@ -8,9 +8,15 @@ hr {
 }
 .header {
     vertical-align: middle;
+    height: 33px;
 }
 
 .header p {
-    display: inline;
-    margin: 0;
+    margin: auto;
+    padding: 16px 7px;
+    font-weight: bold;
+}
+
+.returnDiv {
+    position: relative;
 }
