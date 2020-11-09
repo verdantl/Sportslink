@@ -89,6 +89,9 @@ export const barClick = (user) => {
     if (user.state.messageIcon === 'messageIconLight'){
         window.location.href = "/messaging";
     }
+    if (user.state.searchIcon === 'searchIconLight'){
+        window.location.href = "/search";
+    }
 };
 
 export const search = () => {
