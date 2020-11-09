@@ -5,11 +5,13 @@ import "./AthleteSearch.css"
 
 import SearchResults from "./SearchResults"
 
-
-// import AthleteDashBoardProfile from './AthleteDashboardProfile'
-
 class AthleteSearch extends React.Component{
+    constructor(props){
+        super(props)
+        this.search(this.props.info.search)
+    }
     state = {
+        search: "",
         users: this.props.info.users,
         posts: this.props.info.posts,
         filters: 'athlete',
@@ -23,8 +25,18 @@ class AthleteSearch extends React.Component{
         this.setState({posts: this.state.posts})
     }
 
+    search = (searchText) => {
+      const searchedUsers = this.props.info.users.filter(user => user.name.toLowerCase().includes(searchText.toLowerCase()))
+
+      const searchedPosts = this.props.info.posts.filter(post => 
+        post.text.toLowerCase().includes(searchText.toLowerCase()) | post.user.name.toLowerCase().includes(searchText.toLowerCase()))
+
+      this.setState({search: searchText, users: searchedUsers, posts: searchedPosts})
+    }
+
     render(){
         return <div className="athleteSearch">
+            {this.props.info.search}
             <div className="searchLeftColumn">
                 <DashProfileBox user={this.props.info.user} className="personalProfile"/>
             </div>

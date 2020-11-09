@@ -6,6 +6,7 @@ import './TopBar.css';
 import SearchIcon from "@material-ui/icons/Search"
 import MessageIcon from '@material-ui/icons/Message';
 import {barClick} from "../actions/user.js";
+import {search} from '../actions/user.js'
 
 class TopBar extends React.Component{
 
@@ -53,11 +54,17 @@ class TopBar extends React.Component{
         this.setState({messageIcon: 'messageIcon'})
     }
 
+    handleSearch = (event) => {
+        if (event.key === 'Enter'){
+            this.props.search(event.target.value)
+            search();
+        }
+    }
     render(){
         return <div className="topBar">
             <ul>
             <li>
-            <input className="searchTitle" placeholder="Search"/>
+            <input className="searchTitle" placeholder="Search" onKeyPress={this.handleSearch}/>
             </li>
             <li>
             <HomeIcon className={this.state.homeIcon} onMouseEnter={this.handleHomeHover} onMouseLeave={this.handleHomeHoverOff} onClick={() => barClick(this)}/>

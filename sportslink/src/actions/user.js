@@ -90,3 +90,7 @@ export const barClick = (user) => {
         window.location.href = "/messaging";
     }
 };
+
+export const search = () => {
+    window.location.href = '/search';
+}
