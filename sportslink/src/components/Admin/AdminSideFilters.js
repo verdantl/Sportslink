@@ -1,10 +1,11 @@
 import React from 'react'
 import Checkbox from "@material-ui/core/Checkbox"
-import Select from "@material-ui/core/Select"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
-import Input from '../Input/Input'
 import TextField from '@material-ui/core/TextField'
 import {uid} from 'react-uid'
+import IconButton from '@material-ui/core/IconButton'
+import ClearIcon from '@material-ui/icons/Clear'
+import { TramRounded } from '@material-ui/icons'
 
 class AdminSideFilters extends React.Component{
     state = {
@@ -30,7 +31,6 @@ class AdminSideFilters extends React.Component{
         else{
             object = event.target
         }
-        console.log(object.parentElement)
         switch(object.parentElement.parentElement.className){
             case ("locations"):
                 this.state.locations.splice(this.state.locations.indexOf(object.name), 1)
@@ -65,28 +65,39 @@ class AdminSideFilters extends React.Component{
     addOption = (list, option) => {
         if (option != '' && !list.includes(option) && list.length < 5){
             list.push(option)
+            return true
         } 
+        else{
+            return false
+        }
     }
 
     _handleKeyDown = (e) => {
         if (e.key === 'Enter') {
+            let value;
+
           switch(e.target.name){
             case ("location"):
-                this.addOption(this.state.locations, e.target.value)
-                this.setState({locations: this.state.locations})
+                value = this.addOption(this.state.locations, e.target.value)
+                if (value){
+                    this.setState({locations: this.state.locations})
+                    e.target.value = null
+                }
+
                 break;
             case ("organization"):
-                this.addOption(this.state.organizations, e.target.value)
-                this.setState({organization: this.state.organizations})
+                value = this.addOption(this.state.organizations, e.target.value)
+                if (value){this.setState({organizations: this.state.organizations})
+                e.target.value = null}
                 break;
             case ("sport"):
-                this.addOption(this.state.sports, e.target.value)
-                this.setState({sports: this.state.sports})
+                value = this.addOption(this.state.sports, e.target.value)
+                if (value){this.setState({sports: this.state.sports})
+                                e.target.value = null}
                 break;
           }
         }
       }
-
     render(){
         return <div className="adminLeftColumn">
         Filters
@@ -118,7 +129,12 @@ class AdminSideFilters extends React.Component{
         <div className="locations">
          {this.state.locations.map((location) => {
               return <div key={uid(location)} className='choice'>
-              {location + ' '} 
+              {location + ' '} <IconButton
+                        name={location}
+                        onClick={this.removePreference}
+                    > 
+                    <ClearIcon/>   
+                    </IconButton>
             </div>
             }
             )}
@@ -129,7 +145,12 @@ class AdminSideFilters extends React.Component{
         <div className="organizations">
         {this.state.organizations.map((organization) => {
               return <div key={uid(organization)} className='choice'>
-              {organization + ' '} 
+              {organization + ' '} <IconButton
+                        name={organization}
+                        onClick={this.removePreference}
+                    > 
+                    <ClearIcon/>   
+                    </IconButton>
             </div>
             }
             )}
@@ -140,6 +161,12 @@ class AdminSideFilters extends React.Component{
         {this.state.sports.map((sport) => {
               return <div key={uid(sport)} className='choice'>
               {sport + ' '} 
+              <IconButton
+                        name={sport}
+                        onClick={this.removePreference}
+                    > 
+                    <ClearIcon/>   
+                    </IconButton>
             </div>
             }
             )}

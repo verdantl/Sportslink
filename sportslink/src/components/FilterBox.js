@@ -27,7 +27,6 @@ class FilterBox extends React.Component{
         else{
             object = event.target
         }
-        console.log(object.parentElement)
         switch(object.parentElement.parentElement.className){
             case ("locations"):
                 this.state.locations.splice(this.state.locations.indexOf(object.name), 1)
