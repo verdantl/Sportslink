@@ -110,7 +110,7 @@ class App extends React.Component {
           <Route exact path = '/search' render={()=>
                           (<div> <TopBar/><AthleteSearch className="athleteSearch"/></div>)}/>
           <Route exact path = '/dashboard' render={()=>
-                          (<div> <TopBar/><Dashboard className="dashboard"/></div>)}/>
+                          (<div> <TopBar/><Dashboard info={this.state} className="dashboard"/></div>)}/>
           <Route exact path = '/' render={() =>
                           (<Login global={this}/>)}/>
           <Route exact path = '/profile' render={() => 

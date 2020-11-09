@@ -6,7 +6,8 @@ import IconButton from '@material-ui/core/IconButton'
 
 class PostCard extends React.Component{
     state ={
-        hideComments: true  
+        hideComments: true,
+        upvoted: false 
     }
     alterComments = (event) =>{
         this.setState({hideComments: !this.state.hideComments})
@@ -18,6 +19,16 @@ class PostCard extends React.Component{
         }
         else{
             return "Hide Comments"
+        }
+    }
+
+    upvote = () => {
+        if (!this.state.upvoted){
+            this.setState({upvoted: true})
+        }
+
+        else{
+            this.setState({upvoted: false})
         }
     }
 
@@ -43,7 +54,7 @@ class PostCard extends React.Component{
             <span>
                 {this.props.post.comments.length + " Comments"}
             </span>
-                <IconButton className="thumbsUpButton"> <ThumbUpIcon className="thumbsUp"/></IconButton>
+                <IconButton onClick={this.upvote} className="thumbsUpButton"> <ThumbUpIcon className="thumbsUp"/></IconButton>
                 </div>
 
             </div>
