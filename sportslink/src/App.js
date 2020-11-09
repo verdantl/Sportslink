@@ -68,7 +68,7 @@ class App extends React.Component {
                           (<div> <TopBar/><AthleteSearch className="athleteSearch"/></div>)}/>
           <Route exact path = '/dashboard' render={()=>
                           (<div> <TopBar/><Dashboard className="dashboard"/></div>)}/>
-          <Route exact path = '/login' render={() =>
+          <Route exact path = '/' render={() =>
                           (<Login/>)}/>
           <Route exact path = '/profile' render={() => 
                           (<div><TopBar/><Profile className="profile"/></div>)}/>
