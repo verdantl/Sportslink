@@ -129,7 +129,13 @@ class App extends React.Component {
           <Route exact path = '/profile3' render={() => 
                           (<div><TopBar/><Profile className="profile" global={this.state.users[3]}/></div>)}/>
           <Route exact path = '/viewprofile' render={() => 
-                          (<div><TopBar/><ViewProfile className="viewProfile"/></div>)}/>
+                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
+          <Route exact path = '/viewprofile1' render={() => 
+                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
+          <Route exact path = '/viewprofile2' render={() => 
+                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[2]}/></div>)}/>
+          <Route exact path = '/viewprofile3' render={() => 
+                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[3]}/></div>)}/>
           <Route exact path = '/messaging' render={() => 
                           (<div><TopBar/><Messaging className="messaging"/></div>)}/>
           <Route exact path = '/signup' render={() => 

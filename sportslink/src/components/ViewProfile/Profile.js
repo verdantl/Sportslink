@@ -44,27 +44,28 @@ class ViewProfile extends React.Component{
         }
     }
     render(){
+        const {global} = this.props;
         return <div className="profile">
             <div className="profileCard">
             <div className="profileInfo">
-            <ProfilePicture image={this.state.user.image} name={this.state.user.name}/>
+            <ProfilePicture image={global.image} name={global.name}/>
             
             <div className="contactDetails"> 
             <div className={this.state.contactClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButton}>Contact </div>
 
-            <PersonalInfo user={this.state.user}/>
+            <PersonalInfo user={global}/>
             </div>
             
             </div>
-            <Biography description={this.state.user.description}/>
+            <Biography description={global.description}/>
             </div>
 
             <div className="achievements">
                 <div></div>
-                <Experience experience={this.state.user.experience}/>
+                <Experience experience={global.experience}/>
                 <div className="profileRightColumn">
                 <Images images={this.state.images}/>
-                <Career accomplishments={this.state.user.accomplishments}/>
+                <Career accomplishments={global.accomplishments}/>
                 </div>
 
             </div>
