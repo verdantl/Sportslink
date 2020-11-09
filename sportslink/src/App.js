@@ -97,8 +97,11 @@ class App extends React.Component {
             ]
           }],
     posts: [
-      {user: {name: 'Lebron James', image: lebron}, text: "Finals MVP, 2020!!!", likes: 2, comments: [{user: {name: 'Kawhi Leonard', image: kawhi}, text: "I wish I were a Laker..."}, {user: {name: 'Kevin Durant', image: durant}, text: "Great post!"}]}, 
-      {user: {name: 'Lebron James', image: lebron}, text: "Lakers have reached the Finals", likes: 5, comments: [{user: {name: 'James Harden', image: harden}, text: "Good match..."}, {user: {name: 'Kevin Durant', image: durant}, text: "You are a great player!"}]}]
+      {user: {name: 'Lebron James', image: lebron}, text: "Finals MVP, 2020!!!", likes: 2, 
+      comments: [{user: {name: 'Kawhi Leonard', image: kawhi}, text: "I wish I were a Laker..."}, {user: {name: 'Kevin Durant', image: durant}, text: "Great post!"}]}, 
+      {user: {name: 'Lebron James', image: lebron}, text: "Lakers have reached the Finals", likes: 5, 
+      comments: [{user: {name: 'James Harden', image: harden}, text: "Good match..."}, 
+      {user: {name: 'Kevin Durant', image: durant}, text: "You are a great player!"}]}]
 
   }
   render(){

@@ -3,9 +3,6 @@ import './Dashboard.css'
 import DashProfileBox from '../Athlete/DashProfileBox'
 import NewsBox from './NewsBox'
 import lebron from '../images/lebron.jpg'
-import harden from '../images/harden.jpg'
-import kawhi from '../images/kawhi.jpg'
-import durant from '../images/durant.jpg'
 import NewPost from './NewPost'
 import Posts from './Posts'
 
@@ -24,6 +21,11 @@ class Dashboard extends React.Component{
         currPosts.unshift({user: {name: 'Lebron James', image: lebron}, text: post, likes: 0, comments: []})
         this.setState({posts: currPosts})
     }
+    upvotePost = (post, number) => {
+        this.state.posts[post].likes += number;
+        this.setState({posts: this.state.posts})
+    }
+
 
     render(){
         return <div className="dashboard">
@@ -33,7 +35,7 @@ class Dashboard extends React.Component{
                 </div>
             <div className="dashboardRightColumn">
                 <NewPost createNewPost={this.createNewPost}/>
-                <Posts posts={this.state.posts}/>
+                <Posts user={this.state.user} upvote={this.upvotePost} posts={this.state.posts}/>
             </div>
 
         </div>

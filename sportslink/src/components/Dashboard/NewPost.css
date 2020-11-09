@@ -1,21 +1,23 @@
 .unfocusedDiv {
     background-color: white;
-    height: 42px;
+    height: auto;
     width: 450px;
     padding: 10px;
     margin: 20px;
     margin-left: 10px;
     position: relative;
+    box-shadow: 2px 2px 8px #888888;
 }
 
 .focusedDiv {
     background-color: white;
-    height: 42px;
+    height: auto;
     width: 450px;
     padding: 10px;
     margin: 20px;
     margin-left: 10px;
     position: relative;
+    box-shadow: 2px 2px 8px #888888;
 }
 
 .startNewPostButton {
