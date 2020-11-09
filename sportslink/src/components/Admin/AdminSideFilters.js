@@ -22,6 +22,32 @@ class AdminSideFilters extends React.Component{
 
     }
 
+    removePreference = (event) => {
+        let object;
+        if (event.target.name == null){
+            object = event.target.parentElement.parentElement  
+        }
+        else{
+            object = event.target
+        }
+        console.log(object.parentElement)
+        switch(object.parentElement.parentElement.className){
+            case ("locations"):
+                this.state.locations.splice(this.state.locations.indexOf(object.name), 1)
+                this.setState({locations: this.state.locations})
+                break;
+            case ("organizations"):
+                this.state.organizations.splice(this.state.organizations.indexOf(object.name), 1)
+                this.setState({organizations: this.state.organizations})
+                break;
+            case ("sports"):
+                this.state.sports.splice(this.state.sports.indexOf(object.name), 1)
+                this.setState({sports: this.state.sports})
+                break;
+          }
+    }
+
+
     handleChange = (event) =>{
         const preference = event.target.value
 
@@ -37,7 +63,7 @@ class AdminSideFilters extends React.Component{
 
     }
     addOption = (list, option) => {
-        if (option != '' && !list.includes(option)){
+        if (option != '' && !list.includes(option) && list.length < 5){
             list.push(option)
         } 
     }

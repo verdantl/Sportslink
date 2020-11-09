@@ -1,14 +1,16 @@
 .profileBox{
     margin: 20px;
-    width: 380px;
+    width: 450px;
     height: 90px;
     padding: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 0px;
     background-color: white;
     box-shadow: 2px 2px 8px #888888;
     border-radius: 5px;
     float: left;
+    display: flex;
+
 
 }
 .profilePic{
@@ -18,6 +20,8 @@
     height: 90px;
     overflow: hidden;
     border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px #888888;
 
 }
 .profilePic img{
@@ -31,6 +35,7 @@
 .singleProfileSubBox{
     display: inline-block;
     vertical-align: top;
+    width: 200px;
 }
 
 .profileBoxName{
@@ -41,16 +46,23 @@
     font-size: x-large;
     width: fit-content;
     border-radius: 10px;
+    cursor: pointer;
     
 }
 
 .profileDescription{
-
+    padding-left: 10px;
     padding: 5px;
-    width: 250px;
+    width: 185px;
+    max-height: 50px;
     margin: 5px;
     font-size: small;
     color: gray
     ;
 
+}
+
+.singleBoxLocation{
+    display: inline-block;
+    font-size: smaller;
 }
