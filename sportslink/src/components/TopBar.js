@@ -4,12 +4,16 @@ import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import './TopBar.css';
 import SearchIcon from "@material-ui/icons/Search"
+import MessageIcon from '@material-ui/icons/Message';
+import {barClick} from "../actions/user.js";
+
 class TopBar extends React.Component{
 
     state = {
         homeIcon: 'homeIcon',
         settingsIcon: 'settingsIcon',
-        userIcon: 'userIcon'
+        userIcon: 'userIcon',
+        messageIcon: 'messageIcon'
     }
     handleHomeHover = (event) => {
         this.setState({homeIcon: 'homeIconLight'})
@@ -39,6 +43,16 @@ class TopBar extends React.Component{
         this.setState({settingsIcon: 'settingsIcon'})
     }
 
+
+    handleMessageHover = (event) => {
+        this.setState({messageIcon: 'messageIconLight'})
+    }
+
+
+    handleMessageHoverOff = (event) => {
+        this.setState({messageIcon: 'messageIcon'})
+    }
+
     render(){
         return <div className="topBar">
             <ul>
@@ -46,13 +60,16 @@ class TopBar extends React.Component{
             <input className="searchTitle" placeholder="Search"/>
             </li>
             <li>
-            <HomeIcon className={this.state.homeIcon} onMouseEnter={this.handleHomeHover} onMouseLeave={this.handleHomeHoverOff}/>
+            <HomeIcon className={this.state.homeIcon} onMouseEnter={this.handleHomeHover} onMouseLeave={this.handleHomeHoverOff} onClick={() => barClick(this)}/>
             </li>
             <li>
-            <PersonIcon className={this.state.userIcon} onMouseEnter={this.handleUserHover} onMouseLeave={this.handleUserHoverOff}/>
+            <PersonIcon className={this.state.userIcon} onMouseEnter={this.handleUserHover} onMouseLeave={this.handleUserHoverOff} onClick={() => barClick(this)}/>
             </li>
             <li>
-            <SettingsIcon className={this.state.settingsIcon} onMouseEnter={this.handleSettingsHover} onMouseLeave={this.handleSettingsHoverOff}/>
+            <MessageIcon className={this.state.messageIcon} onMouseEnter={this.handleMessageHover} onMouseLeave={this.handleMessageHoverOff} onClick={() => barClick(this)}/>
+            </li>
+            <li>
+            <SettingsIcon className={this.state.settingsIcon} onMouseEnter={this.handleSettingsHover} onMouseLeave={this.handleSettingsHoverOff} onClick={() => barClick(this)}/>
             </li>
             </ul>
 
