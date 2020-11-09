@@ -17,6 +17,7 @@ import Onboarding from './components/Signup/Onboarding'
 import Settings from './components/Settings/Settings'
 import ForgotPass from './components/ForgotPass/ForgotPass'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { uid } from 'react-uid';
 
 class App extends React.Component {
   state = {
@@ -66,6 +67,7 @@ class App extends React.Component {
         },
         {
           name: "Kawhi Leonard",
+          username: 'kaw',
           suspended: false,
           image: kawhi,
           description: 'SF for the Los Angeles Clippers. 2 time NBA champion, 2x Finals MVP, 2x Defensive Player of the Year.',
@@ -85,6 +87,7 @@ class App extends React.Component {
           },
         {
             name: "James Harden",
+            username: 'jam',
             suspended: false,
             image: harden,
             description: 'SG for the Houston Rockets. 3x NBA Scoring Champion, 2017-2018 MVP',
@@ -103,6 +106,7 @@ class App extends React.Component {
           {
             suspended: false,
             name: "Kevin Durant",
+            username: 'kev',
             image: durant,
             description: 'SF for the Brooklyn Nets. 2x NBA Finals MVP, 2x NBA Champion, 10x NBA All-Star',
             location: "Brooklyn NY, USA",
@@ -141,22 +145,25 @@ class App extends React.Component {
                           (<div> <TopBar/><Dashboard info={this.state} className="dashboard"/></div>)}/>
           <Route exact path = '/' render={() =>
                           (<Login global={this}/>)}/>
-          <Route exact path = '/profile' render={() => 
+
+          <Route exact path = '/profile/leb' render={() => 
                           (<div><TopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
-          <Route exact path = '/profile1' render={() => 
+          <Route exact path = '/profile/kleo' render={() => 
                           (<div><TopBar/><Profile className="profile" global={this.state.users[1]}/></div>)}/>
-          <Route exact path = '/profile2' render={() => 
+          <Route exact path = '/profile/jhar' render={() => 
                           (<div><TopBar/><Profile className="profile" global={this.state.users[2]}/></div>)}/>
-          <Route exact path = '/profile3' render={() => 
+          <Route exact path = '/profile/kdur' render={() => 
                           (<div><TopBar/><Profile className="profile" global={this.state.users[3]}/></div>)}/>
-          <Route exact path = '/viewprofile' render={() => 
+          
+          <Route exact path = '/viewprofile/leb' render={() => 
                           (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
-          <Route exact path = '/viewprofile1' render={() => 
+          <Route exact path = '/viewprofile/kaw' render={() => 
                           (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
-          <Route exact path = '/viewprofile2' render={() => 
+          <Route exact path = '/viewprofile/jam' render={() => 
                           (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[2]}/></div>)}/>
-          <Route exact path = '/viewprofile3' render={() => 
+          <Route exact path = '/viewprofile/kev' render={() => 
                           (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[3]}/></div>)}/>
+          
           <Route exact path = '/messaging' render={() => 
                           (<div><TopBar/><Messaging className="messaging"/></div>)}/>
           <Route exact path = '/signup' render={() => 
