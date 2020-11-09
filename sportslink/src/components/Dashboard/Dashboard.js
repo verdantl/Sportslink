@@ -6,6 +6,8 @@ import lebron from '../images/lebron.jpg'
 import harden from '../images/harden.jpg'
 import kawhi from '../images/kawhi.jpg'
 import durant from '../images/durant.jpg'
+import NewPost from './NewPost'
+import Posts from './Posts'
 
 class Dashboard extends React.Component{
     state = {
@@ -27,7 +29,10 @@ class Dashboard extends React.Component{
                 <DashProfileBox user={this.state.user} className="personalProfile"/>
                 <NewsBox/>                
                 </div>
-            <div className="dashboardRightColumn">Right column</div>
+            <div className="dashboardRightColumn">
+                <NewPost/>
+                <Posts/>
+            </div>
 
         </div>
     }
