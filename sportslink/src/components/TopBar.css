@@ -4,6 +4,7 @@
     height: 50px;
     margin: auto;  
     border: 1px black solid;
+    box-shadow: 2px 2px 8px #888888;
 }
 .searchTitle{
     background-color: azure;
