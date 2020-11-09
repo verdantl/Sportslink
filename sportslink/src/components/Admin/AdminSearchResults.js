@@ -4,7 +4,10 @@ import { uid } from "react-uid";
 import AdminPosts from './AdminPosts'
 
 class AdminSearchResults extends React.Component{
+
     render(){
+
+
         if(this.props.filter === 'athlete'){
             return <div>
             {this.props.users.map((user) => {
