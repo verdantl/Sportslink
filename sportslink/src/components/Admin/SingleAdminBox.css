@@ -2,63 +2,28 @@
 .adminBox{
     display: flex;
     margin: 40px;
+    height: 120px;
     width: fit-content;
-    margin-left: auto;
+    margin-left: 0px;
     margin-right: auto;
+    background-color: aliceblue;
+    border-radius: 2px;
+    box-shadow: 2px 2px 8px #888888;
 }
 .adminProfileBox{
-
     width: 500px;
-    height: 120px;
     padding: 20px;
     padding-left: 30px;
     padding-right: 30px;
-    background-color: antiquewhite;
+
     display: inline-block;
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
-
+    display: flex;
 }
 
-.adminActions{
-    height: 120px;
-    padding: 20px;
-    padding-left: 20px;
-    padding-right: 30px;
-    display: inline;
-    background-color: antiquewhite;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.adminSuspendButton{
-    padding: 10px;
-    border-radius: 10px;
-    margin: 20px;
-    margin-top: 30px;
-    background-color: white;
-    float: left;
-    color: cadetblue;
-    font-size: large;
-}
-.adminRemoveButton{
-    padding: 10px;
-    border-radius: 10px;
-    margin: 20px;
-    margin-top: 30px;
-    background-color: white;
-    color: red;
-    float: left;
-    font-size: large;
-}
-.adminEditButton{
-    padding: 10px;
-    border-radius: 10px;
-    margin: 20px;
-    margin-top: 30px;
-    background-color: white;
-    float: left;
-    font-size: large;
+.adminSubBox{
+    display: inline-block;
+    margin-top: 0px;
+    padding-top: 0px;
 }
 
 .adminProfileName{
@@ -75,8 +40,82 @@
     padding: 5px;
     width: 350px;
     margin: 5px;
+    max-height: 20px;
+    padding-left: 10px;
     text-align: left;
     font-size: medium;
-    color: gray
-    ;
+    color: gray;
+    overflow: hidden;
+}
+
+
+.adminActions{
+    height: 120px;
+    padding: 20px;
+    padding-left: 20px;
+    padding-right: 30px;
+    display: inline-block;
+}
+
+.adminSuspendButton{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: white;
+    float: left;
+    color: cadetblue;
+    font-size: large;
+    box-shadow: 2px 2px 8px #888888;
+}
+.adminRemoveButton{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: white;
+    color: red;
+    float: left;
+    font-size: large;
+    box-shadow: 2px 2px 8px #888888;
+}
+.adminEditButton{
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px;
+    background-color: white;
+    float: left;
+    font-size: large;
+    box-shadow: 2px 2px 8px #888888;
+}
+
+.adminSuspendButtonLight{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: lightgray;
+    float: left;
+    color: cadetblue;
+    font-size: large;
+    box-shadow: 2px 2px 8px #888888;
+    cursor: pointer;
+}
+.adminRemoveButtonLight{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    background-color: lightgray;
+    color: red;
+    float: left;
+    font-size: large;
+    box-shadow: 2px 2px 8px #888888;
+    cursor: pointer;
+}
+.adminEditButtonLight{
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px;
+    background-color: lightgray;
+    float: left;
+    font-size: large;
+    box-shadow: 2px 2px 8px #888888;
+    cursor: pointer;   
 }
