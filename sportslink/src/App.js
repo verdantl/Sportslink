@@ -20,7 +20,28 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 class App extends React.Component {
   state = {
-    currentUser: "user",
+    user:
+    {
+      username: 'user',
+      suspended: false,
+      name: "Lebron James",
+      image: lebron,
+      description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
+      location: "Los Angeles CA, USA",
+      organization: "Los Angeles Lakers",
+      sports:"Basketball",
+      contact: "",
+      accomplishments: ["4x NBA Champion", '4x NBA Finals MVP', '4x NBA MVP', '16x NBA All Star', '13x All-NBA First Team'],
+      experience: [{title: 'Point Guard', organization: 'Los Angeles Lakers', league: "NBA", stats: {'2019': '25 ppg, 10apg'},
+      description: 'Led Lakers to a championship in the NBA Bubble 2020, averaging almost 30 ppg in the Finals against the Miami Heat',
+      years: '2018-2020'},
+      {title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
+      description: 'Made the NBA Finals in all four years, came back from a 3-1 deficit and won a championship in the 2016 NBA FInals', years: '2014-2018'},
+      {title: 'Small Forward', organization: 'Miami Heat', league: "NBA", stats:{},
+      description: 'Made the NBA Finals in all four years, delivered two championships and won Finals MVP in 2012 and 2013', years: '2010-2014'},
+      {title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
+      description: 'Took the team to an NBA Finals in 2009, averaged over 25 ppg', years: '2003-2010'}]
+      },
     users: [
       {
         username: 'user',
@@ -115,7 +136,7 @@ class App extends React.Component {
           <Route exact path = '/admin' render={()=>
                           (<AdminDashboard info={this.state} className="adminDashboard"/>)}/>
           <Route exact path = '/search' render={()=>
-                          (<div> <TopBar/><AthleteSearch className="athleteSearch"/></div>)}/>
+                          (<div> <TopBar/><AthleteSearch info={this.state} className="athleteSearch"/></div>)}/>
           <Route exact path = '/dashboard' render={()=>
                           (<div> <TopBar/><Dashboard info={this.state} className="dashboard"/></div>)}/>
           <Route exact path = '/' render={() =>

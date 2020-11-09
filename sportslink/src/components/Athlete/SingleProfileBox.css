@@ -8,6 +8,7 @@
     background-color: white;
     box-shadow: 2px 2px 8px #888888;
     border-radius: 5px; 
+    float: left;
     display: flex;
 
 
@@ -52,8 +53,9 @@
 .profileDescription{
     padding-left: 10px;
     padding: 5px;
-    width: 185px;
-    max-height: 50px;
+    width: 300px;
+    max-height: 30px;
+    overflow: hidden;
     margin: 5px;
     font-size: small;
     color: gray
@@ -64,4 +66,5 @@
 .singleBoxLocation{
     display: inline-block;
     font-size: smaller;
+  
 }
