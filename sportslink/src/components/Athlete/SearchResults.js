@@ -26,7 +26,7 @@ class SearchResults extends React.Component{
         case ('posts'):
           return <div className="searchPosts">
           <p className="searchResultTitle">Posts</p>
-          <Posts posts={this.props.posts}/>  
+          <Posts user={this.props.user} upvote={this.props.upvote} posts={this.props.posts}/>  
 
           </div>   
       }

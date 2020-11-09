@@ -142,6 +142,9 @@ button.MuiButtonBase-root.MuiIconButton-root.thumbsUpButton{
     margin-top: 0px;
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    width: 90%;
     background-color: aliceblue;
 }
 .viewComments{
