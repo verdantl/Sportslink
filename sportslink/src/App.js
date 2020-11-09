@@ -13,6 +13,7 @@ import ViewProfile from './components/ViewProfile/Profile'
 import Signup from './components/Signup/Signup'
 import Onboarding from './components/Signup/Onboarding'
 import Settings from './components/Settings/Settings'
+import ForgotPass from './components/ForgotPass/ForgotPass'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 
@@ -84,6 +85,8 @@ class App extends React.Component {
                           (<Onboarding className="onboarding"/>)}/>
           <Route exact path = '/settings' render={() => 
                           (<div> <TopBar/><Settings global={this}/></div>)}/>
+          <Route exact path = '/forgotpassword' render={() => 
+                          (<ForgotPass/>)}/>
         </Switch>
       </BrowserRouter>)
   }
