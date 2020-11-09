@@ -8,20 +8,45 @@ import "./Messaging.css";
 class Messaging extends React.Component{
 
     state = {
+        globalMessageID: 106, // TODO: remove once global API call is used
         currUser : 'currUserID',
-        currContact: 'userIDGoesHere',
-        messages : [
-            {
-                messageID: '100',
-                userID: 'UserIDGoesHere',
-                messageData: 'This is an incoming message'
-            },
-            {
-                messageID: '101',
-                userID: 'currUserID',
-                messageData: 'This is an outgoing message'
-            }
-        ],
+        currContact: 'UserIDGoesHere1',
+        messageData: {
+            'UserIDGoesHere1': [
+                {
+                    messageID: 100,
+                    userID: 'UserIDGoesHere1',
+                    messageData: 'This is an incoming message'
+                },
+                {
+                    messageID: 101,
+                    userID: 'currUserID',
+                    messageData: 'This is an outgoing message'
+                }
+            ],
+            'UserIDGoesHere2': [
+                {
+                    messageID: 102,
+                    userID: 'UserIDGoesHere2',
+                    messageData: 'This is an incoming message'
+                },
+                {
+                    messageID: 103,
+                    userID: 'currUserID',
+                    messageData: 'This is an outgoing message'
+                },
+                {
+                    messageID: 104,
+                    userID: 'currUserID',
+                    messageData: 'This is another outgoing message'
+                },
+                {
+                    messageID: 105,
+                    userID: 'UserIDGoesHere2',
+                    messageData: 'Bruh'
+                }
+            ]
+        },
         contacts: [
             {
                 userID: 'UserIDGoesHere1',
@@ -36,11 +61,42 @@ class Messaging extends React.Component{
         ]
     }
 
+    contactClick = (e) => {
+        e.preventDefault();
+        // Check if the contact clicked is a different contact than what is currerntly being displayed
+        let target = e.target.parentElement.id
+        if (target === '') {
+            target = e.target.parentElement.parentElement.id
+        }
+
+        if (target === 'contact-' + this.state.currContact){
+            return
+        } else if (target === '') {
+            return
+        } else {
+            this.setState({currContact : target.slice(8)})
+        }
+    }
+
+    sendMessage = (message) => {
+        let currMessageData = this.state.messageData
+        let currMessageID = this.state.globalMessageID // TODO: Replace with API request to get a new message ID
+        
+        currMessageData[this.state.currContact].push({
+            messageID: currMessageID,
+            userID: this.state.currUser,
+            messageData: message
+        })
+
+        this.setState({globalMessageID : currMessageID + 1})
+        this.setState({messageData : currMessageData})
+    }
+
     render() {
         return <div className="messaging">
-            <div className="contacts">
+            <div className="contacts" onClick={this.contactClick}>
                 {
-                    // TODO: Add search bar, list of contacts
+                    // TODO: Add search bar
                 }
                 <Contacts contacts={this.state.contacts} currUser={this.state.currUser}/>
             </div>
@@ -52,10 +108,10 @@ class Messaging extends React.Component{
                     <ContactHeader currContact={this.state.currContact}/>
                 </div>
                 <div className="texts">
-                    <TextList messages={this.state.messages} currUser={this.state.currUser}/>
+                    <TextList messages={this.state.messageData[this.state.currContact]} currUser={this.state.currUser}/>
                 </div>
                 <div className="sendMessageForm">
-                    <SendMessageForm/>
+                    <SendMessageForm sendMessage={this.sendMessage}/>
                 </div>
             </div>
         </div>

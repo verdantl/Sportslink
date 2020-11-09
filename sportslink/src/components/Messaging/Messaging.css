@@ -10,8 +10,8 @@
 .messaging{
     display: flex;
     width: 100%;
-    height: 100%;
-    overflow-y: auto;
+    height: 100vh;
+    overflow-y: hidden;
     overflow-x: hidden;
     margin-bottom: 5px;
 }
@@ -21,7 +21,7 @@
 }
 
 .contactHeader{
-    height: 50px;
+    height: 55px;
     width: 100%;
     display: block;
     clear: both;
@@ -29,8 +29,12 @@
 
 .rightContent{
     width: 100%;
+    display: block;
+    position: relative;
 }
 
 .sendMessageForm{
-    padding : 5px;
+    width: 100%;
+    position: absolute; 
+    bottom: 0;
 }
