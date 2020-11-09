@@ -23,7 +23,7 @@ class Login extends React.Component{
         const value = target.value;
         const name = target.name;
 
-        console.log(name)
+        // console.log(name)
 
         this.setState({
             [name]:value

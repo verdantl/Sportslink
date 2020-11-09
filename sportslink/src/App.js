@@ -11,6 +11,7 @@ import kawhi from './components/images/kawhi.jpg'
 import Profile from './components/Profile/Profile'
 import ViewProfile from './components/ViewProfile/Profile'
 import Signup from './components/Signup/Signup'
+import Onboarding from './components/Signup/Onboarding'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 
@@ -78,6 +79,8 @@ class App extends React.Component {
                           (<div><TopBar/><Messaging className="messaging"/></div>)}/>
           <Route exact path = '/signup' render={() => 
                           (<Signup className="signup"/>)}/>
+          <Route exact path = '/onboarding' render={() => 
+                          (<Onboarding className="onboarding"/>)}/>
         </Switch>
       </BrowserRouter>)
   }

@@ -3,6 +3,7 @@ import Input from '../Input/Input'
 import Button from '@material-ui/core/Button'
 import {Link} from "react-router-dom";
 import './Signup.css'
+import { signupNext} from "../../actions/user.js";
 import Onboarding from './Onboarding'
 
 class Signup extends React.Component{
@@ -11,7 +12,6 @@ class Signup extends React.Component{
         last_name: '',
         usern: "",
         password: "",   
-        email: '',
         users: [
             {usern: "user", password: "user"},
             {usern: "admin", password: "admin"}
@@ -23,7 +23,7 @@ class Signup extends React.Component{
         const value = target.value;
         const name = target.name;
 
-        console.log(name)
+        // console.log(name)
 
         this.setState({
             [name]: value
@@ -49,10 +49,11 @@ class Signup extends React.Component{
                 onChange={this.handleChange}
                 label="Last Name"
             />
+
             <Input
-                name="email"
+                name="usern"
                 onChange={this.handleChange}
-                label="Email"
+                label="Username"
             />
 
             <Input
@@ -64,7 +65,7 @@ class Signup extends React.Component{
             <br/>
             <Button
                 variant="contained"
-                // onClick={() => login(this)}
+                onClick={() => signupNext(this)}
                 className="signUpButton"
             > 
                 Next  
