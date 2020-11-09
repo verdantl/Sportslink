@@ -25,6 +25,11 @@ class Dashboard extends React.Component{
             {user: {name: 'Lebron James', image: lebron}, text: "Lakers have reached the Finals", likes: 5, comments: [{user: {name: 'James Harden', image: harden}, text: "Good match..."}, {user: {name: 'Kevin Durant', image: durant}, text: "You are a great player!"}]}]
       }
 
+    createNewPost = (post) => {
+        let currPosts = this.state.posts
+        currPosts.unshift({user: {name: 'Lebron James', image: lebron}, text: post, likes: 0, comments: []})
+        this.setState({posts: currPosts})
+    }
 
     render(){
         return <div className="dashboard">
@@ -33,7 +38,7 @@ class Dashboard extends React.Component{
                 <NewsBox/>                
                 </div>
             <div className="dashboardRightColumn">
-                <NewPost/>
+                <NewPost createNewPost={this.createNewPost}/>
                 <Posts posts={this.state.posts}/>
             </div>
 
