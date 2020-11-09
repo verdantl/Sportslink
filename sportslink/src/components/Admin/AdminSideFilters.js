@@ -5,23 +5,21 @@ import TextField from '@material-ui/core/TextField'
 import {uid} from 'react-uid'
 import IconButton from '@material-ui/core/IconButton'
 import ClearIcon from '@material-ui/icons/Clear'
-import { TramRounded } from '@material-ui/icons'
+;
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 class AdminSideFilters extends React.Component{
     state = {
-        checkedAthlete: false,
-        checkedRecruiters: false,
-        checkedPosts: false,
         locations: [],
         organizations: [],
         sports:[]
     }
     handleCheck = (event) => {
-        const checkBox = event.target.name
-
-        this.setState({checkBox : event.target.checked})
-
-    }
+        this.props.changeFilter(event.target.value)
+      };
 
     removePreference = (event) => {
         let object;
@@ -100,27 +98,16 @@ class AdminSideFilters extends React.Component{
       }
     render(){
         return <div className="adminLeftColumn">
-        Filters
         <div>
         <div>
-        <FormControlLabel
-        control={<Checkbox  onChange={ this.handleCheck } name="checkedAthlete" />}
-        label="Athletes"
-        />
-        </div>
-
-        <div>
-        <FormControlLabel 
-        control={<Checkbox onChange={ this.handleCheck } name="checkedRecruiters" />}
-        label="Recruiters"
-        />
-        </div>
-
-        <div>
-        <FormControlLabel 
-        control={<Checkbox onChange={ this.handleCheck } name="checkedPosts" />}
-        label="Posts"
-        />
+        <FormControl component="fieldset">
+        <FormLabel component="legend">Filter</FormLabel>
+            <RadioGroup aria-label="filters" name="filters" onChange={this.handleCheck}>
+                <FormControlLabel value="athlete" control={<Radio />} label="Athletes" />
+                <FormControlLabel value="sponsor" control={<Radio />} label="Sponsors" />
+                <FormControlLabel value="posts" control={<Radio />} label="Posts" />
+            </RadioGroup>
+        </FormControl>
         </div>
 
         <TextField name="location" label="Location" onKeyDown={this._handleKeyDown}/>

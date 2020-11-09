@@ -5,13 +5,21 @@ import AdminPosts from './AdminPosts'
 
 class AdminSearchResults extends React.Component{
     render(){
-        return <div>
-            {/* {this.props.users.map((user) => {
+        if(this.props.filter === 'athlete'){
+            return <div>
+            {this.props.users.map((user) => {
               return <SingleAdminBox key={uid(user)} user={user}/>
             }
-            )} */}
-        <AdminPosts removePost={this.props.removePost} posts={this.props.posts}/>
+            )}
         </div>
+
+        }
+        else if (this.props.filter === 'posts'){
+            return <AdminPosts removePost={this.props.removePost} posts={this.props.posts}/>
+        }
+        else{
+            return <div></div>
+        }
 
 
     }

@@ -10,7 +10,7 @@ import AdminSideFilters from './AdminSideFilters'
 
 class AdminDashboard extends React.Component{
     state = {
-
+      filters: 'athlete',
       users: [
         {image: lebron, name: "Lebron James", description:'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.'},
         {image: harden, name: 'James Harden', description: "No. 13, Houston Rockets. 3x scoring champion"},
@@ -27,13 +27,20 @@ class AdminDashboard extends React.Component{
         posts: this.state.posts
       })
     }
+
+    changeFilter = (filter) => {
+      this.setState({
+        filters: filter
+      })
+    }
+
     render(){
         return <div className="adminDashboard">
-          <AdminSideFilters/>
+          <AdminSideFilters changeFilter={this.changeFilter}/>
           <div className="adminRightColumn">
           <AdminSearchBox/>
 
-          <AdminSearchResults removePost={this.removePost} posts={this.state.posts} users={this.state.users}/>
+          <AdminSearchResults removePost={this.removePost} filter={this.state.filters} posts={this.state.posts} users={this.state.users}/>
           </div>
 
 
