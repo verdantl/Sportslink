@@ -10,6 +10,7 @@ class AdminDashboard extends React.Component{
       locations: [],
       organizations: [],
       sports: [],
+      search: '',
       users: this.props.info.users,
       posts: this.props.info.posts
     }
@@ -31,10 +32,33 @@ class AdminDashboard extends React.Component{
       })
     }
 
-    filterPreferences = () => {
-      
+    search = (searchText) => {
+      const searchedUsers = this.props.info.users.filter(user => user.name.toLowerCase().includes(searchText.toLowerCase()))
+
+      const searchedPosts = this.props.info.posts.filter(post => 
+        post.text.toLowerCase().includes(searchText.toLowerCase()) | post.user.name.toLowerCase().includes(searchText.toLowerCase()))
+
+      this.setState({search: searchText, users: searchedUsers, posts: searchedPosts})
     }
-    
+
+    filterPreferences = () => {
+      if (this.state.locations.length > 0){
+        const users = {}
+        for (let i = 0; i < this.state.locations.length; i++){
+          
+        }
+      }
+      if (this.state.organizations.length > 0){
+
+      }
+      if (this.state.organizations.length > 0){
+
+      }
+      if (this.state.locations.length === 0 && this.state.organizations.length === 0 && this.state.sports.length === 0){
+        this.setState({users: this.props.info.users, posts: this.props.info.posts})
+      }
+    }
+
     adminAction = (action, id) => {
       const user = this.state.users[id]
       switch (action){
@@ -62,7 +86,11 @@ class AdminDashboard extends React.Component{
           changeFilter={this.changeFilter}/>
 
           <div className="adminRightColumn">
-          <AdminSearchBox/>
+          <AdminSearchBox search={this.search}/>
+          <div className='searchResultTitle'>          
+            Search Results For: {this.state.search}
+          </div>
+
           <AdminSearchResults 
             adminAction={this.adminAction} 
             removePost={this.removePost} 
