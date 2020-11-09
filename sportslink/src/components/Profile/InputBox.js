@@ -9,11 +9,17 @@ import coolcat from '../images/coolcat.jpg'
 import icedragon from '../images/icedragon.jpg'
 import lebron from '../images/lebron.jpg'
 
-class Profile extends React.Component{
+import EditButton from './EditButton'
+
+
+
+
+class InputBox extends React.Component{
     state = {
         contactClass: 'contact',
 
         user: {
+            visible: false,
             name: "Lebron James",
             image: lebron,
             images: [coolcat, icedragon],
@@ -36,18 +42,26 @@ class Profile extends React.Component{
     }
 
     render(){
-        return <div className="profile">
-            <div className="achievements">
-                <div></div>
-                <Experience experience={this.state.user.experience}/>
-                <div className="profileRightColumn">
-                <Images images={this.state.user.images}/>
-                <Career accomplishments={this.state.user.accomplishments}/>
-                </div>
+        // does not render
+        if(!this.props.show){
+            return null;
+        }
 
+        return (
+            <div className="modal" id="modal">
+              <h2>Modal Window</h2>
+              <div className="content">{this.props.children}</div>
+              <div className="actions">
+                <button className="button-cancel" onClick={this.props.onClose}>
+                  Cancel
+                </button>
+                <button className="button-save" onClick={this.props.onClose}>
+                  Save
+                </button>
+              </div>
             </div>
-        </div>
+          );
     }
 }
 
-export default Profile
+export default InputBox
