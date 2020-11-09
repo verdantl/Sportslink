@@ -1,6 +1,7 @@
 import React from 'react'
 import Input from '../Input/Input'
 import Button from '@material-ui/core/Button'
+import {Link} from "react-router-dom";
 import './Signup.css'
 import Onboarding from './Onboarding'
 
@@ -60,13 +61,17 @@ class Signup extends React.Component{
                 label="Password"
             />
             
-
+            <br/>
             <Button
+                variant="contained"
                 // onClick={() => login(this)}
                 className="signUpButton"
             > 
                 Next  
             </Button>
+
+            <br/><br/>
+            <Link to="/login">Already have an account?</Link>
         </div>
     </div>
     }

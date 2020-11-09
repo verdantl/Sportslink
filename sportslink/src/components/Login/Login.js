@@ -2,6 +2,7 @@ import React from 'react'
 import "./Login.css"
 
 import Button from "@material-ui/core/Button";
+import {Link} from "react-router-dom";
 
 import Input from "../Input/Input.js";
 
@@ -47,12 +48,20 @@ class Login extends React.Component{
                         label="Password"
                     />
 
+                    <br/>
                     <Button
+                        variant="contained"
                         onClick={() => login(this)}
                         className="loginButton"
                     > 
                         Log In    
                     </Button>
+
+                    <br/><br/>
+                    
+                    <Link to="/signup">Sign up for an account here.</Link>
+                    <br/><br/>
+                    <Link to="/">Forgot password?</Link>
                 </div>
             </div>
         )
