@@ -15,7 +15,7 @@ class Contacts extends React.Component{
 
     displayContacts (contact) {
         return(
-            <div key={"contact-" + uid(contact.userID)}>
+            <div key={"contact-" + uid(contact.userID)} id={"contact-" + contact.userID}>
                 <div className="contactItem">
                     <img className="contactImage" src="logo512.png" alt="Profile Pic"></img>
                     <h6 className="contactName">{contact.userID}</h6>
