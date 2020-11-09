@@ -1,5 +1,6 @@
 import React from 'react'
 import './DashProfileBox.css'
+import {Link} from "react-router-dom";
 
 
 class DashProfileBox extends React.Component{
@@ -17,8 +18,7 @@ class DashProfileBox extends React.Component{
                     <div className="personalProfileName">
                         {this.props.user.name}
                     </div>
-                    <p>View your profile</p>
-
+                    <Link to="/profile">View your profile</Link>
                 </div>
     }
 }
