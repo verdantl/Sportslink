@@ -84,7 +84,7 @@ export const barClick = (user) => {
         window.location.href = "/settings";
     }
     if (user.state.userIcon === 'userIconLight'){
-        window.location.href = "/profile";
+        window.location.href = "/profile/leb";
     }
     if (user.state.messageIcon === 'messageIconLight'){
         window.location.href = "/messaging";
