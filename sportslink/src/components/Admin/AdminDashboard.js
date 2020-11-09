@@ -7,6 +7,9 @@ import AdminSideFilters from './AdminSideFilters'
 class AdminDashboard extends React.Component{
     state = {
       filters: 'athlete',
+      locations: [],
+      organizations: [],
+      sports: [],
       users: this.props.info.users,
       posts: this.props.info.posts
     }
@@ -42,12 +45,19 @@ class AdminDashboard extends React.Component{
     }
 
     render(){
+        const filters = {locations: this.state.locations, organizations: this.state.organizations, sports: this.state.sports}
         return <div className="adminDashboard">
           <AdminSideFilters filter={this.state.filters} changeFilter={this.changeFilter}/>
           <div className="adminRightColumn">
           <AdminSearchBox/>
 
-          <AdminSearchResults adminAction={this.adminAction} removePost={this.removePost} filter={this.state.filters} posts={this.state.posts} users={this.state.users}/>
+          <AdminSearchResults 
+            adminAction={this.adminAction} 
+            removePost={this.removePost} 
+            filter={this.state.filters} 
+            filters={filters} 
+            posts={this.state.posts} 
+            users={this.state.users}/>
           </div>
 
 

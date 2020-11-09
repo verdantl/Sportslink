@@ -10,10 +10,12 @@
     border-radius: 2px;
     box-shadow: 2px 2px 8px #888888;
     cursor: pointer;
+    overflow: hidden;
 }
 .adminProfileBox{
     width: 500px;
     padding: 20px;
+    padding-top: 10px;
     padding-left: 30px;
     padding-right: 30px;
 
@@ -28,7 +30,7 @@
 }
 
 .adminProfileName{
-    padding: 5px;
+    padding: 0px;
     padding-left: 10px;
     padding-right: 10px;
     margin: 5px;
@@ -38,14 +40,25 @@
 }
 
 .adminProfileDescription{
-    padding: 5px;
+    padding: 0px;
     width: 350px;
     margin: 5px;
-    max-height: 20px;
+    max-height: 25px;
     padding-left: 10px;
     text-align: left;
     font-size: medium;
     color: gray;
+    overflow: hidden;
+}
+.adminProfileSport{
+    padding: 0px;
+    width: 350px;
+    margin: 5px;
+    max-height: 25px;
+    padding-left: 10px;
+    text-align: left;
+    font-size: medium;
+    color: red;
     overflow: hidden;
 }
 

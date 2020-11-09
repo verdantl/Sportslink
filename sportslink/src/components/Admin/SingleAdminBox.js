@@ -74,7 +74,8 @@ class SingleAdminBox extends React.Component{
 
             <div className='adminSubBox'>
             <p className="adminProfileName"> {this.props.user.name} </p>
-            <p className="adminProfileDescription">{this.props.user.description}</p>
+            <p className="adminProfileDescription"> {this.props.user.organization}, {this.props.user.location}</p>
+            <p className="adminProfileSport"> {this.props.user.sports}</p>
             </div>
             </div>
             <div className="adminActions">
