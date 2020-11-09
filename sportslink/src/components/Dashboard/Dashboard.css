@@ -11,8 +11,8 @@
     margin-top: 30px;
 }
 
-.dashRightColumn{
-    flex-grow: 0.5;
+.dashboardRightColumn{
+    flex-grow: 1; 
 }
 
 .newsBox{
