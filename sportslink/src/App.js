@@ -12,12 +12,13 @@ import Profile from './components/Profile/Profile'
 import ViewProfile from './components/ViewProfile/Profile'
 import Signup from './components/Signup/Signup'
 import Onboarding from './components/Signup/Onboarding'
+import Settings from './components/Settings/Settings'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 
 class App extends React.Component {
   state = {
-
+    currentUser: "",
     users: {
       lebron: {
         name: "Lebron James",
@@ -70,7 +71,7 @@ class App extends React.Component {
           <Route exact path = '/dashboard' render={()=>
                           (<div> <TopBar/><Dashboard className="dashboard"/></div>)}/>
           <Route exact path = '/' render={() =>
-                          (<Login/>)}/>
+                          (<Login global={this}/>)}/>
           <Route exact path = '/profile' render={() => 
                           (<div><TopBar/><Profile className="profile"/></div>)}/>
           <Route exact path = '/viewprofile' render={() => 
@@ -81,6 +82,8 @@ class App extends React.Component {
                           (<Signup className="signup"/>)}/>
           <Route exact path = '/onboarding' render={() => 
                           (<Onboarding className="onboarding"/>)}/>
+          <Route exact path = '/settings' render={() => 
+                          (<div> <TopBar/><Settings global={this}/></div>)}/>
         </Switch>
       </BrowserRouter>)
   }

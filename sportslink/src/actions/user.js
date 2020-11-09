@@ -1,11 +1,17 @@
-export const login = user => {
+export const login = (user, global) => {
     if (user.state.password === "user" && user.state.usern === "user") {
+        global.setState({
+            currentUser : user.state.usern
+        });
+        
         window.location.href = "/dashboard";
-
     }
     else if (user.state.password === "admin" && user.state.usern === "admin") {
+        global.setState({
+            currentUser : user.state.usern
+        });
+        
         window.location.href = "/admin";
-
     }
     else {
         alert("Please try again");
@@ -32,4 +38,8 @@ export const onboard = user => {
         alert("Please fill all fields");
     }
 
+};
+
+export const change = (user, global) => {
+    console.log(global)
 };

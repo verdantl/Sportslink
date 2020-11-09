@@ -24,13 +24,13 @@ class Login extends React.Component{
         const name = target.name;
 
         // console.log(name)
-
         this.setState({
             [name]:value
         });
     };
 
     render() {
+        const {global} = this.props;
         return (
             <div className="loginPage">
                 <div className='loginTitle'><h1>Sportslink</h1><p>Bringing together the greatest athletic community around the globe.</p></div>
@@ -51,7 +51,7 @@ class Login extends React.Component{
                     <br/>
                     <Button
                         variant="contained"
-                        onClick={() => login(this)}
+                        onClick={() => login(this, global)}
                         className="loginButton"
                     > 
                         Log In    
