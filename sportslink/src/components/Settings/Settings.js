@@ -2,7 +2,6 @@ import React from 'react'
 import "./Settings.css"
 
 import Button from "@material-ui/core/Button";
-import {Link} from "react-router-dom";
 
 import Input from "../Input/Input.js";
 
@@ -16,13 +15,17 @@ class Settings extends React.Component{
             {usern: "user", password: "user"},
             {usern: "admin", password: "admin"}
         ],
-        user: {
-            userName:"user",
-            userEmail:"user@email.com",
-            userPass:"user",
-            userSport:"Sport",
+        
+        userName:"Lebron James",
+        userEmail:"user@email.com",
+        userPass:"user",
+        userSport:"Basketball",
 
-            }
+        newName:"",
+        newEmail:"",
+        newPass:"",
+        oldPass:"",
+        newSport:"",
     };
 
     handleChange = event => {
@@ -46,14 +49,53 @@ class Settings extends React.Component{
                     <h1>Settings</h1>
                     <div className="settingsContainer">
                         <h3>Name</h3>
-                        <p>{this.state.user.userName}</p>
+                        <p>{this.state.userName}</p>
+                        <Input
+                            name="newName"
+                            onChange={this.handleChange}
+                            label="New name"
+                        />
+                        
                         <h3>Email</h3>
-                        <p>{this.state.user.userEmail}</p>
-                        <h3>Password</h3>
-                        <p>{this.state.user.userPass}</p>
-                        <h3>Sport</h3>
-                        <p>{this.state.user.userSport}</p>
+                        <p>{this.state.userEmail}</p>
 
+                        <Input
+                            name="newEmail"
+                            onChange={this.handleChange}
+                            label="New email"
+                        />
+
+                        <h3>Password</h3>
+                        <p>{this.state.userPass}</p>
+                        <Input
+                            name="oldPass"
+                            onChange={this.handleChange}
+                            label="Old password"
+                        />
+
+                        <Input
+                            name="newPass"
+                            onChange={this.handleChange}
+                            label="New password"
+                        />
+
+                        <h3>Sport</h3>
+                        <p>{this.state.userSport}</p>
+                        <Input
+                            name="newSport"
+                            onChange={this.handleChange}
+                            label="New sport"
+                        />
+
+                    <br/>
+                    <Button
+                        variant="contained"
+                        onClick={() => change(this)}
+                        className="loginButton"
+                    > 
+                        Update   
+                    </Button>
+                        
                     </div>
                 </div>
             </div>

@@ -20,7 +20,7 @@ export const login = (user, global) => {
 };
 
 export const signupNext = user => {
-    if (user.state.firstName != "" && user.state.last_name != "" && user.state.usern != "" && user.state.password != "") {
+    if (user.state.firstName !== "" && user.state.last_name !== "" && user.state.usern !== "" && user.state.password !== "") {
         window.location.href = "/onboarding";
     }
     else {
@@ -30,7 +30,7 @@ export const signupNext = user => {
 };
 
 export const onboard = user => {
-    if (user.state.sport != "" && user.state.organization != "" && user.state.location != "" && user.state.email != "" && (user.state.checkedRecruiters || user.state.checkedAthlete)){
+    if (user.state.sport !== "" && user.state.organization !== "" && user.state.location !== "" && user.state.email !== "" && (user.state.checkedRecruiters || user.state.checkedAthlete)){
         alert("Sign up success, please check your email!");
         window.location.href = "/";
     }
@@ -40,6 +40,27 @@ export const onboard = user => {
 
 };
 
-export const change = (user, global) => {
-    console.log(global)
+export const change = (user) => {
+    if (user.state.newEmail !== ''){
+        user.setState({
+            userEmail : user.state.newEmail
+        });
+    }
+    if (user.state.newName !== ''){
+        user.setState({
+            userName : user.state.newName
+        });
+    }
+    if (user.state.newPass !== ''){
+        if (user.state.oldPass === user.state.userPass){
+            user.setState({
+                userPass : user.state.newPass
+            });
+        }
+    }
+    if (user.state.newSport !== ''){
+        user.setState({
+            userSport : user.state.newSport
+        });
+    }
 };
