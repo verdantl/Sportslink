@@ -13,6 +13,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 class AdminSideFilters extends React.Component{
     state = {
+
         locations: [],
         organizations: [],
         sports:[]
@@ -43,22 +44,6 @@ class AdminSideFilters extends React.Component{
                 this.setState({sports: this.state.sports})
                 break;
           }
-    }
-
-
-    handleChange = (event) =>{
-        const preference = event.target.value
-
-
-        if (this.state.preferences.includes(preference)){
-            const index = (element) => element != preference
-            this.setState({preferences: this.state.preferences.filter(index)})
-        }
-        else{
-            this.state.preferences.push(preference)
-            this.setState({preferences: this.state.preferences})
-        }
-
     }
     addOption = (list, option) => {
         if (option != '' && !list.includes(option) && list.length < 5){
@@ -102,7 +87,7 @@ class AdminSideFilters extends React.Component{
         <div>
         <FormControl component="fieldset">
         <FormLabel component="legend">Filter</FormLabel>
-            <RadioGroup aria-label="filters" name="filters" onChange={this.handleCheck}>
+            <RadioGroup aria-label="filters" name="filters" value={this.props.filter} onChange={this.handleCheck}>
                 <FormControlLabel value="athlete" control={<Radio />} label="Athletes" />
                 <FormControlLabel value="sponsor" control={<Radio />} label="Sponsors" />
                 <FormControlLabel value="posts" control={<Radio />} label="Posts" />

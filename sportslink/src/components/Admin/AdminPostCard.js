@@ -64,7 +64,6 @@ class AdminPostCard extends React.Component{
             <span>
                 {this.props.post.comments.length + " Comments"}
             </span>
-                <IconButton className="thumbsUpButton"> <ThumbUpIcon className="thumbsUp"/></IconButton>
                 </div>
 
             </div>

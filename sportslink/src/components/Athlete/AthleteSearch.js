@@ -27,8 +27,13 @@ class AthleteSearch extends React.Component{
         posts: [
             {user: {name: 'Lebron James', image: lebron}, text: "Finals MVP, 2020!!!", likes: 2, comments: [{user: {name: 'Kawhi Leonard', image: kawhi}, text: "I wish I were a Laker..."}, {user: {name: 'Kevin Durant', image: durant}, text: "Great post!"}]}, 
             {user: {name: 'Lebron James', image: lebron}, text: "Lakers have reached the Finals", likes: 5, comments: [{user: {name: 'James Harden', image: harden}, text: "Good match..."}, {user: {name: 'Kevin Durant', image: durant}, text: "You are a great player!"}]}]
-      }
+        ,
+        filters: 'athlete',
+        }
 
+    changeFilter = (filter) => {
+        this.setState({filters: filter})
+    }
     render(){
         return <div className="athleteSearch">
             <div className="searchLeftColumn">
@@ -36,8 +41,8 @@ class AthleteSearch extends React.Component{
             </div>
 
             <div className="searchContainer">
-                <FilterBox />
-                <SearchResults posts={this.state.posts} users={this.state.users}/>
+                <FilterBox filter={this.state.filters} changeFilter={this.changeFilter}/>
+                <SearchResults filter={this.state.filters} posts={this.state.posts} users={this.state.users}/>
             </div>
 
             </div>

@@ -60,7 +60,9 @@
 }
 .postIntermediary{
     background-color: white;
-    padding: 10px;
+    padding: 5px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
     font-size: small;
     border: 1px gray solid;
     
@@ -82,9 +84,10 @@
 .commentText{
     background-color: aliceblue;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 1px 1px 3px #888888;
     margin-left: 6px;
+    text-align: left;
 }
 
 .commentText .commentUser{
@@ -95,6 +98,7 @@
     font-size: small;
     margin-top: 0px;
     margin-bottom: 0px;
+    max-width: 320px;
 }
 
 .commentPic{
@@ -119,6 +123,9 @@
 .thumbsUp{
     color: black;
 }
+.thumbsUpLight{
+    color: blue;
+}
 
 .thumbsUpButton{
     margin-left: 100px;
@@ -128,7 +135,15 @@ button.MuiButtonBase-root.MuiIconButton-root.thumbsUpButton{
 
     vertical-align: middle;
 }
-
+.commentInput{
+    padding: 1px;
+    margin-left: 0px;
+    margin-right: 12px;
+    margin-top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: aliceblue;
+}
 .viewComments{
     text-align: center;
     cursor: pointer;

@@ -7,21 +7,30 @@ class SearchResults extends React.Component{
 
 
     render(){
-        return <div>
+      switch (this.props.filter){
+        case ('athlete'):
+          return <div>
           <p className="searchResultTitle">Users</p>
-
           <div className="searchUsers">  
-
             {this.props.users.map((user) => {
               return <SingleProfileBox key={uid(user)} user={user}/>
             }
             )}
           </div>   
-          <div className="searchPosts">
-          <p className="searchResultTitle">Posts</p>
-          <Posts posts={this.props.posts}/></div>     
+          </div>   
 
-          </div>    
+        case ('sponsor'):
+          return <div>
+
+          </div>
+        case ('posts'):
+          return <div className="searchPosts">
+          <p className="searchResultTitle">Posts</p>
+          <Posts posts={this.props.posts}/>  
+
+          </div>   
+      }
+ 
 
     }
 }
