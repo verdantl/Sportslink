@@ -8,7 +8,7 @@ import "./Messaging.css";
 class Messaging extends React.Component{
 
     state = {
-        globalMessage: 106,
+        globalMessageID: 106, // TODO: remove once global API call is used
         currUser : 'currUserID',
         currContact: 'UserIDGoesHere1',
         messageData: {
@@ -79,7 +79,17 @@ class Messaging extends React.Component{
     }
 
     sendMessage = (message) => {
-        console.log(message)
+        let currMessageData = this.state.messageData
+        let currMessageID = this.state.globalMessageID // TODO: Replace with API request to get a new message ID
+        
+        currMessageData[this.state.currContact].push({
+            messageID: currMessageID,
+            userID: this.state.currUser,
+            messageData: message
+        })
+
+        this.setState({globalMessageID : currMessageID + 1})
+        this.setState({messageData : currMessageData})
     }
 
     render() {
