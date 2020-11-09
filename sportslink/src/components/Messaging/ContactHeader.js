@@ -1,6 +1,5 @@
 import React from 'react';
 import './ContactHeader.css';
-import { uid } from 'react-uid';
 
 class ContactHeader extends React.Component{
     render() {

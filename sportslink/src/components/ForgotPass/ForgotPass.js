@@ -1,21 +1,22 @@
 import React from 'react'
-import "./Login.css"
+import "./ForgotPass.css"
 
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 
 import Input from "../Input/Input.js";
+import {forgot} from "../../actions/user.js";
 
-import { login} from "../../actions/user.js";
 
-class Login extends React.Component{
+class ForgotPass extends React.Component{
     state = {
         usern: "",
         password: "",
         users: [
             {usern: "user", password: "user"},
             {usern: "admin", password: "admin"}
-        ]
+        ],
+        email:""
     };
 
     handleChange = event => {
@@ -24,48 +25,43 @@ class Login extends React.Component{
         const name = target.name;
 
         // console.log(name)
+
         this.setState({
             [name]:value
         });
     };
 
     render() {
-        const {global} = this.props;
         return (
-            <div className="loginPage">
+            <div className="forgotPage">
                 <div className='loginTitle'><h1>Sportslink</h1><p>Bringing together the greatest athletic community around the globe.</p></div>
-                <div className="loginContainer">
-                    <h1>Log in</h1>
+                <div className="forgotContainer">
+                    <h1>Forgot Password?</h1>
+                        
+                    <p>Please enter your email.</p>
                     <Input
-                        name="usern"
+                        name="email"
                         onChange={this.handleChange}
-                        label="Username"
-                    />
-
-                    <Input
-                        name="password"
-                        onChange={this.handleChange}
-                        label="Password"
+                        label="Enter email"
                     />
 
                     <br/>
+                        
                     <Button
                         variant="contained"
-                        onClick={() => login(this, global)}
+                        onClick={() => forgot(this)}
                         className="loginButton"
                     > 
-                        Log In    
+                        Send me an email!   
                     </Button>
-
+                        
                     <br/><br/>
-                    
-                    <Link to="/signup">Sign up for an account here.</Link>
-                    <br/><br/>
-                    <Link to="/forgotpassword">Forgot password?</Link>
+                    <Link to="/">Wait, I remember!</Link>
                 </div>
-            </div>
+             </div>
+           
         )
     }
 }
 
-export default Login
+export default ForgotPass

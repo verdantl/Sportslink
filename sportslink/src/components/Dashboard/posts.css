@@ -1,0 +1,139 @@
+.posts{
+    margin: 15px;
+    width: 50%;
+    border-radius: 3px;
+    
+}
+
+.postCard{
+    margin-top: 25px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 2px 2px 8px #888888;
+}
+
+.posterInfo{
+    display: flex;
+    padding: 10px;
+}
+
+.posterName{
+    vertical-align: middle;
+    margin: auto;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.posterPic{
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px #888888;
+
+}
+.posterPic img{
+    width: auto;
+    height: 100%;
+    margin-left: -15px;
+    margin-top: 10px;
+    transform: scale(1.4);
+}
+
+.postText{
+    padding: 10px;
+    margin: 10px;
+    background-color: aliceblue;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px gray;
+}
+.postInfo{
+    background-color: antiquewhite;
+    padding: 10px;
+    font-size: large;
+
+}
+.postIntermediary{
+    background-color: white;
+    padding: 10px;
+    font-size: small;
+    border: 1px gray solid;
+    
+}
+.comments{
+    background-color: white;
+    padding: 10px;
+    font-size: medium;
+}
+
+.comment{
+    display: flex;
+    margin-bottom: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+
+}
+
+.commentText{
+    background-color: aliceblue;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 3px #888888;
+    margin-left: 6px;
+}
+
+.commentText .commentUser{
+    font-weight: bold;
+}
+
+.commentText p{
+    font-size: small;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.commentPic{
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 2px 2px 8px #888888;
+
+}
+.commentPic img{
+    width: auto;
+    height: 100%;
+    margin-left: -5px;
+    margin-top: 10px;
+    transform: scale(1.5);
+}
+
+.thumbsUp{
+    color: black;
+}
+
+.thumbsUpButton{
+    margin-left: 100px;
+}
+button.MuiButtonBase-root.MuiIconButton-root.thumbsUpButton{
+    padding: 5px;
+
+    vertical-align: middle;
+}
+
+.viewComments{
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    font-size: small;
+    border-top: 1px gray solid;
+    
+}
