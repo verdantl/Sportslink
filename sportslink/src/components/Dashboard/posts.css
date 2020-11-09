@@ -114,10 +114,6 @@
     margin-top: 10px;
     transform: scale(1.5);
 }
-.commentInput{
-
-    width: auto;
-}
 
 .thumbsUp{
     color: black;
@@ -130,4 +126,12 @@ button.MuiButtonBase-root.MuiIconButton-root.thumbsUpButton{
     padding: 5px;
 
     vertical-align: middle;
+}
+
+.viewComments{
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
+    font-size: small;
+    
 }

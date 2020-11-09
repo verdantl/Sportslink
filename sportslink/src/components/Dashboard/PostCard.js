@@ -5,6 +5,22 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import IconButton from '@material-ui/core/IconButton'
 
 class PostCard extends React.Component{
+    state ={
+        hideComments: true  
+    }
+    alterComments = (event) =>{
+        this.setState({hideComments: !this.state.hideComments})
+    }
+
+    commentMessage = () => {
+        if (this.state.hideComments){
+            return "Show Comments"
+        }
+        else{
+            return "Hide Comments"
+        }
+    }
+
     render(){
         return <div className="postCard">
             <div className="postInfo">
@@ -22,23 +38,28 @@ class PostCard extends React.Component{
             </div>
 
             <div className="postIntermediary">
+                <div>
             <span> {this.props.post.likes + " Likes"} </span>
             <span>
                 {this.props.post.comments.length + " Comments"}
             </span>
                 <IconButton className="thumbsUpButton"> <ThumbUpIcon className="thumbsUp"/></IconButton>
+                </div>
 
             </div>
+            <input className="commentInput" placeholder="Add New Comment"/>
 
-            <div className="comments">
+            <div className="comments" hidden={this.state.hideComments}>
             {this.props.post.comments.map((comment) => {
               return <Comment key={uid(comment)} comment={comment}/>
             }
             )}
 
             </div>
-            <input className="commentInput" placeholder="Add New Comment"/>
 
+            <div className="viewComments" onClick={this.alterComments}>
+                {this.commentMessage()}
+            </div>
         </div>
     }
 }
