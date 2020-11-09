@@ -10,6 +10,7 @@ class AdminDashboard extends React.Component{
       locations: [],
       organizations: [],
       sports: [],
+      search: '',
       users: this.props.info.users,
       posts: this.props.info.posts
     }
@@ -21,10 +22,41 @@ class AdminDashboard extends React.Component{
       })
     }
 
+    updatePreferences = (locations, organizations, sports) => {
+      this.setState({locations: locations, organizations: organizations, sports: sports})
+    }
+
     changeFilter = (filter) => {
       this.setState({
         filters: filter
       })
+    }
+
+    search = (searchText) => {
+      const searchedUsers = this.props.info.users.filter(user => user.name.toLowerCase().includes(searchText.toLowerCase()))
+
+      const searchedPosts = this.props.info.posts.filter(post => 
+        post.text.toLowerCase().includes(searchText.toLowerCase()) | post.user.name.toLowerCase().includes(searchText.toLowerCase()))
+
+      this.setState({search: searchText, users: searchedUsers, posts: searchedPosts})
+    }
+
+    filterPreferences = () => {
+      if (this.state.locations.length > 0){
+        const users = {}
+        for (let i = 0; i < this.state.locations.length; i++){
+          
+        }
+      }
+      if (this.state.organizations.length > 0){
+
+      }
+      if (this.state.organizations.length > 0){
+
+      }
+      if (this.state.locations.length === 0 && this.state.organizations.length === 0 && this.state.sports.length === 0){
+        this.setState({users: this.props.info.users, posts: this.props.info.posts})
+      }
     }
 
     adminAction = (action, id) => {
@@ -47,9 +79,17 @@ class AdminDashboard extends React.Component{
     render(){
         const filters = {locations: this.state.locations, organizations: this.state.organizations, sports: this.state.sports}
         return <div className="adminDashboard">
-          <AdminSideFilters filter={this.state.filters} changeFilter={this.changeFilter}/>
+          <AdminSideFilters 
+          filter={this.state.filters}
+          filters={filters}
+          updatePref={this.updatePreferences} 
+          changeFilter={this.changeFilter}/>
+
           <div className="adminRightColumn">
-          <AdminSearchBox/>
+          <AdminSearchBox search={this.search}/>
+          <div className='searchResultTitle'>          
+            Search Results For: {this.state.search}
+          </div>
 
           <AdminSearchResults 
             adminAction={this.adminAction} 

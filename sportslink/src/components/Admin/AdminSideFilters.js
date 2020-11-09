@@ -12,12 +12,6 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
 class AdminSideFilters extends React.Component{
-    state = {
-
-        locations: [],
-        organizations: [],
-        sports:[]
-    }
     handleCheck = (event) => {
         this.props.changeFilter(event.target.value)
       };
@@ -32,18 +26,19 @@ class AdminSideFilters extends React.Component{
         }
         switch(object.parentElement.parentElement.className){
             case ("locations"):
-                this.state.locations.splice(this.state.locations.indexOf(object.name), 1)
-                this.setState({locations: this.state.locations})
+                this.props.filters.locations.splice(this.props.filters.locations.indexOf(object.name), 1)
+                this.setState({locations: this.props.filters.locations})
                 break;
             case ("organizations"):
-                this.state.organizations.splice(this.state.organizations.indexOf(object.name), 1)
-                this.setState({organizations: this.state.organizations})
+                this.props.filters.organizations.splice(this.props.filters.organizations.indexOf(object.name), 1)
+                this.setState({organizations: this.props.filters.organizations})
                 break;
             case ("sports"):
-                this.state.sports.splice(this.state.sports.indexOf(object.name), 1)
-                this.setState({sports: this.state.sports})
+                this.props.filters.sports.splice(this.props.filters.sports.indexOf(object.name), 1)
+                this.setState({sports: this.props.filters.sports})
                 break;
           }
+          this.props.updatePref(this.props.filters.locations, this.props.filters.organizations, this.props.filters.sports)
     }
     addOption = (list, option) => {
         if (option != '' && !list.includes(option) && list.length < 5){
@@ -61,24 +56,24 @@ class AdminSideFilters extends React.Component{
 
           switch(e.target.name){
             case ("location"):
-                value = this.addOption(this.state.locations, e.target.value)
+                value = this.addOption(this.props.filters.locations, e.target.value)
                 if (value){
-                    this.setState({locations: this.state.locations})
                     e.target.value = null
                 }
 
                 break;
             case ("organization"):
-                value = this.addOption(this.state.organizations, e.target.value)
-                if (value){this.setState({organizations: this.state.organizations})
+                value = this.addOption(this.props.filters.organizations, e.target.value)
+                if (value){
                 e.target.value = null}
                 break;
             case ("sport"):
-                value = this.addOption(this.state.sports, e.target.value)
-                if (value){this.setState({sports: this.state.sports})
-                                e.target.value = null}
+                value = this.addOption(this.props.filters.sports, e.target.value)
+                if (value){
+                e.target.value = null}
                 break;
           }
+          this.props.updatePref(this.props.filters.locations, this.props.filters.organizations, this.props.filters.sports)
         }
       }
     render(){
@@ -99,7 +94,7 @@ class AdminSideFilters extends React.Component{
             
 
         <div className="locations">
-         {this.state.locations.map((location) => {
+         {this.props.filters.locations.map((location) => {
               return <div key={uid(location)} className='choice'>
               {location + ' '} <IconButton
                         name={location}
@@ -115,7 +110,7 @@ class AdminSideFilters extends React.Component{
 
         <TextField name="organization" label="Organization" onKeyDown={this._handleKeyDown}/>
         <div className="organizations">
-        {this.state.organizations.map((organization) => {
+        {this.props.filters.organizations.map((organization) => {
               return <div key={uid(organization)} className='choice'>
               {organization + ' '} <IconButton
                         name={organization}
@@ -130,7 +125,7 @@ class AdminSideFilters extends React.Component{
 
         <TextField name="sport" label="Sport" onKeyDown={this._handleKeyDown}/>
         <div className="sports">
-        {this.state.sports.map((sport) => {
+        {this.props.filters.sports.map((sport) => {
               return <div key={uid(sport)} className='choice'>
               {sport + ' '} 
               <IconButton

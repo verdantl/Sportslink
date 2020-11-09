@@ -13,6 +13,10 @@
     padding-left: 20px;
     padding-top: 20px;
 }
+.searchResultTitle{
+   margin: 10px;
+   font-size: x-large;
+}
 
 .adminRightColumn{
     flex-grow: 0.5;
