@@ -21,12 +21,20 @@ class AdminDashboard extends React.Component{
       })
     }
 
+    updatePreferences = (locations, organizations, sports) => {
+      this.setState({locations: locations, organizations: organizations, sports: sports})
+    }
+
     changeFilter = (filter) => {
       this.setState({
         filters: filter
       })
     }
 
+    filterPreferences = () => {
+      
+    }
+    
     adminAction = (action, id) => {
       const user = this.state.users[id]
       switch (action){
@@ -47,10 +55,14 @@ class AdminDashboard extends React.Component{
     render(){
         const filters = {locations: this.state.locations, organizations: this.state.organizations, sports: this.state.sports}
         return <div className="adminDashboard">
-          <AdminSideFilters filter={this.state.filters} changeFilter={this.changeFilter}/>
+          <AdminSideFilters 
+          filter={this.state.filters}
+          filters={filters}
+          updatePref={this.updatePreferences} 
+          changeFilter={this.changeFilter}/>
+
           <div className="adminRightColumn">
           <AdminSearchBox/>
-
           <AdminSearchResults 
             adminAction={this.adminAction} 
             removePost={this.removePost} 

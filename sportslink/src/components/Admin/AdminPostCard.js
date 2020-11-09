@@ -67,7 +67,6 @@ class AdminPostCard extends React.Component{
                 </div>
 
             </div>
-            <input className="commentInput" placeholder="Add New Comment"/>
 
             <div className="comments" hidden={this.state.hideComments}>
             {this.props.post.comments.map((comment) => {

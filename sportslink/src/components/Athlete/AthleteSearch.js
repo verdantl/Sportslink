@@ -1,12 +1,7 @@
 import React from 'react'
 import FilterBox from '../FilterBox'
 import DashProfileBox from './DashProfileBox'
-import SingleProfileBox from './SingleProfileBox'
 import "./AthleteSearch.css"
-import lebron from '../images/lebron.jpg'
-import harden from '../images/harden.jpg'
-import kawhi from '../images/kawhi.jpg'
-import durant from '../images/durant.jpg'
 
 import SearchResults from "./SearchResults"
 
