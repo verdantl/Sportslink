@@ -64,3 +64,13 @@ export const change = (user) => {
         });
     }
 };
+
+export const forgot = user => {
+    if (user.state.email !== "") {
+        alert("We'll send you an email.");
+    }
+    else {
+        alert("Please enter an email.");
+    }
+
+};
