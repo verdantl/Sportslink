@@ -1,11 +1,16 @@
 export const login = user => {
     console.log("verification");
-    
-    if (user.state.password == "123"){
-        console.log("logged in")
+    console.log(user);
+    if (user.state.password == "user" && user.state.usern == "user"){
+        window.location.href = "/dashboard"
+
+    }
+    else if (user.state.password == "admin" && user.state.usern == "admin"){
+        window.location.href = "/admin"
+
     }
     else {
-        console.log("wrong password")
+        alert("Please try again");
     }
-    
+
   };
