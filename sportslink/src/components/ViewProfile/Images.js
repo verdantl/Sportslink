@@ -3,6 +3,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 
 
+
 class Images extends React.Component{
     state = {
         imageNum: 0,
@@ -55,6 +56,7 @@ class Images extends React.Component{
 
     render(){
         return <div className='profileImages'>
+
             <div onClick={this.previousImage} 
             onMouseEnter={this.lightUp}
             onMouseLeave={this.lightOff}

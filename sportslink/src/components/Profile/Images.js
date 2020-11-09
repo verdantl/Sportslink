@@ -1,7 +1,7 @@
 import React from 'react'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
-
+import Button from '@material-ui/core/Button'
 
 class Images extends React.Component{
     state = {
@@ -55,6 +55,7 @@ class Images extends React.Component{
 
     render(){
         return <div className='profileImages'>
+
             <div onClick={this.previousImage} 
             onMouseEnter={this.lightUp}
             onMouseLeave={this.lightOff}
@@ -63,6 +64,7 @@ class Images extends React.Component{
             </div>
 
             <img src={this.props.images[this.state.imageNum]} className="oneImage"/>
+
             <div onClick={this.nextImage}
             onMouseEnter={this.lightUp}
             onMouseLeave={this.lightOff}

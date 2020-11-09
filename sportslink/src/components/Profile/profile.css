@@ -111,61 +111,6 @@
     border-radius: 5px;
     margin-top: 5%;
 }
-.leftarrow{
-
-    background-color: white;
-    border-radius: 10px;
-    vertical-align: middle;
-    float: left;
-    display: flex;
-    height: 100%;
-    position: absolute;
-
-}
-
-.leftarrowLight{
-
-    background-color: azure;
-    border-radius: 10px;
-    vertical-align: middle;
-    float: left;
-    display: flex;
-    height: 100%;
-    position: absolute;
-    cursor: pointer;
-
-}
-.arrow{
-    vertical-align: middle;
-    position: relative;
-    top: 40%;
-    transform: scale(1.5);
-}
-.rightarrow{
-
-    background-color: white;
-    border-radius: 10px;
-    right: 0px;
-    top: 0px;
-    float: right;
-    height: 100%;   
-    display: flex;
-    position: absolute;
-    
-}
-
-.rightarrowLight{
-    background-color: azure;
-    border-radius: 10px;
-    right: 0px;
-    top: 0px;
-    float: right;
-    height: 100%;   
-    display: flex;
-    position: absolute;
-    cursor: pointer;
-    
-}
 
 .addExperienceButton{
     transform: scale(2);
