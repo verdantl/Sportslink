@@ -18,13 +18,14 @@ class ProfileInfo extends React.Component{
     }
 
     render(){
+        const {global} = this.props;
         return  <div className="profileInfo">
-        <ProfilePicture image={this.props.user.image} name={this.props.user.name}/>
+        <ProfilePicture image={global.image} name={global.name}/>
             <div className="contactDetails"> 
             <div className="editSection">
             <EditButton/>
             </div>
-            <PersonalInfo user={this.props.user}/>
+            <PersonalInfo global={global}/>
             </div>
         </div>
     }

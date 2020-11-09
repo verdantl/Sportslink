@@ -142,7 +142,13 @@ class App extends React.Component {
           <Route exact path = '/' render={() =>
                           (<Login global={this}/>)}/>
           <Route exact path = '/profile' render={() => 
-                          (<div><TopBar/><Profile className="profile"/></div>)}/>
+                          (<div><TopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
+          <Route exact path = '/profile1' render={() => 
+                          (<div><TopBar/><Profile className="profile" global={this.state.users[1]}/></div>)}/>
+          <Route exact path = '/profile2' render={() => 
+                          (<div><TopBar/><Profile className="profile" global={this.state.users[2]}/></div>)}/>
+          <Route exact path = '/profile3' render={() => 
+                          (<div><TopBar/><Profile className="profile" global={this.state.users[3]}/></div>)}/>
           <Route exact path = '/viewprofile' render={() => 
                           (<div><TopBar/><ViewProfile className="viewProfile"/></div>)}/>
           <Route exact path = '/messaging' render={() => 

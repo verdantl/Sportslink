@@ -1,4 +1,5 @@
 export const login = (user, global) => {
+    console.log(global.state.users[1].name)
     if (user.state.password === "user" && user.state.usern === "user") {
         global.setState({
             currentUser : user.state.usern
