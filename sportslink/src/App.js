@@ -8,6 +8,8 @@ import Messaging from './components/Messaging/Messaging'
 import TopBar from './components/TopBar'
 import lebron from './components/images/lebron.jpg'
 import kawhi from './components/images/kawhi.jpg'
+import harden from './components/images/harden.jpg'
+import durant from './components/images/durant.jpg'
 import Profile from './components/Profile/Profile'
 import ViewProfile from './components/ViewProfile/Profile'
 import Signup from './components/Signup/Signup'
@@ -16,16 +18,17 @@ import Settings from './components/Settings/Settings'
 import ForgotPass from './components/ForgotPass/ForgotPass'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
-
 class App extends React.Component {
   state = {
-    currentUser: "",
-    users: {
-      lebron: {
+    currentUser: "user",
+    users: [
+      {
+        username: 'user',
+        suspended: false,
         name: "Lebron James",
         image: lebron,
         description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
-        location: "Los Angeles, California",
+        location: "Los Angeles CA, USA",
         organization: "Los Angeles Lakers",
         sports:"Basketball",
         contact: "",
@@ -40,11 +43,12 @@ class App extends React.Component {
         {title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
         description: 'Took the team to an NBA Finals in 2009, averaged over 25 ppg', years: '2003-2010'}]
         },
-        kawhi: {
+        {
           name: "Kawhi Leonard",
+          suspended: false,
           image: kawhi,
           description: 'SF for the Los Angeles Clippers. 2 time NBA champion, 2x Finals MVP, 2x Defensive Player of the Year.',
-          location: "Los Angeles, California",
+          location: "Los Angeles CA, USA",
           organization: "Los Angeles Clippers",
           sports:"Basketball",
           contact: "",
@@ -57,8 +61,44 @@ class App extends React.Component {
           {title: 'Small Forward', organization: 'San Antonio Spurs', league: "NBA", stats:{},
           description: 'Won NBA Finals MVP in 2014 after defeating the Miami Heat in the NBA Finals 4-1', years: '2011-2019'}
           ]
-          }
-    }
+          },
+        {
+            name: "James Harden",
+            suspended: false,
+            image: harden,
+            description: 'SG for the Houston Rockets. 3x NBA Scoring Champion, 2017-2018 MVP',
+            location: "Houston TX, USA",
+            organization: "Houston Rockets",
+            sports:"Basketball",
+            contact: "",
+            accomplishments: ["3x NBA Scoring Champion", '6x NBA All-Star', '6x All-NBA First Team', 'NBA Most Valuable Player (2017-2018)'],
+            experience: [{title: 'Shooting Guard', organization: 'Houston Rockets', league: "NBA", stats: {'2019': '25 ppg, 10apg'},
+            description: 'Led Houston to the longest current playoff streak in the league. Reached the Western Conference Finals against the Golden State Warriors.',
+            years: '2013-2020'},
+            {title: 'Shooting Guard', organization: 'Oklahoma City Thunder', league: "NBA", stats:{},
+            description: 'Won Sixth Man of the Year and helped the Thunder reach the NBA Finals in 2012.', years: '2009-2013'}
+            ]
+            },
+          {
+            suspended: false,
+            name: "Kevin Durant",
+            image: durant,
+            description: 'SF for the Brooklyn Nets. 2x NBA Finals MVP, 2x NBA Champion, 10x NBA All-Star',
+            location: "Brooklyn NY, USA",
+            organization: "Brooklyn Nets",
+            sports:"Basketball",
+            contact: "",
+            accomplishments: ["2x NBA Finals MVP", "2x NBA Champion", "4x NBA Scoring Champion", '10x NBA All-Star'],
+            experience: [{title: 'Small Forward', organization: 'Golden State Warriors', league: "NBA", stats: {'2019': '25 ppg, 10apg'},
+            description: 'Led the Golden State Warriors to two straight NBA championships against Lebron James.',
+            years: '2016-2019'},
+            {title: 'Small Forward', organization: 'Oklahoma City Thunder', league: "NBA", stats:{},
+            description: 'Won many league awards and led the Thunder to the NBA Finals in 2012.', years: '2009-2016'}
+            ]
+          }],
+    posts: [
+      {user: {name: 'Lebron James', image: lebron}, text: "Finals MVP, 2020!!!", likes: 2, comments: [{user: {name: 'Kawhi Leonard', image: kawhi}, text: "I wish I were a Laker..."}, {user: {name: 'Kevin Durant', image: durant}, text: "Great post!"}]}, 
+      {user: {name: 'Lebron James', image: lebron}, text: "Lakers have reached the Finals", likes: 5, comments: [{user: {name: 'James Harden', image: harden}, text: "Good match..."}, {user: {name: 'Kevin Durant', image: durant}, text: "You are a great player!"}]}]
 
   }
   render(){
@@ -66,7 +106,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path = '/admin' render={()=>
-                          (<AdminDashboard className="adminDashboard"/>)}/>
+                          (<AdminDashboard info={this.state} className="adminDashboard"/>)}/>
           <Route exact path = '/search' render={()=>
                           (<div> <TopBar/><AthleteSearch className="athleteSearch"/></div>)}/>
           <Route exact path = '/dashboard' render={()=>

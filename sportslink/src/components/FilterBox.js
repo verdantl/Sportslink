@@ -1,9 +1,11 @@
 import React from 'react'
-import Checkbox from "@material-ui/core/Checkbox"
 import FormControlLabel from "@material-ui/core/FormControlLabel"
+import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import IconButton from '@material-ui/core/IconButton'
 import ClearIcon from '@material-ui/icons/Clear';
+import RadioGroup from '@material-ui/core/RadioGroup'
+import Radio from '@material-ui/core/Radio'
 import "./FilterBox.css"
 import {uid} from 'react-uid'
 
@@ -11,9 +13,6 @@ import {uid} from 'react-uid'
 
 class FilterBox extends React.Component{
     state = {
-        checkedAthlete: false,
-        checkedRecruiters: false,
-        checkedPosts: false,
         locations: [],
         organizations: [],
         sports: []
@@ -42,27 +41,8 @@ class FilterBox extends React.Component{
                 break;
           }
     }
-
-
-    handleCheck = (event) => {
-        const checkBox = event.target.name
-
-        this.setState({checkBox : event.target.checked})
-
-    }
-
     handleChange = (event) =>{
-        const preference = event.target.value
-
-        if (this.state.preferences.includes(preference)){
-            const index = (element) => element != preference
-            this.setState({preferences: this.state.preferences.filter(index)})
-        }
-        else{
-            this.state.preferences.push(preference)
-            this.setState({preferences: this.state.preferences})
-        }
-
+        this.props.changeFilter(event.target.value)
     }
 
     addOption = (list, option) => {
@@ -104,24 +84,16 @@ class FilterBox extends React.Component{
 
     render(){
         return <div className="filterBox">
-         Preferences
-
-        <div className='table'>
-        <FormControlLabel className="filterboxes"
-        control={<Checkbox  onChange={ this.handleCheck } name="checkedAthlete" />}
-        label="Athletes"
-        />
-
-        <FormControlLabel className="filterboxes"
-        control={<Checkbox onChange={ this.handleCheck } name="checkedRecruiters" />}
-        label="Recruiters"
-        />
-        <FormControlLabel className="filterboxes"
-        control={<Checkbox onChange={ this.handleCheck } name="checkedPosts" />}
-        label="Posts"
-        />
-
-        </div>
+            <div>
+            Preferences
+            </div>
+        <FormControl className="table" component="fieldset">
+            <RadioGroup aria-label="filters" name="filters" value={this.props.filter} onChange={this.handleChange} row>
+                <FormControlLabel value="athlete" control={<Radio/>} label="Athletes" />
+                <FormControlLabel value="sponsor" control={<Radio />} label="Sponsors" />
+                <FormControlLabel value="posts" control={<Radio />} label="Posts" />
+            </RadioGroup>
+        </FormControl>  
         <div className="table">
         <div>
         <TextField name="location" label="Location" onKeyDown={this._handleKeyDown}/>
