@@ -3,9 +3,6 @@ import React from 'react'
 import { uid } from "react-uid";
 
 class SearchResults extends React.Component{
-    constructor(props){
-        super(props)
-    }
 
 
     render(){

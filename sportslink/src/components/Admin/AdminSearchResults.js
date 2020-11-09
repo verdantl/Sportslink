@@ -3,10 +3,6 @@ import SingleAdminBox from './SingleAdminBox'
 import { uid } from "react-uid";
 
 class AdminSearchResults extends React.Component{
-    constructor(props){
-        super(props)
-    }
-
     render(){
         return <div>
             {this.props.users.map((user) => {

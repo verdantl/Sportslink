@@ -12,8 +12,8 @@ class Login extends React.Component{
         usern: "",
         password: "",
         users: [
-            {usern: "user", password: "123"},
-            {usern: "admin", password: "123"}
+            {usern: "user", password: "user"},
+            {usern: "admin", password: "admin"}
         ]
     };
 
@@ -32,7 +32,7 @@ class Login extends React.Component{
     render() {
         return (
             <div className="loginPage">
-                <div className='loginTitle'>Sportslink</div>
+                <div className='loginTitle'><h1>Sportslink</h1><p>Bringing together the greatest athletic community around the globe.</p></div>
                 <div className="loginContainer">
                     <h1>Log in</h1>
                     <Input
