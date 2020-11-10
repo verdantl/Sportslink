@@ -6,6 +6,7 @@ import AdminDashboard from './components/Admin/AdminDashboard'
 import Login from './components/Login/Login'
 import Messaging from './components/Messaging/Messaging'
 import TopBar from './components/TopBar'
+import AdminTopBar from './components/AdminTopBar'
 import lebron from './components/images/lebron.jpg'
 import kawhi from './components/images/kawhi.jpg'
 import harden from './components/images/harden.jpg'
@@ -125,12 +126,12 @@ class App extends React.Component {
       {user: {name: 'Lebron James', image: lebron, location: "Los Angeles CA, USA",
       organization: "Los Angeles Lakers",
       sports:"Basketball",}, text: "Finals MVP, 2020!!!", likes: 2, 
-      comments: [{user: {name: 'Kawhi Leonard', image: kawhi}, text: "I wish I were a Laker..."}, {user: {name: 'Kevin Durant', image: durant}, text: "Great post!"}]}, 
+      comments: [{user: {name: 'Kawhi Leonard', username: 'rapsowemeone', image: kawhi}, text: "I wish I were a Laker..."}, {user: {name: 'Kevin Durant', username: 'coolguy123', image: durant}, text: "Great post!"}]}, 
       {user: {name: 'Lebron James', image: lebron, location: "Los Angeles CA, USA",
       organization: "Los Angeles Lakers",
       sports:"Basketball",}, text: "Lakers have reached the Finals", likes: 5, 
-      comments: [{user: {name: 'James Harden', image: harden}, text: "Good match..."}, 
-      {user: {name: 'Kevin Durant', image: durant}, text: "You are a great player!"}]}]
+      comments: [{user: {name: 'James Harden', username: 'xXx_JamesHarden_xXx', image: harden}, text: "Good match..."}, 
+      {user: {name: 'Kevin Durant', username: 'coolguy123', image: durant}, text: "You are a great player!"}]}]
 
   }
   
@@ -148,16 +149,19 @@ class App extends React.Component {
                           (<Login global={this}/>)}/>
 
           <Route exact path = '/profile/TheRealLebronJames' render={() => 
-                          (<div><TopBar /><Profile className="profile" global={this.state.users[0]}/></div>)}/>
-          <Route exact path = '/profile/rapsowemeone' render={() => 
-                          (<div><TopBar /><Profile className="profile" global={this.state.users[1]}/></div>)}/>
-          <Route exact path = '/profile/xXx_JamesHarden_xXx' render={() => 
-                          (<div><TopBar /><Profile className="profile" global={this.state.users[2]}/></div>)}/>
-          <Route exact path = '/profile/coolguy123' render={() => 
-                          (<div><TopBar /><Profile className="profile" global={this.state.users[3]}/></div>)}/>
+                          (<div><TopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
+
+          <Route exact path = '/userprofile/TheRealLebronJames' render={() => 
+                          (<div><AdminTopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
+          <Route exact path = '/userprofile/rapsowemeone' render={() => 
+                          (<div><AdminTopBar/><Profile className="profile" global={this.state.users[1]}/></div>)}/>
+          <Route exact path = '/userprofile/xXx_JamesHarden_xXx' render={() => 
+                          (<div><AdminTopBar/><Profile className="profile" global={this.state.users[2]}/></div>)}/>
+          <Route exact path = '/userprofile/coolguy123' render={() => 
+                          (<div><AdminTopBar/><Profile className="profile" global={this.state.users[3]}/></div>)}/>
           
           <Route exact path = '/viewprofile/TheRealLebronJames' render={() => 
-                          (<div><TopBar /><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
+                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
           <Route exact path = '/viewprofile/rapsowemeone' render={() => 
                           (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
           <Route exact path = '/viewprofile/xXx_JamesHarden_xXx' render={() => 

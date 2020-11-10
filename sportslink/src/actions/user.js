@@ -92,6 +92,9 @@ export const barClick = (user) => {
     if (user.state.searchIcon === 'searchIconLight'){
         window.location.href = "/search";
     }
+    if (user.state.exitIcon === 'exitIconLight'){
+        window.location.href = "/";
+    }
 };
 
 export const search = () => {

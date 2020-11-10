@@ -5,6 +5,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import './TopBar.css';
 import SearchIcon from "@material-ui/icons/Search"
 import MessageIcon from '@material-ui/icons/Message';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {barClick} from "../actions/user.js";
 import {search} from '../actions/user.js'
 
@@ -15,7 +16,8 @@ class TopBar extends React.Component{
         settingsIcon: 'settingsIcon',
         userIcon: 'userIcon',
         messageIcon: 'messageIcon',
-        searchIcon: 'searchIcon'
+        searchIcon: 'searchIcon',
+        exitIcon: 'exitIcon'
     }
     handleHomeHover = (event) => {
         this.setState({homeIcon: 'homeIconLight'})
@@ -64,6 +66,15 @@ class TopBar extends React.Component{
         this.setState({messageIcon: 'messageIcon'})
     }
 
+    handleExitHover = (event) => {
+        this.setState({exitIcon: 'exitIconLight'})
+    }
+
+
+    handleExitHoverOff = (event) => {
+        this.setState({exitIcon: 'exitIcon'})
+    }
+
     handleSearch = (event) => {
         if (event.key === 'Enter'){
             this.props.search(event.target.value)
@@ -90,6 +101,9 @@ class TopBar extends React.Component{
             </li>
             <li>
             <SettingsIcon className={this.state.settingsIcon} onMouseEnter={this.handleSettingsHover} onMouseLeave={this.handleSettingsHoverOff} onClick={() => barClick(this)}/>
+            </li>
+            <li>
+            <ExitToAppIcon className={this.state.exitIcon} onMouseEnter={this.handleExitHover} onMouseLeave={this.handleExitHoverOff} onClick={() => barClick(this)}/>
             </li>
             </ul>
 

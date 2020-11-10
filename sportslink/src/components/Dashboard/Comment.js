@@ -1,10 +1,14 @@
 import React from 'react'
 
 class Comment extends React.Component{
+    handleClick = () => {
+        window.location.href = '/viewprofile/' + this.props.comment.user.username
+    }
+
     render(){
         return <div className="comment">
 
-            <div className="commentPic">
+            <div className="commentPic" onClick={this.handleClick}>
             <img src={this.props.comment.user.image}/>
             </div>
 

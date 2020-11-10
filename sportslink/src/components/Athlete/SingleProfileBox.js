@@ -9,11 +9,11 @@ class SingleProfileBox extends React.Component{
     }
 
     render(){
-        return <div className='profileBox'>
+        return <div className='profileBox' onClick={this.handleClick}>
             <div className='profilePic'> <img src={this.props.user.image}/></div>
 
             <div className='singleProfileSubBox'>
-            <p className="profileBoxName" onClick={this.handleClick}> {this.props.user.name} </p>
+            <p className="profileBoxName"> {this.props.user.name} </p>
             <p className="profileDescription"> {this.props.user.description}</p>
             </div>
         <p className="singleBoxLocation">{this.props.user.location}</p>
