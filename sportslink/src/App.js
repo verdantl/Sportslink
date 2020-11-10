@@ -126,12 +126,12 @@ class App extends React.Component {
       {user: {name: 'Lebron James', image: lebron, location: "Los Angeles CA, USA",
       organization: "Los Angeles Lakers",
       sports:"Basketball",}, text: "Finals MVP, 2020!!!", likes: 2, 
-      comments: [{user: {name: 'Kawhi Leonard', image: kawhi}, text: "I wish I were a Laker..."}, {user: {name: 'Kevin Durant', image: durant}, text: "Great post!"}]}, 
+      comments: [{user: {name: 'Kawhi Leonard', username: 'rapsowemeone', image: kawhi}, text: "I wish I were a Laker..."}, {user: {name: 'Kevin Durant', username: 'coolguy123', image: durant}, text: "Great post!"}]}, 
       {user: {name: 'Lebron James', image: lebron, location: "Los Angeles CA, USA",
       organization: "Los Angeles Lakers",
       sports:"Basketball",}, text: "Lakers have reached the Finals", likes: 5, 
-      comments: [{user: {name: 'James Harden', image: harden}, text: "Good match..."}, 
-      {user: {name: 'Kevin Durant', image: durant}, text: "You are a great player!"}]}]
+      comments: [{user: {name: 'James Harden', username: 'xXx_JamesHarden_xXx', image: harden}, text: "Good match..."}, 
+      {user: {name: 'Kevin Durant', username: 'coolguy123', image: durant}, text: "You are a great player!"}]}]
 
   }
   

@@ -52,10 +52,15 @@ class PostCard extends React.Component{
             })
         }
     }
+
+    handleClick = () => {
+        window.location.href = '/viewprofile/' + this.props.user.username
+    }
+
     render(){
         return <div className="postCard">
             <div className="postInfo">
-            <div className="posterInfo">
+            <div className="posterInfo" onClick={this.handleClick}>
                 <div className="posterPic">
                 <img src={this.props.post.user.image}></img>
                 </div>
