@@ -13,7 +13,9 @@ class SearchResults extends React.Component{
           <p className="searchResultTitle">Users</p>
           <div className="searchUsers">  
             {this.props.users.map((user) => {
-              return <SingleProfileBox key={uid(user)} user={user}/>
+              if (user.player === true) {
+                return <SingleProfileBox key={uid(user)} user={user}/>
+              }
             }
             )}
           </div>   
@@ -21,7 +23,15 @@ class SearchResults extends React.Component{
 
         case ('sponsor'):
           return <div>
-
+          <p className="searchResultTitle">Recruiters</p>
+          <div className="searchRecruiters">  
+            {this.props.users.map((user) => {
+              if (user.player === false) {
+                return <SingleProfileBox key={uid(user)} user={user}/>
+              }
+            }
+            )}
+          </div>   
           </div>
         case ('posts'):
           return <div className="searchPosts">

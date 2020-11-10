@@ -45,7 +45,7 @@ class ViewProfile extends React.Component{
     }
     render(){
         const {global} = this.props;
-        return <div className="profile">
+        return <div className={(global.player) ? "userProfile" : "recruiterProfile"}>
             <div className="profileCard">
             <div className="profileInfo">
             <ProfilePicture image={global.image} name={global.name}/>
