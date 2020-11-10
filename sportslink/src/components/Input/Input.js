@@ -6,7 +6,7 @@ import "./Input.css";
 
 class Input extends React.Component {
   render() {
-    const { label, value, onChange, name } = this.props;
+    const { label, value, onChange, name, type } = this.props;
 
     return (
       <Grid item >
@@ -18,6 +18,7 @@ class Input extends React.Component {
           className="input"
           margin="normal"
           onChange={onChange}
+          type={type}
         />
       </Grid>
     );
