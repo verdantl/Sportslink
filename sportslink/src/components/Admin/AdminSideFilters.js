@@ -18,12 +18,11 @@ class AdminSideFilters extends React.Component{
 
     removePreference = (event) => {
         let object;
-        if (event.target.name == null){
-            object = event.target.parentElement.parentElement  
+        object = event.target
+        while (object.getAttribute('name') === null){
+            object = object.parentElement
         }
-        else{
-            object = event.target
-        }
+
         switch(object.parentElement.parentElement.className){
             case ("locations"):
                 this.props.filters.locations.splice(this.props.filters.locations.indexOf(object.name), 1)
@@ -41,7 +40,7 @@ class AdminSideFilters extends React.Component{
           this.props.updatePref(this.props.filters.locations, this.props.filters.organizations, this.props.filters.sports)
     }
     addOption = (list, option) => {
-        if (option != '' && !list.includes(option) && list.length < 5){
+        if (option != '' && !list.includes(option) && list.length < 1){
             list.push(option)
             return true
         } 
@@ -60,7 +59,6 @@ class AdminSideFilters extends React.Component{
                 if (value){
                     e.target.value = null
                 }
-
                 break;
             case ("organization"):
                 value = this.addOption(this.props.filters.organizations, e.target.value)
@@ -100,7 +98,7 @@ class AdminSideFilters extends React.Component{
                         name={location}
                         onClick={this.removePreference}
                     > 
-                    <ClearIcon/>   
+                    <ClearIcon />   
                     </IconButton>
             </div>
             }

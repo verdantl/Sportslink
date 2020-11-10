@@ -24,6 +24,7 @@ class AdminDashboard extends React.Component{
 
     updatePreferences = (locations, organizations, sports) => {
       this.setState({locations: locations, organizations: organizations, sports: sports})
+      this.filterPreferences()
     }
 
     changeFilter = (filter) => {
@@ -39,23 +40,39 @@ class AdminDashboard extends React.Component{
         post.text.toLowerCase().includes(searchText.toLowerCase()) | post.user.name.toLowerCase().includes(searchText.toLowerCase()))
 
       this.setState({search: searchText, users: searchedUsers, posts: searchedPosts})
+      this.filterPreferences()
     }
 
+
+    
     filterPreferences = () => {
+      let allUsers = []
       if (this.state.locations.length > 0){
-        const users = {}
-        for (let i = 0; i < this.state.locations.length; i++){
-          
-        }
+          allUsers = this.state.users.filter(user => user.location.toLowerCase().includes(this.state.locations[0].toLowerCase()))
+        
       }
       if (this.state.organizations.length > 0){
+          if (this.state.locations.length > 0){
+          allUsers = allUsers.filter(user => user.organization.toLowerCase().includes(this.state.organizations[0].toLowerCase()))
+          }
+          else{
+          allUsers = this.state.users.filter(user => user.organization.toLowerCase().includes(this.state.organizations[0].toLowerCase()))
+          }
 
       }
-      if (this.state.organizations.length > 0){
-
+      if (this.state.sports.length > 0){
+        if (this.state.locations.length > 0 | this.state.organizations.length > 0){
+          allUsers = allUsers.filter(user => user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase()))
+          }
+          else{
+          allUsers = this.state.users.filter(user => user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase()))
+          }
       }
       if (this.state.locations.length === 0 && this.state.organizations.length === 0 && this.state.sports.length === 0){
         this.setState({users: this.props.info.users, posts: this.props.info.posts})
+      }
+      else{
+        this.setState({users: allUsers})
       }
     }
 
@@ -99,8 +116,6 @@ class AdminDashboard extends React.Component{
             posts={this.state.posts} 
             users={this.state.users}/>
           </div>
-
-
         </div>
     }
 
