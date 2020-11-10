@@ -10,7 +10,8 @@ class Dashboard extends React.Component{
     state = {
         user: {
             image: lebron,
-            name: "Lebron James"
+            name: "Lebron James",
+            username: "TheRealLebronJames"
         },
         users: this.props.info.users,
         posts: this.props.info.posts
