@@ -161,7 +161,7 @@ class App extends React.Component {
                           (<div><AdminTopBar/><Profile className="profile" global={this.state.users[3]}/></div>)}/>
           
           <Route exact path = '/viewprofile/TheRealLebronJames' render={() => 
-                          (<div><TopBar/><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
+                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
           <Route exact path = '/viewprofile/rapsowemeone' render={() => 
                           (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
           <Route exact path = '/viewprofile/xXx_JamesHarden_xXx' render={() => 
