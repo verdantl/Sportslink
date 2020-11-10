@@ -10,8 +10,13 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 class AdminSideFilters extends React.Component{
+    state = {
+        exitIcon: 'exitIcon'
+    }
+
     handleCheck = (event) => {
         this.props.changeFilter(event.target.value)
       };
@@ -76,6 +81,21 @@ class AdminSideFilters extends React.Component{
           this.props.updatePref(this.props.filters.locations, this.props.filters.organizations, this.props.filters.sports)
         }
       }
+
+
+    handleExitHover = (event) => {
+        this.setState({exitIcon: 'exitIconLight'})
+    }
+
+
+    handleExitHoverOff = (event) => {
+        this.setState({exitIcon: 'exitIcon'})
+    }
+
+    handleClick = (event) => {
+        window.location.href = '/';
+    }
+
     render(){
         return <div className="adminLeftColumn">
         <div>
@@ -140,7 +160,10 @@ class AdminSideFilters extends React.Component{
         </div>
 
         </div>
-
+        <div className='logout'>
+            <ExitToAppIcon className={this.state.exitIcon} onMouseEnter={this.handleExitHover} onMouseLeave={this.handleExitHoverOff} onClick={this.handleClick}/>
+        </div>
+        
         </div>
 
     }

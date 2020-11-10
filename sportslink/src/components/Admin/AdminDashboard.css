@@ -70,3 +70,18 @@
  
  }
  
+ .logout{
+   padding-top: 45vh;
+}
+
+.exitIcon{
+   transform: scale(1.3);
+   vertical-align: middle;
+}
+
+.exitIconLight{
+   transform: scale(1.3);
+   cursor: pointer;
+   color: aliceblue;
+   vertical-align: middle;
+}

@@ -84,7 +84,7 @@ class AdminDashboard extends React.Component{
           filters={filters}
           updatePref={this.updatePreferences} 
           changeFilter={this.changeFilter}/>
-
+          
           <div className="adminRightColumn">
           <AdminSearchBox search={this.search}/>
           <div className='searchResultTitle'>          
@@ -98,8 +98,11 @@ class AdminDashboard extends React.Component{
             filters={filters} 
             posts={this.state.posts} 
             users={this.state.users}/>
+
+          
           </div>
 
+          
 
         </div>
     }
