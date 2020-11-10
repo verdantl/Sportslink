@@ -39,7 +39,7 @@ class Profile extends React.Component{
 
     render(){
         const {global} = this.props;
-        return <div className="profile">
+        return <div className={(global.player) ? "userProfile" : "recruiterProfile"}>
             <div className="profileCard">
                 <ProfileInfo user={global.name} global={global}/>
                 <div className='editSection'>

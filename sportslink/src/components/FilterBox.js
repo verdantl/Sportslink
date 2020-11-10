@@ -77,7 +77,7 @@ class FilterBox extends React.Component{
     render(){
         return <div className="filterBox">
             <div>
-            Preferences
+            <h3>Filter by Preference</h3>
             </div>
         <FormControl className="table" component="fieldset">
             <RadioGroup aria-label="filters" name="filters" value={this.props.filter} onChange={this.handleChange} row>
@@ -86,6 +86,7 @@ class FilterBox extends React.Component{
                 <FormControlLabel value="posts" control={<Radio />} label="Posts" />
             </RadioGroup>
         </FormControl>  
+
         <div className="table">
         <div>
         <TextField name="location" label="Location" onKeyDown={this._handleKeyDown}/>
