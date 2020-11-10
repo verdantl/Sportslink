@@ -41,6 +41,7 @@ class Profile extends React.Component{
         this.setState({addButtonClass: 'addExperienceButton'})
 
     }
+    
     updateExperience = (id, title, organization, league, stats, description, years) => {
         console.log('this.state.user.experience');
         console.dir(this.state.user.experience);
@@ -78,7 +79,7 @@ class Profile extends React.Component{
 
             <div className="achievements">
                 <div></div>
-                <Experience experience={global.experience} updateExperience={this.updateExperience.bind(this)}/>
+                <Experience experience={global.experience} updateExperience={this.updateExperience.bind(global)}/>
                 <div className="profileRightColumn">
                 <Images images={this.state.user.images}/>
                 <Career accomplishments={global.accomplishments}/>
