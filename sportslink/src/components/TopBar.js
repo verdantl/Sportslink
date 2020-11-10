@@ -14,7 +14,8 @@ class TopBar extends React.Component{
         homeIcon: 'homeIcon',
         settingsIcon: 'settingsIcon',
         userIcon: 'userIcon',
-        messageIcon: 'messageIcon'
+        messageIcon: 'messageIcon',
+        searchIcon: 'searchIcon'
     }
     handleHomeHover = (event) => {
         this.setState({homeIcon: 'homeIconLight'})
@@ -23,6 +24,15 @@ class TopBar extends React.Component{
 
     handleHomeHoverOff = (event) => {
         this.setState({homeIcon: 'homeIcon'})
+    }
+
+    handleSearchHover = (event) => {
+        this.setState({searchIcon: 'searchIconLight'})
+    }
+
+
+    handleSearchHoverOff = (event) => {
+        this.setState({searchIcon: 'searchIcon'})
     }
 
 
@@ -63,14 +73,17 @@ class TopBar extends React.Component{
     render(){
         return <div className="topBar">
             <ul>
-            <li>
+            {/* <li>
             <input className="searchTitle" placeholder="Search" onKeyPress={this.handleSearch}/>
-            </li>
+            </li> */}
             <li>
             <HomeIcon className={this.state.homeIcon} onMouseEnter={this.handleHomeHover} onMouseLeave={this.handleHomeHoverOff} onClick={() => barClick(this)}/>
             </li>
             <li>
             <PersonIcon className={this.state.userIcon} onMouseEnter={this.handleUserHover} onMouseLeave={this.handleUserHoverOff} onClick={() => barClick(this)}/>
+            </li>
+            <li>
+            <SearchIcon className={this.state.searchIcon} onMouseEnter={this.handleSearchHover} onMouseLeave={this.handleSearchHoverOff} onClick={() => barClick(this)}/>
             </li>
             <li>
             <MessageIcon className={this.state.messageIcon} onMouseEnter={this.handleMessageHover} onMouseLeave={this.handleMessageHoverOff} onClick={() => barClick(this)}/>
