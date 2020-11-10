@@ -18,7 +18,10 @@
 
 .searchUsers{
     height: inherit;
-    
+}
+
+.searchRecruiters{
+    height: inherit;
 }
 
 .searchResultTitle{

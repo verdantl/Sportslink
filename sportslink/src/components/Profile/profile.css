@@ -1,10 +1,16 @@
-.profile{
+.userProfile{
     background-color: aliceblue;
     padding: 5px;
     text-align: center;
     height: 100%;
 }
 
+.recruiterProfile{
+    background-color: antiquewhite;
+    padding: 5px;
+    text-align: center;
+    height: 100%;
+}
 
 .profileCard{
     background-color: white;
