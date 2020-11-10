@@ -92,7 +92,7 @@ class AdminDashboard extends React.Component{
           
           <div className="adminRightColumn">
           <AdminSearchBox search={this.search}/>
-          <div className='searchResultTitle'>          
+          <div hidden={this.state.search.length === 0} className='searchResultTitle'>          
             Search Results For: {this.state.search}
           </div>
 
