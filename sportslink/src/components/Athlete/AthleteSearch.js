@@ -95,7 +95,7 @@ class AthleteSearch extends React.Component{
                 updatePref={this.updatePreferences} 
                 filters={filters} 
                 changeFilter={this.changeFilter}/>
-                <div className="searchResultsTitle"> Search Results For: {this.state.search}</div>
+                <div hidden={this.state.search.length === 0}className="searchResultsTitle"> Search Results For: {this.state.search}</div>
                
                 <SearchResults 
                 user={this.props.info.user} 

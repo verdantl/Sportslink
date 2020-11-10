@@ -34,7 +34,7 @@
     font-size: small;
 }
 .MuiFormControl-root.MuiTextField-root.searchBar{
-    background-color: white;
+    background-color: lavender;
     border-radius: 5px;
     width: 70%;
     margin: 20px;

@@ -47,7 +47,7 @@
 .postText{
     padding: 10px;
     margin: 10px;
-    background-color: aliceblue;
+    background-color: lavender;
     text-align: center;
     border-radius: 3px;
     box-shadow: 1px 1px 3px gray;
@@ -124,7 +124,7 @@
     color: black;
 }
 .thumbsUpLight{
-    color: blue;
+    color: crimson;
 }
 
 .thumbsUpButton{
@@ -145,7 +145,7 @@ button.MuiButtonBase-root.MuiIconButton-root.thumbsUpButton{
     padding-left: 10px;
     border-radius: 10px;
     width: 90%;
-    background-color: aliceblue;
+    background-color: lavender;
 }
 .viewComments{
     text-align: center;
