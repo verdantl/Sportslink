@@ -1,6 +1,7 @@
 import React from 'react'
 import Edit from '@material-ui/icons/Edit'
 
+import ExperienceCard from './ExperienceCard'
 
 import InputBox from './InputBox'
 
@@ -21,10 +22,14 @@ class EditButton extends React.Component{
     }
 
     handleEditButtonClick = (event) => {
-        this.toggleInputBox();
+        this.toggleEditing();
         console.log("handleEditButtonClick")
     }
 
+    toggleEditing = (event) =>{
+        console.dir('Edit Button Props', this.props)
+        this.props.toggleEditing(event);
+    }
 
     render(){
 
@@ -34,7 +39,7 @@ class EditButton extends React.Component{
                     className={this.state.editButtonClass} 
                     onMouseEnter={this.handleEditButtonOn} 
                     onMouseDown={this.handleEditButtonOff}
-                    onClick={this.handleEditButtonClick}/>
+                    onClick={this.props.toggleEditing}/>
 
                 <InputBox show={this.state.showInputBox}
                     onClose={this.toggleInputBox}>
