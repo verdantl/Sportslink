@@ -22,7 +22,6 @@ import { uid } from 'react-uid';
 
 class App extends React.Component {
   state = {
-    search: '',
     user:
     {
       username: 'TheRealLebronJames',
@@ -135,10 +134,6 @@ class App extends React.Component {
       {user: {name: 'Kevin Durant', image: durant}, text: "You are a great player!"}]}]
 
   }
-
-  search = (searchText) => {
-    this.setState({search: searchText})
-  }
   
   render(){
     return (
@@ -147,9 +142,9 @@ class App extends React.Component {
           <Route exact path = '/admin' render={()=>
                           (<AdminDashboard info={this.state} className="adminDashboard"/>)}/>
           <Route exact path = '/search' render={()=>
-                          (<div> <TopBar search={this.search}/><AthleteSearch info={this.state} className="athleteSearch"/></div>)}/>
+                          (<div> <TopBar /><AthleteSearch info={this.state} className="athleteSearch"/></div>)}/>
           <Route exact path = '/dashboard' render={()=>
-                          (<div> <TopBar search={this.search}/><Dashboard info={this.state} className="dashboard"/></div>)}/>
+                          (<div> <TopBar /><Dashboard info={this.state} className="dashboard"/></div>)}/>
           <Route exact path = '/' render={() =>
                           (<Login global={this}/>)}/>
 
@@ -168,20 +163,20 @@ class App extends React.Component {
           <Route exact path = '/viewprofile/TheRealLebronJames' render={() => 
                           (<div><TopBar search={this.search}/><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
           <Route exact path = '/viewprofile/rapsowemeone' render={() => 
-                          (<div><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
+                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
           <Route exact path = '/viewprofile/xXx_JamesHarden_xXx' render={() => 
-                          (<div><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[2]}/></div>)}/>
+                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[2]}/></div>)}/>
           <Route exact path = '/viewprofile/coolguy123' render={() => 
-                          (<div><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[3]}/></div>)}/>
+                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[3]}/></div>)}/>
           
           <Route exact path = '/messaging' render={() => 
-                          (<div><TopBar search={this.search}/><Messaging className="messaging"/></div>)}/>
+                          (<div><TopBar/><Messaging className="messaging"/></div>)}/>
           <Route exact path = '/signup' render={() => 
                           (<Signup className="signup"/>)}/>
           <Route exact path = '/onboarding' render={() => 
                           (<Onboarding className="onboarding"/>)}/>
           <Route exact path = '/settings' render={() => 
-                          (<div> <TopBar search={this.search}/><Settings global={this}/></div>)}/>
+                          (<div> <TopBar/><Settings global={this}/></div>)}/>
           <Route exact path = '/forgotpassword' render={() => 
                           (<ForgotPass/>)}/>
         </Switch>

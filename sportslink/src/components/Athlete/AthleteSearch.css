@@ -25,3 +25,20 @@
     margin: 30px;
     font-size: larger;
 }
+.searchResultsTitle{
+    margin-left: 20px;
+    font-size: small;
+}
+.MuiFormControl-root.MuiTextField-root.searchBar{
+    background-color: white;
+    border-radius: 10px;
+    width: 70%;
+    margin: 20px;
+    margin-left: 40px;
+    padding: 10px;
+}
+.MuiFormControl-root.MuiTextField-root.searchBar label{
+    margin-left: 10px;
+    padding: 5px;
+
+}
