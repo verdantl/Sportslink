@@ -29,6 +29,13 @@ class Login extends React.Component{
         });
     };
 
+    handleEnter = (event) => {
+        if (event.key === 'Enter'){
+            const {global} = this.props
+            login(this, global)
+        }
+    }
+
     render() {
         const {global} = this.props;
         return (
@@ -40,12 +47,14 @@ class Login extends React.Component{
                         name="usern"
                         onChange={this.handleChange}
                         label="Username"
+                        onKeyPress={this.handleEnter}
                     />
 
                     <Input
                         name="password"
                         onChange={this.handleChange}
                         label="Password"
+                        onKeyPress={this.handleEnter}
                         type="password"
                     />
 

@@ -12,11 +12,13 @@ class Input extends React.Component {
       <Grid item >
         <TextField
           name={name}
+
           label={label}
           id="margin-normal"
           defaultValue={value || ""}
           className="input"
           margin="normal"
+          onKeyPress={this.props.onKeyPress}
           onChange={onChange}
           type={type}
           variant={variant}
