@@ -149,19 +149,19 @@ class App extends React.Component {
                           (<Login global={this}/>)}/>
 
           <Route exact path = '/profile/TheRealLebronJames' render={() => 
-                          (<div><TopBar search={this.search}/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
+                          (<div><TopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
 
           <Route exact path = '/userprofile/TheRealLebronJames' render={() => 
-                          (<div><AdminTopBar search={this.search}/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
+                          (<div><AdminTopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
           <Route exact path = '/userprofile/rapsowemeone' render={() => 
-                          (<div><AdminTopBar search={this.search}/><Profile className="profile" global={this.state.users[1]}/></div>)}/>
+                          (<div><AdminTopBar/><Profile className="profile" global={this.state.users[1]}/></div>)}/>
           <Route exact path = '/userprofile/xXx_JamesHarden_xXx' render={() => 
-                          (<div><AdminTopBar search={this.search}/><Profile className="profile" global={this.state.users[2]}/></div>)}/>
+                          (<div><AdminTopBar/><Profile className="profile" global={this.state.users[2]}/></div>)}/>
           <Route exact path = '/userprofile/coolguy123' render={() => 
-                          (<div><AdminTopBar search={this.search}/><Profile className="profile" global={this.state.users[3]}/></div>)}/>
+                          (<div><AdminTopBar/><Profile className="profile" global={this.state.users[3]}/></div>)}/>
           
           <Route exact path = '/viewprofile/TheRealLebronJames' render={() => 
-                          (<div><TopBar search={this.search}/><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
+                          (<div><TopBar/><TopBar search={this.search}/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
           <Route exact path = '/viewprofile/rapsowemeone' render={() => 
                           (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
           <Route exact path = '/viewprofile/xXx_JamesHarden_xXx' render={() => 
