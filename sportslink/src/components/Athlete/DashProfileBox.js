@@ -18,7 +18,7 @@ class DashProfileBox extends React.Component{
                     <div className="personalProfileName">
                         {this.props.user.name}
                     </div>
-                    <Link to="/profile/leb">View your profile</Link>
+                    <Link to="/profile/TheRealLebronJames">View your profile</Link>
                 </div>
     }
 }
