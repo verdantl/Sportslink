@@ -1,9 +1,10 @@
-import { FreeBreakfastOutlined } from '@material-ui/icons'
 import React from 'react'
 import './SingleAdminBox.css'
-
+import ConfirmationDialog from '../ConfirmationDialog'
 class SingleAdminBox extends React.Component{
     state = {
+        openDialog: false,
+        name: '',
         suspendClass: "adminSuspendButton",
         removeClass: "adminRemoveButton",
         editClass: "adminEditButton"
@@ -11,13 +12,13 @@ class SingleAdminBox extends React.Component{
 
     handleButton = (event) => {
         switch (event.target.getAttribute('name')){
-            case ('suspendClass'):
+            case ('suspend'):
                 this.setState({suspendClass: 'adminSuspendButtonLight'})
                 break;
-            case ('removeClass'):
+            case ('remove'):
                 this.setState({removeClass: 'adminRemoveButtonLight'})
                 break;
-            case ('editClass'):
+            case ('edit'):
                 this.setState({editClass: "adminEditButtonLight"})
                 break;
             
@@ -26,38 +27,71 @@ class SingleAdminBox extends React.Component{
 
     handleButtonOff = (event) => {
         switch (event.target.getAttribute('name')){
-            case ('suspendClass'):
+            case ('suspend'):
                 this.setState({suspendClass: 'adminSuspendButton'})
                 break;
-            case ('removeClass'):
+            case ('remove'):
                 this.setState({removeClass: 'adminRemoveButton'})
                 break;
-            case ('editClass'):
+            case ('edit'):
                 this.setState({editClass: "adminEditButton"})
                 break;
             
         }
     }
 
+    handleClick = (event) => {
+        this.setState({name: event.target.getAttribute('name')})
+        this.setState({openDialog: true})
+    }
+
+    handleEdit = (event) => {
+        window.location.href = '/userprofile/' + this.props.user.username
+    }
+
+    handleAgreeClose = () => {
+        this.props.adminAction(this.state.name, this.props.value)
+        this.setState({openDialog: false})
+    }
+
+    handleDisagreeClose = () => {
+        this.setState({openDialog: false})
+    }
+
+    suspended = () => {
+        if (this.props.user.suspended){
+            return "Undo Suspend"
+        }
+        else{
+            return "Suspend"
+        }
+    }
+
     render(){
         return <div className="adminBox">
+            <ConfirmationDialog open={this.state.openDialog} 
+            handleAgreeClose={this.handleAgreeClose} 
+            handleCancelClose={this.handleDisagreeClose}
+            confirmation={{title: "Confirmation", description: "Are you sure?"}}/>
             <div className="adminProfileBox">
             <div className='profilePic'> <img src={this.props.user.image}/></div>
 
             <div className='adminSubBox'>
             <p className="adminProfileName"> {this.props.user.name} </p>
-            <p className="adminProfileDescription">{this.props.user.description}</p>
+            <p className="adminProfileDescription"> {this.props.user.organization}, {this.props.user.location}</p>
+            <p className="adminProfileSport"> {this.props.user.sports}</p>
             </div>
             </div>
             <div className="adminActions">
-                <div name="suspendClass" className={this.state.suspendClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButtonOff}>
-                    Suspend
+                <div name="suspend" className={this.state.suspendClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButtonOff}
+                onClick={this.handleClick}>
+                    {this.suspended()}
                 </div>
-                <div name="removeClass" className={this.state.removeClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButtonOff}>
+                <div name="remove" className={this.state.removeClass} onClick={this.handleClick} onMouseEnter={this.handleButton} onMouseLeave={this.handleButtonOff}>
                     Remove
                 </div>
 
-                <div name="editClass" className={this.state.editClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButtonOff}>
+                <div name="edit" onClick={this.handleEdit} className={this.state.editClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButtonOff}>
                     Edit
                 </div>
             </div>

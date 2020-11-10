@@ -64,15 +64,13 @@ class AdminPostCard extends React.Component{
             <span>
                 {this.props.post.comments.length + " Comments"}
             </span>
-                <IconButton className="thumbsUpButton"> <ThumbUpIcon className="thumbsUp"/></IconButton>
                 </div>
 
             </div>
-            <input className="commentInput" placeholder="Add New Comment"/>
 
             <div className="comments" hidden={this.state.hideComments}>
             {this.props.post.comments.map((comment) => {
-              return <Comment key={uid(comment)} comment={comment}/>
+              return <Comment key={uid(comment)} comment={comment} clickProfile={this.props.clickProfile}/>
             }
             )}
 

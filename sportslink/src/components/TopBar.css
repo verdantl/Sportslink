@@ -65,3 +65,39 @@ li{
     color: aliceblue;
     vertical-align: middle;
 }
+
+.messageIcon{
+    transform: scale(1.3);
+    vertical-align: middle;
+}
+
+.messageIconLight{
+    transform: scale(1.3);
+    cursor: pointer;
+    color: aliceblue;
+    vertical-align: middle;
+}
+
+.searchIcon{
+    transform: scale(1.3);
+    vertical-align: middle;
+}
+
+.searchIconLight{
+    transform: scale(1.3);
+    cursor: pointer;
+    color: aliceblue;
+    vertical-align: middle;
+}
+
+.exitIcon{
+    transform: scale(1.3);
+    vertical-align: middle;
+}
+
+.exitIconLight{
+    transform: scale(1.3);
+    cursor: pointer;
+    color: aliceblue;
+    vertical-align: middle;
+}

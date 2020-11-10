@@ -3,40 +3,29 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 
 class AdminSearchBox extends React.Component{
-    state = {
-        checkedAthlete: false,
-        checkedRecruiters: false,
-        preferences: []
+    state ={
+        search: ''
     }
 
-
-    handleCheck = (event) => {
-        const checkBox = event.target.name
-
-        this.setState({checkBox : event.target.checked})
-
-    }
-
-    handleChange = (event) =>{
-        const preference = event.target.value
-
-
-        if (this.state.preferences.includes(preference)){
-            const index = (element) => element != preference
-            this.setState({preferences: this.state.preferences.filter(index)})
+    handleEnter = (e) => {
+        if (e.key === 'Enter'){
+            this.props.search(this.state.search)
+            this.setState({search: ''})
         }
-        else{
-            this.state.preferences.push(preference)
-            this.setState({preferences: this.state.preferences})
-        }
-
     }
 
-    displayPreferences = () => this.state.preferences.map((d) => <li key={d.name}>{d}</li>);
+    handleChange = (e) => {
+        this.setState({search: e.target.value})
+    }
 
     render(){
         return <div className="adminSearchBox">
-        <TextField className="adminSearchBar" label="Search"/>
+        <TextField 
+            className="adminSearchBar" 
+            onKeyPress={this.handleEnter} 
+            onChange={this.handleChange}
+            value={this.state.search}
+            label="Search"/>
         </div>
     }   
 }

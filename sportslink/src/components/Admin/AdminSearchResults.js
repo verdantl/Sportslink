@@ -4,14 +4,23 @@ import { uid } from "react-uid";
 import AdminPosts from './AdminPosts'
 
 class AdminSearchResults extends React.Component{
+
     render(){
-        return <div>
-            {/* {this.props.users.map((user) => {
-              return <SingleAdminBox key={uid(user)} user={user}/>
+        if(this.props.filter === 'athlete'){
+            return <div>
+            {this.props.users.map((user) => {
+              return <SingleAdminBox key={uid(user)} adminAction={this.props.adminAction} value={this.props.users.indexOf(user)} user={user}/>
             }
-            )} */}
-        <AdminPosts removePost={this.props.removePost} posts={this.props.posts}/>
+            )}
         </div>
+
+        }
+        else if (this.props.filter === 'posts'){
+            return <AdminPosts removePost={this.props.removePost} posts={this.props.posts} clickProfile={this.props.clickProfile}/>
+        }
+        else{
+            return <div></div>
+        }
 
 
     }

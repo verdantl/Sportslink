@@ -8,6 +8,8 @@ import './profile.css'
 import coolcat from '../images/coolcat.jpg'
 import icedragon from '../images/icedragon.jpg'
 import lebron from '../images/lebron.jpg'
+import EditButton from './EditButton'
+
 
 class Profile extends React.Component{
     state = {
@@ -63,18 +65,25 @@ class Profile extends React.Component{
     }
 
     render(){
-        console.log('this profile')
-        console.dir(this)
-        //this.updateExperience('1', 'title', 'organization', 'league', 'stats', 'description', 'years')
-        return <div className="profile">
-            <div className="achievements">
-                <div></div>
-                <Experience experience={this.state.user.experience} updateExperience={this.updateExperience.bind(this)}/>
-                <div className="profileRightColumn">
-                <Images images={this.state.user.images}/>
-                <Career accomplishments={this.state.user.accomplishments}/>
+        const {global} = this.props;
+        return <div className={(global.player) ? "userProfile" : "recruiterProfile"}>
+            <div className="profileCard">
+                <ProfileInfo user={global.name} global={global}/>
+                <div className='editSection'>
+                <Biography description={global.description}/>
+                <EditButton/>
                 </div>
 
+            </div>
+
+            <div className="achievements">
+                <div></div>
+                <Experience experience={global.experience} updateExperience={this.updateExperience.bind(this)}/>
+                <div className="profileRightColumn">
+                <Images images={this.state.user.images}/>
+                <Career accomplishments={global.accomplishments}/>
+                </div>
+                
             </div>
         </div>
     }

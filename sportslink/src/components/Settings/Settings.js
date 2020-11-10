@@ -66,17 +66,24 @@ class Settings extends React.Component{
                         />
 
                         <h3>Password</h3>
-                        <p>{this.state.userPass}</p>
                         <Input
                             name="oldPass"
                             onChange={this.handleChange}
                             label="Old password"
+                            type="password"
                         />
 
                         <Input
                             name="newPass"
                             onChange={this.handleChange}
                             label="New password"
+                            type="password"
+                        />
+                        <Input
+                            name="newPass2"
+                            onChange={this.handleChange}
+                            label="Type your new password again"
+                            type="password"
                         />
 
                         <h3>Sport</h3>

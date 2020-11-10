@@ -4,8 +4,12 @@ import '../logo.svg'
 
 class SingleProfileBox extends React.Component{
 
+    handleClick = () => {
+        window.location.href = '/viewprofile/' + this.props.user.username
+    }
+
     render(){
-        return <div className='profileBox'>
+        return <div className='profileBox' onClick={this.handleClick}>
             <div className='profilePic'> <img src={this.props.user.image}/></div>
 
             <div className='singleProfileSubBox'>

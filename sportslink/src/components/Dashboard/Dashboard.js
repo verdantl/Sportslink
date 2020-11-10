@@ -3,9 +3,6 @@ import './Dashboard.css'
 import DashProfileBox from '../Athlete/DashProfileBox'
 import NewsBox from './NewsBox'
 import lebron from '../images/lebron.jpg'
-import harden from '../images/harden.jpg'
-import kawhi from '../images/kawhi.jpg'
-import durant from '../images/durant.jpg'
 import NewPost from './NewPost'
 import Posts from './Posts'
 
@@ -13,16 +10,11 @@ class Dashboard extends React.Component{
     state = {
         user: {
             image: lebron,
-            name: "Lebron James"
+            name: "Lebron James",
+            username: "TheRealLebronJames"
         },
-        users: [
-          {image: harden, name: 'James Harden', description: "No. 13, Houston Rockets. 3x scoring champion"},
-          {image: kawhi, name: "Kawhi Leonard  ", description: "2x Finals MVP, LA Clippers SF"},
-          {image: durant, name: "Kevin Durant", description: "NBA Player for the Brooklyn Nets"}
-        ],
-        posts: [
-            {user: {name: 'Lebron James', image: lebron}, text: "Finals MVP, 2020!!!", likes: 2, comments: [{user: {name: 'Kawhi Leonard', image: kawhi}, text: "I wish I were a Laker..."}, {user: {name: 'Kevin Durant', image: durant}, text: "Great post!"}]}, 
-            {user: {name: 'Lebron James', image: lebron}, text: "Lakers have reached the Finals", likes: 5, comments: [{user: {name: 'James Harden', image: harden}, text: "Good match..."}, {user: {name: 'Kevin Durant', image: durant}, text: "You are a great player!"}]}]
+        users: this.props.info.users,
+        posts: this.props.info.posts
       }
 
     createNewPost = (post) => {
@@ -30,6 +22,11 @@ class Dashboard extends React.Component{
         currPosts.unshift({user: {name: 'Lebron James', image: lebron}, text: post, likes: 0, comments: []})
         this.setState({posts: currPosts})
     }
+    upvotePost = (post, number) => {
+        this.state.posts[post].likes += number;
+        this.setState({posts: this.state.posts})
+    }
+
 
     render(){
         return <div className="dashboard">
@@ -39,7 +36,7 @@ class Dashboard extends React.Component{
                 </div>
             <div className="dashboardRightColumn">
                 <NewPost createNewPost={this.createNewPost}/>
-                <Posts posts={this.state.posts}/>
+                <Posts user={this.state.user} upvote={this.upvotePost} posts={this.state.posts}/>
             </div>
 
         </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import './NewPost.css'
+import Button from '@material-ui/core/Button'
 
 class NewPost extends React.Component{
     state = {
@@ -16,30 +17,32 @@ class NewPost extends React.Component{
     }
 
     submitPost = (e) => {
-        this.setState({focus: false})
-        this.props.createNewPost(this.state.message)
+        console.log(e.target)
+        if (e.key === 'Enter' | e.target.getAttribute('name') ==="submitButton" | e.target.parentElement.getAttribute('name') ==="submitButton"){
+
+            this.props.createNewPost(this.state.postText)
+            this.setState({focus: false, postText: ''})
+        }
     }
 
     checkChange = (e) => {
         this.setState({
-          message: e.target.value
+          postText: e.target.value
         })
     }
 
     render(){
         if (this.state.focus === true) {
             return <div className='focusedDiv'>
-                <form 
-                className="send-message-form">
                     <input
                     onChange={this.checkChange}
-                    value={this.state.message}
+                    onKeyDownCapture={this.submitPost}
+                    value={this.state.postText}
                     placeholder="Type your message!"
                     type="text"/>
-                </form>
-                <div>
-                    <button className='cancelButton' onClick={this.cancelPost}>Cancel</button>
-                    <button className='submitButton' onClick={this.submitPost}>Submit</button>
+                <div className="postButtons"> 
+                    <Button className='cancelButton' onClick={this.cancelPost}>Cancel</Button>
+                    <Button name='submitButton' onClick={this.submitPost}>Submit</Button>
                 </div>
             </div>
         } else {

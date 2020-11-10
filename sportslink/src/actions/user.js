@@ -1,4 +1,5 @@
 export const login = (user, global) => {
+    console.log(global.state.users[1].name)
     if (user.state.password === "user" && user.state.usern === "user") {
         global.setState({
             currentUser : user.state.usern
@@ -20,8 +21,14 @@ export const login = (user, global) => {
 };
 
 export const signupNext = user => {
-    if (user.state.firstName !== "" && user.state.last_name !== "" && user.state.usern !== "" && user.state.password !== "") {
-        window.location.href = "/onboarding";
+    if (user.state.firstName !== "" && user.state.last_name !== "" && user.state.usern !== "" && user.state.password !== "" && user.state.password2 !== "") {
+        if (user.state.password === user.state.password2){
+            window.location.href = "/onboarding";
+        }
+        else{
+            alert("Passwords do not match.");
+        }
+            
     }
     else {
         alert("Please fill all fields");
@@ -53,9 +60,18 @@ export const change = (user) => {
     }
     if (user.state.newPass !== ''){
         if (user.state.oldPass === user.state.userPass){
-            user.setState({
-                userPass : user.state.newPass
-            });
+            if (user.state.newPass === user.state.newPass2){
+                user.setState({
+                    userPass : user.state.newPass
+                });
+            }
+            else {
+                alert("Password not changed")
+            }
+            
+        }
+        else {
+            alert("Password not changed")
         }
     }
     if (user.state.newSport !== ''){
@@ -74,3 +90,28 @@ export const forgot = user => {
     }
 
 };
+
+export const barClick = (user) => {
+    if (user.state.homeIcon === 'homeIconLight'){
+        window.location.href = "/dashboard";
+    }
+    if (user.state.settingsIcon === 'settingsIconLight'){
+        window.location.href = "/settings";
+    }
+    if (user.state.userIcon === 'userIconLight'){
+        window.location.href = "/profile/TheRealLebronJames";
+    }
+    if (user.state.messageIcon === 'messageIconLight'){
+        window.location.href = "/messaging";
+    }
+    if (user.state.searchIcon === 'searchIconLight'){
+        window.location.href = "/search";
+    }
+    if (user.state.exitIcon === 'exitIconLight'){
+        window.location.href = "/";
+    }
+};
+
+export const search = () => {
+    window.location.href = '/search';
+}

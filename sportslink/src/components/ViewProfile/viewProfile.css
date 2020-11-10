@@ -1,9 +1,17 @@
-.profile{
+.userProfile{
     background-color: aliceblue;
     padding: 5px;
     text-align: center;
     height: 100%;
 }
+
+.recruiterProfile{
+    background-color: antiquewhite;
+    padding: 5px;
+    text-align: center;
+    height: 100%;
+}
+
 .profilePicture{
     display: inline-block;
     position: relative;

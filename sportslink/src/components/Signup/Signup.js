@@ -60,6 +60,14 @@ class Signup extends React.Component{
                 name="password"
                 onChange={this.handleChange}
                 label="Password"
+                type="password"
+            />
+
+            <Input
+                name="password2"
+                onChange={this.handleChange}
+                label="Re enter password"
+                type="password"
             />
             
             <br/>
