@@ -108,7 +108,7 @@ class AdminSideFilters extends React.Component{
         </FormControl>
         </div>
 
-        <TextField name="location" label="Location" onKeyDown={this._handleKeyDown}/>
+        <TextField name="location" label="Location" className="filterTextField" onKeyDown={this._handleKeyDown}/>
             
 
         <div className="locations">

@@ -9,7 +9,7 @@
 
     box-shadow: 2px 2px 8px #888888;
     height: 100vh;
-    background-color: aliceblue;
+    background-color: antiquewhite;
     padding-left: 20px;
     padding-top: 20px;
 }
@@ -21,6 +21,7 @@
 .adminRightColumn{
     flex-grow: 0.5;
     margin-left: 50px;
+    
 
 }
  .choice{
@@ -62,13 +63,21 @@
     box-shadow: 2px 2px 8px goldenrod;
  }
 
- .adminSearchBar{
-    text-align: center;
-    border: 2px black solid;
-    height: 100%;
+ .MuiFormControl-root.MuiTextField-root.adminSearchBar{
+    background-color: antiquewhite;
+    border-radius: 5px;
+    margin-top: 30px;
+    height: auto;
     width: 50%;
+    padding: 10px;
+   
+    box-shadow: 2px 2px 8px #888888;
  
  }
+
+ .MuiFormControl-root.MuiTextField-root.adminSearchBar label{
+   padding: 10px;
+}
  
  .logout{
    padding-top: 45vh;
@@ -84,4 +93,8 @@
    cursor: pointer;
    color: aliceblue;
    vertical-align: middle;
+}
+
+.MuiRadio-colorSecondary.Mui-checked{
+   color: black;
 }
