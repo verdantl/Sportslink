@@ -40,7 +40,7 @@ class NewPost extends React.Component{
                     value={this.state.postText}
                     placeholder="Type your message!"
                     type="text"/>
-                <div>
+                <div className="postButtons"> 
                     <Button className='cancelButton' onClick={this.cancelPost}>Cancel</Button>
                     <Button name='submitButton' onClick={this.submitPost}>Submit</Button>
                 </div>
