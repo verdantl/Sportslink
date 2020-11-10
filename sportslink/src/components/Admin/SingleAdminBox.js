@@ -45,6 +45,10 @@ class SingleAdminBox extends React.Component{
         this.setState({openDialog: true})
     }
 
+    handleEdit = (event) => {
+        window.location.href = '/userprofile/' + this.props.user.username
+    }
+
     handleAgreeClose = () => {
         this.props.adminAction(this.state.name, this.props.value)
         this.setState({openDialog: false})
@@ -87,7 +91,7 @@ class SingleAdminBox extends React.Component{
                     Remove
                 </div>
 
-                <div name="edit" onClick={this.handleClick} className={this.state.editClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButtonOff}>
+                <div name="edit" onClick={this.handleEdit} className={this.state.editClass} onMouseEnter={this.handleButton} onMouseLeave={this.handleButtonOff}>
                     Edit
                 </div>
             </div>
