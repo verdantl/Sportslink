@@ -5,11 +5,6 @@ import EditButton from './EditButton'
 import DeleteButton from './DeleteButton'
 
 class ExperienceCard extends React.Component{
-    state = {
-        hideButtons: true,
-        editing: true
-    }
-    
     constructor(props) {
         super(props);
         this.state={
@@ -20,7 +15,7 @@ class ExperienceCard extends React.Component{
             description: this.props.experience.description, 
             years: this.props.experience.years,
             hideButtons: true,
-            editing: true
+            editing: false
         };
     }
 
