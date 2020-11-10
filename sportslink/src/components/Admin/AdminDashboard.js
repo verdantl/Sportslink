@@ -12,7 +12,8 @@ class AdminDashboard extends React.Component{
       sports: [],
       search: '',
       users: this.props.info.users,
-      posts: this.props.info.posts
+      posts: this.props.info.posts,
+      click: false
     }
 
     removePost = (id) => {
@@ -97,7 +98,8 @@ class AdminDashboard extends React.Component{
             filter={this.state.filters} 
             filters={filters} 
             posts={this.state.posts} 
-            users={this.state.users}/>
+            users={this.state.users}
+            clickProfile={this.state.click}/>
 
           
           </div>
