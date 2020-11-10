@@ -32,11 +32,12 @@
 }
 .MuiFormControl-root.MuiTextField-root.searchBar{
     background-color: white;
-    border-radius: 10px;
+    border-radius: 5px;
     width: 70%;
     margin: 20px;
     margin-left: 40px;
     padding: 10px;
+    box-shadow: 2px 2px 8px #888888;
 }
 .MuiFormControl-root.MuiTextField-root.searchBar label{
     margin-left: 10px;
