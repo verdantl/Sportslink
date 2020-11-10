@@ -16,7 +16,7 @@ class AdminSearchResults extends React.Component{
 
         }
         else if (this.props.filter === 'posts'){
-            return <AdminPosts removePost={this.props.removePost} posts={this.props.posts}/>
+            return <AdminPosts removePost={this.props.removePost} posts={this.props.posts} clickProfile={this.props.clickProfile}/>
         }
         else{
             return <div></div>

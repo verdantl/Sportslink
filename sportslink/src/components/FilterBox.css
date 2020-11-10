@@ -13,9 +13,9 @@
 .table{
     text-align: justify;
     display: flex;
-    justify-content: space-around;
-    margin-left: 10vw;
-    margin-right: 10vw;
+    justify-content: space-between;
+    margin-left: 8vw;
+    margin-right: 8vw;
 }
 
 .filterboxes{

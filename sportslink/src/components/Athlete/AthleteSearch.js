@@ -53,6 +53,7 @@ class AthleteSearch extends React.Component{
             </div>
 
             <div className="searchContainer">
+                
             <TextField 
                 className="searchBar" 
                 onKeyPress={this.handleEnter} 

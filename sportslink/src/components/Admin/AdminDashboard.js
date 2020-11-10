@@ -12,7 +12,8 @@ class AdminDashboard extends React.Component{
       sports: [],
       search: '',
       users: this.props.info.users,
-      posts: this.props.info.posts
+      posts: this.props.info.posts,
+      click: false
     }
 
     removePost = (id) => {
@@ -24,6 +25,7 @@ class AdminDashboard extends React.Component{
 
     updatePreferences = (locations, organizations, sports) => {
       this.setState({locations: locations, organizations: organizations, sports: sports})
+      this.filterPreferences()
     }
 
     changeFilter = (filter) => {
@@ -39,23 +41,45 @@ class AdminDashboard extends React.Component{
         post.text.toLowerCase().includes(searchText.toLowerCase()) | post.user.name.toLowerCase().includes(searchText.toLowerCase()))
 
       this.setState({search: searchText, users: searchedUsers, posts: searchedPosts})
+      this.filterPreferences()
     }
 
+
+    
     filterPreferences = () => {
+      let allUsers = []
+      let allPosts = []
       if (this.state.locations.length > 0){
-        const users = {}
-        for (let i = 0; i < this.state.locations.length; i++){
-          
+          allUsers = this.state.users.filter(user => user.location.toLowerCase().includes(this.state.locations[0].toLowerCase()))
+          allPosts = this.state.posts.filter(post => post.user.location.toLowerCase().includes(this.state.locations[0].toLowerCase()))
+        
+      }
+      if (this.state.organizations.length > 0){
+          if (this.state.locations.length > 0){
+          allUsers = allUsers.filter(user => user.organization.toLowerCase().includes(this.state.organizations[0].toLowerCase()))
+          allPosts = allPosts.filter(post => post.user.organization.toLowerCase().includes(this.state.organizations[0].toLowerCase()))  
         }
-      }
-      if (this.state.organizations.length > 0){
+          else{
+          allUsers = this.state.users.filter(user => user.organization.toLowerCase().includes(this.state.organizations[0].toLowerCase()))
+          allPosts = this.state.posts.filter(post => post.user.organization.toLowerCase().includes(this.state.organizations[0].toLowerCase()))
+        }
 
       }
-      if (this.state.organizations.length > 0){
-
+      if (this.state.sports.length > 0){
+        if (this.state.locations.length > 0 | this.state.organizations.length > 0){
+          allUsers = allUsers.filter(user => user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase()))
+          allPosts = allPosts.filter(post => post.user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase()))
+          }
+          else{
+          allUsers = this.state.users.filter(user => user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase()))
+          allPosts = this.state.posts.filter(post => post.user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase()))
+          }
       }
       if (this.state.locations.length === 0 && this.state.organizations.length === 0 && this.state.sports.length === 0){
         this.setState({users: this.props.info.users, posts: this.props.info.posts})
+      }
+      else{
+        this.setState({users: allUsers, posts: allPosts})
       }
     }
 
@@ -97,13 +121,11 @@ class AdminDashboard extends React.Component{
             filter={this.state.filters} 
             filters={filters} 
             posts={this.state.posts} 
-            users={this.state.users}/>
+            users={this.state.users}
+            clickProfile={this.state.click}/>
 
           
           </div>
-
-          
-
         </div>
     }
 
