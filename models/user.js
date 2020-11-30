@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Student = mongoose.model('User', {
+const User = mongoose.model('User', {
         player: {
                 type: Boolean,
                 required: true
@@ -85,4 +85,4 @@ const Student = mongoose.model('User', {
 	}
 })
 
-module.exports = { Student }
+module.exports = { User }
