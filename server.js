@@ -12,6 +12,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
 const { User } = require("./models/user");
+const { Account } = require("./models/account");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -122,12 +123,16 @@ app.get("/users/check-session", (req, res) => {
 // User API Route
 app.post('/api/users', mongoChecker, async (req, res) => {
     log(req.body)
-
     // Create a new user
+    
     const user = new User({
-        email: req.body.email,
-        password: req.body.password
+      player: req.body.player, //athlete or not
+      username: req.body.username, //login username
+      suspended: false,
+      name: req.body.name
     })
+
+    const account = new Account();
 
     try {
         // Save the user
@@ -203,7 +208,7 @@ app.get("*", (req, res) => {
     }
 
     // send index.html
-    res.sendFile(path.join(__dirname, "/client/build/index.html"));
+    res.sendFile(path.join(__dirname, "/sportslink/build/index.html"));
 });
 
 /*************************************************/
