@@ -22,7 +22,11 @@ const User = mongoose.model('User', {
                 minlength: 1, 
                 trim: true
         },
-        image: lebron,
+        image: {
+                type: String,
+                required: false,
+                minlength: 1,
+        },
         description: {
                 type: String,
                 required: false,

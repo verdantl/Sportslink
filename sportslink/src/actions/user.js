@@ -1,4 +1,4 @@
-export const login = (user, global) => {
+export const login = (user, app) => {
     const request = new Request("/users/login", {
         method: "post",
         body: JSON.stringify(user.state),
@@ -21,24 +21,26 @@ export const login = (user, global) => {
         .catch(error => {
             console.log(error);
         });
-    //@Joanna use this request stuff above i guess
-    if (user.state.password === "user" && user.state.usern === "user") {
-        global.setState({
-            currentUser : user.state.usern
-        });
+    //@Joanna use this request stuff above i guess, I only commented out the below to test the server.js stuff
+
+
+    // if (user.state.password === "user" && user.state.usern === "user") {
+    //     global.setState({
+    //         currentUser : user.state.usern
+    //     });
         
-        window.location.href = "/dashboard";
-    }
-    else if (user.state.password === "admin" && user.state.usern === "admin") {
-        global.setState({
-            currentUser : user.state.usern
-        });
+    //     window.location.href = "/dashboard";
+    // }
+    // else if (user.state.password === "admin" && user.state.usern === "admin") {
+    //     global.setState({
+    //         currentUser : user.state.usern
+    //     });
         
-        window.location.href = "/admin";
-    }
-    else {
-        alert("Please try again");
-    }
+    //     window.location.href = "/admin";
+    // }
+    // else {
+    //     alert("Please try again");
+    // }
 
 };
 

@@ -191,7 +191,7 @@ app.get('/api/students', mongoChecker, authenticate, async (req, res) => {
 
 /*** Webpage routes below **********************************/
 // Serve the build
-app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "/sportslink/build")));
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
