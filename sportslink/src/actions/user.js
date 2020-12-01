@@ -1,5 +1,27 @@
 export const login = (user, global) => {
-    console.log(global.state.users[1].name)
+    const request = new Request("/users/login", {
+        method: "post",
+        body: JSON.stringify(user.state),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    })
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+            if (json.currentUser !== undefined) {
+                app.setState({ currentUser: json.currentUser });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    //@Joanna use this request stuff above i guess
     if (user.state.password === "user" && user.state.usern === "user") {
         global.setState({
             currentUser : user.state.usern

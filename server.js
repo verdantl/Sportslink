@@ -76,8 +76,8 @@ app.use(
 
 // A route to login and create a session
 app.post("/users/login", (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+    const usern = req.body.usern;
+    const password  = req.body.password;
 
     // log(email, password);
     // Use the static method on the User model to find a user
