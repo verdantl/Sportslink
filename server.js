@@ -150,7 +150,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
 
 /** Student resource routes **/
 // a POST route to *create* a student
-app.post('/api/students', mongoChecker, authenticate, async (req, res) => {
+app.post('/api/users', mongoChecker, authenticate, async (req, res) => {
     log(`Adding student ${req.body.name}, created by user ${req.user._id}`)
 
     // Create a new student using the Student mongoose model
@@ -177,7 +177,7 @@ app.post('/api/students', mongoChecker, authenticate, async (req, res) => {
 })
 
 // a GET route to get all students
-app.get('/api/students', mongoChecker, authenticate, async (req, res) => {
+app.get('/api/users', mongoChecker, authenticate, async (req, res) => {
 
     // Get the students
     try {
