@@ -13,6 +13,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 // import the mongoose models
 const { User } = require("./models/user");
 const { Account } = require("./models/account");
+const { Post } = require("./models/post")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -44,6 +45,24 @@ const mongoChecker = (req, res, next) => {
 
 // Middleware for authentication of resources
 const authenticate = (req, res, next) => {
+    if (req.session.user) {
+        User.findById(req.session.user).then((user) => {
+            if (!user) {
+                return Promise.reject()
+            } else {
+                req.user = user
+                next()
+            }
+        }).catch((error) => {
+            res.status(401).send("Unauthorized")
+        })
+    } else {
+        res.status(401).send("Unauthorized")
+    }
+}
+
+// Middleware for authentication of resources -- unfinished
+const authenticateAdmin = (req, res, next) => {
     if (req.session.user) {
         User.findById(req.session.user).then((user) => {
             if (!user) {
@@ -121,23 +140,16 @@ app.get("/users/check-session", (req, res) => {
 
 /*** API Routes below ************************************/
 // User API Route
-app.post('/api/users', mongoChecker, async (req, res) => {
+//Create a new account - sign up for the first time -- after this call, we'll want to make a user signup profile page.
+app.post('/api/accounts', mongoChecker, async (req, res) => {
     log(req.body)
     // Create a new user
-    
-    const user = new User({
-      player: req.body.player, //athlete or not
-      username: req.body.username, //login username
-      suspended: false,
-      name: req.body.name
-    })
-
-    const account = new Account();
+    const account = new Account(req.body);
 
     try {
         // Save the user
-        const newUser = await user.save()
-        res.send(newUser)
+        const newAccount = await account.save()
+        res.send(newAccount)
     } catch (error) {
         if (isMongoError(error)) { // check for if mongo server suddenly disconnected before this request.
             res.status(500).send('Internal server error')
@@ -147,24 +159,43 @@ app.post('/api/users', mongoChecker, async (req, res) => {
         }
     }
 })
+//Remember to check for the session user id, function for updating account settings information
+app.patch('/api/accounts', mongoChecker, authenticate, async (req, res) => {
 
-/** Student resource routes **/
-// a POST route to *create* a student
-app.post('/api/users', mongoChecker, authenticate, async (req, res) => {
-    log(`Adding student ${req.body.name}, created by user ${req.user._id}`)
+})
+
+//Remember to check for the session user id, function for updating profile information
+app.patch('/api/users', mongoChecker, authenticate, async (req, res) => {
+
+})
+
+//Deletes an account, we need to authenticate for admin, function for updating account settings information
+app.delete('/api/accounts', mongoChecker, authenticate, async (req, res) => {
+
+})
+
+//Remember to check for the session user id, function for updating profile information
+app.delete('/api/users', mongoChecker, authenticate, async (req, res) => {
+
+})
+
+/** User resource routes **/
+// a POST route to *create* the user profile --separate from initial account -- untested, because req.body sucks
+app.post('/api/users', mongoChecker, async (req, res) => {
+    log(`Adding user ${req.body.name}, created by user ${req.user._id}`)
 
     // Create a new student using the Student mongoose model
-    const student = new Student({
-        name: req.body.name,
-        year: req.body.year,
-        creator: req.user._id // creator id from the authenticate middleware
-    })
-
-
+    
+    const user = new User({
+        player: req.body.player, //athlete or not
+        username: req.body.username, //login username
+        suspended: false,
+        name: req.body.name
+      })
     // Save student to the database
     // async-await version:
     try {
-        const result = await student.save() 
+        const result = await user.save() 
         res.send(result)
     } catch(error) {
         log(error) // log server error to the console, not to the client.
@@ -176,12 +207,16 @@ app.post('/api/users', mongoChecker, authenticate, async (req, res) => {
     }
 })
 
-// a GET route to get all students
+// a GET route to get all users
 app.get('/api/users', mongoChecker, authenticate, async (req, res) => {
-
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	} 
     // Get the students
     try {
-        const students = await Student.find({creator: req.user._id})
+        const students = await User.find()
         // res.send(students) // just the array
         res.send({ students }) // can wrap students in object if want to add more properties
     } catch(error) {
@@ -191,8 +226,40 @@ app.get('/api/users', mongoChecker, authenticate, async (req, res) => {
 
 })
 
-// other student API routes can go here...
-// ...
+// a GET route to get all posts
+app.get('/api/posts', mongoChecker, authenticate, async (req, res) => {
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    try {
+        const posts = await Post.find()
+        // res.send(students) // just the array
+        res.send({ posts }) // can wrap students in object if want to add more properties
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+})
+
+// creating a new post -- untested
+app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
+    const post = new Post(req.body)
+    // Save student to the database
+    // async-await version:
+    try {
+        const result = await post.save() 
+        res.send(result)
+    } catch(error) {
+        log(error) // log server error to the console, not to the client.
+        if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+            res.status(500).send('Internal server error')
+        } else {
+            res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
+        }
+    }
+})
 
 /*** Webpage routes below **********************************/
 // Serve the build
