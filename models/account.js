@@ -16,9 +16,16 @@ const AccountSchema = new mongoose.Schema({
 		unique: true,
 		validate: {
 			validator: validator.isEmail,   // custom validator
-			message: 'Not valid email'
+			message: 'Invalid email address'
 		}
 	}, 
+	username: {
+		type: String,
+		required: true,
+		minlength: 1,
+		trim: true,
+		unique: true
+	},
 	password: {
 		type: String,
 		required: true,
@@ -30,14 +37,14 @@ const AccountSchema = new mongoose.Schema({
 // This function will run immediately prior to saving the document
 // in the database.
 AccountSchema.pre('save', function(next) {
-	const user = this; // binds this to User document instance
+	const account = this; // binds this to User document instance
 
 	// checks to ensure we don't hash password more than once
-	if (user.isModified('password')) {
+	if (account.isModified('password')) {
 		// generate salt and hash the password
 		bcrypt.genSalt(10, (err, salt) => {
-			bcrypt.hash(user.password, salt, (err, hash) => {
-				user.password = hash
+			bcrypt.hash(account.password, salt, (err, hash) => {
+				account.password = hash
 				next()
 			})
 		})
@@ -49,19 +56,19 @@ AccountSchema.pre('save', function(next) {
 // A static method on the document model.
 // Allows us to find a User document by comparing the hashed password
 //  to a given one, for example when logging in.
-AccountSchema.statics.findByEmailPassword = function(email, password) {
-	const User = this // binds this to the User model
+AccountSchema.statics.findByUsernamePassword = function(username, password) {
+	const account = this // binds this to the User model
 
 	// First find the user by their email
-	return User.findOne({ email: email }).then((user) => {
-		if (!user) {
+	return account.findOne({ username: username }).then((foundAccount) => {
+		if (!foundAccount) {
 			return Promise.reject()  // a rejected promise
 		}
 		// if the user exists, make sure their password is correct
 		return new Promise((resolve, reject) => {
-			bcrypt.compare(password, user.password, (err, result) => {
+			bcrypt.compare(password, foundAccount.password, (err, result) => {
 				if (result) {
-					resolve(user)
+					resolve(foundAccount)
 				} else {
 					reject()
 				}
@@ -72,5 +79,6 @@ AccountSchema.statics.findByEmailPassword = function(email, password) {
 
 // make a model using the User schema
 const Account = mongoose.model("Account", AccountSchema)
+
 module.exports = { Account }
 
