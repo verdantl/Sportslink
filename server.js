@@ -140,12 +140,11 @@ app.get("/users/check-session", (req, res) => {
 
 /*** API Routes below ************************************/
 // User API Route
-//Create a new account - sign up for the first time -- after this call, we'll want to make a user signup profile page.
+//SIGNUP FOR AN ACCOUNTCreate a new account - sign up for the first time -- after this call, we'll want to make a user signup profile page.
 app.post('/api/accounts', mongoChecker, async (req, res) => {
     log(req.body)
     // Create a new user
     const account = new Account(req.body);
-
     try {
         // Save the user
         const newAccount = await account.save()
@@ -159,6 +158,7 @@ app.post('/api/accounts', mongoChecker, async (req, res) => {
         }
     }
 })
+
 //Remember to check for the session user id, function for updating account settings information
 app.patch('/api/accounts', mongoChecker, authenticate, async (req, res) => {
 
@@ -216,9 +216,9 @@ app.get('/api/users', mongoChecker, authenticate, async (req, res) => {
 	} 
     // Get the students
     try {
-        const students = await User.find()
+        const users = await User.find()
         // res.send(students) // just the array
-        res.send({ students }) // can wrap students in object if want to add more properties
+        res.send({ users }) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
         res.status(500).send("Internal Server Error")
