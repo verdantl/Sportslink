@@ -21,7 +21,7 @@ const ExperienceSchema = new mongoose.Schema({
         description: {
                 type: String,
                 required: false,
-                minlength: 1
+                minlength: 0
         },
         years: {
                 type: String,
@@ -30,7 +30,8 @@ const ExperienceSchema = new mongoose.Schema({
         }
 })
 
-const User = mongoose.model('User', {
+
+const UserSchema = new mongoose.Schema({
         player: {
                 type: Boolean,
                 required: true
@@ -81,13 +82,37 @@ const User = mongoose.model('User', {
             minlength: 0,
             trim: true
         },
-        accomplishments: {
-            type: Array,
-            required: false,
-            minlength: 0
-        },
+        career: [{text: {
+                type: String,
+                required: false,
+                minlength: 1,
+                unique: true,
+                trim: true
+                }
+        }
+
+        ],
         experience: [ExperienceSchema]
 
 })
+
+// A static method on the document model.
+// Allows us to find a User document by comparing the hashed password
+//  to a given one, for example when logging in.
+UserSchema.statics.findByUsername = function(username) {
+	const user = this // binds this to the User model
+
+	// First find the user by their email
+	return user.findOne({ username: username }).then((foundUser) => {
+		if (!foundUser) {
+			return Promise.reject()  // a rejected promise
+                }
+                else{
+                        resolve(foundUser)
+                }
+	})
+}
+
+const User = mongoose.model('User', UserSchema)
 
 module.exports = { User }
