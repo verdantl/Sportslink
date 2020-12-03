@@ -95,20 +95,21 @@ app.use(
 );
 
 // A route to login and create a session
-app.post("/users/login", (req, res) => {
+app.post("/users/login", async(req, res) => {
     const usern = req.body.usern;
     const password  = req.body.password;
 
-    // log(email, password);
+    //log(usern, password, "post");
     // Use the static method on the User model to find a user
     // by their email and password
-    User.findByEmailPassword(email, password)
+    Account.findByUsernamePassword(usern, password)
         .then(user => {
             // Add the user's id to the session.
             // We can check later if this exists to ensure we are logged in.
             req.session.user = user._id;
             req.session.email = user.email; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
-            res.send({ currentUser: user.email });
+            req.session.usern = user.usern;
+            res.send({ currentUser: user.usern });
         })
         .catch(error => {
             res.status(400).send()

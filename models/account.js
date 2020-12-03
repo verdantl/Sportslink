@@ -29,7 +29,7 @@ const AccountSchema = new mongoose.Schema({
 	password: {
 		type: String,
 		required: true,
-		minlength: 6
+		minlength: 4
 	}
 })
 
@@ -57,18 +57,20 @@ AccountSchema.pre('save', function(next) {
 // Allows us to find a User document by comparing the hashed password
 //  to a given one, for example when logging in.
 AccountSchema.statics.findByUsernamePassword = function(username, password) {
-	const account = this // binds this to the User model
+	const Account = this // binds this to the User model
 
 	// First find the user by their email
-	return account.findOne({ username: username }).then((foundAccount) => {
-		if (!foundAccount) {
+	return Account.findOne({ username: username }).then((foundAccount) => {
+		// Was returning model, change to object?
+		const foundAccountObj = foundAccount.toObject()
+		if (!foundAccountObj) {
 			return Promise.reject()  // a rejected promise
 		}
 		// if the user exists, make sure their password is correct
 		return new Promise((resolve, reject) => {
-			bcrypt.compare(password, foundAccount.password, (err, result) => {
+			bcrypt.compare(password, foundAccountObj.password, (err, result) => {
 				if (result) {
-					resolve(foundAccount)
+					resolve(foundAccountObj)
 				} else {
 					reject()
 				}

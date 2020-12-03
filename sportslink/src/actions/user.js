@@ -11,12 +11,15 @@ export const login = (user, app) => {
         .then(res => {
             if (res.status === 200) {
                 return res.json();
+            } else {
+                alert("Please try again.")
             }
         })
         .then(json => {
             if (json.currentUser !== undefined) {
                 app.setState({ currentUser: json.currentUser });
-            }
+            }  
+            console.log("Login success.")
         })
         .catch(error => {
             console.log(error);

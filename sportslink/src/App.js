@@ -23,6 +23,7 @@ import { uid } from 'react-uid';
 
 class App extends React.Component {
   state = {
+    currentUser: null,
     user:
     {
       player: true,
