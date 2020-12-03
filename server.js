@@ -139,7 +139,7 @@ app.get("/users/check-session", (req, res) => {
 /*********************************************************/
 
 /*** API Routes below ************************************/
-// User API Route
+// Account API Route
 //SIGNUP FOR AN ACCOUNTCreate a new account - sign up for the first time -- after this call, we'll want to make a user signup profile page.
 app.post('/api/accounts', mongoChecker, async (req, res) => {
     log(req.body)
@@ -160,29 +160,42 @@ app.post('/api/accounts', mongoChecker, async (req, res) => {
 })
 
 //Remember to check for the session user id, function for updating account settings information
-app.patch('/api/accounts', mongoChecker, authenticate, async (req, res) => {
+app.patch('/api/accounts/:user', mongoChecker, authenticate, async (req, res) => {
 
 })
 
-//Remember to check for the session user id, function for updating profile information
-app.patch('/api/users', mongoChecker, authenticate, async (req, res) => {
 
-})
 
 //Deletes an account, we need to authenticate for admin, function for updating account settings information
-app.delete('/api/accounts', mongoChecker, authenticate, async (req, res) => {
+app.delete('/api/accounts/:account', mongoChecker, authenticate, async (req, res) => {
 
 })
 
-//Remember to check for the session user id, function for updating profile information
-app.delete('/api/users', mongoChecker, authenticate, async (req, res) => {
 
-})
 
 /** User resource routes **/
+// a GET route to get all users
+app.get('/api/users', mongoChecker, async (req, res) => {
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	} 
+    // Get the students
+    try {
+        const users = await User.find()
+        // res.send(students) // just the array
+        res.send(users) // can wrap students in object if want to add more properties
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+
+})
+
 // a POST route to *create* the user profile --separate from initial account -- untested, because req.body sucks
 app.post('/api/users', mongoChecker, async (req, res) => {
-    log(`Adding user ${req.body.name}, created by user ${req.user._id}`)
+    log(`Adding user ${req.body.name}`)
 
     // Create a new student using the Student mongoose model
     
@@ -190,7 +203,14 @@ app.post('/api/users', mongoChecker, async (req, res) => {
         player: req.body.player, //athlete or not
         username: req.body.username, //login username
         suspended: false,
-        name: req.body.name
+        name: req.body.name,
+        image: null,
+        description: "",
+        location: "",
+        organization: "",
+        sports: "",
+        accomplishments: [],
+        experience: []
       })
     // Save student to the database
     // async-await version:
@@ -207,25 +227,48 @@ app.post('/api/users', mongoChecker, async (req, res) => {
     }
 })
 
-// a GET route to get all users
-app.get('/api/users', mongoChecker, authenticate, async (req, res) => {
-	if (mongoose.connection.readyState != 1) {
-		log('Issue with mongoose connection')
-		res.status(500).send('Internal server error')
-		return;
-	} 
-    // Get the students
-    try {
-        const users = await User.find()
-        // res.send(students) // just the array
-        res.send({ users }) // can wrap students in object if want to add more properties
-    } catch(error) {
-        log(error)
-        res.status(500).send("Internal Server Error")
-    }
+
+//Remember to check for the session user id, function for updating profile information
+app.patch('/api/users/:user', mongoChecker, async (req, res) => {
+
+})
+//Remember to check for the session user id, function for updating profile information
+app.delete('/api/users/:user', mongoChecker, authenticate, async (req, res) => {
 
 })
 
+//add a new experience
+app.put('/api/users/:username/experience', mongoChecker, authenticate, async (req, res) => {
+
+})
+
+//edit existing experience
+app.patch('/api/users/:username/experience', mongoChecker, authenticate, async (req, res) => {
+
+})
+
+//delete existing experience
+app.delete('/api/users/:username/experience', mongoChecker, authenticate, async (req, res) => {
+
+})
+
+//add a new career accomplishment
+app.put('/api/users/:username/career', mongoChecker, authenticate, async (req, res) => {
+
+})
+
+//edit existing experience
+app.patch('/api/users/:username/career', mongoChecker, authenticate, async (req, res) => {
+
+})
+
+//delete existing experience
+app.delete('/api/users/:username/career', mongoChecker, authenticate, async (req, res) => {
+
+})
+
+
+//API for POSTS
 // a GET route to get all posts
 app.get('/api/posts', mongoChecker, authenticate, async (req, res) => {
 	if (mongoose.connection.readyState != 1) {

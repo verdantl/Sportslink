@@ -60,37 +60,31 @@ const User = mongoose.model('User', {
         description: {
                 type: String,
                 required: false,
-                minlength: 1,
+                minlength: 0,
                 trim: true
         },
         location: {
             type: String,
             required: false,
-            minlength: 1,
+            minlength: 0,
             trim: true
         },
         organization: {
             type: String,
             required: false,
-            minlength: 1,
+            minlength: 0,
             trim: true
         },
         sports: {
             type: String,
             required: false,
-            minlength: 1,
-            trim: true
-        },
-        contact: {
-            type: String,
-            required: false,
-            minlength: 1,
+            minlength: 0,
             trim: true
         },
         accomplishments: {
             type: Array,
             required: false,
-            minlength: 1
+            minlength: 0
         },
         experience: [ExperienceSchema]
 
