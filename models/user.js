@@ -82,11 +82,16 @@ const UserSchema = new mongoose.Schema({
             minlength: 0,
             trim: true
         },
-        accomplishments: {
-            type: Array,
-            required: false,
-            minlength: 0
-        },
+        career: [{text: {
+                type: String,
+                required: false,
+                minlength: 1,
+                unique: true,
+                trim: true
+                }
+        }
+
+        ],
         experience: [ExperienceSchema]
 
 })

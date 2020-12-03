@@ -311,7 +311,7 @@ app.delete('/api/users/:id', mongoChecker, async (req, res) => {
 	}
 })
 
-//add a new experience -- completed
+//add a new experience -- completed --
 app.post('/api/users/:id/experience', mongoChecker, async (req, res) => {
     const id = req.params.id
 
@@ -377,9 +377,6 @@ app.patch('/api/users/:id/experience/:experience', mongoChecker, async (req, res
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
             const updated = await User.findOneAndUpdate({"_id": id, "experience._id" : eid}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
-            
-            console.log(updated)
-			// const result = await user.save()
 			res.send(updated)
 		}
 	} catch(error) {
@@ -389,24 +386,146 @@ app.patch('/api/users/:id/experience/:experience', mongoChecker, async (req, res
 
 })
 
-//delete existing experience
-app.delete('/api/users/:username/experience', mongoChecker, authenticate, async (req, res) => {
+//delete existing experience --
+app.delete('/api/users/:id/experience/:experience', mongoChecker, async (req, res) => {
+    const id = req.params.id
+    const eid = req.params.experience
+
+	// Validate id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+
+    try {
+        const user = await User.findByIdAndUpdate(
+            id,
+           { $pull: { 'experience': {  _id: eid} } })
+
+		if (!user) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			res.send(user.experience) // this will be the array of the experience before deletion 
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
+//add a new career accomplishment - input req.body should be {"career": "stuff"} ---- have not solved for duplicates
+app.put('/api/users/:id/career', mongoChecker, async (req, res) => {
+    const id = req.params.id
+	// Validate id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    try {
+		const user = await User.findById(id)
+		if (!user) {
+			res.status(404).send('Resource not found')  // could not find this
+		} else {
+            /// sometimes we might wrap returned object in another object:
+            user.career.push(req.body)
+            const result = await user.save()
+            res.send(result)
+
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
+//edit existing accomplishment -- replaces string only, expects form , MIGHT WANT TO REPLACE WITH SOMETHING BETTER
+app.patch('/api/users/:id/career/:careerid', mongoChecker, async (req, res) => {
+    const id = req.params.id
+    const cid = req.params.careerid
+
+	// Validate id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    const fieldsToUpdate = {}
+    
+	req.body.map((change) => {
+		const propertyToChange = change.path.substr(1) // getting rid of the '/' character
+        const property = "career.$." + propertyToChange
+        fieldsToUpdate[property] = change.value
+    })
+
+    try {
+        const user = await User.findById(id)
+
+		if (!user) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+            const updated = await User.findOneAndUpdate({"_id": id, "career._id" : cid}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
+			res.send(updated)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
 
 })
 
-//add a new career accomplishment
-app.put('/api/users/:username/career', mongoChecker, authenticate, async (req, res) => {
+//delete existing accomplishment
+app.delete('/api/users/:id/career/:cid', mongoChecker, async (req, res) => {
+    const id = req.params.id
 
-})
+    const cid = req.params.cid
 
-//edit existing experience
-app.patch('/api/users/:username/career', mongoChecker, authenticate, async (req, res) => {
+	// Validate id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
 
-})
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
 
-//delete existing experience
-app.delete('/api/users/:username/career', mongoChecker, authenticate, async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(
+            id,
+           { $pull: { 'career': {  _id: cid} } })
 
+		if (!user) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			res.send(user.career) // this will be the array of the experience before deletion 
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
 })
 
 
