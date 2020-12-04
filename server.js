@@ -532,7 +532,7 @@ app.delete('/api/users/:id/career/:cid', mongoChecker, async (req, res) => {
 
 //API for POSTS
 // a GET route to get all posts
-app.get('/api/posts', mongoChecker, authenticate, async (req, res) => {
+app.get('/api/posts', mongoChecker, async (req, res) => {
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -541,7 +541,7 @@ app.get('/api/posts', mongoChecker, authenticate, async (req, res) => {
     try {
         const posts = await Post.find()
         // res.send(students) // just the array
-        res.send({ posts }) // can wrap students in object if want to add more properties
+        res.send(posts) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
         res.status(500).send("Internal Server Error")
@@ -549,8 +549,15 @@ app.get('/api/posts', mongoChecker, authenticate, async (req, res) => {
 })
 
 // creating a new post -- untested
-app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
-    const post = new Post(req.body)
+app.post('/api/posts', mongoChecker, async (req, res) => {
+    const today = new Date().toDateString()
+    const post = new Post({
+        user: req.body.user,
+        text: req.body.text,
+        date: today,
+        likes: 0,
+        comments: []
+    })
     // Save student to the database
     // async-await version:
     try {
