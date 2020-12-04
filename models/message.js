@@ -17,11 +17,6 @@ const mongoose = require('mongoose');
 
 // Schema used for messages.
 const MessageSchema = new mongoose.Schema({
-    messageID: {
-        type: Number,
-        required: true,
-        minlength: 1
-    },
     sentUsername: {
         type: String,
         required: true,
