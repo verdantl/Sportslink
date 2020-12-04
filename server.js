@@ -573,6 +573,36 @@ app.post('/api/posts', mongoChecker, async (req, res) => {
     }
 })
 
+app.delete('/api/posts/:postid', mongoChecker, async (req, res) => {
+    const pid = req.params.postid
+    	// Validate id
+	if (!ObjectID.isValid(pid)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+
+    try {
+        const post = await Post.findByIdAndRemove(pid)
+
+		if (!post) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			res.send(post) // this will be the array of the experience before deletion 
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
+
 /*** Webpage routes below **********************************/
 // Serve the build
 app.use(express.static(path.join(__dirname, "/sportslink/build")));
