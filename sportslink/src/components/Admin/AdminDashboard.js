@@ -5,14 +5,18 @@ import AdminSearchBox from './AdminSearchBox'
 import AdminSideFilters from './AdminSideFilters'
 
 class AdminDashboard extends React.Component{
+    constructor(props) {
+        super(props);
+        this.props.history.push("/admin");
+    }
     state = {
       filters: 'athlete',
       locations: [],
       organizations: [],
       sports: [],
       search: '',
-      users: this.props.info.users,
-      posts: this.props.info.posts,
+      users: this.props.users,
+      posts: this.props.posts,
       click: false
     }
 
@@ -83,8 +87,11 @@ class AdminDashboard extends React.Component{
 
     render(){
         const filters = {locations: this.state.locations, organizations: this.state.organizations, sports: this.state.sports}
+        const { history, app } = this.props;
         return <div className="adminDashboard">
           <AdminSideFilters 
+          app={app}
+          history={history}
           filter={this.state.filters}
           filters={filters}
           updatePref={this.updatePreferences} 
@@ -96,14 +103,14 @@ class AdminDashboard extends React.Component{
             Search Results For: {this.state.search}
           </div>
 
-          <AdminSearchResults 
+          {/* <AdminSearchResults 
             adminAction={this.adminAction} 
             removePost={this.removePost} 
             filter={this.state.filters} 
             filters={filters} 
             posts={this.state.posts} 
             users={this.state.users}
-            clickProfile={this.state.click}/>
+            clickProfile={this.state.click}/> */}
 
           
           </div>

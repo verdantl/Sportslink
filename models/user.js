@@ -105,9 +105,11 @@ UserSchema.statics.findByUsername = function(username) {
 	// First find the user by their email
 	return user.findOne({ username: username }).then((foundUser) => {
 		if (!foundUser) {
-			return Promise.reject()  // a rejected promise
+                        console.log("hey", "foundUser")
+		        return Promise.reject()  // a rejected promise
                 }
                 else{
+                        console.log("what", foundUser)
                         resolve(foundUser)
                 }
 	})

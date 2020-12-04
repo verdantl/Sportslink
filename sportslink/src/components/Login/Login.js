@@ -9,6 +9,11 @@ import Input from "../Input/Input.js";
 import { login} from "../../actions/user.js";
 
 class Login extends React.Component{
+    constructor(props) {
+        super(props);
+        this.props.history.push("/login");
+    }
+    
     state = {
         usern: "",
         password: "",
@@ -31,13 +36,13 @@ class Login extends React.Component{
 
     handleEnter = (event) => {
         if (event.key === 'Enter'){
-            const {global} = this.props
-            login(this, global)
+            const {app} = this.props
+            login(this, app)
         }
     }
 
     render() {
-        const {global} = this.props;
+        const { app } = this.props;
         return (
             <div className="loginPage">
                 <div className='loginTitle'><h1>Sportslink</h1><p>Bringing together the greatest athletic community around the globe.</p></div>
@@ -61,7 +66,7 @@ class Login extends React.Component{
                     <br/>
                     <Button
                         variant="contained"
-                        onClick={() => login(this, global)}
+                        onClick={() => login(this, app)}
                         className="loginButton"
                     > 
                         Log In    

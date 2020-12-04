@@ -167,21 +167,34 @@ class App extends React.Component {
   }
   
   render(){
-    const { currentUser } = this.state.currentUser;
+    const { currentUser } = this.state;
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path = '/admin' render={()=>
-                          (<AdminDashboard info={this.state} className="adminDashboard"/>)}/>
-          <Route exact path = '/search' render={()=>
-                          (<div> <TopBar /><AthleteSearch info={this.state} className="athleteSearch"/></div>)}/>
-          <Route exact path = '/dashboard' render={()=>
-                          (<div> <TopBar /><Dashboard info={this.state} className="dashboard"/></div>)}/>
-          <Route exact path = '/' render={() =>
-                          (<Login global={this}/>)}/>
+          <Route
+            exact path={["/", "/login", "/dashboard", "/admin"] /* any of these URLs are accepted. */ }
+            render={ props => (
+                <div className="app">
+                    { /* Different componenets rendered depending on if someone is logged in. */}
+                    {!currentUser ? <Login {...props} app={this} /> : currentUser==='admin' ? <AdminDashboard {...props} app={this} className="adminDashboard"/> : <div><TopBar {...props} app={this}/><Dashboard {...props} app={this} /></div>}
+                </div>                   // ... spread operator - provides all of the props in the props object
+            )}
+          />
           
-          <Route exact path = '/profile/TheRealLebronJames' render={() => 
-                          (<div><TopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
+          {/* <Route exact path="/profile/:id" render={ props => <Profile {...props} /> } />  */}
+
+          
+          {/* <Route exact path = '/admin' render={()=>
+                          (<AdminDashboard info={this.state} className="adminDashboard"/>)}/> */}
+          <Route exact path = '/search' render={props=>
+                          (<div> <TopBar {...props} app={this}/><AthleteSearch info={this.state} className="athleteSearch"/></div>)}/>
+          {/* <Route exact path = '/dashboard' render={({ history })=>
+                          (<div> <TopBar /><Dashboard history={history} info={this.state} className="dashboard"/></div>)}/>
+          <Route exact path = {['/', '/login']} render={({ props }) =>
+                          (<Login history={history} app={this}/>)}/> */}
+          
+          <Route exact path = '/profile/TheRealLebronJames' render={props => 
+                          (<div><TopBar {...props} app={this}/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
 
           <Route exact path = '/userprofile/TheRealLebronJames' render={() => 
                           (<div><AdminTopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
@@ -194,27 +207,29 @@ class App extends React.Component {
           <Route exact path = '/userprofile/PhilJackson' render={() => 
                           (<div><AdminTopBar/><Profile className="profile" global={this.state.users[4]}/></div>)}/>
           
-          <Route exact path = '/viewprofile/TheRealLebronJames' render={() => 
-                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
-          <Route exact path = '/viewprofile/rapsowemeone' render={() => 
-                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
-          <Route exact path = '/viewprofile/xXx_JamesHarden_xXx' render={() => 
-                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[2]}/></div>)}/>
-          <Route exact path = '/viewprofile/coolguy123' render={() => 
-                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[3]}/></div>)}/>
-          <Route exact path = '/viewprofile/PhilJackson' render={() => 
-                          (<div><TopBar/><ViewProfile className="viewProfile" global={this.state.users[4]}/></div>)}/>
+          <Route exact path = '/viewprofile/TheRealLebronJames' render={props => 
+                          (<div><TopBar {...props} app={this}/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
+          <Route exact path = '/viewprofile/rapsowemeone' render={props => 
+                          (<div><TopBar {...props} app={this}/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
+          <Route exact path = '/viewprofile/xXx_JamesHarden_xXx' render={props => 
+                          (<div><TopBar {...props} app={this}/><ViewProfile className="viewProfile" global={this.state.users[2]}/></div>)}/>
+          <Route exact path = '/viewprofile/coolguy123' render={props => 
+                          (<div><TopBar {...props} app={this}/><ViewProfile className="viewProfile" global={this.state.users[3]}/></div>)}/>
+          <Route exact path = '/viewprofile/PhilJackson' render={props => 
+                          (<div><TopBar {...props} app={this}/><ViewProfile className="viewProfile" global={this.state.users[4]}/></div>)}/>
           
-          <Route exact path = '/messaging' render={() => 
-                          (<div><TopBar/><Messaging className="messaging"/></div>)}/>
+          <Route exact path = '/messaging' render={props => 
+                          (<div><TopBar {...props} app={this}/><Messaging className="messaging"/></div>)}/>
           <Route exact path = '/signup' render={() => 
                           (<Signup className="signup"/>)}/>
           <Route exact path = '/onboarding' render={() => 
                           (<Onboarding className="onboarding"/>)}/>
-          <Route exact path = '/settings' render={() => 
-                          (<div> <TopBar/><Settings global={this}/></div>)}/>
+          <Route exact path = '/settings' render={props => 
+                          (<div> <TopBar {...props} app={this}/><Settings global={this}/></div>)}/>
           <Route exact path = '/forgotpassword' render={() => 
                           (<ForgotPass/>)}/>
+
+          <Route render={() => <div>404 Not found</div>} />
         </Switch>
       </BrowserRouter>)
   }

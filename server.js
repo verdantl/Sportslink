@@ -99,7 +99,7 @@ app.post("/users/login", async(req, res) => {
     const usern = req.body.usern;
     const password  = req.body.password;
 
-    //log(usern, password, "post");
+    log(usern, password, "post");
     // Use the static method on the User model to find a user
     // by their email and password
     Account.findByUsernamePassword(usern, password)
@@ -112,6 +112,7 @@ app.post("/users/login", async(req, res) => {
             res.send({ currentUser: user.username });
         })
         .catch(error => {
+            log(error)
             res.status(400).send()
         });
 });
@@ -130,6 +131,7 @@ app.get("/users/logout", (req, res) => {
 
 // A route to check if a user is logged in on the session
 app.get("/users/check-session", (req, res) => {
+    log(req.session)
     if (req.session.user) {
         res.send({ currentUser: req.session.username });
     } else {
@@ -610,7 +612,7 @@ app.use(express.static(path.join(__dirname, "/sportslink/build")));
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
     // check for page routes that we expect in the frontend to provide correct status code.
-    const goodPageRoutes = ["/", "/login", "/dashboard"];
+    const goodPageRoutes = ["/", "/login", "/dashboard", "/messaging"];
     if (!goodPageRoutes.includes(req.url)) {
         // if url not in expected page routes, set status to 404.
         res.status(404);

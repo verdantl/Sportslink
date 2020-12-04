@@ -31,41 +31,31 @@ export const login = (user, app) => {
         .then(res => {
             if (res.status === 200) {
                 return res.json();
-            } else {
-                alert("Please try again.")
             }
         })
         .then(json => {
             if (json.currentUser !== undefined) {
                 app.setState({ currentUser: json.currentUser });
-                app.history.push("/dashboard")
             }  
-            console.log("Login success.")
         })
         .catch(error => {
             console.log(error);
         });
-    //@Joanna use this request stuff above i guess, I only commented out the below to test the server.js stuff
+};
 
+// A function to send a GET request to logout the current user
+export const logout = (app) => {
+    const url = "/users/logout";
 
-    // if (user.state.password === "user" && user.state.usern === "user") {
-    //     global.setState({
-    //         currentUser : user.state.usern
-    //     });
-        
-    //     window.location.href = "/dashboard";
-    // }
-    // else if (user.state.password === "admin" && user.state.usern === "admin") {
-    //     global.setState({
-    //         currentUser : user.state.usern
-    //     });
-        
-    //     window.location.href = "/admin";
-    // }
-    // else {
-    //     alert("Please try again");
-    // }
-
+    fetch(url)
+        .then(res => {
+            app.setState({
+                currentUser: null
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        });
 };
 
 export const signupNext = user => {

@@ -6,7 +6,7 @@ import './TopBar.css';
 import SearchIcon from "@material-ui/icons/Search"
 import MessageIcon from '@material-ui/icons/Message';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {barClick} from "../actions/user.js";
+import {barClick, logout} from "../actions/user.js";
 import {search} from '../actions/user.js'
 
 class TopBar extends React.Component{
@@ -27,29 +27,61 @@ class TopBar extends React.Component{
             search();
         }
     }
+
+    home = (app) => {
+        this.props.history.push("/login");
+        //logout(app);
+    };
+
+    profile = (app) => {
+        this.props.history.push("/profile/TheRealLebronJames");
+        //logout(app);
+    };
+
+    search = (app) => {
+        this.props.history.push("/search");
+        //logout(app);
+    };
+
+    message = (app) => {
+        this.props.history.push("/messaging");
+        //logout(app);
+    };
+
+    settings = (app) => {
+        this.props.history.push("/settings");
+        //logout(app);
+    };
+
+    logoutUser = (app) => {
+        this.props.history.push("/login");
+        logout(app);
+    };
+
     render(){
+        const {app} = this.props;
         return <div className="topBar">
             <ul>
             {/* <li>
             <input className="searchTitle" placeholder="Search" onKeyPress={this.handleSearch}/>
             </li> */}
             <li>
-            <HomeIcon className={this.state.homeIcon} onClick={() => barClick(this)}/>
+            <HomeIcon className={this.state.homeIcon} onClick={() => this.home(this)}/>
             </li>
             <li>
-            <PersonIcon className={this.state.userIcon} onClick={() => barClick(this)}/>
+            <PersonIcon className={this.state.userIcon} onClick={() => this.profile(this)}/>
             </li>
             <li>
-            <SearchIcon className={this.state.searchIcon} onClick={() => barClick(this)}/>
+            <SearchIcon className={this.state.searchIcon} onClick={() => this.search(this)}/>
             </li>
             <li>
-            <MessageIcon className={this.state.messageIcon} onClick={() => barClick(this)}/>
+            <MessageIcon className={this.state.messageIcon} onClick={() => this.message(this)}/>
             </li>
             <li>
-            <SettingsIcon className={this.state.settingsIcon} onClick={() => barClick(this)}/>
+            <SettingsIcon className={this.state.settingsIcon} onClick={() => this.settings(this)}/>
             </li>
             <li>
-            <ExitToAppIcon className={this.state.exitIcon} onClick={() => barClick(this)}/>
+            <ExitToAppIcon className={this.state.exitIcon} onClick={() => this.logoutUser(app)}/>
             </li>
             </ul>
 

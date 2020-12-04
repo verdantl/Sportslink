@@ -4,13 +4,13 @@ import FormControlLabel from "@material-ui/core/FormControlLabel"
 import TextField from '@material-ui/core/TextField'
 import {uid} from 'react-uid'
 import IconButton from '@material-ui/core/IconButton'
-import ClearIcon from '@material-ui/icons/Clear'
-;
+import ClearIcon from '@material-ui/icons/Clear';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {logout} from "../../actions/user.js";
 
 class AdminSideFilters extends React.Component{
     state = {
@@ -90,11 +90,14 @@ class AdminSideFilters extends React.Component{
         this.setState({exitIcon: 'exitIcon'})
     }
 
-    handleClick = (event) => {
-        window.location.href = '/';
-    }
+    logoutUser = (app) => {
+        this.props.history.push("/login");
+        logout(app);
+    };
 
-    render(){
+    render()
+    {
+        const {app} = this.props;
         return <div className="adminLeftColumn">
         <div>
         <div>
@@ -159,7 +162,7 @@ class AdminSideFilters extends React.Component{
 
         </div>
         <div className='logout'>
-            <ExitToAppIcon className={this.state.exitIcon} onMouseEnter={this.handleExitHover} onMouseLeave={this.handleExitHoverOff} onClick={this.handleClick}/>
+            <ExitToAppIcon className={this.state.exitIcon} onMouseEnter={this.handleExitHover} onMouseLeave={this.handleExitHoverOff} onClick={()=>this.logoutUser(app)}/>
         </div>
         
         </div>
