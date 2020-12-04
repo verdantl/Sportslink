@@ -21,7 +21,14 @@ import ForgotPass from './components/ForgotPass/ForgotPass'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { uid } from 'react-uid';
 
+import { checkSession } from "./actions/user";
+
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    checkSession(this); // sees if a user is logged in.
+  }
+  
   state = {
     currentUser: null,
     user:
@@ -162,6 +169,7 @@ class App extends React.Component {
   }
   
   render(){
+    const { currentUser } = this.state.currentUser;
     return (
       <BrowserRouter>
         <Switch>
@@ -173,7 +181,7 @@ class App extends React.Component {
                           (<div> <TopBar /><Dashboard info={this.state} className="dashboard"/></div>)}/>
           <Route exact path = '/' render={() =>
                           (<Login global={this}/>)}/>
-
+          
           <Route exact path = '/profile/TheRealLebronJames' render={() => 
                           (<div><TopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
 

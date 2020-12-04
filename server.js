@@ -108,8 +108,8 @@ app.post("/users/login", async(req, res) => {
             // We can check later if this exists to ensure we are logged in.
             req.session.user = user._id;
             req.session.email = user.email; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
-            req.session.usern = user.usern;
-            res.send({ currentUser: user.usern });
+            req.session.username = user.username;
+            res.send({ currentUser: user.username });
         })
         .catch(error => {
             res.status(400).send()
@@ -131,7 +131,7 @@ app.get("/users/logout", (req, res) => {
 // A route to check if a user is logged in on the session
 app.get("/users/check-session", (req, res) => {
     if (req.session.user) {
-        res.send({ currentUser: req.session.email });
+        res.send({ currentUser: req.session.username });
     } else {
         res.status(401).send();
     }
