@@ -5,6 +5,17 @@ cd sportslink
 
 npm start
 
+# building the app
+cd to team44 (root):   npm install  
+
+cd to sportslink:   npm install
+                    npm run build
+
+cd to team 44:      node server.js
+
+open on:            http://localhost:5000/
+
+
 ## Instructions
 Please use the login page with the username user and password user to login to the application. A signup page will be available
 but not entirely functional since that involves back-end manipulation.
