@@ -33,7 +33,7 @@ li{
 
 }
 
-.homeIconLight{
+.homeIcon:hover{
     transform: scale(1.4);
     cursor: pointer;
     color: aliceblue;
@@ -46,7 +46,7 @@ li{
     vertical-align: middle;
 }
 
-.settingsIconLight{
+.settingsIconL:hover{
     transform: scale(1.4);
     cursor: pointer;
     color: aliceblue;
@@ -59,7 +59,7 @@ li{
     text-align: center;
     vertical-align: middle;
 }
-.userIconLight{
+.userIcon:hover{
     cursor: pointer;
     transform: scale(1.4);
     color: aliceblue;
@@ -71,7 +71,7 @@ li{
     vertical-align: middle;
 }
 
-.messageIconLight{
+.messageIcon:hover{
     transform: scale(1.3);
     cursor: pointer;
     color: aliceblue;
@@ -83,7 +83,7 @@ li{
     vertical-align: middle;
 }
 
-.searchIconLight{
+.searchIcon:hover{
     transform: scale(1.3);
     cursor: pointer;
     color: aliceblue;
@@ -95,7 +95,7 @@ li{
     vertical-align: middle;
 }
 
-.exitIconLight{
+.exitIcon:hover{
     transform: scale(1.3);
     cursor: pointer;
     color: aliceblue;
