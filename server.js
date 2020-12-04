@@ -14,6 +14,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 const { User } = require("./models/user");
 const { Account } = require("./models/account");
 const { Post } = require("./models/post")
+const { Message } = require("./models/message")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 
 // express-session for managing user sessions
 const session = require("express-session");
+const { mongo } = require("mongoose");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
@@ -602,6 +604,46 @@ app.delete('/api/posts/:postid', mongoChecker, async (req, res) => {
 		log(error)
 		res.status(500).send('Internal Server Error')  // server error
 	}
+})
+
+
+// API for messages
+// GET for getting all messages from a specific user, to another specific user sorted by date ascending
+app.get('/api/message', mongoChecker, async (req, res) => {
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return
+    }
+    try {
+        const messages = await Message.find({ 
+            sentUsername: req.body.sentUsername, 
+            toUsername: req.body.toUsername 
+        }).sort({date: 'desc'})
+        res.send(messages)
+    } catch (error) {
+        log(error)
+        res.status(500).send('Internal server error')
+    }
+})
+
+// Create a new message
+app.post('/api/message', mongoChecker, async (req, res) => {
+    const currDate = new Date()
+    const message = new Message({
+        sentUsername: req.body.sentUsername,
+        toUsername: req.body.toUsername,
+        messageData: req.body.messageData,
+        sendDate: currDate
+    })
+    // Saving the message to the database:
+    try {
+        const result = await message.send()
+        res.send(result)
+    } catch(error) {
+        log(error)
+        res.status(500).send('Internal Server Error')
+    }
 })
 
 
