@@ -532,7 +532,7 @@ app.delete('/api/users/:id/career/:cid', mongoChecker, async (req, res) => {
 
 //API for POSTS
 // a GET route to get all posts
-app.get('/api/posts', mongoChecker, authenticate, async (req, res) => {
+app.get('/api/posts', mongoChecker, async (req, res) => {
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -541,7 +541,7 @@ app.get('/api/posts', mongoChecker, authenticate, async (req, res) => {
     try {
         const posts = await Post.find()
         // res.send(students) // just the array
-        res.send({ posts }) // can wrap students in object if want to add more properties
+        res.send(posts) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
         res.status(500).send("Internal Server Error")
@@ -549,8 +549,15 @@ app.get('/api/posts', mongoChecker, authenticate, async (req, res) => {
 })
 
 // creating a new post -- untested
-app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
-    const post = new Post(req.body)
+app.post('/api/posts', mongoChecker, async (req, res) => {
+    const today = new Date().toDateString()
+    const post = new Post({
+        user: req.body.user,
+        text: req.body.text,
+        date: today,
+        likes: 0,
+        comments: []
+    })
     // Save student to the database
     // async-await version:
     try {
@@ -565,6 +572,36 @@ app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
         }
     }
 })
+
+app.delete('/api/posts/:postid', mongoChecker, async (req, res) => {
+    const pid = req.params.postid
+    	// Validate id
+	if (!ObjectID.isValid(pid)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+
+    try {
+        const post = await Post.findByIdAndRemove(pid)
+
+		if (!post) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			res.send(post) // this will be the array of the experience before deletion 
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
 
 /*** Webpage routes below **********************************/
 // Serve the build

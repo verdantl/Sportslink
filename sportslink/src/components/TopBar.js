@@ -19,61 +19,7 @@ class TopBar extends React.Component{
         searchIcon: 'searchIcon',
         exitIcon: 'exitIcon'
     }
-    handleHomeHover = (event) => {
-        this.setState({homeIcon: 'homeIconLight'})
-    }
 
-
-    handleHomeHoverOff = (event) => {
-        this.setState({homeIcon: 'homeIcon'})
-    }
-
-    handleSearchHover = (event) => {
-        this.setState({searchIcon: 'searchIconLight'})
-    }
-
-
-    handleSearchHoverOff = (event) => {
-        this.setState({searchIcon: 'searchIcon'})
-    }
-
-
-    handleUserHover = (event) => {
-        this.setState({userIcon: 'userIconLight'})
-    }
-
-
-    handleUserHoverOff = (event) => {
-        this.setState({userIcon: 'userIcon'})
-    }
-
-    handleSettingsHover = (event) => {
-        this.setState({settingsIcon: 'settingsIconLight'})
-    }
-
-
-    handleSettingsHoverOff = (event) => {
-        this.setState({settingsIcon: 'settingsIcon'})
-    }
-
-
-    handleMessageHover = (event) => {
-        this.setState({messageIcon: 'messageIconLight'})
-    }
-
-
-    handleMessageHoverOff = (event) => {
-        this.setState({messageIcon: 'messageIcon'})
-    }
-
-    handleExitHover = (event) => {
-        this.setState({exitIcon: 'exitIconLight'})
-    }
-
-
-    handleExitHoverOff = (event) => {
-        this.setState({exitIcon: 'exitIcon'})
-    }
 
     handleSearch = (event) => {
         if (event.key === 'Enter'){
@@ -88,22 +34,22 @@ class TopBar extends React.Component{
             <input className="searchTitle" placeholder="Search" onKeyPress={this.handleSearch}/>
             </li> */}
             <li>
-            <HomeIcon className={this.state.homeIcon} onMouseEnter={this.handleHomeHover} onMouseLeave={this.handleHomeHoverOff} onClick={() => barClick(this)}/>
+            <HomeIcon className={this.state.homeIcon} onClick={() => barClick(this)}/>
             </li>
             <li>
-            <PersonIcon className={this.state.userIcon} onMouseEnter={this.handleUserHover} onMouseLeave={this.handleUserHoverOff} onClick={() => barClick(this)}/>
+            <PersonIcon className={this.state.userIcon} onClick={() => barClick(this)}/>
             </li>
             <li>
-            <SearchIcon className={this.state.searchIcon} onMouseEnter={this.handleSearchHover} onMouseLeave={this.handleSearchHoverOff} onClick={() => barClick(this)}/>
+            <SearchIcon className={this.state.searchIcon} onClick={() => barClick(this)}/>
             </li>
             <li>
-            <MessageIcon className={this.state.messageIcon} onMouseEnter={this.handleMessageHover} onMouseLeave={this.handleMessageHoverOff} onClick={() => barClick(this)}/>
+            <MessageIcon className={this.state.messageIcon} onClick={() => barClick(this)}/>
             </li>
             <li>
-            <SettingsIcon className={this.state.settingsIcon} onMouseEnter={this.handleSettingsHover} onMouseLeave={this.handleSettingsHoverOff} onClick={() => barClick(this)}/>
+            <SettingsIcon className={this.state.settingsIcon} onClick={() => barClick(this)}/>
             </li>
             <li>
-            <ExitToAppIcon className={this.state.exitIcon} onMouseEnter={this.handleExitHover} onMouseLeave={this.handleExitHoverOff} onClick={() => barClick(this)}/>
+            <ExitToAppIcon className={this.state.exitIcon} onClick={() => barClick(this)}/>
             </li>
             </ul>
 
