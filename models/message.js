@@ -39,6 +39,10 @@ const MessageSchema = new mongoose.Schema({
         required: true,
         minlength: 1,
         trim: true
+    },
+    sentDate: {
+        type: Date,
+        required: true
     }
 })
 
