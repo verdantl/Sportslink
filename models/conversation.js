@@ -23,12 +23,6 @@ const MessageSchema = new mongoose.Schema({
         minlength: 1,
         trim: true
     },
-    toUsername: {
-        type: String,
-        required: true,
-        minlength: 1,
-        trim: true
-    },
     messageData: {
         type: String,
         required: true,
@@ -41,6 +35,23 @@ const MessageSchema = new mongoose.Schema({
     }
 })
 
-const Message = mongoose.model("message", MessageSchema)
+// Schema used for conversations
+const ConversationSchema = new mongoose.Schema({
+    sentUsername: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true
+    },
+    toUsername: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true
+    },
+    messages: [MessageSchema]
+})
 
-module.exports = { Message }
+const Conversation = mongoose.model("conversation", ConversationSchema)
+
+module.exports = { Conversation }
