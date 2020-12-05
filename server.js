@@ -545,6 +545,7 @@ app.get('/api/posts', mongoChecker, async (req, res) => {
     try {
         const posts = await Post.find()
         // res.send(students) // just the array
+        posts.reverse()
         res.send(posts) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
