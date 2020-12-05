@@ -14,7 +14,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 const { User } = require("./models/user");
 const { Account } = require("./models/account");
 const { Post } = require("./models/post")
-const { Message } = require("./models/message")
+const { Conversation } = require("./models/conversation")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 // express-session for managing user sessions
 const session = require("express-session");
 const { mongo } = require("mongoose");
+const conversation = require("./models/conversation");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
@@ -609,41 +610,101 @@ app.delete('/api/posts/:postid', mongoChecker, async (req, res) => {
 
 
 // API for messages
-// GET for getting all messages from a specific user, to another specific user sorted by date ascending
-app.get('/api/message', mongoChecker, async (req, res) => {
+// GET for getting all conversations by a specific user
+app.get('/api/conversation', mongoChecker, async (req, res) => {
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
 		return
     }
     try {
-        const messages = await Message.find({ 
-            sentUsername: req.body.sentUsername, 
-            toUsername: req.body.toUsername 
-        }).sort({date: 'desc'})
-        res.send(messages)
+        const conversations = await Conversation.find({ 
+            sentUsername: req.body.sentUsername
+        }).sort({date: 'ascending'})
+        res.send(conversations)
     } catch (error) {
         log(error)
-        res.status(500).send('Internal server error')
+        if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
+		}
     }
 })
 
-// Create a new message
-app.post('/api/message', mongoChecker, async (req, res) => {
-    const currDate = new Date()
-    const message = new Message({
+// Create a new conversation
+app.post('/api/conversation', mongoChecker, async (req, res) => {
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return
+    }
+
+    const conversation = new Conversation({
         sentUsername: req.body.sentUsername,
         toUsername: req.body.toUsername,
-        messageData: req.body.messageData,
-        sendDate: currDate
+        messages: []
     })
-    // Saving the message to the database:
+    // Saving the conversation to the database:
     try {
-        const result = await message.send()
+        const result = await conversation.save()
         res.send(result)
     } catch(error) {
         log(error)
-        res.status(500).send('Internal Server Error')
+        if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
+		}
+    }
+})
+
+// Add a new message to a conversation
+app.post('api/conversation/:id/message.', mongoChecker, async (req, res) => {
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return
+    }
+
+    const id = req.params.id
+    
+    // Validate id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;
+    }
+    
+    const currDate = new Date()
+    const message = new Message({
+        sentUsername: req.body.sentUsername,
+        messageData: req.body.messageData,
+        sendDate: currDate
+    })
+    
+    // Check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    }
+    
+    try {
+        const converation = await Conversation.findById(id)
+        if (!converation) {
+            res.status(404).send('Resource not found') // Could not find this conversation
+        } else {
+            conversation.messages.push(message)
+            const result = await conversation.save()
+            res.send(result)
+        }
+    } catch (error) {
+        log(error)
+        if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
+		}
     }
 })
 
