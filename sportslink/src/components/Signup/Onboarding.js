@@ -39,6 +39,7 @@ class Onboarding extends React.Component{
     }
 
     render(){
+        const { app } = this.props
         return <div className="signUpPage">
             <div className="signUpTitle"><h1>Sportslink</h1> <p>Bringing together the greatest athletic community around the globe.</p></div>
         {/* <Onboarding/> */}
@@ -83,7 +84,7 @@ class Onboarding extends React.Component{
             <br/><br/>
             <Button
                 variant="contained"
-                onClick={() => onboard(this)}
+                onClick={() => onboard(this, app)}
                 className="signUpButton"
             > 
                 Finish  

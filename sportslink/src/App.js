@@ -31,6 +31,7 @@ class App extends React.Component {
   
   state = {
     currentUser: null,
+    signUp: [],
     user:
     {
       player: true,
@@ -220,10 +221,10 @@ class App extends React.Component {
           
           <Route exact path = '/messaging' render={props => 
                           (<div><TopBar {...props} app={this}/><Messaging className="messaging"/></div>)}/>
-          <Route exact path = '/signup' render={() => 
-                          (<Signup className="signup"/>)}/>
-          <Route exact path = '/onboarding' render={() => 
-                          (<Onboarding className="onboarding"/>)}/>
+          <Route exact path = '/signup' render={props => 
+                          (<Signup {...props} app={this} className="signup"/>)}/>
+          <Route exact path = '/onboarding' render={props => 
+                          (<Onboarding {...props} app={this} className="onboarding"/>)}/>
           <Route exact path = '/settings' render={props => 
                           (<div> <TopBar {...props} app={this}/><Settings global={this}/></div>)}/>
           <Route exact path = '/forgotpassword' render={() => 

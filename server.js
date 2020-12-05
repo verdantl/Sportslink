@@ -201,7 +201,6 @@ app.get('/api/users', mongoChecker, async (req, res) => {
 // a POST route to *create* the user profile --separate from initial account -- untested, because req.body sucks
 app.post('/api/users', mongoChecker, async (req, res) => {
     log(`Adding user ${req.body.name}`)
-
     // Create a new student using the Student mongoose model
     
     const user = new User({
@@ -211,11 +210,12 @@ app.post('/api/users', mongoChecker, async (req, res) => {
         name: req.body.name,
         image: null,
         description: "",
-        location: "",
-        organization: "",
-        sports: "",
+        location: req.body.location,
+        organization: req.body.organization,
+        sports: req.body.sports,
         accomplishments: [],
-        experience: []
+        experience: [],
+        career: []
       })
     // Save student to the database
     // async-await version:

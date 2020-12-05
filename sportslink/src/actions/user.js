@@ -58,10 +58,11 @@ export const logout = (app) => {
         });
 };
 
-export const signupNext = user => {
+export const signupNext = (user, app) => {
     if (user.state.firstName !== "" && user.state.last_name !== "" && user.state.usern !== "" && user.state.password !== "" && user.state.password2 !== "") {
         if (user.state.password === user.state.password2){
-            window.location.href = "/onboarding";
+            app.setState({ signUp: [{fname: user.state.firstName, lname: user.state.last_name, uname: user.state.usern, pwd: user.state.password}] });
+            user.props.history.push("/onboarding");
         }
         else{
             alert("Passwords do not match.");
@@ -74,10 +75,48 @@ export const signupNext = user => {
 
 };
 
-export const onboard = user => {
+export const onboard = (user, app) => {
     if (user.state.sport !== "" && user.state.organization !== "" && user.state.location !== "" && user.state.email !== "" && (user.state.checkedRecruiters || user.state.checkedAthlete)){
-        alert("Sign up success, please check your email!");
-        window.location.href = "/";
+        let newAccount = {email: user.state.email, username: app.state.signUp[0].uname, password: app.state.signUp[0].pwd}
+        let newUser = {player: user.state.checkedAthlete, username: app.state.signUp[0].uname, name: app.state.signUp[0].fname + " " + app.state.signUp[0].lname, location: user.state.location, organization: user.state.organization, sports: user.state.sport}
+        
+        const accRequest = new Request("/api/accounts", {
+            method: "post",
+            body: JSON.stringify(newAccount),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+        const userRequest = new Request("/api/users", {
+            method: "post",
+            body: JSON.stringify(newUser),
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        })
+        Promise.all([
+            fetch(accRequest),
+            fetch(userRequest)
+        ]).then(function (responses) {
+            return Promise.all(responses.map(function (response) {
+                if (response.status === 200) {
+                    return response.json();
+                }
+            }));
+        }).then(function (data) {
+            if (data[0] !== undefined && data[1] !== undefined) {
+                app.setState({ signUp: [] });
+                alert("Sign up success");
+                user.props.history.push("/");
+            }
+            else {
+                alert("Error occured");
+            }
+        }).catch(error => {
+            console.log(error);
+        });
     }
     else {
         alert("Please fill all fields");

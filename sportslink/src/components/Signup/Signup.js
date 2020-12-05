@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button'
 import {Link} from "react-router-dom";
 import './Signup.css'
 import { signupNext} from "../../actions/user.js";
-import Onboarding from './Onboarding'
 
 class Signup extends React.Component{
     state = {
@@ -32,6 +31,7 @@ class Signup extends React.Component{
 
 
     render(){
+        const {app} = this.props;
         return <div className="signUpPage">
             <div className="signUpTitle"><h1>Sportslink</h1> <p>Bringing together the greatest athletic community around the globe.</p></div>
         {/* <Onboarding/> */}
@@ -73,7 +73,7 @@ class Signup extends React.Component{
             <br/>
             <Button
                 variant="contained"
-                onClick={() => signupNext(this)}
+                onClick={() => signupNext(this, app)}
                 className="signUpButton"
             > 
                 Next  
