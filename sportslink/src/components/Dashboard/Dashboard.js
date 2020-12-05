@@ -5,22 +5,23 @@ import NewsBox from './NewsBox'
 import lebron from '../images/lebron.jpg'
 import NewPost from './NewPost'
 import Posts from './Posts'
-import TopBar from '../TopBar'
+import { getPosts } from '../../actions/posts'
 
 class Dashboard extends React.Component{
     constructor(props) {
         super(props);
         this.props.history.push("/dashboard");
+        getPosts(this)
     }
     
     state = {
         user: {
             image: lebron,
             name: "Lebron James",
-            username: "TheRealLebronJames"
+            username: "user"
         },
         users: this.props.users,
-        posts: this.props.posts
+        posts: []
       }
 
     createNewPost = (post) => {
@@ -44,7 +45,9 @@ class Dashboard extends React.Component{
             <div className="dashboardRightColumn">
                 <NewPost createNewPost={this.createNewPost}/>
                 {/* Removed posts temporarily */}
-                {/* <Posts user={this.state.user} upvote={this.upvotePost} posts={this.state.posts}/> */}
+                <Posts 
+                // user={this.state.user} 
+                upvote={this.upvotePost} posts={this.state.posts}/>
             </div>
 
         </div>
