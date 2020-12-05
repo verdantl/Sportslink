@@ -12,7 +12,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
 const { User } = require("./models/user");
-const { Account } = require("./models/account");
+const { Account} = require("./models/account");
 const { Post } = require("./models/post")
 const { Conversation } = require("./models/conversation")
 
@@ -181,7 +181,7 @@ app.delete('/api/accounts/:account', mongoChecker, authenticate, async (req, res
 
 /** User resource routes **/
 // a GET route to get all users
-app.get('/api/users', mongoChecker, authenticate, async (req, res) => {
+app.get('/api/users', mongoChecker, async (req, res) => {
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -191,7 +191,7 @@ app.get('/api/users', mongoChecker, authenticate, async (req, res) => {
     try {
         const users = await User.find()
         // res.send(students) // just the array
-        res.send(users) // can wrap students in object if want to add more properties
+        res.send({users}) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
         res.status(500).send("Internal Server Error")

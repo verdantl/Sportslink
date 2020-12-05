@@ -6,15 +6,22 @@ import TextField from '@material-ui/core/TextField'
 
 import SearchResults from "./SearchResults"
 
+import {getUsers} from "../../actions/profiles"
+import {getPosts} from "../../actions/posts"
 class AthleteSearch extends React.Component{
+    constructor(props){
+        super(props)
+        getPosts(this)
+        getUsers(this)
+    }
     state = {
         search: "",
         searchText:'',
         locations: [],
         organizations: [],
         sports: [],
-        users: this.props.info.users,
-        posts: this.props.info.posts,
+        users: [],
+        posts: [],
         filters: 'athlete',
         }
 
@@ -32,7 +39,7 @@ class AthleteSearch extends React.Component{
         this.filterPreferences()
       }
       
-      filterPreferences = () => {
+    filterPreferences = () => {
         let allUsers = this.props.info.users.filter(user => user.name.toLowerCase().includes(this.state.search.toLowerCase()))
   
         let allPosts = this.props.info.posts.filter(post => 
@@ -55,7 +62,7 @@ class AthleteSearch extends React.Component{
           this.setState({users: allUsers, posts: allPosts})
         
       }
-  
+
 
     handleEnter = (e) => {
         if (e.key === 'Enter'){

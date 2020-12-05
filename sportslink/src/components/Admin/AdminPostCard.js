@@ -76,7 +76,7 @@ class AdminPostCard extends React.Component{
 
             </div>
 
-            <div className="viewComments" onClick={this.alterComments}>
+            <div className="viewComments" hidden={this.props.post.comments.length === 0} onClick={this.alterComments}>
                 {this.commentMessage()}
             </div>
         </div>

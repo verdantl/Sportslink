@@ -3,11 +3,15 @@ import './AdminDashboard.css'
 import AdminSearchResults from "./AdminSearchResults"
 import AdminSearchBox from './AdminSearchBox'
 import AdminSideFilters from './AdminSideFilters'
+import {getUsers} from "../../actions/profiles"
+import {getPosts} from "../../actions/posts"
 
 class AdminDashboard extends React.Component{
     constructor(props) {
         super(props);
         this.props.history.push("/admin");
+        getPosts(this)
+        getUsers(this)
     }
     state = {
       filters: 'athlete',
@@ -15,8 +19,8 @@ class AdminDashboard extends React.Component{
       organizations: [],
       sports: [],
       search: '',
-      users: this.props.users,
-      posts: this.props.posts,
+      users: [],
+      posts: [],
       click: false
     }
 
@@ -45,9 +49,9 @@ class AdminDashboard extends React.Component{
     }
     
     filterPreferences = () => {
-      let allUsers = this.props.info.users.filter(user => user.name.toLowerCase().includes(this.state.search.toLowerCase()))
+      let allUsers = this.state.users.filter(user => user.name.toLowerCase().includes(this.state.search.toLowerCase()))
 
-      let allPosts = this.props.info.posts.filter(post => 
+      let allPosts = this.state.posts.filter(post => 
         post.text.toLowerCase().includes(this.state.search.toLowerCase()) | post.user.name.toLowerCase().includes(this.state.search.toLowerCase()))
       if (this.state.locations.length > 0){
           allUsers = allUsers.filter(user => user.location.toLowerCase().includes(this.state.locations[0].toLowerCase()))
@@ -103,14 +107,14 @@ class AdminDashboard extends React.Component{
             Search Results For: {this.state.search}
           </div>
 
-          {/* <AdminSearchResults 
+          <AdminSearchResults 
             adminAction={this.adminAction} 
             removePost={this.removePost} 
             filter={this.state.filters} 
             filters={filters} 
             posts={this.state.posts} 
             users={this.state.users}
-            clickProfile={this.state.click}/> */}
+            clickProfile={this.state.click}/>
 
           
           </div>

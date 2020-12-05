@@ -1,6 +1,6 @@
 //postList is the "this" object, which is the "this" in a React component
 export const getPosts = (dashboard) => {
-        console.log(dashboard)
+    console.log(dashboard)
     const url = '/api/posts';
     fetch(url)
         .then(res => {
