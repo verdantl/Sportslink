@@ -11,7 +11,7 @@ export const getUsers = (userList) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
-            userList.setState({ userList: json.students});
+            userList.setState({ userList: json.users});
         })
         .catch(error => {
             console.log(error);
@@ -19,13 +19,8 @@ export const getUsers = (userList) => {
 }
 
 //In progress
-export const updateUser = (formComp, field) => {
-    const value = field.value;
-    const name = field.name;
-
-    formComp.setState({
-        [name]: value
-    });
+export const updateUserInfo = (formComp) => {
+    const url = "/api/users"
 };
 
 // A function to send a POST request with a new student

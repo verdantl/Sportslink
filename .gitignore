@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+/mongo-data
 .pnp.js
 
 # testing

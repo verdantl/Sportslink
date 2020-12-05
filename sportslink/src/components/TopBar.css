@@ -46,7 +46,7 @@ li{
     vertical-align: middle;
 }
 
-.settingsIconL:hover{
+.settingsIcon:hover{
     transform: scale(1.4);
     cursor: pointer;
     color: aliceblue;
