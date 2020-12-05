@@ -39,5 +39,32 @@ In addition, the user can go to settings and change their personal information.
 On the Admin side, please use the username admin and the password admin. Once logging in, you will be sent to the Admin screen where you can search for users and take actions like suspending, deleting, or editing their accounts. The editing of the accounts is similar
 to the editing of the profile for a personal profile page. You can also delete posts and filter what to look for using the filter column on the left side (but only one at a time, like the User)
 
+## Overview of Routes
+/users/login - POST : A route to login and create a session
+/users/logout - GET : A route to logout a user
+/users/check-session - GET : A route to check if a user is logged in on the session
+Account API Routes
+/api/accounts - POST : Create a new account - sign up for the first time -- after this call, we'll want to make a user signup profile page.
+/api/accounts/:user - PATCH : function for updating account settings information
+/api/accounts/:account - DELETE : Deletes an account, we need to authenticate for admin, function for updating account settings information
+User Resources API Routes
+/api/users - GET : route to get all users
+/api/users - POST: route to *create* the user profile --separate from initial account -- untested, because req.body 
+/api/users/:id - PATCH : function for updating profile information
+/api/users/:id - DELETE : function for deleting profile information
+/api/users/:id/experience - POST : add a new experience -- completed --
+/api/users/:id/experience/:experience - PATCH : edit existing experience -- finished
+/api/users/:id/experience/:experience - DELETE : delete existing experience --
+/api/users/:id/career - PUT : add a new career accomplishment - input req.body should be {"career": "stuff"} ---- have not solved for duplicates
+/api/users/:id/career/:careerid - PATCH : edit existing accomplishment -- replaces string only, expects form , MIGHT WANT TO REPLACE WITH SOMETHING BETTER
+/api/users/:id/career/:cid - DELETE : delete existing accomplishment
+Post API Routes
+/api/posts - GET : route to get all posts
+/api/posts - POST : creating a new post -- untested
+/api/posts/:postid - DELETE : delete post
+Messages API Routes
+/api/message - GET : for getting all messages from a specific user, to another specific user sorted by date ascending
+/api/message - POST : Create a new message
+
 ## 3rd party libraries
 We are using React as well as some Material UI components (i.e. checkboxes, icons etc.) for the front-end of this project.
