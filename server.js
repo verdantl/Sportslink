@@ -14,7 +14,7 @@ mongoose.set('useFindAndModify', false); // for some deprecation issues
 const { User } = require("./models/user");
 const { Account } = require("./models/account");
 const { Post } = require("./models/post")
-const { Message } = require("./models/message")
+const { Conversation } = require("./models/conversation")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 // express-session for managing user sessions
 const session = require("express-session");
 const { mongo } = require("mongoose");
+const conversation = require("./models/conversation");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
@@ -66,7 +67,7 @@ const authenticate = (req, res, next) => {
 // Middleware for authentication of resources -- unfinished
 const authenticateAdmin = (req, res, next) => {
     if (req.session.user) {
-        User.findById(req.session.user).then((user) => {
+        Account.findById(req.session.user).then((user) => {
             if (!user) {
                 return Promise.reject()
             } else {
@@ -180,7 +181,7 @@ app.delete('/api/accounts/:account', mongoChecker, authenticate, async (req, res
 
 /** User resource routes **/
 // a GET route to get all users
-app.get('/api/users', mongoChecker, async (req, res) => {
+app.get('/api/users', mongoChecker, authenticate, async (req, res) => {
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -242,7 +243,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
 ]
 */
 //Remember to check for the session user id, function for updating profile information
-app.patch('/api/users/:id', mongoChecker, async (req, res) => {
+app.patch('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
 	const id = req.params.id
 
 	if (!ObjectID.isValid(id)) {
@@ -426,7 +427,7 @@ app.delete('/api/users/:id/experience/:experience', mongoChecker, async (req, re
 })
 
 //add a new career accomplishment - input req.body should be {"career": "stuff"} ---- have not solved for duplicates
-app.put('/api/users/:id/career', mongoChecker, async (req, res) => {
+app.post('/api/users/:id/career', mongoChecker, async (req, res) => {
     const id = req.params.id
 	// Validate id
 	if (!ObjectID.isValid(id)) {
@@ -545,6 +546,7 @@ app.get('/api/posts', mongoChecker, async (req, res) => {
     try {
         const posts = await Post.find()
         // res.send(students) // just the array
+        posts.reverse()
         res.send(posts) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
@@ -553,7 +555,7 @@ app.get('/api/posts', mongoChecker, async (req, res) => {
 })
 
 // creating a new post -- untested
-app.post('/api/posts', mongoChecker, async (req, res) => {
+app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
     const today = new Date().toDateString()
     const post = new Post({
         user: req.body.user,
@@ -606,43 +608,136 @@ app.delete('/api/posts/:postid', mongoChecker, async (req, res) => {
 	}
 })
 
+// adding a comment -- untested
+app.post('/api/posts/:postid', mongoChecker, async (req, res) => {
+    const pid = req.params.postid
+    // Save student to the database
+    // async-await version:
+	// Validate id
+	if (!ObjectID.isValid(pid)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    try {
+		const post = await Post.findById(pid)
+		if (!post) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			/// sometimes we might wrap returned object in another object:
+			post.comments.push(req.body)
+			const result = await post.save()
+			res.send(result)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+
+})
 
 // API for messages
-// GET for getting all messages from a specific user, to another specific user sorted by date ascending
-app.get('/api/message', mongoChecker, async (req, res) => {
+// GET for getting all conversations by a specific user
+app.get('/api/conversation', mongoChecker, async (req, res) => {
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
 		return
     }
     try {
-        const messages = await Message.find({ 
-            sentUsername: req.body.sentUsername, 
-            toUsername: req.body.toUsername 
-        }).sort({date: 'desc'})
-        res.send(messages)
+        const conversations = await Conversation.find({ 
+            sentUsername: req.body.sentUsername
+        }).sort({date: 'ascending'})
+        res.send(conversations)
     } catch (error) {
         log(error)
-        res.status(500).send('Internal server error')
+        if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
+		}
     }
 })
 
-// Create a new message
-app.post('/api/message', mongoChecker, async (req, res) => {
-    const currDate = new Date()
-    const message = new Message({
+// Create a new conversation
+app.post('/api/conversation', mongoChecker, async (req, res) => {
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return
+    }
+
+    const conversation = new Conversation({
         sentUsername: req.body.sentUsername,
         toUsername: req.body.toUsername,
-        messageData: req.body.messageData,
-        sendDate: currDate
+        messages: []
     })
-    // Saving the message to the database:
+    // Saving the conversation to the database:
     try {
-        const result = await message.send()
+        const result = await conversation.save()
         res.send(result)
     } catch(error) {
         log(error)
-        res.status(500).send('Internal Server Error')
+        if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
+		}
+    }
+})
+
+// Add a new message to a conversation
+app.post('api/conversation/:id/message.', mongoChecker, async (req, res) => {
+    if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return
+    }
+
+    const id = req.params.id
+    
+    // Validate id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;
+    }
+    
+    const currDate = new Date()
+    const message = new Message({
+        sentUsername: req.body.sentUsername,
+        messageData: req.body.messageData,
+        sendDate: currDate
+    })
+    
+    // Check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    }
+    
+    try {
+        const converation = await Conversation.findById(id)
+        if (!converation) {
+            res.status(404).send('Resource not found') // Could not find this conversation
+        } else {
+            conversation.messages.push(message)
+            const result = await conversation.save()
+            res.send(result)
+        }
+    } catch (error) {
+        log(error)
+        if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request') // 400 for bad request gets sent to client.
+		}
     }
 })
 

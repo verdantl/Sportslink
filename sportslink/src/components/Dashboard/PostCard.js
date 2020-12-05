@@ -5,14 +5,17 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import IconButton from '@material-ui/core/IconButton'
 
 class PostCard extends React.Component{
+    constructor(props){
+        super(props)
+    }
+
     state ={
         message: '',
         hideComments: true,
         upvoted: false,
-        thumbsUp: "thumbsUp",
-        comments: this.props.post.comments
+        thumbsUp: "thumbsUp"
     }
-    alterComments = (event) =>{
+    alterComments = () =>{
         this.setState({hideComments: !this.state.hideComments})
     }
 
@@ -42,19 +45,22 @@ class PostCard extends React.Component{
         })
     }   
 
-    submitComment = (e) => {
-        if(e.key === 'Enter'){
-            this.props.post.comments.push({user: this.props.user, text: this.state.message})
-            this.setState({
-                message: '',
-                comments: this.props.post.comments,
-                hideComments: false
-            })
+    clickEnterComment = (e) => {
+        if(e.key === 'Enter' && this.state.message.length != 0){
+            this.submitComment()
         }
+    }
+    submitComment = () => {
+        this.props.newComment(this.state.message, this.props.post._id)
+        this.setState({message: ''})
     }
 
     handleClick = () => {
         window.location.href = '/viewprofile/' + this.props.user.username
+    }
+
+    hideViewComments = () => {
+        return this.props.post.comments.length != 0
     }
 
     render(){
@@ -85,21 +91,21 @@ class PostCard extends React.Component{
             </div>
             <input 
             className="commentInput"
-            onKeyPressCapture={this.submitComment}
+            onKeyPressCapture={this.clickEnterComment}
             onChange={this.checkChange}
             value={this.state.message}
             placeholder="Add New Comment"/>
 
 
             <div className="comments" hidden={this.state.hideComments}>
-            {this.state.comments.map((comment) => {
+            {this.props.post.comments.map((comment) => {
               return <Comment key={uid(comment)} comment={comment}/>
             }
             )}
 
             </div>
 
-            <div className="viewComments" onClick={this.alterComments}>
+            <div className="viewComments" hidden={this.hideViewComments} onClick={this.alterComments}>
                 {this.commentMessage()}
             </div>
         </div>
