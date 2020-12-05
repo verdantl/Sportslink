@@ -630,7 +630,8 @@ app.post('/api/posts/:postid', mongoChecker, async (req, res) => {
 		if (!post) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
-			/// sometimes we might wrap returned object in another object:
+            /// sometimes we might wrap returned object in another object:
+            req.body.date = new Date()
 			post.comments.push(req.body)
 			const result = await post.save()
 			res.send(result)

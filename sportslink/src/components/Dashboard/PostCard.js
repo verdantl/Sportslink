@@ -11,7 +11,7 @@ class PostCard extends React.Component{
 
     state ={
         message: '',
-        hideComments: true,
+        hideComments: false,
         upvoted: false,
         thumbsUp: "thumbsUp"
     }
@@ -60,7 +60,11 @@ class PostCard extends React.Component{
     }
 
     hideViewComments = () => {
-        return this.props.post.comments.length != 0
+        return this.props.post.comments.length === 0
+    }
+
+    hideViewMoreComments = () => {
+        return this.props.post.comments.length >= 5
     }
 
     render(){
@@ -95,7 +99,9 @@ class PostCard extends React.Component{
             onChange={this.checkChange}
             value={this.state.message}
             placeholder="Add New Comment"/>
+            <div className="viewMoreComments" hidden={this.hideViewMoreComments()}>
 
+            </div>
 
             <div className="comments" hidden={this.state.hideComments}>
             {this.props.post.comments.map((comment) => {
@@ -105,7 +111,7 @@ class PostCard extends React.Component{
 
             </div>
 
-            <div className="viewComments" hidden={this.hideViewComments} onClick={this.alterComments}>
+            <div className="viewComments" hidden={this.hideViewComments()} onClick={this.alterComments}>
                 {this.commentMessage()}
             </div>
         </div>
