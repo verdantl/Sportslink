@@ -38,14 +38,13 @@ class Dashboard extends React.Component{
             user: this.state.user,
             text: commentText
         }
-        newComment(comment, postID)
-        getPosts(this)
+        newComment(comment, postID, this)
     }
+
     upvotePost = (post, number) => {
         this.state.posts[post].likes += number;
         this.setState({posts: this.state.posts})
     }
-
 
     render(){
 
@@ -59,7 +58,9 @@ class Dashboard extends React.Component{
                 {/* Removed posts temporarily */}
                 <Posts 
                 // user={this.state.user} 
-                upvote={this.upvotePost} newComment={this.addNewComment} posts={this.state.posts}/>
+                upvote={this.upvotePost} 
+                newComment={this.addNewComment} 
+                posts={this.state.posts}/>
             </div>
 
         </div>

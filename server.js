@@ -67,7 +67,7 @@ const authenticate = (req, res, next) => {
 // Middleware for authentication of resources -- unfinished
 const authenticateAdmin = (req, res, next) => {
     if (req.session.user) {
-        User.findById(req.session.user).then((user) => {
+        Account.findById(req.session.user).then((user) => {
             if (!user) {
                 return Promise.reject()
             } else {
@@ -181,7 +181,7 @@ app.delete('/api/accounts/:account', mongoChecker, authenticate, async (req, res
 
 /** User resource routes **/
 // a GET route to get all users
-app.get('/api/users', mongoChecker, async (req, res) => {
+app.get('/api/users', mongoChecker, authenticate, async (req, res) => {
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -243,7 +243,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
 ]
 */
 //Remember to check for the session user id, function for updating profile information
-app.patch('/api/users/:id', mongoChecker, async (req, res) => {
+app.patch('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
 	const id = req.params.id
 
 	if (!ObjectID.isValid(id)) {
@@ -555,7 +555,7 @@ app.get('/api/posts', mongoChecker, async (req, res) => {
 })
 
 // creating a new post -- untested
-app.post('/api/posts', mongoChecker, async (req, res) => {
+app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
     const today = new Date().toDateString()
     const post = new Post({
         user: req.body.user,
@@ -609,7 +609,7 @@ app.delete('/api/posts/:postid', mongoChecker, async (req, res) => {
 })
 
 // adding a comment -- untested
-app.post('/api/posts/postid', mongoChecker, async (req, res) => {
+app.post('/api/posts/:postid', mongoChecker, async (req, res) => {
     const pid = req.params.postid
     // Save student to the database
     // async-await version:
@@ -631,7 +631,7 @@ app.post('/api/posts/postid', mongoChecker, async (req, res) => {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
 			/// sometimes we might wrap returned object in another object:
-			post.experience.push(req.body)
+			post.comments.push(req.body)
 			const result = await post.save()
 			res.send(result)
 		}

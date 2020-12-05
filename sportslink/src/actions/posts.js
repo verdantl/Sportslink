@@ -1,5 +1,6 @@
 //postList is the "this" object, which is the "this" in a React component
 export const getPosts = (dashboard) => {
+        console.log(dashboard)
     const url = '/api/posts';
     fetch(url)
         .then(res => {
@@ -48,7 +49,7 @@ export const newPost = (post) => {
 }
 
 //creates a new post - postcard
-export const newComment = (postCard, postID) => {
+export const newComment = (postCard, postID, dashboard) => {
     const url = '/api/posts/' + postID;
     const request = new Request(url, {
         method: "post",
@@ -68,7 +69,7 @@ export const newComment = (postCard, postID) => {
             }
         })
         .then(json => {
-            // the resolved promise with the JSON body
+            getPosts(dashboard)
         })
         .catch(error => {
             console.log(error);
@@ -77,7 +78,6 @@ export const newComment = (postCard, postID) => {
 //adds a like???
 export const editPostInfo = (dashboard) => {
     const url = '/api/posts';
-    console.log('hi')
     fetch(url)
         .then(res => {
             if (res.status === 200) {

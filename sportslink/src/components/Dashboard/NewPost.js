@@ -17,7 +17,6 @@ class NewPost extends React.Component{
     }
 
     submitPost = (e) => {
-        console.log(e.target)
         if (e.key === 'Enter' | e.target.getAttribute('name') ==="submitButton" | e.target.parentElement.getAttribute('name') ==="submitButton"){
 
             this.props.createNewPost(this.state.postText)
