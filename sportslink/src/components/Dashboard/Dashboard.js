@@ -5,7 +5,7 @@ import NewsBox from './NewsBox'
 import lebron from '../images/lebron.jpg'
 import NewPost from './NewPost'
 import Posts from './Posts'
-import { getPosts, newPost } from '../../actions/posts'
+import { getPosts, newPost, newComment } from '../../actions/posts'
 
 class Dashboard extends React.Component{
     constructor(props) {
@@ -32,6 +32,15 @@ class Dashboard extends React.Component{
         newPost(post)
         getPosts(this)
     }
+
+    addNewComment = (commentText, postID) => {
+        const comment = {
+            user: this.state.user,
+            text: commentText
+        }
+        newComment(comment, postID)
+        getPosts(this)
+    }
     upvotePost = (post, number) => {
         this.state.posts[post].likes += number;
         this.setState({posts: this.state.posts})
@@ -50,7 +59,7 @@ class Dashboard extends React.Component{
                 {/* Removed posts temporarily */}
                 <Posts 
                 // user={this.state.user} 
-                upvote={this.upvotePost} posts={this.state.posts}/>
+                upvote={this.upvotePost} newComment={this.addNewComment} posts={this.state.posts}/>
             </div>
 
         </div>

@@ -9,8 +9,7 @@ class PostCard extends React.Component{
         message: '',
         hideComments: true,
         upvoted: false,
-        thumbsUp: "thumbsUp",
-        comments: this.props.post.comments
+        thumbsUp: "thumbsUp"
     }
     alterComments = (event) =>{
         this.setState({hideComments: !this.state.hideComments})
@@ -43,13 +42,11 @@ class PostCard extends React.Component{
     }   
 
     submitComment = (e) => {
-        if(e.key === 'Enter'){
-            this.props.post.comments.push({user: this.props.user, text: this.state.message})
-            this.setState({
-                message: '',
-                comments: this.props.post.comments,
-                hideComments: false
-            })
+        if(e.key === 'Enter' && this.state.message.length != 0){
+            console.log(this)
+            console.log(e)
+            this.props.newComment(this.state.message, this.props.post._id)
+            this.setState({message: ''})
         }
     }
 
@@ -92,7 +89,7 @@ class PostCard extends React.Component{
 
 
             <div className="comments" hidden={this.state.hideComments}>
-            {this.state.comments.map((comment) => {
+            {this.props.post.comments.map((comment) => {
               return <Comment key={uid(comment)} comment={comment}/>
             }
             )}

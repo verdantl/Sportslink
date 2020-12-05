@@ -46,6 +46,34 @@ export const newPost = (post) => {
             console.log(error);
         });
 }
+
+//creates a new post - postcard
+export const newComment = (postCard, postID) => {
+    const url = '/api/posts/' + postID;
+    const request = new Request(url, {
+        method: "post",
+        body: JSON.stringify(postCard),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                // return a promise that resolves with the JSON body
+                return res.json();
+            } else {
+                alert("Could not get posts");
+            }
+        })
+        .then(json => {
+            // the resolved promise with the JSON body
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
 //adds a like???
 export const editPostInfo = (dashboard) => {
     const url = '/api/posts';
