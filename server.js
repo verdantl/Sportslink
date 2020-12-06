@@ -164,6 +164,27 @@ app.post('/api/accounts', mongoChecker, async (req, res) => {
     }
 })
 
+// a GET route to get a account by username
+app.get('/api/accounts/:username', mongoChecker, async (req, res) => {
+    const username = req.params.username
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	} 
+
+    try {
+        const user = await Account.findOne({username: username})
+        log(user)
+        res.send(user) // can wrap students in object if want to add more properties
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+
+})
+
 //Remember to check for the session user id, function for updating account settings information
 app.patch('/api/accounts/:user', mongoChecker, authenticate, async (req, res) => {
 

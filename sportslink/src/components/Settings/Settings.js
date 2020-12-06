@@ -5,9 +5,17 @@ import Button from "@material-ui/core/Button";
 
 import Input from "../Input/Input.js";
 
-import {change} from "../../actions/user.js";
+import {change, getAccount} from "../../actions/user.js";
+import { getUser } from '../../actions/profiles' 
 
 class Settings extends React.Component{
+    constructor(props) {
+        super(props);
+        this.props.history.push("/settings");
+        getAccount(this)
+        getUser(this.props.global.state.currentUser, this)
+    }
+
     state = {
         usern: "",
         password: "",
@@ -15,11 +23,8 @@ class Settings extends React.Component{
             {usern: "user", password: "user"},
             {usern: "admin", password: "admin"}
         ],
-        
-        userName:"Lebron James",
-        userEmail:"user@email.com",
-        userPass:"user",
-        userSport:"Basketball",
+        user: {},
+        account: {},
 
         newName:"",
         newEmail:"",
@@ -49,7 +54,7 @@ class Settings extends React.Component{
                     <h1>Settings</h1>
                     <div className="settingsContainer">
                         <h3>Name</h3>
-                        <p>{this.state.userName}</p>
+                        <p>{this.state.user.name}</p>
                         <Input
                             name="newName"
                             onChange={this.handleChange}
@@ -57,7 +62,7 @@ class Settings extends React.Component{
                         />
                         
                         <h3>Email</h3>
-                        <p>{this.state.userEmail}</p>
+                        <p>{this.state.account.email}</p>
 
                         <Input
                             name="newEmail"
@@ -87,7 +92,7 @@ class Settings extends React.Component{
                         />
 
                         <h3>Sport</h3>
-                        <p>{this.state.userSport}</p>
+                        <p>{this.state.user.sports}</p>
                         <Input
                             name="newSport"
                             onChange={this.handleChange}
