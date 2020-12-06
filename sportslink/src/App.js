@@ -45,7 +45,7 @@ class App extends React.Component {
                 </div>                   // ... spread operator - provides all of the props in the props object
             )}
           />
-          <Route exact path = {["/profile", "/profile/" + currentUser] /* any of these URLs are accepted. */ }
+          <Route exact path = {["/profile", "/profile/" + currentUser, "/viewprofile/" + currentUser] /* any of these URLs are accepted. */ }
                  render={props=>
                         <div className="app">
                           { /* Different componenets rendered depending on if someone is logged in. */}
@@ -54,7 +54,12 @@ class App extends React.Component {
                       }
                       />
                       
-          <Route exact path="/viewprofile/:username" render={ props => <ViewProfile {...props} /> } /> 
+          <Route exact path="/viewprofile/:username" render={ props => 
+          <div className="app">
+          {!currentUser ? <ViewProfile {...props} app={this}/> :  <div><TopBar {...props}  app={this}/><ViewProfile {...props} app={this}/></div>} 
+          </div> 
+          }
+          /> 
 
           
           {/* <Route exact path = '/admin' render={()=>
