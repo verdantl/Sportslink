@@ -698,7 +698,7 @@ app.get('/api/conversation', mongoChecker, async (req, res) => {
     }
     try {
         const conversations = await Conversation.find({ 
-            sentUsername: req.body.sentUsername
+            sentUsername: req.body.currUser
         }).sort({date: 'ascending'})
         res.send(conversations)
     } catch (error) {
@@ -739,7 +739,7 @@ app.post('/api/conversation', mongoChecker, async (req, res) => {
 })
 
 // Add a new message to a conversation
-app.post('api/conversation/:id/message.', mongoChecker, async (req, res) => {
+app.post('api/conversation/:id/message', mongoChecker, async (req, res) => {
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
