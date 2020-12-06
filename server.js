@@ -48,7 +48,7 @@ const mongoChecker = (req, res, next) => {
 // Middleware for authentication of resources
 const authenticate = (req, res, next) => {
     if (req.session.user) {
-        User.findById(req.session.user).then((user) => {
+        User.findOne({username: req.session.username}).then((user) => {
             if (!user) {
                 return Promise.reject()
             } else {
@@ -66,7 +66,7 @@ const authenticate = (req, res, next) => {
 // Middleware for authentication of resources -- unfinished
 const authenticateAdmin = (req, res, next) => {
     if (req.session.user) {
-        Account.findById(req.session.user).then((user) => {
+        User.findOne({username: req.session.username}).then((user) => {
             if (!user) {
                 return Promise.reject()
             } else {
