@@ -352,17 +352,19 @@ app.patch('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
     }
     
     // Find the fields to update and their values.
-    const fieldsToUpdate = {}
+    // const fieldsToUpdate = {}
 
 
-	req.body.map((change) => {
-		const propertyToChange = change.path.substr(1) // getting rid of the '/' character
-		fieldsToUpdate[propertyToChange] = change.value
-    })
+	// req.body.map((change) => {
+	// 	const propertyToChange = change.path.substr(1) // getting rid of the '/' character
+	// 	fieldsToUpdate[propertyToChange] = change.value
+    // })
+    // Was nonstop complaing when I tried to use map, even with an array, temporary fix as I don't know how this affects suspend
+
 	// Update the student by their id.
 	try {
-		const user = await User.findOneAndUpdate({_id: id}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
-		if (!user) {
+		const user = await User.findOneAndUpdate({_id: id}, {$set: req.body}, {new: true, useFindAndModify: false})
+        if (!user) {
 			res.status(404).send('Resource not found')
 		} else {   
 			res.send(user)

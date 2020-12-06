@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import Input from "../Input/Input.js";
 
 import {getAccount, updateAccount} from "../../actions/user.js";
-import { getUser } from '../../actions/profiles' 
+import { getUser, updateUserInfo } from '../../actions/profiles' 
 
 class Settings extends React.Component{
     constructor(props) {
@@ -43,6 +43,19 @@ class Settings extends React.Component{
         this.setState({
             [name]:value
         });
+    };
+
+    handleClick = () => {
+        updateAccount(this)
+        let newInfo = {}
+        if (this.state.newName !== ""){
+            newInfo.name = this.state.newName
+        }
+        if (this.state.newSport !== ""){
+            newInfo.sports =  this.state.newSport
+        }
+        console.log(this.state.user._id)
+        updateUserInfo(newInfo, this.state.user._id, this)
     };
 
     render() {
@@ -102,7 +115,7 @@ class Settings extends React.Component{
                     <br/>
                     <Button
                         variant="contained"
-                        onClick={() => updateAccount(this)}
+                        onClick={() => this.handleClick()}
                         className="loginButton"
                     > 
                         Update   
