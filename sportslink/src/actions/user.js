@@ -125,38 +125,63 @@ export const onboard = (user, app) => {
 };
 
 export const change = (user) => {
-    if (user.state.newEmail !== ''){
-        user.setState({
-            userEmail : user.state.newEmail
-        });
-    }
-    if (user.state.newName !== ''){
-        user.setState({
-            userName : user.state.newName
-        });
-    }
-    if (user.state.newPass !== ''){
-        if (user.state.oldPass === user.state.userPass){
-            if (user.state.newPass === user.state.newPass2){
-                user.setState({
-                    userPass : user.state.newPass
-                });
-            }
-            else {
-                alert("Password not changed")
-            }
+    console.log(user)
+    console.log(user.props.global.state.currentUser)
+    // if (user.state.newEmail !== ''){
+    //     user.setState({
+    //         userEmail : user.state.newEmail
+    //     });
+    // }
+    // if (user.state.newName !== ''){
+    //     user.setState({
+    //         userName : user.state.newName
+    //     });
+    // }
+    // if (user.state.newPass !== ''){
+    //     if (user.state.oldPass === user.state.userPass){
+    //         if (user.state.newPass === user.state.newPass2){
+    //             user.setState({
+    //                 userPass : user.state.newPass
+    //             });
+    //         }
+    //         else {
+    //             alert("Password not changed")
+    //         }
             
-        }
-        else {
-            alert("Password not changed")
-        }
-    }
-    if (user.state.newSport !== ''){
-        user.setState({
-            userSport : user.state.newSport
-        });
-    }
+    //     }
+    //     else {
+    //         alert("Password not changed")
+    //     }
+    // }
+    // if (user.state.newSport !== ''){
+    //     user.setState({
+    //         userSport : user.state.newSport
+    //     });
+    // }
 };
+
+
+export const getAccount = (user) => {
+    const url = '/api/accounts/' + user.props.global.state.currentUser;
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                console.log(res)
+                // return a promise that resolves with the JSON body
+                return res.json();
+                
+            } else {
+                alert("Could not get account");
+            }
+        })
+        .then(json => {
+            // the resolved promise with the JSON body
+            user.setState({ account: json});
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
 
 export const forgot = user => {
     if (user.state.email !== "") {

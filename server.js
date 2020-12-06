@@ -29,7 +29,6 @@ const { mongo } = require("mongoose");
 const conversation = require("./models/conversation");
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
     return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
 }
@@ -49,7 +48,7 @@ const mongoChecker = (req, res, next) => {
 // Middleware for authentication of resources
 const authenticate = (req, res, next) => {
     if (req.session.user) {
-        User.findById(req.session.user).then((user) => {
+        User.findOne({username: req.session.username}).then((user) => {
             if (!user) {
                 return Promise.reject()
             } else {
@@ -67,7 +66,7 @@ const authenticate = (req, res, next) => {
 // Middleware for authentication of resources -- unfinished
 const authenticateAdmin = (req, res, next) => {
     if (req.session.user) {
-        Account.findById(req.session.user).then((user) => {
+        User.findOne({username: req.session.username}).then((user) => {
             if (!user) {
                 return Promise.reject()
             } else {
@@ -165,6 +164,27 @@ app.post('/api/accounts', mongoChecker, async (req, res) => {
     }
 })
 
+// a GET route to get a account by username
+app.get('/api/accounts/:username', mongoChecker, async (req, res) => {
+    const username = req.params.username
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	} 
+
+    try {
+        const user = await Account.findOne({username: username})
+        log(user)
+        res.send(user) // can wrap students in object if want to add more properties
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+
+})
+
 //Remember to check for the session user id, function for updating account settings information
 app.patch('/api/accounts/:user', mongoChecker, authenticate, async (req, res) => {
 
@@ -201,7 +221,7 @@ app.delete('/api/accounts/:username', mongoChecker, async (req, res) => {
 
 /** User resource routes **/
 // a GET route to get all users
-app.get('/api/users', mongoChecker, async (req, res) => {
+app.get('/api/users', mongoChecker, authenticate, async (req, res) => {
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -212,6 +232,26 @@ app.get('/api/users', mongoChecker, async (req, res) => {
         const users = await User.find()
         // res.send(students) // just the array
         res.send({users}) // can wrap students in object if want to add more properties
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
+
+})
+
+// a GET route to get a user by username
+app.get('/api/users/:username', mongoChecker, async (req, res) => {
+    const username = req.params.username
+
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	} 
+    // Get the students
+    try {
+        const user = await User.findOne({username: username})
+        res.send(user) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
         res.status(500).send("Internal Server Error")
@@ -263,7 +303,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
 ]
 */
 //Remember to check for the session user id, function for updating profile information
-app.patch('/api/users/:id', mongoChecker, async (req, res) => {
+app.patch('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
 	const id = req.params.id
 
 	if (!ObjectID.isValid(id)) {
@@ -307,7 +347,7 @@ app.patch('/api/users/:id', mongoChecker, async (req, res) => {
 
 })
 //Remember to check for the session user id, function for updating profile information
-app.delete('/api/users/:id', mongoChecker, async (req, res) => {
+app.delete('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
 	const id = req.params.id
 
 	// Validate id
@@ -338,7 +378,7 @@ app.delete('/api/users/:id', mongoChecker, async (req, res) => {
 })
 
 //add a new experience -- completed --
-app.post('/api/users/:id/experience', mongoChecker, async (req, res) => {
+app.post('/api/users/:id/experience', mongoChecker, authenticate, async (req, res) => {
     const id = req.params.id
 
 	// Validate id
@@ -371,7 +411,7 @@ app.post('/api/users/:id/experience', mongoChecker, async (req, res) => {
 })
 
 //edit existing experience -- finished
-app.patch('/api/users/:id/experience/:experience', mongoChecker, async (req, res) => {
+app.patch('/api/users/:id/experience/:experience', mongoChecker, authenticate, async (req, res) => {
     const id = req.params.id
     const eid = req.params.experience
 
@@ -413,7 +453,7 @@ app.patch('/api/users/:id/experience/:experience', mongoChecker, async (req, res
 })
 
 //delete existing experience --
-app.delete('/api/users/:id/experience/:experience', mongoChecker, async (req, res) => {
+app.delete('/api/users/:id/experience/:experience', mongoChecker, authenticate, async (req, res) => {
     const id = req.params.id
     const eid = req.params.experience
 
@@ -447,7 +487,7 @@ app.delete('/api/users/:id/experience/:experience', mongoChecker, async (req, re
 })
 
 //add a new career accomplishment - input req.body should be {"career": "stuff"} ---- have not solved for duplicates
-app.post('/api/users/:id/career', mongoChecker, async (req, res) => {
+app.post('/api/users/:id/career', mongoChecker, authenticate, async (req, res) => {
     const id = req.params.id
 	// Validate id
 	if (!ObjectID.isValid(id)) {
@@ -479,7 +519,7 @@ app.post('/api/users/:id/career', mongoChecker, async (req, res) => {
 })
 
 //edit existing accomplishment -- replaces string only, expects form , MIGHT WANT TO REPLACE WITH SOMETHING BETTER
-app.patch('/api/users/:id/career/:careerid', mongoChecker, async (req, res) => {
+app.patch('/api/users/:id/career/:careerid', mongoChecker, authenticate, async (req, res) => {
     const id = req.params.id
     const cid = req.params.careerid
 
@@ -520,7 +560,7 @@ app.patch('/api/users/:id/career/:careerid', mongoChecker, async (req, res) => {
 })
 
 //delete existing accomplishment
-app.delete('/api/users/:id/career/:cid', mongoChecker, async (req, res) => {
+app.delete('/api/users/:id/career/:cid', mongoChecker, authenticate, async (req, res) => {
     const id = req.params.id
 
     const cid = req.params.cid
@@ -557,7 +597,7 @@ app.delete('/api/users/:id/career/:cid', mongoChecker, async (req, res) => {
 
 //API for POSTS
 // a GET route to get all posts
-app.get('/api/posts', mongoChecker, async (req, res) => {
+app.get('/api/posts', mongoChecker, authenticate, async (req, res) => {
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -599,7 +639,7 @@ app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
     }
 })
 
-app.delete('/api/posts/:postid', mongoChecker, async (req, res) => {
+app.delete('/api/posts/:postid', mongoChecker, authenticate, async (req, res) => {
     const pid = req.params.postid
     	// Validate id
 	if (!ObjectID.isValid(pid)) {

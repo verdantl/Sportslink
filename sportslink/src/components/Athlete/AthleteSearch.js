@@ -3,18 +3,20 @@ import FilterBox from '../FilterBox'
 import DashProfileBox from './DashProfileBox'
 import "./AthleteSearch.css"
 import TextField from '@material-ui/core/TextField'
-
+import lebron from '../images/lebron.jpg'
 import SearchResults from "./SearchResults"
 
-import {getUsers} from "../../actions/profiles"
+import {getUsers, getUser} from "../../actions/profiles"
 import {getPosts} from "../../actions/posts"
 class AthleteSearch extends React.Component{
     constructor(props){
         super(props)
+        getUser(this.props.currentUser, this)
         getPosts(this)
         getUsers(this)
     }
     state = {
+        user: {},
         search: "",
         searchText:'',
         locations: [],
@@ -40,9 +42,9 @@ class AthleteSearch extends React.Component{
       }
       
     filterPreferences = () => {
-        let allUsers = this.props.info.users.filter(user => user.name.toLowerCase().includes(this.state.search.toLowerCase()))
+        let allUsers = this.state.users.filter(user => user.name.toLowerCase().includes(this.state.search.toLowerCase()))
   
-        let allPosts = this.props.info.posts.filter(post => 
+        let allPosts = this.state.posts.filter(post => 
           post.text.toLowerCase().includes(this.state.search.toLowerCase()) | post.user.name.toLowerCase().includes(this.state.search.toLowerCase()))
         if (this.state.locations.length > 0){
             allUsers = allUsers.filter(user => user.location.toLowerCase().includes(this.state.locations[0].toLowerCase()))
@@ -85,9 +87,8 @@ class AthleteSearch extends React.Component{
         const filters = {locations: this.state.locations, organizations: this.state.organizations, sports: this.state.sports}
         return <div className="athleteSearch">
 
-            {this.props.info.search}
             <div className="searchLeftColumn">
-                <DashProfileBox user={this.props.info.user} className="personalProfile"/>
+                <DashProfileBox user={this.state.user} className="personalProfile"/>
             </div>
 
             <div className="searchContainer">
@@ -105,7 +106,7 @@ class AthleteSearch extends React.Component{
                 <div hidden={this.state.search.length === 0}className="searchResultsTitle"> Search Results For: {this.state.search}</div>
                
                 <SearchResults 
-                user={this.props.info.user} 
+                user={this.state.user} 
                 upvote={this.upvotePost} 
                 filter={this.state.filters} 
                 posts={this.state.posts} 
