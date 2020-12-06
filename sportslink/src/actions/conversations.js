@@ -39,12 +39,12 @@ export function createNewConversation(currUser, otherUser, messaging) {
                     }
                 });
             } else {
-                dashboardComp.setState({
-                    message: {
-                        body: "Error: Could not create conversation.",
-                        type: "error"
-                    }
-                });
+                // dashboardComp.setState({
+                //     message: {
+                //         body: "Error: Could not create conversation.",
+                //         type: "error"
+                //     }
+                // });
             }
         })
         .catch(error => {
@@ -74,12 +74,12 @@ export function createNewMessage(currUser, conversationID, messageData, messagin
                     }
                 });
             } else {
-                dashboardComp.setState({
-                    message: {
-                        body: "Error: Could not create message.",
-                        type: "error"
-                    }
-                });
+                // dashboardComp.setState({
+                //     message: {
+                //         body: "Error: Could not create message.",
+                //         type: "error"
+                //     }
+                // });
             }
         })
         .catch(error => {
