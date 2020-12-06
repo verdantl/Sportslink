@@ -70,7 +70,42 @@ class Profile extends React.Component{
             }
         }
         console.dir(global.experience)
-        this.render();
+       // this.render();
+        //this.setState({experience: experiences});
+    }
+
+    addExperience = (id, title, organization, league, stats, description, years) => {
+        const {global} = this.props;
+        var experiences = global.experience;
+
+        const experience= {
+            id: id,
+            title: title,
+            organization: organization,
+            league: league,
+            stats: stats,
+            description: description,
+            years: years
+        }
+        experiences.push(experience);
+        this.setState({}); // used to cause a page refresh upon adding the experience  
+        //this.render();
+        //this.setState({experience: experiences});
+    }
+
+    removeExperience = (id) => {
+        const {global} = this.props;
+        var experiences = global.experience;
+        var i;
+        for (i in experiences){
+            console.dir(experiences[i])
+            if (experiences[i].id == id){
+                experiences.splice(i, 1);
+            }
+        }
+        console.dir(global.experience)
+        this.setState({}); // used to cause a page refresh upon adding the experience  
+       // this.render();
         //this.setState({experience: experiences});
     }
 
@@ -88,6 +123,35 @@ class Profile extends React.Component{
 
     }
 
+    getAccomplishments = () =>{
+        return this.props.global.accomplishments;
+    }
+
+    addAccomplishment = (id, accomplishment) =>{
+        this.props.global.accomplishments.push(accomplishment);
+        this.setState({}); // used to cause a page refresh upon adding the experience  
+    }
+
+
+    updateDescription = (newDescription) =>{
+        this.props.global.description = newDescription;
+        this.setState({}); // used to cause a page refresh upon adding the experience  
+    }
+
+    updateLocation = (location) =>{
+        this.props.global.location = location;
+        this.setState({}); // used to cause a page refresh upon adding the experience 
+    }
+
+    updateOrganization = (organization) =>{
+        this.props.global.organization = organization;
+        this.setState({}); // used to cause a page refresh upon adding the experience 
+    }
+
+    updateSports = (sports) =>{
+        this.props.global.sports= sports;
+        this.setState({}); // used to cause a page refresh upon adding the experience 
+    }
     
     setBoxState = (newBoxState) =>{
         console.log('---- setting box state ------ ')
@@ -100,6 +164,11 @@ class Profile extends React.Component{
         this.inputBox.current.setDefaultValuesForState();
       }
 
+
+    handleBiographyEditButtonClick = (event) => {
+        this.setBoxState(5);
+    }
+
     render(){
         const {global} = this.props;
         console.log('--------- Profile -----------------')
@@ -111,10 +180,10 @@ class Profile extends React.Component{
         console.dir(global)
         return <div className={(global.player) ? "userProfile" : "recruiterProfile"}>
             <div className="profileCard">
-                <ProfileInfo user={global.name} global={global}/>
+                <ProfileInfo user={global.name} global={global} setBoxState={this.setBoxState.bind(this)} />
                 <div className='editSection'>
                 <Biography description={global.description}/>
-                <EditButton/>
+                <EditButton handleEditButtonClick={this.handleBiographyEditButtonClick.bind(this)}/>
                 </div>
 
             </div>
@@ -122,10 +191,14 @@ class Profile extends React.Component{
             <div className="achievements">
                 <div></div>
                 <Experience experience={global.experience} updateExperience={this.updateExperience.bind(this)} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
-                <InputBox ref={this.inputBox} updateExperience={this.updateExperience.bind(this)} getExperienceById={this.getExperienceById.bind(this)} user={global}/> 
+                <InputBox ref={this.inputBox} updateExperience={this.updateExperience.bind(this)} getExperienceById={this.getExperienceById.bind(this)} 
+                    addExperience={this.addExperience.bind(this)} removeExperience={this.removeExperience.bind(this)} getAccomplishments={this.getAccomplishments.bind(this)} 
+                    addAccomplishment={this.addAccomplishment.bind(this)} updateDescription={this.updateDescription.bind(this)} updateLocation={this.updateLocation.bind(this)}
+                    updateOrganization={this.updateOrganization.bind(this)} updateSports={this.updateSports.bind(this)}
+                    user={global}/> 
                 <div className="profileRightColumn">
                 <Images images={global.images}/>
-                <Career accomplishments={global.accomplishments}/>
+                <Career accomplishments={global.accomplishments} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
                 </div>
                 
             </div>

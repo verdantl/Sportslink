@@ -17,13 +17,17 @@ class ProfileInfo extends React.Component{
 
     }
 
+    handleProfileInfoEditClick = (event) => {
+        this.props.setBoxState(6);
+    }
+
     render(){
         const {global} = this.props;
         return  <div className="profileInfo">
         <ProfilePicture image={global.image} name={global.name}/>
             <div className="contactDetails"> 
             <div className="editSection">
-            <EditButton/>
+            <EditButton handleEditButtonClick={this.handleProfileInfoEditClick.bind(this)} />
             </div>
             <PersonalInfo global={global}/>
             </div>

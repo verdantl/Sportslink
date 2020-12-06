@@ -14,7 +14,7 @@ class ExperienceCard extends React.Component{
             stats: this.props.experience.stats, 
             description: this.props.experience.description, 
             years: this.props.experience.years,*/
-            hideButtons: true,
+            hideButtons: false,
             editing: false
         };
     }
@@ -27,7 +27,7 @@ class ExperienceCard extends React.Component{
     }
 
     handleHide = (event) => {
-        this.setState({hideButtons: true})
+        //this.setState({hideButtons: true})
     }
 
    /* updateInfo = (event) =>{
@@ -63,9 +63,23 @@ class ExperienceCard extends React.Component{
         this.props.setIdToEdit(this.props.experience.id);
     }
 
+    handleEditButtonClick = (event) => {
+        event.preventDefault();
+        console.log('-------------- Edit button clicked');
+       // this.toggleEditing();
+        this.props.setBoxState(1);
+        this.updateInputBoxId();
+        console.log("handleEditButtonClick")
+    }
+
+    handleRemoveButtonClick = (event) =>{
+        event.preventDefault();
+        this.props.setBoxState(3);
+        this.updateInputBoxId();
+    }
     
 
-    renderInputFields(){
+    /*renderInputFields(){
         return(
             <div className={this.props.className} onMouseEnter={this.handleDisplay} onMouseLeave={this.handleHide}>
                 <input type="text" className="experienceTileH2" name="title" defaultValue={this.state.title} onChange={this.handleChange}/>
@@ -81,22 +95,23 @@ class ExperienceCard extends React.Component{
                 </button>
             </div>
         );
-    }
+    }*/
+
 
     render(){
         //console.log('this.state.editing', this.state.editing)
         //console.dir(this.state)
         //console.dir(this.props)
-        if(this.state.editing){
+       // if(this.state.editing){
             //return this.renderInputFields();
-        }
+        //}
         return( 
             <div>
                 <div className={this.props.className} onMouseEnter={this.handleDisplay} onMouseLeave={this.handleHide}>
                     <span><h2>{this.props.experience.title}</h2></span>
                     <span className="editDelete" hidden={this.props.experience.hideButtons}>
-                        <EditButton toggleEditing ={this.toggleEditing.bind(this)} setBoxState={this.props.setBoxState.bind(this)} updateInputBoxId = {this.updateInputBoxId.bind(this)} />
-                        <DeleteButton/>
+                        <EditButton  handleEditButtonClick={this.handleEditButtonClick.bind(this)} toggleEditing ={this.toggleEditing.bind(this)} setBoxState={this.props.setBoxState.bind(this)} updateInputBoxId = {this.updateInputBoxId.bind(this)} />
+                        <DeleteButton handleRemoveButtonClick={this.handleRemoveButtonClick.bind(this)}/>
                     </span>
                     <h3>{this.props.experience.organization} {this.props.experience.years}</h3>
                     <h4>{this.props.experience.league}</h4>

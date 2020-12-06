@@ -20,11 +20,14 @@ class Career extends React.Component{
 
     }
 
+    handleAddButtonClick = (event) =>{
+        this.props.setBoxState(4);
+    }
 
     render(){
         return <div className="profileCareer">
            <h1>Career Accomplishments</h1>
-           <AddCircleIcon className={this.state.addButtonClass} onMouseEnter={this.handleButtonOn} onMouseLeave={this.handleButtonOff}/>
+           <AddCircleIcon className={this.state.addButtonClass} onMouseEnter={this.handleButtonOn} onMouseLeave={this.handleButtonOff} onClick={this.handleAddButtonClick}/>
            {this.props.accomplishments.map((accomplishment) => {
               return <CareerCard key={uid(accomplishment)} accomplishment={accomplishment}/>
 

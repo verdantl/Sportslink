@@ -16,11 +16,14 @@ class DeleteButton extends React.Component{
 
     }
 
+
     render(){
         return <DeleteIcon 
         className={this.state.deleteButtonClass} 
         onMouseEnter={this.handleDeleteButtonOn} 
-        onMouseLeave={this.handleDeleteButtonOff}/>
+        onMouseLeave={this.handleDeleteButtonOff} 
+        onClick={this.props.handleRemoveButtonClick}   
+        />
     }
 }
 
