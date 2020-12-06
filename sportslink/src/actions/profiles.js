@@ -25,15 +25,17 @@ export const getUser = (username, dashboard) => {
     fetch(url)
         .then(res => {
             if (res.status === 200) {
+                console.log(res)
                 // return a promise that resolves with the JSON body
                 return res.json();
+                
             } else {
-                alert("Could not get students");
+                alert("Could not get user");
             }
         })
         .then(json => {
             // the resolved promise with the JSON body
-            dashboard.setState({ users: json.users});
+            dashboard.setState({ user: json});
         })
         .catch(error => {
             console.log(error);

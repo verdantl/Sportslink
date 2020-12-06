@@ -55,7 +55,7 @@ class App extends React.Component {
                  render={props=>
                         <div className="app">
                           { /* Different componenets rendered depending on if someone is logged in. */}
-                          {!currentUser ? <Login {...props} app={this} /> : currentUser==='admin' ? <AdminDashboard {...props} app={this} className="adminDashboard"/> : <div><TopBar {...props} currentUser={this.state.currentUser} app={this}/><AthleteSearch {...props} app={this} /></div>}
+                          {!currentUser ? <Login {...props} app={this} /> : currentUser==='admin' ? <AdminDashboard {...props} app={this} className="adminDashboard"/> : <div><TopBar {...props}  app={this}/><AthleteSearch {...props} currentUser={this.state.currentUser} app={this} /></div>}
                       </div> 
                       }
                       />

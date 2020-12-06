@@ -14,7 +14,7 @@ class Dashboard extends React.Component{
         this.props.history.push("/dashboard");
         getUsers(this)
         getPosts(this)
-        getUser(this)
+        getUser(this.props.currentUser, this)
     }
     
     state = {

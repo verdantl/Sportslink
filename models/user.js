@@ -1,6 +1,7 @@
 'use strict'
 const mongoose = require('mongoose')
 
+
 const ExperienceSchema = new mongoose.Schema({
 	title: {
 		type: String,
@@ -56,7 +57,7 @@ const UserSchema = new mongoose.Schema({
         image: {
                 type: String,
                 required: false,
-                minlength: 1,
+                minlength: 1
         },
         description: {
                 type: String,

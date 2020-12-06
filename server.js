@@ -29,7 +29,6 @@ const { mongo } = require("mongoose");
 const conversation = require("./models/conversation");
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
     return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
 }
@@ -222,7 +221,7 @@ app.get('/api/users', mongoChecker, async (req, res) => {
 // a GET route to get a user by username
 app.get('/api/users/:username', mongoChecker, async (req, res) => {
     const username = req.params.username
-    
+
 	if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -230,9 +229,9 @@ app.get('/api/users/:username', mongoChecker, async (req, res) => {
 	} 
     // Get the students
     try {
-        const users = await User.findOne({username: username})
-        // res.send(students) // just the array
-        res.send({users}) // can wrap students in object if want to add more properties
+        const user = await User.findOne({username: username})
+        log(user)
+        res.send(user) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
         res.status(500).send("Internal Server Error")

@@ -6,20 +6,17 @@ import TextField from '@material-ui/core/TextField'
 import lebron from '../images/lebron.jpg'
 import SearchResults from "./SearchResults"
 
-import {getUsers} from "../../actions/profiles"
+import {getUsers, getUser} from "../../actions/profiles"
 import {getPosts} from "../../actions/posts"
 class AthleteSearch extends React.Component{
     constructor(props){
         super(props)
+        getUser(this.props.currentUser, this)
         getPosts(this)
         getUsers(this)
     }
     state = {
-        user: {
-            image: lebron,
-            name: "Lebron James",
-            username: "user"
-        },
+        user: {},
         search: "",
         searchText:'',
         locations: [],
