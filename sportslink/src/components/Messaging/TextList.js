@@ -7,7 +7,7 @@ class TextList extends React.Component{
         return (
             <ul>
                 {
-                    this.props.messages.map(this.displayMessage)
+                    this.props.conversation.messages.map(this.displayMessage)
                 }
             </ul>
         )
@@ -15,11 +15,11 @@ class TextList extends React.Component{
 
     displayMessage (message) {
         return (
-            <li className={message.userID === "currUserID" ? 'sentTextDiv' : 'recievedTextDiv'} key={"message-" + uid(message.messageID)}>
-                <div className={message.userID === "currUserID" ? 'sentName' : 'recievedName'}>
-                    {message.userID}
+            <li className={message.sentUsername === "currUserID" ? 'sentTextDiv' : 'recievedTextDiv'} key={"message-" + uid(message._id)}>
+                <div className={message.sentUsername === "currUserID" ? 'sentName' : 'recievedName'}>
+                    {message.sentUsername}
                 </div>
-                <div className={message.userID === "currUserID" ? 'sentMessage' : 'recievedMessage'}>
+                <div className={message.sentUsername === "currUserID" ? 'sentMessage' : 'recievedMessage'}>
                     {message.messageData}
                 </div>
             </li>

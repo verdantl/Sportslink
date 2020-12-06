@@ -49,18 +49,18 @@ class Messaging extends React.Component{
         //         }
         //     ]
         // },
-        contacts: [
-            {
-                userID: 'UserIDGoesHere1',
-                icon: '',
-                lastMessage: 'This was the last message sent by UserIDGoesHere1'
-            },
-            {
-                userID: 'UserIDGoesHere2',
-                icon: '',
-                lastMessage: 'This was the last message sent by UserIDGoesHere2'
-            }
-        ]
+        // contacts: [
+        //     {
+        //         userID: 'UserIDGoesHere1',
+        //         icon: '',
+        //         lastMessage: 'This was the last message sent by UserIDGoesHere1'
+        //     },
+        //     {
+        //         userID: 'UserIDGoesHere2',
+        //         icon: '',
+        //         lastMessage: 'This was the last message sent by UserIDGoesHere2'
+        //     }
+        // ]
     }
 
     contactClick = (e) => {
@@ -88,6 +88,10 @@ class Messaging extends React.Component{
         this.setState({contacts: contacts})
     }
 
+    conversationFilter = (conversation) => {
+        return conversation.toUsername === this.state.currContact
+    }
+
     sendMessage = (message) => {
         createNewMessage(this.state.currUser, this.state.currContact, this.state.messageData, this)
         this.setContacts(this.state.conversations)
@@ -111,7 +115,7 @@ class Messaging extends React.Component{
                     <ContactHeader currContact={this.state.currContact}/>
                 </div>
                 <div className="texts">
-                    <TextList messages={this.state.messageData[this.state.currContact]} currUser={this.state.currUser}/>
+                    <TextList conversation={this.state.conversations.filter(conversationFilter)} currUser={this.state.currUser}/>
                 </div>
                 <div className="sendMessageForm">
                     <SendMessageForm sendMessage={this.sendMessage}/>
