@@ -5,7 +5,7 @@ import NewsBox from './NewsBox'
 import lebron from '../images/lebron.jpg'
 import NewPost from './NewPost'
 import Posts from './Posts'
-import { getUsers } from '../../actions/profiles' 
+import { getUser, getUsers } from '../../actions/profiles' 
 import { getPosts, newPost, newComment } from '../../actions/posts'
 
 class Dashboard extends React.Component{
@@ -14,14 +14,11 @@ class Dashboard extends React.Component{
         this.props.history.push("/dashboard");
         getUsers(this)
         getPosts(this)
+        getUser(this)
     }
     
     state = {
-        user: {
-            image: lebron,
-            name: "Lebron James",
-            username: "user"
-        },
+        user: {},
         users: [],
         posts: []
       }

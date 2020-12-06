@@ -1,3 +1,8 @@
+import lebron from './components/images/lebron.jpg'
+import kawhi from './components/images/kawhi.jpg'
+import harden from './components/images/harden.jpg'
+import durant from './components/images/durant.jpg'
+import philjackson from './components/images/philjackson.jpg'
 const stuff = {
     user:{
   player: true,
