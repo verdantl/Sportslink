@@ -85,7 +85,7 @@ class Messaging extends React.Component{
         for (let i = 0; i < conversations.length; i++) {
             contacts.push({ userID: conversations[i].toUsername, icon: '', lastMessage: conversations[i].messages[0].messageData })
         }
-        this.setState({contacts: contacts})
+        this.setState({'contacts': contacts})
     }
 
     conversationFilter = (conversation) => {
@@ -115,7 +115,7 @@ class Messaging extends React.Component{
                     <ContactHeader currContact={this.state.currContact}/>
                 </div>
                 <div className="texts">
-                    <TextList conversation={this.state.conversations.filter(conversationFilter)} currUser={this.state.currUser}/>
+                    <TextList conversation={this.state.conversations.filter(this.conversationFilter)} currUser={this.state.currUser}/>
                 </div>
                 <div className="sendMessageForm">
                     <SendMessageForm sendMessage={this.sendMessage}/>
