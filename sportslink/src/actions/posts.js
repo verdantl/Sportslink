@@ -89,7 +89,6 @@ export const editPostInfo = (dashboard) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
-            console.log(json)
             dashboard.setState({ posts: json});
         })
         .catch(error => {
@@ -98,4 +97,27 @@ export const editPostInfo = (dashboard) => {
 
 }
 
+export const deletePostUsername = (user, dashboard) => {
+    const url = "/api/deletePosts/" + user.username
+    const request = new Request(url, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request)
+        .then(res => {
+        if (res.status === 200) {
+            // return a promise that resolves with the JSON body
+            return res.json();
+        } else {
+            alert("Could not delete user");
+        }
+    })
+    .then(json => {
+        // the resolved promise with the JSON body
+        getPosts(dashboard)
+    })
+}
 //adds a comment

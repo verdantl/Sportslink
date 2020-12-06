@@ -1,3 +1,5 @@
+import { getPosts } from "./posts";
+
 export const getUsers = (dashboard) => {
     const url = '/api/users';
     fetch(url)
@@ -46,3 +48,49 @@ export const updateUserInfo = (attributes, userID, dashboard) => {
         console.log(error);
     });
 };
+
+export const deleteUser = (user, dashboard) => {
+    const url = "/api/users/" + user._id
+    const request = new Request(url, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request)
+    .then(res => {
+        if (res.status === 200) {
+            // return a promise that resolves with the JSON body
+            return res.json();
+        } else {
+            alert("Could not delete user");
+        }
+    })
+    .then(json => {
+        const url = "/api/accounts/" + user.username
+        const request2 = new Request(url, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json, text/plain, */*",
+                "Content-Type": "application/json"
+            }
+        });
+        fetch(request2)
+            .then(res => {
+            if (res.status === 200) {
+                // return a promise that resolves with the JSON body
+                return res.json();
+            } else {
+                alert("Could not delete user");
+            }
+        })
+        .then(json => {
+            getUsers(dashboard)
+            // the resolved promise with the JSON body
+        })
+    })
+    .catch(error => {
+        console.log(error);
+    }); 
+}

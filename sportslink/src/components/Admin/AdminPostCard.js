@@ -1,7 +1,6 @@
 import React from 'react'
 import {uid} from 'react-uid'
 import Comment from '../Dashboard/Comment'
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import IconButton from '@material-ui/core/IconButton'
 import Delete from "@material-ui/icons/Delete"
 import ConfirmationDialog from '../ConfirmationDialog'

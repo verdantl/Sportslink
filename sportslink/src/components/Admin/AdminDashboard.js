@@ -3,8 +3,8 @@ import './AdminDashboard.css'
 import AdminSearchResults from "./AdminSearchResults"
 import AdminSearchBox from './AdminSearchBox'
 import AdminSideFilters from './AdminSideFilters'
-import {getUsers, updateUserInfo} from "../../actions/profiles"
-import {getPosts} from "../../actions/posts"
+import {getUsers, updateUserInfo, deleteUser} from "../../actions/profiles"
+import {getPosts, deletePostUsername} from "../../actions/posts"
 
 class AdminDashboard extends React.Component{
     constructor(props) {
@@ -82,6 +82,8 @@ class AdminDashboard extends React.Component{
           updateUserInfo(formComp, user._id, this)
           break;
         case ('remove'):
+          deleteUser(user, this)
+          deletePostUsername(user, this)
           break;
         case ('edit'):
         break;

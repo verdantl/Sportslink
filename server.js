@@ -173,8 +173,28 @@ app.patch('/api/accounts/:user', mongoChecker, authenticate, async (req, res) =>
 
 
 //Deletes an account, we need to authenticate for admin, function for updating account settings information
-app.delete('/api/accounts/:account', mongoChecker, authenticate, async (req, res) => {
+app.delete('/api/accounts/:username', mongoChecker, async (req, res) => {
+	const username = req.params.username
 
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+	} 
+
+	// Delete a student by their id
+	try {
+		const account = await Account.findOneAndDelete({username: username})
+		if (!account) {
+			res.status(404).send()
+		} else {   
+			res.send(account)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send() // server error, could not delete.
+	}
 })
 
 
@@ -596,6 +616,31 @@ app.delete('/api/posts/:postid', mongoChecker, async (req, res) => {
 
     try {
         const post = await Post.findByIdAndRemove(pid)
+
+		if (!post) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			res.send(post) // this will be the array of the experience before deletion 
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
+//delete post by username
+app.delete('/api/deletePosts/:username', mongoChecker, async (req, res) => {
+    const username = req.params.username
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+
+    try {
+        const post = await Post.deleteMany({"user.username": username})
 
 		if (!post) {
 			res.status(404).send('Resource not found')  // could not find this student
