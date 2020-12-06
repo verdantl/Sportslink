@@ -13,8 +13,8 @@ import lebron from '../images/lebron.jpg'
 class ViewProfile extends React.Component{
     state = {
         contactClass: 'contact',
-        images: [coolcat, icedragon],
-        user: {
+        //images: [coolcat, icedragon],
+       /* user: {
             name: "Lebron James",
             image: lebron,
             description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
@@ -32,7 +32,7 @@ class ViewProfile extends React.Component{
             description: 'Made the NBA Finals in all four years, delivered two championships and won Finals MVP in 2012 and 2013', years: '2010-2014'},
             {title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
             description: 'Took the team to an NBA Finals in 2009, averaged over 25 ppg', years: '2003-2010'}]
-            }
+            }*/
     }
 
     handleButton = (event) => {

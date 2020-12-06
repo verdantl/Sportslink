@@ -21,6 +21,10 @@ import ForgotPass from './components/ForgotPass/ForgotPass'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { uid } from 'react-uid';
 
+import coolcat from './components/images/coolcat.jpg'
+import icedragon from './components/images/icedragon.jpg'
+
+
 import { checkSession } from "./actions/user";
 
 class App extends React.Component {
@@ -39,13 +43,14 @@ class App extends React.Component {
       suspended: false,
       name: "Lebron James",
       image: lebron,
+      images: [coolcat, icedragon],
       description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
       location: "Los Angeles CA, USA",
       organization: "Los Angeles Lakers",
       sports:"Basketball",
       contact: "",
       accomplishments: ["4x NBA Champion", '4x NBA Finals MVP', '4x NBA MVP', '16x NBA All Star', '13x All-NBA First Team'],
-      experience: [{title: 'Point Guard', organization: 'Los Angeles Lakers', league: "NBA", stats: {'2019': '25 ppg, 10apg'},
+      experience: [{id: '0', title: 'Point Guard', organization: 'Los Angeles Lakers', league: "NBA", stats: {'2019': '25 ppg, 10apg'},
       description: 'Led Lakers to a championship in the NBA Bubble 2020, averaging almost 30 ppg in the Finals against the Miami Heat',
       years: '2018-2020'},
       {title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
@@ -62,6 +67,7 @@ class App extends React.Component {
         suspended: false,
         name: "Lebron James",
         image: lebron,
+        images: [coolcat, icedragon],
         description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
         location: "Los Angeles CA, USA",
         organization: "Los Angeles Lakers",

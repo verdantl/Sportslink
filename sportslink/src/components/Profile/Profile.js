@@ -9,13 +9,19 @@ import coolcat from '../images/coolcat.jpg'
 import icedragon from '../images/icedragon.jpg'
 import lebron from '../images/lebron.jpg'
 import EditButton from './EditButton'
-
+import {uid} from 'react-uid'
+import InputBox from './InputBox'
 
 class Profile extends React.Component{
+    constructor(props){
+        super(props);
+        this.inputBox = React.createRef();
+    }
+
     state = {
         contactClass: 'contact',
 
-        user: {
+        /*user: {
             name: "Lebron James",
             image: lebron,
             images: [coolcat, icedragon],
@@ -34,7 +40,7 @@ class Profile extends React.Component{
             description: 'Made the NBA Finals in all four years, delivered two championships and won Finals MVP in 2012 and 2013', years: '2010-2014'},
             {id: '3', title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
             description: 'Took the team to an NBA Finals in 2009, averaged over 25 ppg', years: '2003-2010'}]
-            }
+            }*/
     }
 
     handleButtonOff = (event) => {
@@ -43,12 +49,14 @@ class Profile extends React.Component{
     }
     
     updateExperience = (id, title, organization, league, stats, description, years) => {
-        console.log('this.state.user.experience');
-        console.dir(this.state.user.experience);
+        console.log('-------------------------- update Experience ---------------------------')
+        const {global} = this.props;
+        console.log('this.props.experience');
+        console.dir(global.experience);
         console.log('id', id);
         console.log('league', league);
         
-        var experiences = this.state.user.experience;
+        var experiences = global.experience;
         var i;
         for (i in experiences){
             console.dir(experiences[i])
@@ -61,12 +69,46 @@ class Profile extends React.Component{
                 experiences[i].years = years;
             }
         }
-        console.dir(experiences)
-        this.setState({experience: experiences});
+        console.dir(global.experience)
+        this.render();
+        //this.setState({experience: experiences});
     }
+
+    getExperienceById = (id) =>{
+        const {global} = this.props;
+        var experiences = global.experience;
+        var i;
+        for (i in experiences){
+            console.dir(experiences[i])
+            if (experiences[i].id == id){
+                return experiences[i]
+            }
+        }
+        console.dir(global.experience)
+
+    }
+
+    
+    setBoxState = (newBoxState) =>{
+        console.log('---- setting box state ------ ')
+        this.inputBox.current.setBoxState(newBoxState);  
+        this.inputBox.current.setDefaultValuesForState();
+    }
+
+    setIdToEdit = (eId) =>{
+        this.inputBox.current.setIdToEdit(eId);
+        this.inputBox.current.setDefaultValuesForState();
+      }
 
     render(){
         const {global} = this.props;
+        console.log('--------- Profile -----------------')
+        console.log('this.state')
+        console.dir(this.state)
+        console.log('this.props')
+        console.dir(this.props)
+        console.log('global')
+        console.dir(global)
         return <div className={(global.player) ? "userProfile" : "recruiterProfile"}>
             <div className="profileCard">
                 <ProfileInfo user={global.name} global={global}/>
@@ -79,9 +121,10 @@ class Profile extends React.Component{
 
             <div className="achievements">
                 <div></div>
-                <Experience experience={global.experience} updateExperience={this.updateExperience.bind(global)}/>
+                <Experience experience={global.experience} updateExperience={this.updateExperience.bind(this)} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
+                <InputBox ref={this.inputBox} updateExperience={this.updateExperience.bind(this)} getExperienceById={this.getExperienceById.bind(this)} user={global}/> 
                 <div className="profileRightColumn">
-                <Images images={this.state.user.images}/>
+                <Images images={global.images}/>
                 <Career accomplishments={global.accomplishments}/>
                 </div>
                 
