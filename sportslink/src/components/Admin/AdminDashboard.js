@@ -3,7 +3,7 @@ import './AdminDashboard.css'
 import AdminSearchResults from "./AdminSearchResults"
 import AdminSearchBox from './AdminSearchBox'
 import AdminSideFilters from './AdminSideFilters'
-import {getUsers} from "../../actions/profiles"
+import {getUsers, updateUserInfo} from "../../actions/profiles"
 import {getPosts} from "../../actions/posts"
 
 class AdminDashboard extends React.Component{
@@ -72,19 +72,18 @@ class AdminDashboard extends React.Component{
       
     }
 
-    adminAction = (action, id) => {
-      const user = this.state.users[id]
+    adminAction = (action, user) => {
+
       switch (action){
         case ('suspend'):
-          user.suspended = !user.suspended;
-          this.setState({users: this.state.users})
+          const formComp = [
+            { op : "replace", path: "/suspended", value: !user.suspended }
+          ]
+          updateUserInfo(formComp, user._id, this)
           break;
         case ('remove'):
-          this.state.users.splice(id, 1)
-          this.setState({users: this.state.users})
           break;
         case ('edit'):
-        this.setState({users: this.state.users})
         break;
       }
     }

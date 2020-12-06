@@ -50,7 +50,7 @@ class SingleAdminBox extends React.Component{
     }
 
     handleAgreeClose = () => {
-        this.props.adminAction(this.state.name, this.props.value)
+        this.props.adminAction(this.state.name, this.props.user)
         this.setState({openDialog: false})
     }
 

@@ -9,7 +9,7 @@ class AdminSearchResults extends React.Component{
         if(this.props.filter === 'athlete'){
             return <div>
             {this.props.users.map((user) => {
-              return <SingleAdminBox key={uid(user)} adminAction={this.props.adminAction} value={this.props.users.indexOf(user)} user={user}/>
+              return <SingleAdminBox key={uid(user)} adminAction={this.props.adminAction} user={user}/>
             }
             )}
         </div>

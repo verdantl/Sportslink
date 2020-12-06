@@ -243,7 +243,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
 ]
 */
 //Remember to check for the session user id, function for updating profile information
-app.patch('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
+app.patch('/api/users/:id', mongoChecker, async (req, res) => {
 	const id = req.params.id
 
 	if (!ObjectID.isValid(id)) {
@@ -261,11 +261,11 @@ app.patch('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
     // Find the fields to update and their values.
     const fieldsToUpdate = {}
 
+
 	req.body.map((change) => {
 		const propertyToChange = change.path.substr(1) // getting rid of the '/' character
 		fieldsToUpdate[propertyToChange] = change.value
     })
-
 	// Update the student by their id.
 	try {
 		const user = await User.findOneAndUpdate({_id: id}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
