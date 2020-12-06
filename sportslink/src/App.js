@@ -8,6 +8,15 @@ import Messaging from './components/Messaging/Messaging'
 import TopBar from './components/TopBar'
 import AdminTopBar from './components/AdminTopBar'
 
+
+// ---------------------
+import lebron from './components/images/lebron.jpg'
+import kawhi from './components/images/kawhi.jpg'
+import harden from './components/images/harden.jpg'
+import durant from './components/images/durant.jpg'
+import philjackson from './components/images/philjackson.jpg'
+// ---------------
+
 import Profile from './components/Profile/Profile'
 import ViewProfile from './components/ViewProfile/Profile'
 import Signup from './components/Signup/Signup'
