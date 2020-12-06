@@ -1,7 +1,7 @@
 import React from 'react'
 import './DashProfileBox.css'
 import {Link} from "react-router-dom";
-import blankPic from '../images/blankPic.jpg'
+import blankPic from '../images/blankpic.jpg'
 
 class DashProfileBox extends React.Component{
 

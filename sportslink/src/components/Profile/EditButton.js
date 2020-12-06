@@ -22,7 +22,10 @@ class EditButton extends React.Component{
     }
 
     handleEditButtonClick = (event) => {
+        console.log('-------------- Edit button clicked');
         this.toggleEditing();
+        this.props.setBoxState(1);
+        this.props.updateInputBoxId();
         console.log("handleEditButtonClick")
     }
 
@@ -39,7 +42,7 @@ class EditButton extends React.Component{
                     className={this.state.editButtonClass} 
                     onMouseEnter={this.handleEditButtonOn} 
                     onMouseDown={this.handleEditButtonOff}
-                    onClick={this.props.toggleEditing}/>
+                    onClick={this.handleEditButtonClick}/>
 
                 <InputBox show={this.state.showInputBox}
                     onClose={this.toggleInputBox}>

@@ -4,49 +4,51 @@ import TextList from './TextList';
 import ContactHeader from './ContactHeader';
 import SendMessageForm from './SendMessageForm'
 import "./Messaging.css";
+import { getConversations, createNewMessage } from '../../actions/conversations'
+
+// TODO: Fix issue where switching contacts with the same text filled in the send message box carries over
 
 class Messaging extends React.Component{
 
     state = {
-        globalMessageID: 106, // TODO: remove once global API call is used
         currUser : 'currUserID',
         currContact: 'UserIDGoesHere1',
-        messageData: {
-            'UserIDGoesHere1': [
-                {
-                    messageID: 100,
-                    userID: 'UserIDGoesHere1',
-                    messageData: 'This is an incoming message'
-                },
-                {
-                    messageID: 101,
-                    userID: 'currUserID',
-                    messageData: 'This is an outgoing message'
-                }
-            ],
-            'UserIDGoesHere2': [
-                {
-                    messageID: 102,
-                    userID: 'UserIDGoesHere2',
-                    messageData: 'This is an incoming message'
-                },
-                {
-                    messageID: 103,
-                    userID: 'currUserID',
-                    messageData: 'This is an outgoing message'
-                },
-                {
-                    messageID: 104,
-                    userID: 'currUserID',
-                    messageData: 'This is another outgoing message'
-                },
-                {
-                    messageID: 105,
-                    userID: 'UserIDGoesHere2',
-                    messageData: 'Bruh'
-                }
-            ]
-        },
+        // conversations: {
+        //     'UserIDGoesHere1': [
+        //         {
+        //             messageID: 100,
+        //             userID: 'UserIDGoesHere1',
+        //             messageData: 'This is an incoming message'
+        //         },
+        //         {
+        //             messageID: 101,
+        //             userID: 'currUserID',
+        //             messageData: 'This is an outgoing message'
+        //         }
+        //     ],
+        //     'UserIDGoesHere2': [
+        //         {
+        //             messageID: 102,
+        //             userID: 'UserIDGoesHere2',
+        //             messageData: 'This is an incoming message'
+        //         },
+        //         {
+        //             messageID: 103,
+        //             userID: 'currUserID',
+        //             messageData: 'This is an outgoing message'
+        //         },
+        //         {
+        //             messageID: 104,
+        //             userID: 'currUserID',
+        //             messageData: 'This is another outgoing message'
+        //         },
+        //         {
+        //             messageID: 105,
+        //             userID: 'UserIDGoesHere2',
+        //             messageData: 'Bruh'
+        //         }
+        //     ]
+        // },
         contacts: [
             {
                 userID: 'UserIDGoesHere1',
@@ -78,21 +80,22 @@ class Messaging extends React.Component{
         }
     }
 
-    sendMessage = (message) => {
-        let currMessageData = this.state.messageData
-        let currMessageID = this.state.globalMessageID // TODO: Replace with API request to get a new message ID
-        
-        currMessageData[this.state.currContact].push({
-            messageID: currMessageID,
-            userID: this.state.currUser,
-            messageData: message
-        })
+    setContacts = (conversations) => {
+        let contacts = []
+        for (let i = 0; i < conversations.length; i++) {
+            contacts.push({ userID: conversations[i].toUsername, icon: '', lastMessage: conversations[i].messages[0].messageData })
+        }
+        this.setState({contacts: contacts})
+    }
 
-        this.setState({globalMessageID : currMessageID + 1})
-        this.setState({messageData : currMessageData})
+    sendMessage = (message) => {
+        createNewMessage(this.state.currUser, this.state.currContact, this.state.messageData, this)
+        this.setContacts(this.state.conversations)
     }
 
     render() {
+        getConversations(this)
+        this.setContacts(this.state.conversations)
         return <div className="messaging">
             <div className="contacts" onClick={this.contactClick}>
                 {
