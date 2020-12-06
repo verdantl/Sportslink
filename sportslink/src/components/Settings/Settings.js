@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 
 import Input from "../Input/Input.js";
 
-import {change, getAccount} from "../../actions/user.js";
+import {getAccount, updateAccount} from "../../actions/user.js";
 import { getUser } from '../../actions/profiles' 
 
 class Settings extends React.Component{
@@ -102,7 +102,7 @@ class Settings extends React.Component{
                     <br/>
                     <Button
                         variant="contained"
-                        onClick={() => change(this)}
+                        onClick={() => updateAccount(this)}
                         className="loginButton"
                     > 
                         Update   

@@ -101,7 +101,7 @@ app.post("/users/login", async(req, res) => {
     const usern = req.body.usern;
     const password  = req.body.password;
 
-    log(usern, password, "post");
+    // log(usern, password, "post");
     // Use the static method on the User model to find a user
     // by their email and password
     Account.findByUsernamePassword(usern, password)
@@ -176,7 +176,7 @@ app.get('/api/accounts/:username', mongoChecker, async (req, res) => {
 
     try {
         const user = await Account.findOne({username: username})
-        log(user)
+        // log(user)
         res.send(user) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
@@ -186,8 +186,40 @@ app.get('/api/accounts/:username', mongoChecker, async (req, res) => {
 })
 
 //Remember to check for the session user id, function for updating account settings information
-app.patch('/api/accounts/:user', mongoChecker, authenticate, async (req, res) => {
-
+app.patch('/api/accounts/:user', mongoChecker, async (req, res) => {
+    const username = req.params.user
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    let changes = {}
+    
+    if (req.body.email) {
+        changes.email = req.body.email
+    }
+    if (req.body.username) {
+        changes.username = req.body.username
+    }
+    // Need to figure out hashing
+    // if (req.body.password) {
+    //     changes.password = req.body.password
+    // }
+    try {
+        const account = await Account.findOneAndUpdate({username: username}, {$set: changes}, {new: true, useFindAndModify: false})
+        if (!account) {
+			res.status(404).send('Resource not found')
+		} else {  
+            res.send(account)
+		}
+	} catch (error) {
+		log(error)
+		if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+			res.status(500).send('Internal server error')
+		} else {
+			res.status(400).send('Bad Request') // bad request for changing the account.
+		}
+	}
 })
 
 
@@ -208,7 +240,7 @@ app.delete('/api/accounts/:username', mongoChecker, async (req, res) => {
 		const account = await Account.findOneAndDelete({username: username})
 		if (!account) {
 			res.status(404).send()
-		} else {   
+		} else {  
 			res.send(account)
 		}
 	} catch(error) {
@@ -251,7 +283,7 @@ app.get('/api/users/:username', mongoChecker, async (req, res) => {
     // Get the students
     try {
         const user = await User.findOne({username: username})
-        log(user)
+        // log(user)
         res.send(user) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
