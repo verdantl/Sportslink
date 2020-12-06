@@ -25,7 +25,6 @@ export const getUser = (username, dashboard) => {
     fetch(url)
         .then(res => {
             if (res.status === 200) {
-                console.log(res)
                 // return a promise that resolves with the JSON body
                 return res.json();
                 
