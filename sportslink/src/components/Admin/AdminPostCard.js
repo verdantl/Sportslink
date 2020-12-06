@@ -29,8 +29,9 @@ class AdminPostCard extends React.Component{
 
     handleAgreeClose = (event) => {
         this.setState({openDialog: false})
-        this.props.removePost(this.props.value)
+        this.props.removePost(this.props.post._id)
     }
+
     handleDisagreeClose = () => {
         this.setState({openDialog: false})
     }

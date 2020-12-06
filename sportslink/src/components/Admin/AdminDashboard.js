@@ -4,7 +4,7 @@ import AdminSearchResults from "./AdminSearchResults"
 import AdminSearchBox from './AdminSearchBox'
 import AdminSideFilters from './AdminSideFilters'
 import {getUsers, updateUserInfo, deleteUser} from "../../actions/profiles"
-import {getPosts, deletePostUsername} from "../../actions/posts"
+import {getPosts, deletePost, deletePostUsername} from "../../actions/posts"
 
 class AdminDashboard extends React.Component{
     constructor(props) {
@@ -24,11 +24,8 @@ class AdminDashboard extends React.Component{
       click: false
     }
 
-    removePost = (id) => {
-      this.state.posts.splice(id, 1)
-      this.setState({
-        posts: this.state.posts
-      })
+    removePost = (postID) => {
+      deletePost(postID, this)
     }
 
     updatePreferences = (locations, organizations, sports) => {
@@ -73,7 +70,6 @@ class AdminDashboard extends React.Component{
     }
 
     adminAction = (action, user) => {
-
       switch (action){
         case ('suspend'):
           const formComp = [

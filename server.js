@@ -575,7 +575,7 @@ app.get('/api/posts', mongoChecker, async (req, res) => {
 })
 
 // creating a new post -- untested
-app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
+app.post('/api/posts', mongoChecker, async (req, res) => {
     const today = new Date().toDateString()
     const post = new Post({
         user: req.body.user,

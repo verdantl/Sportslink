@@ -37,7 +37,7 @@ export const newPost = (post) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                alert("Could not get posts");
+                alert("Could not make new post");
             }
         })
         .then(json => {
@@ -65,7 +65,7 @@ export const newComment = (postCard, postID, dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                alert("Could not get posts");
+                alert("Could not add comment");
             }
         })
         .then(json => {
@@ -84,7 +84,7 @@ export const editPostInfo = (dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                alert("Could not get posts");
+                alert("Could not get edit posts");
             }
         })
         .then(json => {
@@ -96,7 +96,33 @@ export const editPostInfo = (dashboard) => {
         });
 
 }
+//deletes a post by post id
+export const deletePost = (postID, dashboard) => {
+    const url = "/api/posts/" + postID
+    const request = new Request(url, {
+        method: "DELETE",
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request)
+        .then(res => {
+        if (res.status === 200) {
+            // return a promise that resolves with the JSON body
+            return res.json();
+        } else {
+            alert("Could not delete post");
+        }
+    })
+    .then(json => {
+        // the resolved promise with the JSON body
+        getPosts(dashboard)
+    })
+}
 
+
+//Deletes all posts by the username
 export const deletePostUsername = (user, dashboard) => {
     const url = "/api/deletePosts/" + user.username
     const request = new Request(url, {
@@ -112,7 +138,7 @@ export const deletePostUsername = (user, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            alert("Could not delete user");
+            alert("Could not delete posts");
         }
     })
     .then(json => {
