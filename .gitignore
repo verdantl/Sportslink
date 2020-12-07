@@ -5,6 +5,7 @@
 /.pnp
 /mongo-data
 .pnp.js
+/sportslink/node_modules
 
 # testing
 /coverage
@@ -24,3 +25,4 @@ yarn-debug.log*
 yarn-error.log*
 
 mongo-data
+node_modules
