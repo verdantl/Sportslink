@@ -124,12 +124,12 @@ class InputBox extends React.Component{
     else if(this.state.boxState == 2){
       const nextIdNum = this.getLastExperienceId() + 1;
       this.setState({
-        title: 'Experience Title',
-        organization: 'Organization', 
-        league: 'League', 
-        stats: 'Stats', 
-        description: 'Description', 
-        years: 'Years',
+        title: "",
+        organization: "", 
+        league: "", 
+        stats: "", 
+        description: '', 
+        years: '',
         idToEdit: nextIdNum
       });
     }

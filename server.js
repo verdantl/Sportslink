@@ -422,14 +422,8 @@ app.delete('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
 })
 
 //add a new experience -- completed --
-app.post('/api/users/:id/experience', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
-
-	// Validate id
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;
-	}
+app.post('/api/experience/:username', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
 
 	// check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -438,13 +432,12 @@ app.post('/api/users/:id/experience', mongoChecker, authenticate, async (req, re
 		return;
     } 
     try {
-		const user = await User.findById(id)
+		const user = await User.findOne({username: username})
 		if (!user) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
 			/// sometimes we might wrap returned object in another object:
-			user.experience.push(req.body)
-			const result = await user.save()
+			const result = await User.updateOne({username: username}, {$push: {experience: req.body}})
 			res.send(result)
 		}
 	} catch(error) {
@@ -455,7 +448,7 @@ app.post('/api/users/:id/experience', mongoChecker, authenticate, async (req, re
 })
 
 //edit existing experience -- finished
-app.patch('/api/users/:id/experience/:experience', mongoChecker, authenticate, async (req, res) => {
+app.patch('/api/experience/:id/:experience', mongoChecker, authenticate, async (req, res) => {
     const id = req.params.id
     const eid = req.params.experience
 
@@ -497,15 +490,9 @@ app.patch('/api/users/:id/experience/:experience', mongoChecker, authenticate, a
 })
 
 //delete existing experience --
-app.delete('/api/users/:id/experience/:experience', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
+app.delete('/api/experience/:username/:experience', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
     const eid = req.params.experience
-
-	// Validate id
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;
-	}
 
 	// check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -515,14 +502,14 @@ app.delete('/api/users/:id/experience/:experience', mongoChecker, authenticate, 
     } 
 
     try {
-        const user = await User.findByIdAndUpdate(
-            id,
+        const user = await User.updateOne(
+            {username: username},
            { $pull: { 'experience': {  _id: eid} } })
 
 		if (!user) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
-			res.send(user.experience) // this will be the array of the experience before deletion 
+			res.send(user) // this will be the array of the experience before deletion 
 		}
 	} catch(error) {
 		log(error)
