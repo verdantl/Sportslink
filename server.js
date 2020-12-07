@@ -408,14 +408,8 @@ app.delete('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
 })
 
 //add a new experience -- completed --
-app.post('/api/users/:id/experience', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
-
-	// Validate id
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;
-	}
+app.post('/api/experience/:username', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
 
 	// check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -424,13 +418,12 @@ app.post('/api/users/:id/experience', mongoChecker, authenticate, async (req, re
 		return;
     } 
     try {
-		const user = await User.findById(id)
+		const user = await User.findOne({username: username})
 		if (!user) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
 			/// sometimes we might wrap returned object in another object:
-			user.experience.push(req.body)
-			const result = await user.save()
+			const result = await User.updateOne({username: username}, {$push: {experience: req.body}})
 			res.send(result)
 		}
 	} catch(error) {

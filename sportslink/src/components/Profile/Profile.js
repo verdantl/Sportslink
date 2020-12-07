@@ -9,6 +9,7 @@ import EditButton from './EditButton'
 import {uid} from 'react-uid'
 import InputBox from './InputBox'
 import { getUser, updateUserInfo} from '../../actions/profiles'
+import {addExperience} from '../../actions/experience'
 
 class Profile extends React.Component{
     constructor(props){
@@ -80,11 +81,8 @@ class Profile extends React.Component{
     }
 
     addExperience = (id, title, organization, league, stats, description, years) => {
-        const {global} = this.props;
-        let experiences = global.experience;
 
         const experience= {
-            id: id,
             title: title,
             organization: organization,
             league: league,
@@ -92,7 +90,7 @@ class Profile extends React.Component{
             description: description,
             years: years
         }
-        experiences.push(experience);
+        addExperience(experience, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience  
         //this.render();
         //this.setState({experience: experiences});
