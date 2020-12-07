@@ -9,7 +9,7 @@ import EditButton from './EditButton'
 import {uid} from 'react-uid'
 import InputBox from './InputBox'
 import { getUser, updateUserInfo} from '../../actions/profiles'
-import {addExperience} from '../../actions/experience'
+import {addExperience, removeExperience} from '../../actions/experience'
 
 class Profile extends React.Component{
     constructor(props){
@@ -97,29 +97,19 @@ class Profile extends React.Component{
     }
 
     removeExperience = (id) => {
-        const {global} = this.props;
-        let experiences = global.experience;
-        let i;
-        for (i in experiences){
-            console.dir(experiences[i])
-            if (experiences[i].id == id){
-                experiences.splice(i, 1);
-            }
-        }
-        console.dir(global.experience)
+        console.log(id)
+        removeExperience(id, this.state.user.username, this)
+
         this.setState({}); // used to cause a page refresh upon adding the experience  
        // this.render();
         //this.setState({experience: experiences});
     }
 
     getExperienceById = (id) =>{
-        const {global} = this.props;
-        let experiences = global.experience;
+        const experiences = this.state.user.experience
         let i;
-        for (i in experiences){
-            console.dir(experiences[i])
-            
-            if (experiences[i].id == id){
+        for (i in experiences){            
+            if (experiences[i]._id == id){
                 return experiences[i]
             }
         }
@@ -177,6 +167,19 @@ class Profile extends React.Component{
         this.setBoxState(5);
     }
 
+    sortExperience = () => {
+            this.state.user.experience.sort((a, b) => {
+                                                    if (a.years > b.years){
+                                                        return -1} 
+                                                    else if (a.years === b.years){
+                                                        return 0} 
+                                                    else{
+                                                        return 1}
+                                                }) 
+                console.log(this.state.user.experience)
+            return this.state.user.experience
+    }
+
     render(){
         const {global} = this.state.user;
         console.log('--------- Profile -----------------')
@@ -197,7 +200,8 @@ class Profile extends React.Component{
 
             <div className="achievements">
                 <div></div>
-                <Experience experience={this.state.user.experience} updateExperience={this.updateExperience.bind(this)} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
+                <Experience experience={ this.sortExperience() }
+                             updateExperience={this.updateExperience.bind(this)} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
                 <InputBox ref={this.inputBox} updateExperience={this.updateExperience.bind(this)} getExperienceById={this.getExperienceById.bind(this)} 
                     addExperience={this.addExperience.bind(this)} removeExperience={this.removeExperience.bind(this)} getAccomplishments={this.getAccomplishments.bind(this)} 
                     addAccomplishment={this.addAccomplishment.bind(this)} updateDescription={this.updateDescription.bind(this)} updateLocation={this.updateLocation.bind(this)}
