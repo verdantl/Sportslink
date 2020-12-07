@@ -5,21 +5,27 @@ import Career from './Career'
 import ProfileInfo from './ProfileInfo'
 import Experience from './Experience'
 import './profile.css'
-import coolcat from '../images/coolcat.jpg'
-import icedragon from '../images/icedragon.jpg'
-import lebron from '../images/lebron.jpg'
 import EditButton from './EditButton'
 import {uid} from 'react-uid'
 import InputBox from './InputBox'
+import { getUser, updateUserInfo} from '../../actions/profiles'
 
 class Profile extends React.Component{
     constructor(props){
         super(props);
         this.inputBox = React.createRef();
+        getUser(this.props.currentUser, this)
     }
 
     state = {
-        contactClass: 'contact',
+        user: {
+            player: true,
+            name: "",
+            description: "",
+            experience: [],
+            career: [],
+            images: []
+        }
         /*user: {
             name: "Lebron James",
             image: lebron,
@@ -134,7 +140,8 @@ class Profile extends React.Component{
 
 
     updateDescription = (newDescription) =>{
-        this.props.global.description = newDescription;
+        const updateUser = {description: newDescription}
+        updateUserInfo(updateUser, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience  
     }
 
@@ -170,7 +177,7 @@ class Profile extends React.Component{
     }
 
     render(){
-        const {global} = this.props;
+        const {global} = this.state.user;
         console.log('--------- Profile -----------------')
         console.log('this.state')
         console.dir(this.state)
@@ -178,27 +185,26 @@ class Profile extends React.Component{
         console.dir(this.props)
         console.log('global')
         console.dir(global)
-        return <div className={(global.player) ? "userProfile" : "recruiterProfile"}>
+        return <div className={(this.state.user.player) ? "userProfile" : "recruiterProfile"}>
             <div className="profileCard">
-                <ProfileInfo user={global.name} global={global} setBoxState={this.setBoxState.bind(this)} />
+                <ProfileInfo user={this.state.user.name} global={this.state.user} setBoxState={this.setBoxState.bind(this)} />
                 <div className='editSection'>
-                <Biography description={global.description}/>
+                <Biography description={this.state.user.description}/>
                 <EditButton handleEditButtonClick={this.handleBiographyEditButtonClick.bind(this)}/>
                 </div>
-
             </div>
 
             <div className="achievements">
                 <div></div>
-                <Experience experience={global.experience} updateExperience={this.updateExperience.bind(this)} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
+                <Experience experience={this.state.user.experience} updateExperience={this.updateExperience.bind(this)} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
                 <InputBox ref={this.inputBox} updateExperience={this.updateExperience.bind(this)} getExperienceById={this.getExperienceById.bind(this)} 
                     addExperience={this.addExperience.bind(this)} removeExperience={this.removeExperience.bind(this)} getAccomplishments={this.getAccomplishments.bind(this)} 
                     addAccomplishment={this.addAccomplishment.bind(this)} updateDescription={this.updateDescription.bind(this)} updateLocation={this.updateLocation.bind(this)}
                     updateOrganization={this.updateOrganization.bind(this)} updateSports={this.updateSports.bind(this)}
-                    user={global}/> 
+                    user={this.state.user}/> 
                 <div className="profileRightColumn">
-                <Images images={global.images}/>
-                <Career accomplishments={global.accomplishments} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
+                <Images images={this.state.user.images}/>
+                <Career accomplishments={this.state.user.career} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
                 </div>
                 
             </div>

@@ -63,7 +63,7 @@ export const updateUserInfo = (attributes, userID, dashboard) => {
     })
     .then(json => {
         // the resolved promise with the JSON body
-        getUser(dashboard);
+        getUser(userID, dashboard);
         getUsers(dashboard);
         
     })

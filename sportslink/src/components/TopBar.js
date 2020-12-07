@@ -34,7 +34,7 @@ class TopBar extends React.Component{
     };
 
     profile = (app) => {
-        this.props.history.push("/profile/TheRealLebronJames");
+        this.props.history.push("/profile");
         //logout(app);
     };
 

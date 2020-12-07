@@ -177,6 +177,9 @@
 }
 
 .editDelete{
+    position: relative;
+    top: 0px;
+    right: 0px;
     width: auto;
     margin: auto;
     padding: 10px;

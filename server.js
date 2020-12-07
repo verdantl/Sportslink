@@ -48,7 +48,7 @@ const mongoChecker = (req, res, next) => {
 // Middleware for authentication of resources
 const authenticate = (req, res, next) => {
     if (req.session.user) {
-        User.findOne({username: req.session.username}).then((user) => {
+        Account.findOne({username: req.session.username}).then((user) => {
             if (!user) {
                 return Promise.reject()
             } else {
@@ -303,7 +303,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
         suspended: false,
         name: req.body.name,
         image: null,
-        description: "",
+        description: "Description",
         location: req.body.location,
         organization: req.body.organization,
         sports: req.body.sports,
@@ -336,13 +336,8 @@ app.post('/api/users', mongoChecker, async (req, res) => {
 ]
 */
 //Remember to check for the session user id, function for updating profile information
-app.patch('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
-	const id = req.params.id
-
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send()
-		return;  // so that we don't run the rest of the handler.
-    }
+app.patch('/api/users/:username', mongoChecker, authenticate, async (req, res) => {
+	const username = req.params.username
 
 	// check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -363,7 +358,7 @@ app.patch('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
 
 	// Update the student by their id.
 	try {
-		const user = await User.findOneAndUpdate({_id: id}, {$set: req.body}, {new: true, useFindAndModify: false})
+		const user = await User.findOneAndUpdate({username: id}, {$set: req.body}, {new: true, useFindAndModify: false})
         if (!user) {
 			res.status(404).send('Resource not found')
 		} else {   
