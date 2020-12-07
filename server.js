@@ -434,15 +434,9 @@ app.post('/api/experience/:username', mongoChecker, authenticate, async (req, re
 })
 
 //edit existing experience -- finished
-app.patch('/api/experience/:id/:experience', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
+app.patch('/api/experience/:username/:experience', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
     const eid = req.params.experience
-
-	// Validate id
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;
-	}
 
 	// check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -451,21 +445,19 @@ app.patch('/api/experience/:id/:experience', mongoChecker, authenticate, async (
 		return;
     } 
 
-    const fieldsToUpdate = {}
-
-	req.body.map((change) => {
-		const propertyToChange = change.path.substr(1) // getting rid of the '/' character
-        const property = "experience.$." + propertyToChange
-        fieldsToUpdate[property] = change.value
-    })
+	const fieldsToUpdate = {}
+	Object.keys(req.body).map((change) => {
+		const propertyToChange = "experience.$." + change
+		fieldsToUpdate[propertyToChange] = req.body[change]
+	})
 
     try {
-        const user = await User.findById(id)
+        const user = await User.findOne({username: username})
 
 		if (!user) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
-            const updated = await User.findOneAndUpdate({"_id": id, "experience._id" : eid}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
+            const updated = await User.findOneAndUpdate({username: username, "experience._id" : eid}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
 			res.send(updated)
 		}
 	} catch(error) {

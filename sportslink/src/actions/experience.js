@@ -56,3 +56,34 @@ export const removeExperience = (experienceID, username, dashboard) => {
         console.log(error);
     });
 }
+
+export const updateExperience = (attributes, username, dashboard) => {
+    const url = "/api/experience/" + username + '/' + attributes._id
+    console.log(attributes)
+    console.log(url)
+    const request = new Request(url, {
+        method: "PATCH",
+        body: JSON.stringify(attributes),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request)
+    .then(res => {
+        if (res.status === 200) {
+            // return a promise that resolves with the JSON body
+            return res.json();
+        } else {
+            alert("Could not update user");
+        }
+    })
+    .then(json => {
+        // the resolved promise with the JSON body
+        getUser(username, dashboard)
+        
+    })
+    .catch(error => {
+        console.log(error);
+    });
+}
