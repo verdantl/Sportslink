@@ -54,8 +54,8 @@ class Settings extends React.Component{
         if (this.state.newSport !== ""){
             newInfo.sports =  this.state.newSport
         }
-        console.log(this.state.user._id)
-        updateUserInfo(newInfo, this.state.user._id, this)
+
+        updateUserInfo(newInfo, this.state.user.username, this)
     };
 
     render() {

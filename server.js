@@ -201,15 +201,29 @@ app.patch('/api/accounts/:user', mongoChecker, async (req, res) => {
     if (req.body.username) {
         changes.username = req.body.username
     }
-    // Need to figure out hashing
-    // if (req.body.password) {
-    //     changes.password = req.body.password
-    // }
+
     try {
         const account = await Account.findOneAndUpdate({username: username}, {$set: changes}, {new: true, useFindAndModify: false})
         if (!account) {
 			res.status(404).send('Resource not found')
-		} else {  
+		} else { 
+            // Need to figure out hashing
+            if (req.body.password) {
+                const check = await Account.findByUsernamePassword(username, req.body.oldpassword)
+                if (!check) {
+                    res.status(404).send('Resource not found')
+                } else {
+                    account.password = req.body.password
+                    const hashed = await account.save()
+                    res.send(hashed)
+                    return
+                }
+            }
+            // if (req.body.password) {
+            
+            //     res.send(hashed)
+            //     return
+            // } 
             res.send(account)
 		}
 	} catch (error) {
