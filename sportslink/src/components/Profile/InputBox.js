@@ -111,7 +111,7 @@ class InputBox extends React.Component{
 
   setDefaultValuesForState = () =>{
     if(this.state.boxState == 1){
-      var experience = this.props.getExperienceById(this.state.idToEdit);
+      const experience = this.props.getExperienceById(this.state.idToEdit);
       this.setState({
         title: experience.title,
         organization: experience.organization, 
@@ -124,12 +124,12 @@ class InputBox extends React.Component{
     else if(this.state.boxState == 2){
       const nextIdNum = this.getLastExperienceId() + 1;
       this.setState({
-        title: 'Experience Title',
-        organization: 'Organization', 
-        league: 'League', 
-        stats: 'Stats', 
-        description: 'Description', 
-        years: 'Years',
+        title: "",
+        organization: "", 
+        league: "", 
+        stats: "", 
+        description: '', 
+        years: '',
         idToEdit: nextIdNum
       });
     }
@@ -162,16 +162,17 @@ class InputBox extends React.Component{
 
     // for editing experiences
     renderState1(){
+      console.log(this.state.title)
       return (
         <div className="modal" id="modal">
           <h2>The Experience</h2> {/* Can enter a title here for the window (between the h2 tags) */} 
           <div className="content">
                {/* Experience to edit: {this.state.idToEdit} */}
-              <input type="text" className="experienceTileH2" name="title" defaultValue={this.state.title} onChange={this.handleChange}/>
-              <input type="text" className="experienceTileH3" name="organization" defaultValue={this.state.organization} onChange={this.handleChange}/>
-              <input type="text" className="experienceTileH3" name="years" defaultValue={this.state.years} onChange={this.handleChange}/>
-              <input type="text" className="experienceTileH4" name="league" defaultValue={this.state.league} onChange={this.handleChange} />
-              <textarea className="experienceTileP" name="description" defaultValue={this.state.description} onChange={this.handleChange}/>
+              <input type="text" className="experienceTileH2" name="title" placeholder="Title" value={this.state.title} onChange={this.handleChange}/>
+              <input type="text" className="experienceTileH3" name="organization" placeholder="Organization" value={this.state.organization} onChange={this.handleChange}/>
+              <input type="text" className="experienceTileH3" name="years" placeholder="Year(s)" value={this.state.years} onChange={this.handleChange}/>
+              <input type="text" className="experienceTileH4" name="league" placeholder="League" value={this.state.league} onChange={this.handleChange} />
+              <textarea className="experienceTileP" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange}/>
 
           </div>
           <div className="actions">
@@ -211,7 +212,7 @@ class InputBox extends React.Component{
         <div className="modal" id="modal">
           <h2>Add an Accomplishment</h2> {/* Can enter a title here for the window (between the h2 tags) */} 
           <div className="content">
-               <input type="text" className="experienceTileH3" name="accomplishment" defaultValue={'Accomplishment'} onChange={this.handleChange}/>
+               <input type="text" className="experienceTileH3" name="accomplishment" placeholder='Accomplishment' onChange={this.handleChange}/>
           </div>
           <div className="actions">
             <button className="button-cancel" onClick={this.handleCancel}>
@@ -230,7 +231,7 @@ class InputBox extends React.Component{
         <div className="modal" id="modal">
           <h2>Update Description</h2> {/* Can enter a title here for the window (between the h2 tags) */} 
           <div className="content">
-               <input type="text" className="experienceTileH3" name="descriptionMain" defaultValue={this.state.descriptionMain} onChange={this.handleChange}/>
+               <input type="text" className="experienceTileH3" name="descriptionMain" placeholder="Description" value={this.state.descriptionMain} onChange={this.handleChange}/>
           </div>
           <div className="actions">
             <button className="button-cancel" onClick={this.handleCancel}>
@@ -252,15 +253,15 @@ class InputBox extends React.Component{
             <div className='personalInfo'>
               <div>
                 <h4 className="detailsTitle">Location:</h4> 
-                  <input type="text" className="experienceTileH3" name="location" defaultValue={this.state.location} onChange={this.handleChange}/>
+                  <input type="text" className="experienceTileH3" name="location" placeholder="Location" value={this.state.location} onChange={this.handleChange}/>
               </div>
               <div>
                 <h4 className="detailsTitle">Current Organization:</h4> 
-                  <input type="text" className="experienceTileH3" name="organization" defaultValue={this.state.organization} onChange={this.handleChange}/>
+                  <input type="text" className="experienceTileH3" name="organization" placeholder="Organization" value={this.state.organization} onChange={this.handleChange}/>
               </div>
               <div>
                 <h4 className="detailsTitle">Sport(s):</h4>
-                  <input type="text" className="experienceTileH3" name="sports" defaultValue={this.state.sports} onChange={this.handleChange}/>
+                  <input type="text" className="experienceTileH3" name="sports" placeholder="Sport(s)" value={this.state.sports} onChange={this.handleChange}/>
               </div>
             </div>
           </div>

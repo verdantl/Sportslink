@@ -6,18 +6,7 @@ import CareerCard from './CareerCard'
 
 class Career extends React.Component{
     state = {
-        addButtonClass: 'addExperienceButton',
         hideButtons: true
-    }
-
-    handleButtonOn = (event) => {
-        this.setState({addButtonClass: 'addExperienceButtonLight'})
-
-    }
-
-    handleButtonOff = (event) => {
-        this.setState({addButtonClass: 'addExperienceButton'})
-
     }
 
     handleAddButtonClick = (event) =>{
@@ -27,7 +16,7 @@ class Career extends React.Component{
     render(){
         return <div className="profileCareer">
            <h1>Career Accomplishments</h1>
-           <AddCircleIcon className={this.state.addButtonClass} onMouseEnter={this.handleButtonOn} onMouseLeave={this.handleButtonOff} onClick={this.handleAddButtonClick}/>
+           <AddCircleIcon className={"addExperienceButton"} onClick={this.handleAddButtonClick}/>
            {this.props.accomplishments.map((accomplishment) => {
               return <CareerCard key={uid(accomplishment)} accomplishment={accomplishment}/>
 

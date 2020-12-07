@@ -72,9 +72,9 @@ class AdminDashboard extends React.Component{
     adminAction = (action, user) => {
       switch (action){
         case ('suspend'):
-          const formComp = [
-            { op : "replace", path: "/suspended", value: !user.suspended }
-          ]
+          const formComp =
+            { suspended: !user.suspended }
+        
           updateUserInfo(formComp, user._id, this)
           break;
         case ('remove'):

@@ -63,7 +63,7 @@ class Images extends React.Component{
             <ArrowLeftIcon className="arrow"/>
             </div>
 
-            <img src={this.props.images[this.state.imageNum]} className="oneImage"/>
+            {/* <img src={this.props.images[this.state.imageNum]} className="oneImage"/> */}
 
             <div onClick={this.nextImage}
             onMouseEnter={this.lightUp}

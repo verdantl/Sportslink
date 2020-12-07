@@ -4,20 +4,9 @@ import EditButton from './EditButton'
 import DeleteButton from './DeleteButton'
 
 class CareerCard extends React.Component{
-    state = {
-        className : "accomplishmentCard"
-    }
-    
-    handleDisplay = (event) => {
-        this.setState({className: 'accomplishmentCardLight'})
-    }
-
-    handleHide = (event) => {
-        this.setState({className: 'accomplishmentCard'})
-    }
 
     render(){
-        return <div className={this.state.className} onMouseEnter={this.handleDisplay} onMouseLeave={this.handleHide}>
+        return <div className={"accomplishmentCard"}>
         <span>{this.props.accomplishment}</span>
         {/* <span hidden={this.state.hideButtons}>
             <EditButton/>

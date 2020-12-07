@@ -41,7 +41,7 @@
 
 }
 
-.contactLight{
+.contact:hover{
     margin: 10px;
     padding: 8px;
     border-radius: 10px;
@@ -74,7 +74,7 @@
 }
 
 
-.accomplishmentCardLight{
+.accomplishmentCard:hover{
     margin: 10px;
     padding: 10px;
     font-size: large;
@@ -124,7 +124,7 @@
     color: darkcyan;
 }
 
-.addExperienceButtonLight{
+.addExperienceButton:hover{
     transform: scale(2);
     margin-bottom: 10px;
     color: aliceblue;
@@ -148,7 +148,7 @@
     color: red;
 }
 
-.deleteButtonLight{
+.deleteButton:hover{
     border-radius: 50%;
     margin: 10px;
     padding: 5px;
@@ -158,7 +158,7 @@
     color: red;
 }
 
-.editButtonLight{
+.editButton:hover{
     background-color: lightgray;
     border-radius: 50%;
     margin: 10px;
@@ -177,6 +177,9 @@
 }
 
 .editDelete{
+    position: relative;
+    top: 0px;
+    right: 0px;
     width: auto;
     margin: auto;
     padding: 10px;
@@ -259,6 +262,10 @@
     margin: 5px;
 }
 
+.button-save:hover {
+    cursor: pointer;
+}
+
 .button-cancel {
     background: red;
     border: 0;
@@ -267,6 +274,10 @@
     font-size: 0.8rem;
     line-height: 1;
     margin: 5px;
+}
+
+.button-cancel:hover {
+    cursor: pointer;
 }
 
 /* modal styling adapted from https://codepen.io/chriscoyier/pen/NgNymx*/

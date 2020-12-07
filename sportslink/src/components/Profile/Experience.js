@@ -4,19 +4,6 @@ import ExperienceCard from './ExperienceCard'
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 class Experience extends React.Component{
-    state ={
-        addButtonClass : 'addExperienceButton'        
-    }
-
-    handleButtonOn = (event) => {
-        this.setState({addButtonClass: 'addExperienceButtonLight'})
-
-    }
-
-    handleButtonOff = (event) => {
-        this.setState({addButtonClass: 'addExperienceButton'})
-
-    }
 
     handleAddButtonClick = (event) =>{
         this.props.setBoxState(2);
@@ -25,7 +12,7 @@ class Experience extends React.Component{
     render(){
         console.dir(this);
         return <div className="experience">
-           <span><h1>Experience </h1> </span> <span>  <AddCircleIcon className={this.state.addButtonClass} onMouseEnter={this.handleButtonOn} onMouseLeave={this.handleButtonOff} onClick={this.handleAddButtonClick}/></span> 
+           <span><h1>Experience </h1> </span> <span>  <AddCircleIcon className={"addExperienceButton"} onClick={this.handleAddButtonClick}/></span> 
            {this.props.experience.map((entry) => {
               return <ExperienceCard className="experienceCard" experience={entry} key={uid(entry)} updateExperience={this.props.updateExperience.bind(this)} setBoxState={this.props.setBoxState.bind(this)} setIdToEdit={this.props.setIdToEdit.bind(this)}/>
 

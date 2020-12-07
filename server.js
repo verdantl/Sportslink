@@ -48,7 +48,7 @@ const mongoChecker = (req, res, next) => {
 // Middleware for authentication of resources
 const authenticate = (req, res, next) => {
     if (req.session.user) {
-        User.findOne({username: req.session.username}).then((user) => {
+        Account.findOne({username: req.session.username}).then((user) => {
             if (!user) {
                 return Promise.reject()
             } else {
@@ -303,7 +303,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
         suspended: false,
         name: req.body.name,
         image: null,
-        description: "",
+        description: "Description",
         location: req.body.location,
         organization: req.body.organization,
         sports: req.body.sports,
@@ -336,13 +336,8 @@ app.post('/api/users', mongoChecker, async (req, res) => {
 ]
 */
 //Remember to check for the session user id, function for updating profile information
-app.patch('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
-	const id = req.params.id
-
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send()
-		return;  // so that we don't run the rest of the handler.
-    }
+app.patch('/api/users/:username', mongoChecker, authenticate, async (req, res) => {
+	const username = req.params.username
 
 	// check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -352,17 +347,19 @@ app.patch('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
     }
     
     // Find the fields to update and their values.
-    const fieldsToUpdate = {}
+    // const fieldsToUpdate = {}
 
 
-	req.body.map((change) => {
-		const propertyToChange = change.path.substr(1) // getting rid of the '/' character
-		fieldsToUpdate[propertyToChange] = change.value
-    })
+	// req.body.map((change) => {
+	// 	const propertyToChange = change.path.substr(1) // getting rid of the '/' character
+	// 	fieldsToUpdate[propertyToChange] = change.value
+    // })
+    // Was nonstop complaing when I tried to use map, even with an array, temporary fix as I don't know how this affects suspend
+
 	// Update the student by their id.
 	try {
-		const user = await User.findOneAndUpdate({_id: id}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
-		if (!user) {
+		const user = await User.findOneAndUpdate({username: username}, {$set: req.body}, {new: true, useFindAndModify: false})
+        if (!user) {
 			res.status(404).send('Resource not found')
 		} else {   
 			res.send(user)
@@ -411,14 +408,8 @@ app.delete('/api/users/:id', mongoChecker, authenticate, async (req, res) => {
 })
 
 //add a new experience -- completed --
-app.post('/api/users/:id/experience', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
-
-	// Validate id
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;
-	}
+app.post('/api/experience/:username', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
 
 	// check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -427,13 +418,12 @@ app.post('/api/users/:id/experience', mongoChecker, authenticate, async (req, re
 		return;
     } 
     try {
-		const user = await User.findById(id)
+		const user = await User.findOne({username: username})
 		if (!user) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
 			/// sometimes we might wrap returned object in another object:
-			user.experience.push(req.body)
-			const result = await user.save()
+			const result = await User.updateOne({username: username}, {$push: {experience: req.body}})
 			res.send(result)
 		}
 	} catch(error) {
