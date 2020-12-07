@@ -358,7 +358,7 @@ app.patch('/api/users/:username', mongoChecker, authenticate, async (req, res) =
 
 	// Update the student by their id.
 	try {
-		const user = await User.findOneAndUpdate({username: id}, {$set: req.body}, {new: true, useFindAndModify: false})
+		const user = await User.findOneAndUpdate({username: username}, {$set: req.body}, {new: true, useFindAndModify: false})
         if (!user) {
 			res.status(404).send('Resource not found')
 		} else {   

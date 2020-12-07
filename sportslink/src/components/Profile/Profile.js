@@ -130,7 +130,7 @@ class Profile extends React.Component{
     }
 
     getAccomplishments = () =>{
-        return this.props.global.accomplishments;
+        return this.state.user.career
     }
 
     addAccomplishment = (id, accomplishment) =>{
@@ -146,17 +146,20 @@ class Profile extends React.Component{
     }
 
     updateLocation = (location) =>{
-        this.props.global.location = location;
+        const updateUser = {location: location}
+        updateUserInfo(updateUser, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience 
     }
 
     updateOrganization = (organization) =>{
-        this.props.global.organization = organization;
+        const updateUser = {organization: organization}
+        updateUserInfo(updateUser, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience 
     }
 
     updateSports = (sports) =>{
-        this.props.global.sports= sports;
+        const updateUser = {sports: sports}
+        updateUserInfo(updateUser, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience 
     }
     
