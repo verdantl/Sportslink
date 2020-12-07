@@ -7,20 +7,8 @@ import InputBox from './InputBox'
 
 class EditButton extends React.Component{
     state = {
-        editButtonClass: 'editButton',
-        showInputBox: false
+            showInputBox: false
     }
-
-    handleEditButtonOn = (event) => {
-        this.setState({editButtonClass: 'editButtonLight'})
-        //console.log("handleEditButtonOn")
-    }
-
-    handleEditButtonOff = (event) => {
-        this.setState({editButtonClass: 'editButton'})
-        console.log("handleEditButtonOff")
-    }
-
 
 
     toggleEditing = (event) =>{
@@ -33,9 +21,7 @@ class EditButton extends React.Component{
         return(
             <span>
                 <Edit 
-                    className={this.state.editButtonClass} 
-                    onMouseEnter={this.handleEditButtonOn} 
-                    onMouseDown={this.handleEditButtonOff}
+                    className={'editButton'} 
                     onClick={this.props.handleEditButtonClick}
                     />
 

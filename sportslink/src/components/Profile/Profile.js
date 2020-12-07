@@ -20,7 +20,6 @@ class Profile extends React.Component{
 
     state = {
         contactClass: 'contact',
-
         /*user: {
             name: "Lebron James",
             image: lebron,
