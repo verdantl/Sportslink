@@ -226,7 +226,7 @@ class App extends React.Component {
           <Route exact path = {['/', '/login']} render={({ props }) =>
                           (<Login history={history} app={this}/>)}/> */}
           
-          <Route exact path = '/profile/TheRealLebronJames' render={props => 
+          {/* <Route exact path = '/profile/TheRealLebronJames' render={props => 
                           (<div><TopBar {...props} app={this}/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
 
           <Route exact path = '/userprofile/TheRealLebronJames' render={() => 
@@ -239,8 +239,8 @@ class App extends React.Component {
                           (<div><AdminTopBar/><Profile className="profile" global={this.state.users[3]}/></div>)}/>
           <Route exact path = '/userprofile/PhilJackson' render={() => 
                           (<div><AdminTopBar/><Profile className="profile" global={this.state.users[4]}/></div>)}/>
-          
-          <Route exact path = '/viewprofile/TheRealLebronJames' render={props => 
+           */}
+          {/* <Route exact path = '/viewprofile/TheRealLebronJames' render={props => 
                           (<div><TopBar {...props} app={this}/><ViewProfile className="viewProfile" global={this.state.users[0]}/></div>)}/>
           <Route exact path = '/viewprofile/rapsowemeone' render={props => 
                           (<div><TopBar {...props} app={this}/><ViewProfile className="viewProfile" global={this.state.users[1]}/></div>)}/>
@@ -250,7 +250,7 @@ class App extends React.Component {
                           (<div><TopBar {...props} app={this}/><ViewProfile className="viewProfile" global={this.state.users[3]}/></div>)}/>
           <Route exact path = '/viewprofile/PhilJackson' render={props => 
                           (<div><TopBar {...props} app={this}/><ViewProfile className="viewProfile" global={this.state.users[4]}/></div>)}/>
-          
+           */}
           <Route exact path = '/messaging' render={props => 
                           (<div><TopBar {...props} app={this}/><Messaging className="messaging"/></div>)}/>
           <Route exact path = '/signup' render={props => 
