@@ -201,26 +201,6 @@ export const forgot = user => {
 
 };
 
-export const barClick = (user) => {
-    if (user.state.homeIcon === 'homeIconLight'){
-        window.location.href = "/dashboard";
-    }
-    if (user.state.settingsIcon === 'settingsIconLight'){
-        window.location.href = "/settings";
-    }
-    if (user.state.userIcon === 'userIconLight'){
-        window.location.href = "/profile/TheRealLebronJames";
-    }
-    if (user.state.messageIcon === 'messageIconLight'){
-        window.location.href = "/messaging";
-    }
-    if (user.state.searchIcon === 'searchIconLight'){
-        window.location.href = "/search";
-    }
-    if (user.state.exitIcon === 'exitIconLight'){
-        window.location.href = "/";
-    }
-};
 
 export const search = () => {
     window.location.href = '/search';

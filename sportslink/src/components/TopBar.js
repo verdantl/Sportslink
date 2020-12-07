@@ -6,7 +6,7 @@ import './TopBar.css';
 import SearchIcon from "@material-ui/icons/Search"
 import MessageIcon from '@material-ui/icons/Message';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {barClick, logout} from "../actions/user.js";
+import { logout } from "../actions/user.js";
 import {search} from '../actions/user.js'
 
 class TopBar extends React.Component{
@@ -29,28 +29,23 @@ class TopBar extends React.Component{
     }
 
     home = (app) => {
-        this.props.history.push("/login");
-        //logout(app);
+        this.props.history.push("/");
     };
 
     profile = (app) => {
         this.props.history.push("/profile");
-        //logout(app);
     };
 
     search = (app) => {
         this.props.history.push("/search");
-        //logout(app);
     };
 
     message = (app) => {
         this.props.history.push("/messaging");
-        //logout(app);
     };
 
     settings = (app) => {
         this.props.history.push("/settings");
-        //logout(app);
     };
 
     logoutUser = (app) => {

@@ -9,7 +9,7 @@ import EditButton from './EditButton'
 import {uid} from 'react-uid'
 import InputBox from './InputBox'
 import { getUser, updateUserInfo} from '../../actions/profiles'
-import {addExperience, removeExperience} from '../../actions/experience'
+import {addExperience, removeExperience, updateExperience } from '../../actions/experience'
 
 class Profile extends React.Component{
     constructor(props){
@@ -55,26 +55,24 @@ class Profile extends React.Component{
     }
     
     updateExperience = (id, title, organization, league, stats, description, years) => {
-        console.log('-------------------------- update Experience ---------------------------')
-        const {global} = this.props;
-        console.log('this.props.experience');
-        console.dir(global.experience);
-        console.log('id', id);
-        console.log('league', league);
-        
-        let experiences = global.experience;
-        let i;
-        for (i in experiences){
-            console.dir(experiences[i])
-            if (experiences[i].id == id){
-                experiences[i].title = title;
-                experiences[i].organization = organization;
-                experiences[i].league = league;
-                experiences[i].stats = stats;
-                experiences[i].description = description;
-                experiences[i].years = years;
-            }
+        // console.log('-------------------------- update Experience ---------------------------')
+        // const {global} = this.props;
+        // console.log('this.props.experience');
+        // console.dir(global.experience);
+        // console.log('id', id);
+        // console.log('league', league);
+
+        const experience = {
+            _id: id,
+            title: title,
+            organization: organization,
+            league: league,
+            stats: stats,
+            description: description,
+            years: years
         }
+
+        updateExperience(experience, this.state.user.username, this)
         console.dir(global.experience)
        // this.render();
         //this.setState({experience: experiences});
