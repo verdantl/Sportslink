@@ -55,8 +55,8 @@ class Profile extends React.Component{
         console.log('id', id);
         console.log('league', league);
         
-        var experiences = global.experience;
-        var i;
+        let experiences = global.experience;
+        let i;
         for (i in experiences){
             console.dir(experiences[i])
             if (experiences[i].id == id){
@@ -75,7 +75,7 @@ class Profile extends React.Component{
 
     addExperience = (id, title, organization, league, stats, description, years) => {
         const {global} = this.props;
-        var experiences = global.experience;
+        let experiences = global.experience;
 
         const experience= {
             id: id,
@@ -94,8 +94,8 @@ class Profile extends React.Component{
 
     removeExperience = (id) => {
         const {global} = this.props;
-        var experiences = global.experience;
-        var i;
+        let experiences = global.experience;
+        let i;
         for (i in experiences){
             console.dir(experiences[i])
             if (experiences[i].id == id){
@@ -110,8 +110,8 @@ class Profile extends React.Component{
 
     getExperienceById = (id) =>{
         const {global} = this.props;
-        var experiences = global.experience;
-        var i;
+        let experiences = global.experience;
+        let i;
         for (i in experiences){
             console.dir(experiences[i])
             if (experiences[i].id == id){
