@@ -114,6 +114,7 @@ class Profile extends React.Component{
         let i;
         for (i in experiences){
             console.dir(experiences[i])
+            
             if (experiences[i].id == id){
                 return experiences[i]
             }

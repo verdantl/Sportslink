@@ -259,6 +259,10 @@
     margin: 5px;
 }
 
+.button-save:hover {
+    cursor: pointer;
+}
+
 .button-cancel {
     background: red;
     border: 0;
@@ -267,6 +271,10 @@
     font-size: 0.8rem;
     line-height: 1;
     margin: 5px;
+}
+
+.button-cancel:hover {
+    cursor: pointer;
 }
 
 /* modal styling adapted from https://codepen.io/chriscoyier/pen/NgNymx*/

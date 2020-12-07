@@ -1,13 +1,11 @@
 import React from 'react'
 import Edit from '@material-ui/icons/Edit'
 
-import ExperienceCard from './ExperienceCard'
-
 import InputBox from './InputBox'
 
 class EditButton extends React.Component{
     state = {
-            showInputBox: false
+        showInputBox: false
     }
 
 
