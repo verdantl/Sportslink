@@ -156,12 +156,14 @@ class Profile extends React.Component{
     setBoxState = (newBoxState) =>{
         console.log('---- setting box state ------ ')
         this.inputBox.current.setBoxState(newBoxState);  
-        this.inputBox.current.setDefaultValuesForState();
+        //this.inputBox.current.setDefaultValuesForState();
+        this.setState({}); // used to cause a page refresh upon adding the experience 
     }
 
     setIdToEdit = (eId) =>{
         this.inputBox.current.setIdToEdit(eId);
-        this.inputBox.current.setDefaultValuesForState();
+        //this.inputBox.current.setDefaultValuesForState();
+        this.setState({}); // used to cause a page refresh upon adding the experience 
       }
 
 
