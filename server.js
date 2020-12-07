@@ -90,7 +90,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60000,
+            expires: 100000,
             httpOnly: true
         }
     })
@@ -542,8 +542,8 @@ app.post('/api/users/:id/career', mongoChecker, authenticate, async (req, res) =
 })
 
 //edit existing accomplishment -- replaces string only, expects form , MIGHT WANT TO REPLACE WITH SOMETHING BETTER
-app.patch('/api/users/:id/career/:careerid', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
+app.patch('/api/career/:username/:careerid', mongoChecker, authenticate, async (req, res) => {
+    const id = req.params.username
     const cid = req.params.careerid
 
 	// Validate id
@@ -583,7 +583,7 @@ app.patch('/api/users/:id/career/:careerid', mongoChecker, authenticate, async (
 })
 
 //delete existing accomplishment
-app.delete('/api/users/:id/career/:cid', mongoChecker, authenticate, async (req, res) => {
+app.delete('/api/career/:id/:cid', mongoChecker, authenticate, async (req, res) => {
     const id = req.params.id
 
     const cid = req.params.cid
@@ -716,6 +716,37 @@ app.delete('/api/deletePosts/:username', mongoChecker, async (req, res) => {
 	}
 })
 
+// adding a comment -- untested
+app.patch('/api/posts/:postid', mongoChecker, async (req, res) => {
+    const pid = req.params.postid
+    // Save student to the database
+    // async-await version:
+	// Validate id
+	if (!ObjectID.isValid(pid)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    try {
+		const post = await Post.findById(pid)
+		if (!post) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+            const updated = await Post.findOneAndUpdate({"_id": pid}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
+            res.send(updated)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+
+})
 // adding a comment -- untested
 app.post('/api/posts/:postid', mongoChecker, async (req, res) => {
     const pid = req.params.postid

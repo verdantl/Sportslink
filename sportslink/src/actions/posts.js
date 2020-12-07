@@ -75,9 +75,18 @@ export const newComment = (postCard, postID, dashboard) => {
         });
 }
 //adds a like???
-export const editPostInfo = (dashboard) => {
-    const url = '/api/posts';
-    fetch(url)
+export const editPostInfo = (attributes, postID, dashboard) => {
+    const url = '/api/posts/' + postID;
+    const request = new Request(url, {
+        method: "post",
+        body: JSON.stringify(attributes),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    fetch(request)
         .then(res => {
             if (res.status === 200) {
                 // return a promise that resolves with the JSON body
@@ -88,7 +97,7 @@ export const editPostInfo = (dashboard) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
-            dashboard.setState({ posts: json});
+            getPosts(dashboard)
         })
         .catch(error => {
             console.log(error);

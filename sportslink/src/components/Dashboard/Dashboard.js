@@ -6,7 +6,7 @@ import lebron from '../images/lebron.jpg'
 import NewPost from './NewPost'
 import Posts from './Posts'
 import { getUser, getUsers } from '../../actions/profiles' 
-import { getPosts, newPost, newComment } from '../../actions/posts'
+import { getPosts, newPost, newComment, editPostInfo} from '../../actions/posts'
 
 class Dashboard extends React.Component{
     constructor(props) {
@@ -41,6 +41,7 @@ class Dashboard extends React.Component{
     }
 
     upvotePost = (post, number) => {
+        // editPostInfo()
         this.state.posts[post].likes += number;
         this.setState({posts: this.state.posts})
     }
