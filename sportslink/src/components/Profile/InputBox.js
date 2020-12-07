@@ -20,6 +20,7 @@ import EditButton from './EditButton'
 3: removing an experience  
 4: adding an accomplishment
 5: editing the one line description
+6: editing the profile page/summary thing
 */
 
 class InputBox extends React.Component{
