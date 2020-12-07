@@ -75,7 +75,7 @@ class AdminDashboard extends React.Component{
           const formComp =
             { suspended: !user.suspended }
         
-          updateUserInfo(formComp, user._id, this)
+          updateUserInfo(formComp, user.username, this)
           break;
         case ('remove'):
           deleteUser(user, this)
