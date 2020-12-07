@@ -60,7 +60,7 @@ class ExperienceCard extends React.Component{
     };
 
     updateInputBoxId = () =>{
-        this.props.setIdToEdit(this.props.experience.id);
+        this.props.setIdToEdit(this.props.experience._id);
     }
 
     handleEditButtonClick = (event) => {
