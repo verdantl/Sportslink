@@ -8,6 +8,7 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import Radio from '@material-ui/core/Radio'
 import "./FilterBox.css"
 import {uid} from 'react-uid'
+import LocationDropdown from '../components/Locations/LocationDropdown'
 
 
 
