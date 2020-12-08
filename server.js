@@ -153,6 +153,9 @@ app.post('/api/accounts', mongoChecker, async (req, res) => {
     try {
         // Save the user
         const newAccount = await account.save()
+        req.session.user = account._id;
+        req.session.email = account.email; 
+        req.session.username = account.username;
         res.send(newAccount)
     } catch (error) {
         if (isMongoError(error)) { // check for if mongo server suddenly disconnected before this request.
@@ -177,7 +180,7 @@ app.get('/api/accounts/:username', mongoChecker, async (req, res) => {
     try {
         const user = await Account.findOne({username: username})
         // log(user)
-        res.send({user}) // can wrap students in object if want to add more properties
+        res.send(user) // can wrap students in object if want to add more properties
     } catch(error) {
         log(error)
         res.status(500).send("Internal Server Error")
@@ -219,11 +222,7 @@ app.patch('/api/accounts/:user', mongoChecker, async (req, res) => {
                     return
                 }
             }
-            // if (req.body.password) {
-            
-            //     res.send(hashed)
-            //     return
-            // } 
+
             res.send(account)
 		}
 	} catch (error) {
