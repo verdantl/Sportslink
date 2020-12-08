@@ -12,7 +12,7 @@ import { getUser, updateUserInfo} from '../../actions/profiles'
 import {addExperience, removeExperience, updateExperience } from '../../actions/experience'
 
 // temporrat
-import lebron from '../images/lebron.jpg'
+//import lebron from '../images/lebron.jpg'
 
 class Profile extends React.Component{
     constructor(props){
