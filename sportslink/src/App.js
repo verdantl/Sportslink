@@ -192,7 +192,7 @@ class App extends React.Component {
                 </div>                   // ... spread operator - provides all of the props in the props object
             )}
           />
-          <Route exact path = {["/profile", "/profile/" + currentUser, "/viewprofile/" + currentUser] /* any of these URLs are accepted. */ }
+          <Route exact path = {["/profile", "/profile/:username" , "/viewprofile/" + currentUser] /* any of these URLs are accepted. */ }
                  render={props=>
                         <div className="app">
                           { /* Different componenets rendered depending on if someone is logged in. */}

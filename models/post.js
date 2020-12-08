@@ -36,6 +36,7 @@ const CommentSchema = new mongoose.Schema({
     }
 })
 
+
 const Post = mongoose.model("Post", {
     user: UserSchema,
     text: {
@@ -44,11 +45,10 @@ const Post = mongoose.model("Post", {
         minlength: 1,
         trim: true,
     },
-    likes: {
-		type: Number,
-        required: true,
-        default: 0
-    },
+    likes: [{
+		type: String,
+        required: false,
+    }],
     date: {
         type: String,
         required: true
