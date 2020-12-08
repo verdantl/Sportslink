@@ -510,13 +510,9 @@ app.delete('/api/experience/:username/:experience', mongoChecker, authenticate, 
 })
 
 //add a new career accomplishment - input req.body should be {"career": "stuff"} ---- have not solved for duplicates
-app.post('/api/users/:id/career', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
-	// Validate id
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;
-	}
+//add a new experience -- completed --
+app.post('/api/career/:username', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
 
 	// check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -525,21 +521,21 @@ app.post('/api/users/:id/career', mongoChecker, authenticate, async (req, res) =
 		return;
     } 
     try {
-		const user = await User.findById(id)
+		const user = await User.findOne({username: username})
 		if (!user) {
-			res.status(404).send('Resource not found')  // could not find this
+			res.status(404).send('Resource not found')  // could not find this student
 		} else {
-            /// sometimes we might wrap returned object in another object:
-            user.career.push(req.body)
-            const result = await user.save()
-            res.send(result)
-
+			/// sometimes we might wrap returned object in another object:
+            const result = await User.updateOne({username: username}, {$push: {career: req.body}})
+			res.send(result)
 		}
 	} catch(error) {
 		log(error)
 		res.status(500).send('Internal Server Error')  // server error
 	}
+
 })
+
 
 //edit existing accomplishment -- replaces string only, expects form , MIGHT WANT TO REPLACE WITH SOMETHING BETTER
 app.patch('/api/career/:username/:careerid', mongoChecker, authenticate, async (req, res) => {

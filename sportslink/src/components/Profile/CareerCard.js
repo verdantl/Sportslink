@@ -7,7 +7,7 @@ class CareerCard extends React.Component{
 
     render(){
         return <div className={"accomplishmentCard"}>
-        <span>{this.props.accomplishment}</span>
+        <span>{this.props.accomplishment.career}</span>
         {/* <span hidden={this.state.hideButtons}>
             <EditButton/>
             <DeleteButton/>   

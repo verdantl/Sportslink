@@ -83,7 +83,8 @@ const UserSchema = new mongoose.Schema({
             minlength: 0,
             trim: true
         },
-        career: [{text: {
+        career: [
+                {career: {
                 type: String,
                 required: false,
                 minlength: 1,

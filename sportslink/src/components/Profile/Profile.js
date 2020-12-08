@@ -10,6 +10,7 @@ import {uid} from 'react-uid'
 import InputBox from './InputBox'
 import { getUser, updateUserInfo} from '../../actions/profiles'
 import {addExperience, removeExperience, updateExperience } from '../../actions/experience'
+import { addCareer } from '../../actions/career'
 
 class Profile extends React.Component{
     constructor(props){
@@ -120,7 +121,7 @@ class Profile extends React.Component{
     }
 
     addAccomplishment = (id, accomplishment) =>{
-        this.props.global.accomplishments.push(accomplishment);
+        addCareer(accomplishment, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience  
     }
 
@@ -179,14 +180,14 @@ class Profile extends React.Component{
     }
 
     render(){
-        const {global} = this.state.user;
-        console.log('--------- Profile -----------------')
-        console.log('this.state')
-        console.dir(this.state)
-        console.log('this.props')
-        console.dir(this.props)
-        console.log('global')
-        console.dir(global)
+        // const {global} = this.state.user;
+        // console.log('--------- Profile -----------------')
+        // console.log('this.state')
+        // console.dir(this.state)
+        // console.log('this.props')
+        // console.dir(this.props)
+        // console.log('global')
+        // console.dir(global)
         return <div className={(this.state.user.player) ? "userProfile" : "recruiterProfile"}>
             <div className="profileCard">
                 <ProfileInfo user={this.state.user.name} global={this.state.user} setBoxState={this.setBoxState.bind(this)} />
