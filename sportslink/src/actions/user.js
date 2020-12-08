@@ -206,7 +206,9 @@ export const getAccount = (user) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
-            user.setState({ account: json});
+            if (json.user !== null) {
+                user.setState({ account: json.user});
+            } 
         })
         .catch(error => {
             console.log(error);
