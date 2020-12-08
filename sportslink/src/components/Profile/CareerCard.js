@@ -6,7 +6,7 @@ import DeleteButton from './DeleteButton'
 class CareerCard extends React.Component{
 
     handleClick = (e) => {
-        this.props.setIdToEdit(this.props.accomplishment.id);
+        this.props.setIdToEdit(this.props.accomplishment._id);
         this.props.handleCareerCardClick();
     }
 

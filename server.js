@@ -539,11 +539,11 @@ app.post('/api/career/:username', mongoChecker, authenticate, async (req, res) =
 
 //edit existing accomplishment -- replaces string only, expects form , MIGHT WANT TO REPLACE WITH SOMETHING BETTER
 app.patch('/api/career/:username/:careerid', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.username
+    const username = req.params.username
     const cid = req.params.careerid
 
 	// Validate id
-	if (!ObjectID.isValid(id)) {
+	if (!ObjectID.isValid(cid)) {
 		res.status(404).send('Resource not found')
 		return;
 	}
@@ -554,21 +554,20 @@ app.patch('/api/career/:username/:careerid', mongoChecker, authenticate, async (
 		res.status(500).send('Internal server error')
 		return;
     } 
+
     const fieldsToUpdate = {}
-    
-	req.body.map((change) => {
-		const propertyToChange = change.path.substr(1) // getting rid of the '/' character
-        const property = "career.$." + propertyToChange
-        fieldsToUpdate[property] = change.value
-    })
+	Object.keys(req.body).map((change) => {
+		const propertyToChange = "career.$." + change
+		fieldsToUpdate[propertyToChange] = req.body[change]
+	})
 
     try {
-        const user = await User.findById(id)
+        const user = await User.findOne({username: username})
 
 		if (!user) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
-            const updated = await User.findOneAndUpdate({"_id": id, "career._id" : cid}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
+            const updated = await User.findOneAndUpdate({username: username, "career._id" : cid}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
 			res.send(updated)
 		}
 	} catch(error) {
@@ -576,16 +575,17 @@ app.patch('/api/career/:username/:careerid', mongoChecker, authenticate, async (
 		res.status(500).send('Internal Server Error')  // server error
 	}
 
+
 })
 
 //delete existing accomplishment
-app.delete('/api/career/:id/:cid', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
+app.delete('/api/career/:username/:cid', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
 
     const cid = req.params.cid
 
 	// Validate id
-	if (!ObjectID.isValid(id)) {
+	if (!ObjectID.isValid(cid)) {
 		res.status(404).send('Resource not found')
 		return;
 	}
@@ -598,14 +598,14 @@ app.delete('/api/career/:id/:cid', mongoChecker, authenticate, async (req, res) 
     } 
 
     try {
-        const user = await User.findByIdAndUpdate(
-            id,
+        const user = await User.updateOne(
+            {username: username},
            { $pull: { 'career': {  _id: cid} } })
 
 		if (!user) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
-			res.send(user.career) // this will be the array of the experience before deletion 
+			res.send(user) // this will be the array of the experience before deletion 
 		}
 	} catch(error) {
 		log(error)

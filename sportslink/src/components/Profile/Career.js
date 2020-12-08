@@ -29,11 +29,11 @@ class Career extends React.Component{
            <h1>Career Accomplishments</h1>
            <AddCircleIcon className={"addExperienceButton"} onClick={this.handleAddButtonClick}/>
            
-        { /*  {this.props.accomplishments.map((accomplishment) => {
+        { this.props.accomplishments.map((accomplishment) => {
               return <CareerCard key={uid(accomplishment)} accomplishment={accomplishment} handleCareerCardClick={this.handleCareerCardClick.bind(this)} setIdToEdit={this.props.setIdToEdit.bind(this)}/>
 
             }
-            )} */}
+            )}
             
         </div>
     }
