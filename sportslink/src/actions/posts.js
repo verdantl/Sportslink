@@ -47,7 +47,7 @@ export const newPost = (post) => {
         });
 }
 
-//creates a new post - postcard
+//creates a new comment
 export const newComment = (postCard, postID, dashboard) => {
     const url = '/api/posts/' + postID;
     const request = new Request(url, {
@@ -73,6 +73,65 @@ export const newComment = (postCard, postID, dashboard) => {
         .catch(error => {
             console.log(error);
         });
+}
+
+export const upvotePost = (attributes, postID, dashboard) => {
+    const url = '/api/likes/' + postID;
+    const request = new Request(url, {
+        method: "POST",
+        body: JSON.stringify(attributes),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                // return a promise that resolves with the JSON body
+                return res.json();
+            } else {
+                alert("Could not get edit posts");
+            }
+        })
+        .then(json => {
+            // the resolved promise with the JSON body
+            getPosts(dashboard)
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+export const downvotePost = (attributes, postID, dashboard) => {
+    const url = '/api/likes/' + postID;
+    const request = new Request(url, {
+        method: "DELETE",
+        body: JSON.stringify(attributes),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                // return a promise that resolves with the JSON body
+                return res.json();
+            } else {
+                alert("Could not get edit posts");
+            }
+        })
+        .then(json => {
+            // the resolved promise with the JSON body
+            getPosts(dashboard)
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
 }
 //adds a like???
 export const editPostInfo = (attributes, postID, dashboard) => {

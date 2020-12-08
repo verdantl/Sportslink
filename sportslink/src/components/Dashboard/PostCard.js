@@ -13,10 +13,21 @@ class PostCard extends React.Component{
         message: '',
         hideComments: false,
         upvoted: false,
-        thumbsUp: "thumbsUp"
+        thumbsUp: "thumbsUp",
+        post: {likes: []}
     }
     alterComments = () =>{
         this.setState({hideComments: !this.state.hideComments})
+    }
+
+    getUpvoted = () => {
+        const username = this.props.user.username
+        if (this.props.post.likes.includes(username)){
+            return true
+        }
+        else{
+            return false
+        }
     }
 
     commentMessage = () => {
@@ -29,16 +40,28 @@ class PostCard extends React.Component{
     }
 
     upvote = () => {
-        if (!this.state.upvoted){
+        if (!this.getUpvoted()){
             this.setState({upvoted: true, thumbsUp: 'thumbsUpLight'})
-            this.props.upvote(this.props.value, 1)
+            this.props.upvote(this.props.post, 1)
         }
 
         else{
             this.setState({upvoted: false, thumbsUp: "thumbsUp"})
-            this.props.upvote(this.props.value, -1)
+            this.props.upvote(this.props.post, -1)
         }
     }
+
+    getUpvotedClass = () => {
+        if (this.getUpvoted()){
+            return 'thumbsUpLight'
+        }
+
+        else{
+            return "thumbsUp"
+
+        }
+    }
+    
     checkChange = (e) => {
         this.setState({
           message: e.target.value
@@ -85,11 +108,11 @@ class PostCard extends React.Component{
 
             <div className="postIntermediary">
                 <div>
-            <span> {this.props.post.likes + " Likes"} </span>
+            <span> {this.props.post.likes.length + " Likes"} </span>
             <span>
                 {this.props.post.comments.length + " Comments"}
             </span>
-                <IconButton onClick={this.upvote} className="thumbsUpButton"> <ThumbUpIcon className={this.state.thumbsUp}/></IconButton>
+                <IconButton onClick={this.upvote} className="thumbsUpButton"> <ThumbUpIcon className={this.getUpvotedClass()}/></IconButton>
                 </div>
 
             </div>

@@ -3,7 +3,6 @@ import FilterBox from '../FilterBox'
 import DashProfileBox from './DashProfileBox'
 import "./AthleteSearch.css"
 import TextField from '@material-ui/core/TextField'
-import lebron from '../images/lebron.jpg'
 import SearchResults from "./SearchResults"
 
 import {getUsers, getUser} from "../../actions/profiles"

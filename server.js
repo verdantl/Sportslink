@@ -658,6 +658,7 @@ app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
     }
 })
 
+
 app.delete('/api/posts/:postid', mongoChecker, authenticate, async (req, res) => {
     const pid = req.params.postid
     	// Validate id
@@ -712,37 +713,7 @@ app.delete('/api/deletePosts/:username', mongoChecker, async (req, res) => {
 	}
 })
 
-// adding a comment -- untested
-app.patch('/api/posts/:postid', mongoChecker, async (req, res) => {
-    const pid = req.params.postid
-    // Save student to the database
-    // async-await version:
-	// Validate id
-	if (!ObjectID.isValid(pid)) {
-		res.status(404).send('Resource not found')
-		return;
-	}
 
-	// check mongoose connection established.
-	if (mongoose.connection.readyState != 1) {
-		log('Issue with mongoose connection')
-		res.status(500).send('Internal server error')
-		return;
-    } 
-    try {
-		const post = await Post.findById(pid)
-		if (!post) {
-			res.status(404).send('Resource not found')  // could not find this student
-		} else {
-            const updated = await Post.findOneAndUpdate({"_id": pid}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
-            res.send(updated)
-		}
-	} catch(error) {
-		log(error)
-		res.status(500).send('Internal Server Error')  // server error
-	}
-
-})
 // adding a comment -- untested
 app.post('/api/posts/:postid', mongoChecker, async (req, res) => {
     const pid = req.params.postid
@@ -777,7 +748,59 @@ app.post('/api/posts/:postid', mongoChecker, async (req, res) => {
 	}
 
 })
+// adding a username to the list of likes - username will be in req.body.username
+app.post('/api/likes/:postid', mongoChecker, authenticate, async (req, res) => {
+    const pid = req.params.postid
+    // Save student to the database
+    // async-await version:
+    if (!ObjectID.isValid(pid)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+    try {
+		const post = await Post.findById(pid)
+		if (!post) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			/// sometimes we might wrap returned object in another object:
+            const result = await Post.findByIdAndUpdate(pid, {$push: {likes: req.body.username}})
+			res.send(result)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+app.delete('/api/likes/:postid', mongoChecker, authenticate, async (req, res) => {
+    const pid = req.params.postid
+    	// Validate id
+	if (!ObjectID.isValid(pid)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
 
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+
+    try {
+        const post = await Post.findByIdAndUpdate(pid,
+           { $pull: { 'likes': req.body.username }})
+        
+
+		if (!post) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			res.send(post) // this will be the array of the experience before deletion 
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
 // API for messages
 // GET for getting all conversations by a specific user
 app.get('/api/conversation', mongoChecker, async (req, res) => {
