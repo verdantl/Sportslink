@@ -1,3 +1,5 @@
+const validator = require('validator')
+
 // Send a request to check if a user is logged in through the session cookie
 export const checkSession = (app) => {
     const url = "/users/check-session";
@@ -59,15 +61,34 @@ export const logout = (app) => {
 };
 
 export const signupNext = (user, app) => {
+    if (user.state.password.length < 4) {
+        alert("Minimum password length is 4.");
+    }
     if (user.state.firstName !== "" && user.state.last_name !== "" && user.state.usern !== "" && user.state.password !== "" && user.state.password2 !== "") {
-        if (user.state.password === user.state.password2){
-            app.setState({ signUp: [{fname: user.state.firstName, lname: user.state.last_name, uname: user.state.usern, pwd: user.state.password}] });
-            user.props.history.push("/onboarding");
-        }
-        else{
-            alert("Passwords do not match.");
-        }
-            
+        const request = "/api/accounts/" + user.state.usern;
+
+        fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } 
+        })
+        .then(json => {
+            if (json.user === null) {
+                if (user.state.password === user.state.password2){
+                    app.setState({ signUp: [{fname: user.state.firstName, lname: user.state.last_name, uname: user.state.usern, pwd: user.state.password}] });
+                    user.props.history.push("/onboarding");
+                }
+                else{
+                    alert("Passwords do not match.");
+                }
+            } else {
+                alert("Username already taken.")
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });            
     }
     else {
         alert("Please fill all fields");
@@ -76,7 +97,13 @@ export const signupNext = (user, app) => {
 };
 
 export const onboard = (user, app) => {
-    if (user.state.sport !== "" && user.state.organization !== "" && user.state.location !== "" && user.state.email !== "" && (user.state.checkedRecruiters || user.state.checkedAthlete)){
+    if (!validator.isEmail(user.state.email)){
+        alert("Please enter a valid email.")
+    }
+    else if (user.state.checkedRecruiters && user.state.checkedAthlete) {
+        alert("Please select one role only.");
+    }
+    else if (user.state.sport !== "" && user.state.organization !== "" && user.state.location !== "" && user.state.email !== "" && (user.state.checkedRecruiters || user.state.checkedAthlete)){
         let newAccount = {email: user.state.email, username: app.state.signUp[0].uname, password: app.state.signUp[0].pwd}
         let newUser = {player: user.state.checkedAthlete, username: app.state.signUp[0].uname, name: app.state.signUp[0].fname + " " + app.state.signUp[0].lname, location: user.state.location, organization: user.state.organization, sports: user.state.sport}
         
@@ -110,9 +137,6 @@ export const onboard = (user, app) => {
                 app.setState({ signUp: [] });
                 alert("Sign up success");
                 user.props.history.push("/");
-            }
-            else {
-                alert("Error occured");
             }
         }).catch(error => {
             console.log(error);
