@@ -12,6 +12,9 @@ import { getUser, updateUserInfo} from '../../actions/profiles'
 import {addExperience, removeExperience, updateExperience } from '../../actions/experience'
 import { addCareer } from '../../actions/career'
 
+// temporrat
+//import lebron from '../images/lebron.jpg'
+
 class Profile extends React.Component{
     constructor(props){
         super(props);
@@ -29,25 +32,34 @@ class Profile extends React.Component{
             images: []
         }
         /*user: {
-            name: "Lebron James",
-            image: lebron,
-            images: [coolcat, icedragon],
-            description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
-            location: "Los Angeles, California",
-            organization: "Los Angeles Lakers",
-            sports:"Basketball",
-            contact: "",
-            accomplishments: ["4x NBA Champion", '4x NBA Finals MVP', '4x NBA MVP', '16x NBA All Star', '13x All-NBA First Team'],
-            experience: [{id: '0', title: 'Point Guard', organization: 'Los Angeles Lakers', league: "NBA", stats: {'2019': '25 ppg, 10apg'},
-            description: 'Led Lakers to a championship in the NBA Bubble 2020, averaging almost 30 ppg in the Finals against the Miami Heat',
-            years: '2018-2020'},
-            {id: '1', title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
-            description: 'Made the NBA Finals in all four years, came back from a 3-1 deficit and won a championship in the 2016 NBA FInals', years: '2014-2018'},
-            {id: '2', title: 'Small Forward', organization: 'Miami Heat', league: "NBA", stats:{},
-            description: 'Made the NBA Finals in all four years, delivered two championships and won Finals MVP in 2012 and 2013', years: '2010-2014'},
-            {id: '3', title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
-            description: 'Took the team to an NBA Finals in 2009, averaged over 25 ppg', years: '2003-2010'}]
-            }*/
+                player: true,
+                username: 'TheRealLebronJames',
+                suspended: false,
+                name: "Lebron James",
+                image: lebron,
+                images: [lebron, lebron],
+                description: 'Point guard for the Los Angeles Lakers. 4 time NBA champion, 4x Finals MVP, 4x Regular Season MVP.',
+                location: "Los Angeles CA, USA",
+                organization: "Los Angeles Lakers",
+                sports:"Basketball",
+                contact: "",
+                accomplishments: [
+                    {id: '0', text: "4x NBA Champion"}, 
+                    {id: '1', text: '4x NBA Finals MVP'}, 
+                    {id: '2', text: '4x NBA MVP'}, 
+                    {id: '3', text: '16x NBA All Star'}, 
+                    {id: '4', text: '13x All-NBA First Team'}],
+                experience: [
+                    {id: '0', title: 'Point Guard', organization: 'Los Angeles Lakers', league: "NBA", stats: {'2019': '25 ppg, 10apg'},
+                    description: 'Led Lakers to a championship in the NBA Bubble 2020, averaging almost 30 ppg in the Finals against the Miami Heat',
+                    years: '2018-2020'},
+                    {id: '1', title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
+                    description: 'Made the NBA Finals in all four years, came back from a 3-1 deficit and won a championship in the 2016 NBA FInals', years: '2014-2018'},
+                    {id: '2', title: 'Small Forward', organization: 'Miami Heat', league: "NBA", stats:{},
+                    description: 'Made the NBA Finals in all four years, delivered two championships and won Finals MVP in 2012 and 2013', years: '2010-2014'},
+                    {id: '3', title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
+                    description: 'Took the team to an NBA Finals in 2009, averaged over 25 ppg', years: '2003-2010'}]
+              }*/
     }
 
     handleButtonOff = (event) => {
@@ -56,13 +68,6 @@ class Profile extends React.Component{
     }
     
     updateExperience = (id, title, organization, league, stats, description, years) => {
-        // console.log('-------------------------- update Experience ---------------------------')
-        // const {global} = this.props;
-        // console.log('this.props.experience');
-        // console.dir(global.experience);
-        // console.log('id', id);
-        // console.log('league', league);
-
         const experience = {
             _id: id,
             title: title,
@@ -112,12 +117,24 @@ class Profile extends React.Component{
                 return experiences[i]
             }
         }
-        console.dir(global.experience)
+    }
 
+    getAccomplishmentIndexById = (id) =>{
+        const accomplishments = this.state.user.accomplishments
+        let i = 0;
+        for (i = 0; i < accomplishments.length; i++){            
+            if (accomplishments[i].id == id){
+                return i
+            }
+        }
+    }
+
+    getAccomplishmentById = (id) =>{
+        return this.state.user.accomplishments[this.getAccomplishmentIndexById(id)]
     }
 
     getAccomplishments = () =>{
-        return this.state.user.career
+        return this.state.user.accomplishments
     }
 
     addAccomplishment = (id, accomplishment) =>{
@@ -125,6 +142,20 @@ class Profile extends React.Component{
         this.setState({}); // used to cause a page refresh upon adding the experience  
     }
 
+    updateAccomplishment = (id, accomplishmentText) => {
+        const accomplishments = this.state.user.accomplishments
+        const index = this.getAccomplishmentIndexById(id);
+        accomplishments[index].text = accomplishmentText
+        this.setState({}); // used to cause a page refresh upon adding the experience  
+    }
+
+    removeAccomplishment = (id) => {
+        const index = this.getAccomplishmentIndexById(id);
+        this.state.user.accomplishments.splice(index, 1)
+        this.setState({}); // used to cause a page refresh upon adding the experience  
+       // this.render();
+        //this.setState({experience: experiences});
+    }
 
     updateDescription = (newDescription) =>{
         const updateUser = {description: newDescription}
@@ -153,12 +184,14 @@ class Profile extends React.Component{
     setBoxState = (newBoxState) =>{
         console.log('---- setting box state ------ ')
         this.inputBox.current.setBoxState(newBoxState);  
-        this.inputBox.current.setDefaultValuesForState();
+        //this.inputBox.current.setDefaultValuesForState();
+        this.setState({}); // used to cause a page refresh upon adding the experience 
     }
 
     setIdToEdit = (eId) =>{
         this.inputBox.current.setIdToEdit(eId);
-        this.inputBox.current.setDefaultValuesForState();
+        //this.inputBox.current.setDefaultValuesForState();
+        this.setState({}); // used to cause a page refresh upon adding the experience 
       }
 
 
@@ -204,11 +237,11 @@ class Profile extends React.Component{
                 <InputBox ref={this.inputBox} updateExperience={this.updateExperience.bind(this)} getExperienceById={this.getExperienceById.bind(this)} 
                     addExperience={this.addExperience.bind(this)} removeExperience={this.removeExperience.bind(this)} getAccomplishments={this.getAccomplishments.bind(this)} 
                     addAccomplishment={this.addAccomplishment.bind(this)} updateDescription={this.updateDescription.bind(this)} updateLocation={this.updateLocation.bind(this)}
-                    updateOrganization={this.updateOrganization.bind(this)} updateSports={this.updateSports.bind(this)}
-                    user={this.state.user}/> 
+                    updateOrganization={this.updateOrganization.bind(this)} updateSports={this.updateSports.bind(this)} getAccomplishmentById={this.getAccomplishmentById.bind(this)}
+                    updateAccomplishment={this.updateAccomplishment.bind(this)} removeAccomplishment={this.removeAccomplishment.bind(this)} user={this.state.user}/> 
                 <div className="profileRightColumn">
                 <Images images={this.state.user.images}/>
-                <Career accomplishments={this.state.user.career} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
+                <Career accomplishments={this.state.user.accomplishments} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
                 </div>
                 
             </div>

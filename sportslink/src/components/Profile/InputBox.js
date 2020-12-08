@@ -10,6 +10,7 @@ import icedragon from '../images/icedragon.jpg'
 import lebron from '../images/lebron.jpg'
 
 import EditButton from './EditButton'
+import DeleteButton from './DeleteButton'
 
 
 /*
@@ -20,6 +21,9 @@ import EditButton from './EditButton'
 3: removing an experience  
 4: adding an accomplishment
 5: editing the one line description
+6: editing the profile page/summary thing
+7: clicked on career card
+8: removing an accomplishment
 */
 
 class InputBox extends React.Component{
@@ -43,7 +47,12 @@ class InputBox extends React.Component{
     }
 
     handleCancel = () =>{
-      this.setBoxState(0)
+      if(this.state.boxState == 8){
+        this.setBoxState(7)
+      }
+      else{
+        this.setBoxState(0)
+      }
     }
 
     handleSave = () =>{
@@ -74,7 +83,7 @@ class InputBox extends React.Component{
         this.setBoxState(0);
       }
       else if(this.state.boxState == 4){
-        this.props.addAccomplishment(this.state.idToEdit, this.state.accomplishment);
+        this.props.addAccomplishment(this.state.idToEdit, this.state.accomplishmentText);
         this.setBoxState(0);
       }
       else if(this.state.boxState == 5){
@@ -85,6 +94,16 @@ class InputBox extends React.Component{
         this.props.updateLocation(this.state.location);
         this.props.updateOrganization(this.state.organization);
         this.props.updateSports(this.state.sports);
+        this.setBoxState(0);
+      }
+      else if(this.state.boxState == 7){
+        this.props.updateAccomplishment(
+            this.state.idToEdit, 
+            this.state.accomplishmentText);
+        this.setBoxState(0);
+      }
+      else if(this.state.boxState == 8){
+        this.props.removeAccomplishment(this.state.idToEdit);
         this.setBoxState(0);
       }
     }
@@ -122,7 +141,7 @@ class InputBox extends React.Component{
       });
     }
     else if(this.state.boxState == 2){
-      const nextIdNum = this.getLastExperienceId() + 1;
+      const nextIdNum = this.getNextExperienceId();
       this.setState({
         title: "",
         organization: "", 
@@ -133,11 +152,12 @@ class InputBox extends React.Component{
         idToEdit: nextIdNum
       });
     }
+    // no default value changes for state 3 (removing an experience)
     // adding an accomplishment
     else if(this.state.boxState == 4){ 
       const nextIdNum = this.props.getAccomplishments().length;
       this.setState({
-        accomplishment: 'Accomplishment',
+        accomplishmentText: 'Accomplishment',
         idToEdit: nextIdNum
       });
     }
@@ -153,12 +173,29 @@ class InputBox extends React.Component{
         sports: this.props.user.sports,
       });
     }
+    else if(this.state.boxState == 7){ 
+      const accomplishment = this.props.getAccomplishmentById(this.state.idToEdit);
+      this.setState({
+        accomplishmentText: accomplishment.text
+      });
+    }
+    // no default value changes for state 8 (removing an accomplishment)
   }
 
 
-    getLastExperienceId = () =>{
-        return this.props.user.experience.length - 1;
+    getNextExperienceId = () =>{
+        const allExperiences = this.props.user.experience
+        var nextIdNum = 0
+        if(allExperiences.length > 0){
+            nextIdNum = parseInt(allExperiences[allExperiences.length - 1].id) + 1
+        }
+        return nextIdNum
     }
+
+    handleRemoveButtonClick7 = () =>{
+      this.setBoxState(8)
+    }
+
 
     // for editing experiences
     renderState1(){
@@ -212,7 +249,7 @@ class InputBox extends React.Component{
         <div className="modal" id="modal">
           <h2>Add an Accomplishment</h2> {/* Can enter a title here for the window (between the h2 tags) */} 
           <div className="content">
-               <input type="text" className="experienceTileH3" name="accomplishment" placeholder='Accomplishment' onChange={this.handleChange}/>
+               <input type="text" className="experienceTileH3" name="accomplishmentText" placeholder='Accomplishment' onChange={this.handleChange}/>
           </div>
           <div className="actions">
             <button className="button-cancel" onClick={this.handleCancel}>
@@ -278,7 +315,45 @@ class InputBox extends React.Component{
       );
     }
 
+    renderState7(){
+      return (
+        <div className="modal" id="modal">
+          <h2>The Accomplishment</h2> {/* Can enter a title here for the window (between the h2 tags) */} 
+          <div className="content">
+               <input type="text" className="experienceTileH3" name="accomplishmentText" placeholder='Accomplishment' value={this.state.accomplishmentText}  onChange={this.handleChange}/>
+          </div>
+          <div className="actions">
+            <DeleteButton handleRemoveButtonClick={this.handleRemoveButtonClick7.bind(this)}/>
+            <button className="button-cancel" onClick={this.handleCancel}>
+              Cancel
+            </button>
+            <button className="button-save" onClick={this.handleSave}>
+              Confirm
+            </button>
+          </div>
+        </div>
+      );
+    }
 
+    renderState8(){
+      return (
+        <div className="modal" id="modal">
+          <h2>Confirmation</h2> {/* Can enter a title here for the window (between the h2 tags) */} 
+          <div className="content">
+               {/* Experience to edit: {this.state.idToEdit} */}
+              Are you sure you want to delete this accomplishment? This action cannot be undone.
+          </div>
+          <div className="actions">
+            <button className="button-cancel" onClick={this.handleCancel}>
+              Cancel
+            </button>
+            <button className="button-save" onClick={this.handleSave}>
+              Confirm
+            </button>
+          </div>
+        </div>
+      );
+    }
 
     render(){
         // does not render
@@ -303,6 +378,12 @@ class InputBox extends React.Component{
         }
         else if (this.state.boxState == 6){
           return this.renderState6(); 
+        }
+        else if (this.state.boxState == 7){
+          return this.renderState7(); 
+        }
+        else if (this.state.boxState == 8){
+          return this.renderState8(); 
         }
         else{
           return null;
