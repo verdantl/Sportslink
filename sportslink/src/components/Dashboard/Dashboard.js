@@ -29,8 +29,7 @@ class Dashboard extends React.Component{
             text: postText,
             likes: []
         }
-        newPost(post)
-        getPosts(this)
+        newPost(post, this)
     }
 
     addNewComment = (commentText, postID) => {

@@ -20,7 +20,7 @@ export const getPosts = (dashboard) => {
 
 }
 //creates a new post
-export const newPost = (post) => {
+export const newPost = (post, dashboard) => {
     const url = '/api/posts';
     const request = new Request(url, {
         method: "post",
@@ -41,6 +41,7 @@ export const newPost = (post) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
+            getPosts(dashboard)
         })
         .catch(error => {
             console.log(error);
