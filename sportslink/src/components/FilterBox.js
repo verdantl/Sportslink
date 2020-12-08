@@ -8,7 +8,6 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import Radio from '@material-ui/core/Radio'
 import "./FilterBox.css"
 import {uid} from 'react-uid'
-import LocationDropdown from '../components/Locations/LocationDropdown'
 
 
 
@@ -94,18 +93,17 @@ class FilterBox extends React.Component{
             
 
         <div className="locations">
-            <LocationDropdown/>
-            {/* {this.props.filters.locations.map((location) => {
+            {this.props.filters.locations.map((location) => {
                 return <div key={uid(location)} className='choice'>
                 {location + ' '}  <IconButton
                         name={location}
                         onClick={this.removePreference}
                     > 
                     <ClearIcon/>   
-                    </IconButton> */}
-            {/* </div>
+                    </IconButton>
+            </div>
             }
-            )} */}
+            )}
         </div>
         </div>
 

@@ -8,7 +8,7 @@ class PersonalInfo extends React.Component{
         const {global} = this.props;
         return <div className='personalInfo'>
             <div>
-            <LocationDropdown/>
+            <h4 className="detailsTitle">Location:</h4> {global.location}
             </div>
             <div>
             <h4 className="detailsTitle">Current Organization:</h4> {global.organization}
