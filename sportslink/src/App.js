@@ -177,7 +177,6 @@ class App extends React.Component {
       comments: [{user: {name: 'James Harden', username: 'xXx_JamesHarden_xXx', image: harden}, text: "Good match..."}, 
       {user: {name: 'Kevin Durant', username: 'coolguy123', image: durant}, text: "You are a great player!"}]}]
   }
-  
   render(){
     const { currentUser } = this.state;
     return (

@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 class PersonalInfo extends React.Component{
     constructor(props){
         super(props)

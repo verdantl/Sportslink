@@ -93,17 +93,18 @@ class FilterBox extends React.Component{
             
 
         <div className="locations">
-            {this.props.filters.locations.map((location) => {
+            <LocationDropdown/>
+            {/* {this.props.filters.locations.map((location) => {
                 return <div key={uid(location)} className='choice'>
                 {location + ' '}  <IconButton
                         name={location}
                         onClick={this.removePreference}
                     > 
                     <ClearIcon/>   
-                    </IconButton>
-            </div>
+                    </IconButton> */}
+            {/* </div>
             }
-            )}
+            )} */}
         </div>
         </div>
 
