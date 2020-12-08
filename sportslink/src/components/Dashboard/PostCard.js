@@ -79,7 +79,7 @@ class PostCard extends React.Component{
     }
 
     handleClick = () => {
-        window.location.href = '/viewprofile/' + this.props.user.username
+        window.location.href = '/viewprofile/' + this.props.post.user.username
     }
 
     hideViewComments = () => {
