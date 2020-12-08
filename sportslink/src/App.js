@@ -252,8 +252,9 @@ class App extends React.Component {
                           (<div><TopBar {...props} app={this}/><ViewProfile className="viewProfile" global={this.state.users[4]}/></div>)}/>
            */}
 
-          <Route exact path = '/userprofile/TheRealLebronJames' render={() => 
+         {/*} <Route exact path = '/userprofile/TheRealLebronJames' render={() => 
                           (<div><AdminTopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
+                          */}
 
           <Route exact path = '/messaging' render={props => 
                           (<div><TopBar {...props} app={this}/><Messaging className="messaging"/></div>)}/>

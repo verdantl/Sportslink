@@ -5,11 +5,16 @@ cd sportslink
 
 npm start
 
-# building the app
+# setting up the app
+cd to team44 (root):    mkdir mongo-data
+                        mongod --dbpath mongo-data
+
 cd to team44 (root):   npm install  
 
 cd to sportslink:   npm install
-                    npm run build
+
+# building the app
+cd to sportslink:   npm run build
 
 cd to team 44:      node server.js
 

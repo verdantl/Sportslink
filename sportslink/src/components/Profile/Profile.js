@@ -22,15 +22,15 @@ class Profile extends React.Component{
     }
 
     state = {
-        /*user: {
+        user: {
             player: true,
             name: "",
             description: "",
             experience: [],
             career: [],
             images: []
-        }*/
-        user: {
+        }
+        /*user: {
                 player: true,
                 username: 'TheRealLebronJames',
                 suspended: false,
@@ -58,7 +58,7 @@ class Profile extends React.Component{
                     description: 'Made the NBA Finals in all four years, delivered two championships and won Finals MVP in 2012 and 2013', years: '2010-2014'},
                     {id: '3', title: 'Small Forward', organization: 'Cleveland Cavaliers', league: "NBA", stats:{},
                     description: 'Took the team to an NBA Finals in 2009, averaged over 25 ppg', years: '2003-2010'}]
-              }
+              }*/
     }
 
     handleButtonOff = (event) => {
