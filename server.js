@@ -63,23 +63,7 @@ const authenticate = (req, res, next) => {
     }
 }
 
-// Middleware for authentication of resources -- unfinished
-const authenticateAdmin = (req, res, next) => {
-    if (req.session.user) {
-        User.findOne({username: req.session.username}).then((user) => {
-            if (!user) {
-                return Promise.reject()
-            } else {
-                req.user = user
-                next()
-            }
-        }).catch((error) => {
-            res.status(401).send("Unauthorized")
-        })
-    } else {
-        res.status(401).send("Unauthorized")
-    }
-}
+
 
 
 /*** Session handling **************************************/
@@ -238,7 +222,7 @@ app.patch('/api/accounts/:user', mongoChecker, async (req, res) => {
 
 
 //Deletes an account, we need to authenticate for admin, function for updating account settings information
-app.delete('/api/accounts/:username', mongoChecker, async (req, res) => {
+app.delete('/api/accounts/:username', mongoChecker, authenticate, async (req, res) => {
 	const username = req.params.username
 
 	// check mongoose connection established.

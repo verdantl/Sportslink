@@ -4,10 +4,10 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "setup": "npm install && cd client && npm install && cd ..",
-        "build-run": "cd client && npm run build && cd .. && node server.js",
+        "setup": "npm install && cd sportslink && npm install && cd ..",
+        "build-run": "cd sportslink && npm run build && cd .. && node server.js",
         "start": "node server.js",
-        "heroku-postbuild": "cd client && npm install && npm run build",
+        "heroku-postbuild": "cd sportslink && npm install && npm run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",

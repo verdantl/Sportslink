@@ -4,8 +4,8 @@
 const mongoose = require('mongoose')
 
 /* Connnect to our database */
-// Get the URI of the local database, or the one specified on deployment.
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/SportsLinkAPI'
+// Get the URI of the local database, or the one specified on deployment.'mongodb://localhost:27017/SportsLinkAPI'
+const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://team44:sportslink@cluster0.erqyh.mongodb.net/<dbname>?retryWrites=true&w=majority'
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
 
