@@ -233,6 +233,7 @@ class Profile extends React.Component{
                 </div>
             </div>
 
+
             <div className="achievements">
                 <div></div>
                 <Experience experience={ this.sortExperience() }

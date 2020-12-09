@@ -3,7 +3,21 @@ import "./Contacts.css";
 import { uid } from "react-uid";
 
 class Contacts extends React.Component{
+
+    constructor (props) {
+        super(props)
+    }
+
     render(){
+        if (this.displayContacts !== []) {
+            return (
+                <div>
+                    {
+                        this.props.contacts.map(this.displayContacts)
+                    }
+                </div>
+            )
+        }
         return (
             <div>
                 {

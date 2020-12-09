@@ -1,12 +1,12 @@
 import React from 'react'
 import Edit from '@material-ui/icons/Edit'
+import LocationDropdown from '../Locations/LocationDropdown'
 
 class PersonalInfo extends React.Component{
 
     render(){
         const {global} = this.props;
         return <div className='personalInfo'>
-
             <div>
             <h4 className="detailsTitle">Location:</h4> {global.location}
             </div>

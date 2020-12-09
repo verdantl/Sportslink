@@ -1,5 +1,5 @@
 export function getConversations(messaging) {
-    const url = "api/conversations"
+    const url = "/api/conversation"
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -9,8 +9,8 @@ export function getConversations(messaging) {
                 alert("Could not get conversations");
             }
         })
-        .then(json => {
-            messaging.setState({conversations: json})
+        .then(lst => {
+            messaging.setState({"conversations": lst})
         })
         .catch(error => {
             console.log(error);
@@ -21,9 +21,9 @@ export function createNewConversation(currUser, otherUser, messaging) {
     const url = "/api/conversation"
 
     const request = new Request(url, {
-        method: "post",
-        body: {sentUsername: currUser, toUsername: otherUser},
-        headers: {
+        "method": "post",
+        "body": {"sentUsername": currUser, "toUsername": otherUser},
+        "headers": {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
         }
@@ -53,12 +53,12 @@ export function createNewConversation(currUser, otherUser, messaging) {
 }
 
 export function createNewMessage(currUser, conversationID, messageData, messaging) {
-    const url = "api/conversation/" + conversationID + "/message"
+    const url = "/api/conversation/" + conversationID + "/message"
 
     const request = new Request(url, {
-        method: "post",
-        body: {id: conversationID, sentUsername: currUser, messageData: messageData},
-        headers: {
+        "method": "post",
+        "body": {id: conversationID, sentUsername: currUser, messageData: messageData},
+        "headers": {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
         }
