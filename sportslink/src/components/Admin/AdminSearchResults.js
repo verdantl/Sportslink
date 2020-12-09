@@ -6,7 +6,7 @@ import AdminPosts from './AdminPosts'
 class AdminSearchResults extends React.Component{
 
     render(){
-        if(this.props.filter === 'athlete'){
+        if (this.props.filter === 'athlete'){
             return <div>
             {this.props.users.map((user) => {
               return <SingleAdminBox key={uid(user)} adminAction={this.props.adminAction} user={user}/>

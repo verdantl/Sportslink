@@ -30,7 +30,6 @@ class AdminDashboard extends React.Component{
 
     updatePreferences = (locations, organizations, sports) => {
       this.setState({locations: locations, organizations: organizations, sports: sports})
-      this.filterPreferences()
     }
 
     changeFilter = (filter) => {
@@ -46,29 +45,37 @@ class AdminDashboard extends React.Component{
     }
     
     filterPreferences = () => {
-      let allUsers = this.state.users.filter(user => user.name.toLowerCase().includes(this.state.search.toLowerCase()))
-
-      let allPosts = this.state.posts.filter(post => 
-        post.text.toLowerCase().includes(this.state.search.toLowerCase()) | post.user.name.toLowerCase().includes(this.state.search.toLowerCase()))
-      if (this.state.locations.length > 0){
-          allUsers = allUsers.filter(user => user.location.toLowerCase().includes(this.state.locations[0].toLowerCase()))
-          allPosts = allPosts.filter(post => post.user.location.toLowerCase().includes(this.state.locations[0].toLowerCase()))
+        let allUsers = this.state.users.filter(user => user.name.toLowerCase().includes(this.state.search.toLowerCase()))
+  
+        let allPosts = this.state.posts.filter(post => 
+          post.text.toLowerCase().includes(this.state.search.toLowerCase()) | post.user.name.toLowerCase().includes(this.state.search.toLowerCase()))
+        if (this.state.locations.length > 0){
+            allUsers = allUsers.filter(user => user.location.toLowerCase().includes(this.state.locations[0].toLowerCase()))
+            allPosts = allPosts.filter(post => {
+                const user = this.state.users.find(indivUser => indivUser.username === post.user.username)
+                user.location.toLowerCase().includes(this.state.locations[0].toLowerCase())
+            })          
+        }
+        if (this.state.organizations.length > 0){
+            allUsers = allUsers.filter(user => user.organization.toLowerCase().includes(this.state.organizations[0].toLowerCase()))
+            allPosts = allPosts.filter(post => {
+                const user = this.state.users.find(indivUser => indivUser.username === post.user.username)
+                user.organization.toLowerCase().includes(this.state.organizations[0].toLowerCase())
+            })  
+  
+        }
+        if (this.state.sports.length > 0){
+  
+            allUsers = allUsers.filter(user => user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase()))
+            allPosts = allPosts.filter(post => {
+                const user = this.state.users.find(indivUser => indivUser.username === post.user.username)
+                user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase())
+            })
+        }
+        return {users: allUsers, posts: allPosts}
         
       }
-      if (this.state.organizations.length > 0){
-          allUsers = allUsers.filter(user => user.organization.toLowerCase().includes(this.state.organizations[0].toLowerCase()))
-          allPosts = allPosts.filter(post => post.user.organization.toLowerCase().includes(this.state.organizations[0].toLowerCase()))  
-
-      }
-      if (this.state.sports.length > 0){
-
-          allUsers = allUsers.filter(user => user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase()))
-          allPosts = allPosts.filter(post => post.user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase()))
-      }
-        this.setState({users: allUsers, posts: allPosts})
       
-    }
-
     adminAction = (action, user) => {
       switch (action){
         case ('suspend'):
@@ -109,8 +116,8 @@ class AdminDashboard extends React.Component{
             removePost={this.removePost} 
             filter={this.state.filters} 
             filters={filters} 
-            posts={this.state.posts} 
-            users={this.state.users}
+            posts={this.filterPreferences().posts} 
+            users={this.filterPreferences().users}
             clickProfile={this.state.click}/>
 
           

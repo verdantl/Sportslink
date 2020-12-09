@@ -20,20 +20,21 @@ class FilterBox extends React.Component{
         while (object.getAttribute('name') === null){
             object = object.parentElement
         }
+        let locations = this.props.filters.locations
+        let organizations = this.props.filters.organizations;
+        let sports = this.props.filters.sports;
         switch(object.parentElement.parentElement.className){
             case ("locations"):
-                this.props.filters.locations.splice(this.props.filters.locations.indexOf(object.name), 1)
+                locations = []
                 break;
             case ("organizations"):
-                this.props.filters.organizations.splice(this.props.filters.organizations.indexOf(object.name), 1)
-                this.setState({organizations: this.props.filters.organizations})
+                organizations = []
                 break;
             case ("sports"):
-                this.props.filters.sports.splice(this.props.filters.sports.indexOf(object.name), 1)
-                this.setState({sports: this.props.filters.sports})
+                sports = []
                 break;
           }
-          this.props.updatePref(this.props.filters.locations, this.props.filters.organizations, this.props.filters.sports)
+          this.props.updatePref(locations, organizations, sports)
     }
     handleChange = (event) =>{
         this.props.changeFilter(event.target.value)

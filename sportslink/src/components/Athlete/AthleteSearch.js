@@ -70,7 +70,7 @@ class AthleteSearch extends React.Component{
                 user.sports.toLowerCase().includes(this.state.sports[0].toLowerCase())
             })
         }
-          this.setState({users: allUsers, posts: allPosts})
+          return ({users: allUsers, posts: allPosts})
         
       }
 
@@ -119,8 +119,8 @@ class AthleteSearch extends React.Component{
                 user={this.state.user} 
                 upvote={this.upvotePost} 
                 filter={this.state.filters} 
-                posts={this.state.posts} 
-                users={this.state.users}/>
+                posts={this.filterPreferences().posts} 
+                users={this.filterPreferences().users}/>
             </div>
 
             </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Checkbox from "@material-ui/core/Checkbox"
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import TextField from '@material-ui/core/TextField'
 import {uid} from 'react-uid'
@@ -10,6 +10,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import countryData from '../../country_data/countries.json'
 import {logout} from "../../actions/user.js";
 
 class AdminSideFilters extends React.Component{
@@ -21,28 +22,26 @@ class AdminSideFilters extends React.Component{
         this.props.changeFilter(event.target.value)
       };
 
-    removePreference = (event) => {
-        let object;
-        object = event.target
+      removePreference = (event) => {
+        let object = event.target
         while (object.getAttribute('name') === null){
             object = object.parentElement
         }
-
+        let locations = this.props.filters.locations
+        let organizations = this.props.filters.organizations;
+        let sports = this.props.filters.sports;
         switch(object.parentElement.parentElement.className){
             case ("locations"):
-                this.props.filters.locations.splice(this.props.filters.locations.indexOf(object.name), 1)
-                this.setState({locations: this.props.filters.locations})
+                locations = []
                 break;
             case ("organizations"):
-                this.props.filters.organizations.splice(this.props.filters.organizations.indexOf(object.name), 1)
-                this.setState({organizations: this.props.filters.organizations})
+                organizations = []
                 break;
             case ("sports"):
-                this.props.filters.sports.splice(this.props.filters.sports.indexOf(object.name), 1)
-                this.setState({sports: this.props.filters.sports})
+                sports = []
                 break;
           }
-          this.props.updatePref(this.props.filters.locations, this.props.filters.organizations, this.props.filters.sports)
+          this.props.updatePref(locations, organizations, sports)
     }
     addOption = (list, option) => {
         if (option != '' && !list.includes(option) && list.length < 1){
@@ -89,7 +88,7 @@ class AdminSideFilters extends React.Component{
     handleExitHoverOff = (event) => {
         this.setState({exitIcon: 'exitIcon'})
     }
-
+    
     logoutUser = (app) => {
         this.props.history.push("/login");
         logout(app);
@@ -111,7 +110,13 @@ class AdminSideFilters extends React.Component{
         </FormControl>
         </div>
 
-        <TextField name="location" label="Location" className="filterTextField" onKeyDown={this._handleKeyDown}/>
+        <Autocomplete
+            id="adminLocationDropdown"
+            options={countryData}
+            getOptionLabel={(option) => option.country}
+            onClick={this._handleKeyDown}
+            renderInput={(params) => <TextField {...params} name="location" label="Location" onKeyDown={this._handleKeyDown} variant="outlined" />}
+            />
             
 
         <div className="locations">
