@@ -11,13 +11,14 @@
 
 
 .table{
-    text-align: justify;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 8vw;
-    margin-right: 8vw;
+    margin: auto;
+    width: fit-content;
 }
 
+.eachFilter{
+    display: flex;
+    
+}
 .filterboxes{
     padding: 10px;
     vertical-align: auto;
