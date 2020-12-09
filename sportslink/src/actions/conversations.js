@@ -4,13 +4,15 @@ export function getConversations(messaging) {
         .then(res => {
             if (res.status === 200) {
                 // return a promise that resolves with the JSON body
+                console.log(res.json)
                 return res.json();
             } else {
                 alert("Could not get conversations");
             }
         })
-        .then(lst => {
-            messaging.setState({"conversations": lst})
+        .then(json => {
+            console.log(json)
+            messaging.setState({conversations: json})
         })
         .catch(error => {
             console.log(error);
