@@ -15,6 +15,7 @@ const { User } = require("./models/user");
 const { Account} = require("./models/account");
 const { Post } = require("./models/post")
 const { Conversation } = require("./models/conversation")
+const { Image } = require("./models/image");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -22,6 +23,19 @@ const { ObjectID } = require("mongodb");
 // body-parser: middleware for parsing HTTP JSON body into a usable object
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
+
+// multipart middleware: allows you to access uploaded file from req.file
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart();
+
+// cloudinary: configure using credentials found on your Cloudinary Dashboard
+// sign up for a free account here: https://cloudinary.com/users/register/free
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: 'dlocujr6c',
+    api_key: '399745473426672',
+    api_secret: 'xBI7pZ52qyZeWV_PYNMS37rc18w'
+});
 
 // express-session for managing user sessions
 const session = require("express-session");
@@ -881,6 +895,71 @@ app.post('api/conversation/:id/message', mongoChecker, async (req, res) => {
 		}
     }
 })
+
+
+/*** Image API Routes below ************************************/
+
+// a POST route to *create* an image
+app.post("/images", multipartMiddleware, (req, res) => {
+
+    // Use uploader.upload API to upload image to cloudinary server.
+    cloudinary.uploader.upload(
+        req.files.image.path, // req.files contains uploaded files
+        function (result) {
+
+            // Create a new image using the Image mongoose model
+            var img = new Image({
+                image_id: result.public_id, // image id on cloudinary server
+                image_url: result.url, // image url on cloudinary server
+                created_at: new Date(),
+            });
+
+            // Save image to the database
+            img.save().then(
+                saveRes => {
+                    res.send(saveRes);
+                },
+                error => {
+                    res.status(400).send(error); // 400 for bad request
+                }
+            );
+        });
+});
+
+// a GET route to get all images
+app.get("/images", (req, res) => {
+    Image.find().then(
+        images => {
+            res.send({ images }); // can wrap in object if want to add more properties
+        },
+        error => {
+            res.status(500).send(error); // server error
+        }
+    );
+});
+
+/// a DELETE route to remove an image by its id.
+app.delete("/images/:imageId", (req, res) => {
+    const imageId = req.params.imageId;
+
+    // Delete an image by its id (NOT the database ID, but its id on the cloudinary server)
+    // on the cloudinary server
+    cloudinary.uploader.destroy(imageId, function (result) {
+
+        // Delete the image from the database
+        Image.findOneAndRemove({ image_id: imageId })
+            .then(img => {
+                if (!img) {
+                    res.status(404).send();
+                } else {
+                    res.send(img);
+                }
+            })
+            .catch(error => {
+                res.status(500).send(); // server error, could not delete.
+            });
+    });
+});
 
 
 /*** Webpage routes below **********************************/
