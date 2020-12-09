@@ -38,10 +38,11 @@ export const login = (user, app) => {
         .then(json => {
             if (json.currentUser !== undefined) {
                 app.setState({ currentUser: json.currentUser });
-            }  
+            } 
         })
         .catch(error => {
             console.log(error);
+            user.setState({loginError : "Couldn't login."})
         });
 };
 
@@ -61,10 +62,9 @@ export const logout = (app) => {
 };
 
 export const signupNext = (user, app) => {
-    if (user.state.password.length < 4) {
-        alert("Minimum password length is 4.");
-    }
-    if (user.state.firstName !== "" && user.state.last_name !== "" && user.state.usern !== "" && user.state.password !== "" && user.state.password2 !== "") {
+    if (user.state.firstName === "" || user.state.last_name === "" || user.state.password === "" || user.state.password2 === ""){
+        user.setState({firstNameError : "Ensure all fields are filled properly", last_nameError : "Ensure all fields are filled properly", passwordError : "Ensure all fields are filled properly", password2Error : "Ensure all fields are filled properly"})
+    } else if (user.state.firstNameError === "" && user.state.last_nameError == "" && user.state.passwordError === "" && user.state.password2Error === "") {
         const request = "/api/accounts/" + user.state.usern;
 
         fetch(request)
@@ -75,35 +75,25 @@ export const signupNext = (user, app) => {
         })
         .then(json => {
             if (json.user === null) {
-                if (user.state.password === user.state.password2){
-                    app.setState({ signUp: [{fname: user.state.firstName, lname: user.state.last_name, uname: user.state.usern, pwd: user.state.password}] });
-                    user.props.history.push("/onboarding");
-                }
-                else{
-                    alert("Passwords do not match.");
-                }
+                app.setState({ signUp: [{fname: user.state.firstName, lname: user.state.last_name, uname: user.state.usern, pwd: user.state.password}] });
+                user.props.history.push("/onboarding");
             } else {
-                alert("Username already taken.")
+                user.setState({usernError : "Username already taken."})
             }
         })
         .catch(error => {
             console.log(error);
+            user.setState({firstNameError : "Ensure all fields are filled properly", last_nameError : "Ensure all fields are filled properly", passwordError : "Ensure all fields are filled properly", password2Error : "Ensure all fields are filled properly"})
         });            
-    }
-    else {
-        alert("Please fill all fields");
-    }
-
+    } 
 };
 
 export const onboard = (user, app) => {
-    if (!validator.isEmail(user.state.email)){
-        alert("Please enter a valid email.")
-    }
-    else if (user.state.checkedRecruiters && user.state.checkedAthlete) {
-        alert("Please select one role only.");
-    }
-    else if (user.state.sport !== "" && user.state.organization !== "" && user.state.location !== "" && user.state.email !== "" && (user.state.checkedRecruiters || user.state.checkedAthlete)){
+    if (user.state.sport === "" || user.state.organization === "" || user.state.location === "" || user.state.email === "") {
+        user.setState({sportError : "Ensure all fields are filled properly", organizationError : "Ensure all fields are filled properly", locationError : "Ensure all fields are filled properly", emailError : "Ensure all fields are filled properly"})
+    } else if (!validator.isEmail(user.state.email)){
+        user.setState({emailError : "Please enter a valid email."})
+    } else if (user.state.sportError === "" && user.state.organizationError === "" && user.state.locationError === "" && user.state.emailError === "" && (user.state.checkedRecruiters || user.state.checkedAthlete)){
         let newAccount = {email: user.state.email, username: app.state.signUp[0].uname, password: app.state.signUp[0].pwd}
         let newUser = {player: user.state.checkedAthlete, username: app.state.signUp[0].uname, name: app.state.signUp[0].fname + " " + app.state.signUp[0].lname, location: user.state.location, organization: user.state.organization, sports: user.state.sport}
         
@@ -140,16 +130,14 @@ export const onboard = (user, app) => {
             }
         }).catch(error => {
             console.log(error);
+            user.setState({sportError : "Ensure all fields are filled properly", organizationError : "Ensure all fields are filled properly", locationError : "Ensure all fields are filled properly", emailError : "Ensure all fields are filled properly"})
         });
-    }
-    else {
-        alert("Please fill all fields");
     }
 
 };
 
 export const updateAccount = (user) => {
-    const url = "/api/accounts/" + user.props.global.state.currentUser
+    const url = "/api/accounts/" + user.props.app.state.currentUser
     let changes = {}
 
     if (user.state.newEmail !== '') {
@@ -184,7 +172,7 @@ export const updateAccount = (user) => {
     })
     .then(json => {
         // the resolved promise with the JSON body
-        getAccount(user)
+        getAccount(user.props.app.state.currentUser, user)
     })
     .catch(error => {
         console.log(error);
@@ -192,8 +180,8 @@ export const updateAccount = (user) => {
 };
 
 
-export const getAccount = (user) => {
-    const url = '/api/accounts/' + user.props.global.state.currentUser;
+export const getAccount = (user, app) => {
+    const url = '/api/accounts/' + user;
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -207,8 +195,10 @@ export const getAccount = (user) => {
         .then(json => {
             // the resolved promise with the JSON body
             if (json.user !== null) {
-                user.setState({ account: json.user});
-            } 
+                app.setState({ account: json.user});
+            } else {
+                app.setState({ account: {}});
+            }
         })
         .catch(error => {
             console.log(error);

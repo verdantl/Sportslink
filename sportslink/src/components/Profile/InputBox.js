@@ -1,16 +1,11 @@
 import React from 'react'
-import Biography from '../ViewProfile/Biography'
-import Images from './Images'
-import Career from './Career'
-import ProfileInfo from './ProfileInfo'
-import Experience from './Experience'
 import './profile.css'
-import coolcat from '../images/coolcat.jpg'
-import icedragon from '../images/icedragon.jpg'
-import lebron from '../images/lebron.jpg'
 
 import EditButton from './EditButton'
 import DeleteButton from './DeleteButton'
+import countryData from '../../country_data/countries.json'
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import TextField from '@material-ui/core/TextField'
 
 
 /*
@@ -120,6 +115,7 @@ class InputBox extends React.Component{
       this.setState({
           [name]:value
       });
+  
       console.log('Handled change. This is state now')
       console.dir(this.state)
   };
@@ -290,7 +286,15 @@ class InputBox extends React.Component{
             <div className='personalInfo'>
               <div>
                 <h4 className="detailsTitle">Location:</h4> 
-                  <input type="text" className="experienceTileH3" name="location" placeholder="Location" value={this.state.location} onChange={this.handleChange}/>
+                
+                <Autocomplete
+                    id="profileLocationDropdown"
+                    options={countryData}
+                    getOptionLabel={(option) => option.country}
+                    onSelect={this.handleChange}
+                    renderInput={(params) => <TextField {...params} className="experienceTileH3" name="location" placeholder="Location" />}
+                    />
+                  {/* <input type="text" className="experienceTileH3" name="location" placeholder="Location" value={this.state.location} onChange={this.handleChange}/> */}
               </div>
               <div>
                 <h4 className="detailsTitle">Current Organization:</h4> 

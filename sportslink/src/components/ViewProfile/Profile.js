@@ -23,6 +23,7 @@ class ViewProfile extends React.Component{
     }
 
     render(){
+        console.log(this.state.user.career)
         if (!this.state.user.username){
             return <div className="userProfile">
                 Username does not exist in the database.
