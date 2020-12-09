@@ -5,7 +5,8 @@ import '../logo.svg'
 class SingleProfileBox extends React.Component{
 
     handleClick = () => {
-        window.location.href = '/viewprofile/' + this.props.user.username
+        this.props.history.push('/viewprofile/' + this.props.user.username);
+        // window.location.href = '/viewprofile/' + this.props.user.username
     }
 
     render(){

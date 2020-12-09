@@ -7,7 +7,7 @@ class Career extends React.Component{
            <h1>Career Accomplishments</h1>
            {this.props.accomplishments.map((accomplishment) => {
               return <div key={uid(accomplishment)} className='accomplishmentCard'>
-                  {accomplishment}
+                  <span>{accomplishment.career}</span>
 
               </div>
             }
