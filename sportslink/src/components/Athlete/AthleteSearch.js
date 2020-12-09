@@ -115,6 +115,7 @@ class AthleteSearch extends React.Component{
                 <div hidden={this.state.search.length === 0}className="searchResultsTitle"> Search Results For: {this.state.search}</div>
                
                 <SearchResults 
+                history={this.props.history}
                 user={this.state.user} 
                 upvote={this.upvotePost} 
                 filter={this.state.filters} 

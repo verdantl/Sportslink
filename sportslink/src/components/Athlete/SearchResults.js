@@ -14,7 +14,7 @@ class SearchResults extends React.Component{
           <div className="searchUsers">  
             {this.props.users.map((user) => {
               if (user.player === true) {
-                return <SingleProfileBox key={uid(user)} user={user}/>
+                return <SingleProfileBox history={this.props.history} key={uid(user)} user={user}/>
               }
             }
             )}
@@ -27,7 +27,7 @@ class SearchResults extends React.Component{
           <div className="searchRecruiters">  
             {this.props.users.map((user) => {
               if (user.player === false) {
-                return <SingleProfileBox key={uid(user)} user={user}/>
+                return <SingleProfileBox history={this.props.history} key={uid(user)} user={user}/>
               }
             }
             )}

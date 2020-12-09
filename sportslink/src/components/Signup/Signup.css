@@ -46,3 +46,14 @@
 .signUpButton {
     padding: 20px;
 }
+
+.inputContainer {
+    display:flex; 
+    flex-direction:row;
+}
+
+.checkContainer {
+    margin-left: 20px;
+    margin-top: 45%;
+    height: 20%;
+}

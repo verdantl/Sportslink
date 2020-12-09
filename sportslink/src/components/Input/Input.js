@@ -6,15 +6,15 @@ import "./Input.css";
 
 class Input extends React.Component {
   render() {
-    const { label, value, onChange, name, type, variant } = this.props;
+    const { label, value, onChange, name, type, variant, errorText, error} = this.props;
 
     return (
       <Grid item >
         <TextField
           name={name}
-
+          helperText={errorText}
           label={label}
-          id="margin-normal"
+          id={name}
           defaultValue={value || ""}
           className="input"
           margin="normal"
@@ -22,6 +22,7 @@ class Input extends React.Component {
           onChange={onChange}
           type={type}
           variant={variant}
+          error={error}
         />
       </Grid>
     );
