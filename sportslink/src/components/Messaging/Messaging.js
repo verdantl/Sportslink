@@ -17,7 +17,7 @@ class Messaging extends React.Component{
     }
 
     state = {
-        currUser : 'currUserID',
+        currUser : 'arjun',
         currContact: 'UserIDGoesHere1',
         conversations: [],
         contacts: []
@@ -67,8 +67,6 @@ class Messaging extends React.Component{
     }
 
     render() {
-        console.log(this.state.conversations.filter(this.conversationFilter))
-        console.log(typeof(this.state.conversations.filter(this.conversationFilter)))
         return <div className="messaging">
             <div className="contacts" onClick={this.contactClick}>
                 {
@@ -84,7 +82,7 @@ class Messaging extends React.Component{
                     <ContactHeader currContact={this.state.currContact}/>
                 </div>
                 <div className="texts">
-                    <TextList conversation={this.state.conversations.filter(this.conversationFilter)} currUser={this.state.currUser}/>
+                    <TextList conversation={this.state.contacts.length === 0 ? "noConv" : this.state.conversations.filter(this.conversationFilter)} currUser={this.state.currUser}/>
                 </div>
                 <div className="sendMessageForm">
                     <SendMessageForm sendMessage={this.sendMessage}/>

@@ -13,19 +13,26 @@ class TextList extends React.Component{
     }
 
     render() {
-        if (Array.isArray(this.props.conversation.messages)) {
+        console.log(this.props.conversation)
+        if (this.props.conversation === "noConv") {
+            return (
+                <div className="defaultMessage">
+                    There's nothing here! Would you like to start a new conversation?
+                    <button className="moveButton" onClick={this.moveToSearch}>Click here</button>
+                </div>
+            )
+        } else if (Array.isArray(this.props.conversation.messages)) {
             return (
                 <ul>
                     {
-                        this.props.conversation.messages.map(this.displayMessage)
+                        this.props.conversation.messages === [] ? this.askToSendMessage() : this.props.conversation.messages.map(this.displayMessage)
                     }
                 </ul>
             )
         }
         return (
-            <div className="nothingHere">
-                There's nothing here! Would you like to start a new conversation?
-                <button className="moveButton" onClick={this.moveToSearch}>Click here</button>
+            <div className="defaultMessage">
+                I don't know how but I fucked something up
             </div>
         )
     }
@@ -40,6 +47,14 @@ class TextList extends React.Component{
                     {message.messageData}
                 </div>
             </li>
+        )
+    }
+
+    askToSendMessage () {
+        return (
+            <div className="defaultMessage">
+                Neither of you have sent a message yet. Send one now!
+            </div>
         )
     }
 }
