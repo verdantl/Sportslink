@@ -12,8 +12,8 @@ class Settings extends React.Component{
     constructor(props) {
         super(props);
         this.props.history.push("/settings");
-        getAccount(this)
-        getUser(this.props.global.state.currentUser, this)
+        getAccount(this.props.app.state.currentUser, this)
+        getUser(this.props.app.state.currentUser, this)
     }
 
     state = {
@@ -58,7 +58,6 @@ class Settings extends React.Component{
     };
 
     render() {
-        const {global} = this.props;
         return (
             <div className="settingsPage">
                 {/* <div className='loginTitle'><h1>Sportslink</h1><p>Bringing together the greatest athletic community around the globe.</p></div> */}

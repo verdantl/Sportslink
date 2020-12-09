@@ -17,6 +17,7 @@ class Login extends React.Component{
     state = {
         usern: "",
         password: "",
+        loginError: "",
         users: [
             {usern: "user", password: "user"},
             {usern: "admin", password: "admin"}
@@ -49,6 +50,8 @@ class Login extends React.Component{
                 <div className="loginContainer">
                     <h1>Log in</h1>
                     <Input
+                        error ={this.state.loginError !== "" ? true : false }
+                        errorText={this.state.loginError}
                         name="usern"
                         onChange={this.handleChange}
                         label="Username"
@@ -56,6 +59,8 @@ class Login extends React.Component{
                     />
 
                     <Input
+                        error ={this.state.loginError !== "" ? true : false }
+                        errorText={this.state.loginError}
                         name="password"
                         onChange={this.handleChange}
                         label="Password"

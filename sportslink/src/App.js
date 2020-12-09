@@ -263,7 +263,7 @@ class App extends React.Component {
           <Route exact path = '/onboarding' render={props => 
                           (<Onboarding {...props} app={this} className="onboarding"/>)}/>
           <Route exact path = '/settings' render={props => 
-                          (<div> <TopBar {...props} app={this}/><Settings {...props} global={this}/></div>)}/>
+                          (<div> <TopBar {...props} app={this}/><Settings {...props} app={this}/></div>)}/>
           <Route exact path = '/forgotpassword' render={() => 
                           (<ForgotPass/>)}/>
 
