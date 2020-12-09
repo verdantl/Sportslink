@@ -93,7 +93,7 @@ export const onboard = (user, app) => {
         user.setState({sportError : "Ensure all fields are filled properly", organizationError : "Ensure all fields are filled properly", locationError : "Ensure all fields are filled properly", emailError : "Ensure all fields are filled properly"})
     } else if (!validator.isEmail(user.state.email)){
         user.setState({emailError : "Please enter a valid email."})
-    } else if (user.state.sportError !== "" && user.state.organizationError !== "" && user.state.locationError !== "" && user.state.emailError !== "" && (user.state.checkedRecruiters || user.state.checkedAthlete)){
+    } else if (user.state.sportError === "" && user.state.organizationError === "" && user.state.locationError === "" && user.state.emailError === "" && (user.state.checkedRecruiters || user.state.checkedAthlete)){
         let newAccount = {email: user.state.email, username: app.state.signUp[0].uname, password: app.state.signUp[0].pwd}
         let newUser = {player: user.state.checkedAthlete, username: app.state.signUp[0].uname, name: app.state.signUp[0].fname + " " + app.state.signUp[0].lname, location: user.state.location, organization: user.state.organization, sports: user.state.sport}
         

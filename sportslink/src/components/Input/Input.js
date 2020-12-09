@@ -6,11 +6,12 @@ import "./Input.css";
 
 class Input extends React.Component {
   render() {
-    const { label, value, onChange, name, type, variant, errorText, error} = this.props;
+    const { label, value, onChange, name, type, variant, errorText, error, params} = this.props;
 
     return (
       <Grid item >
         <TextField
+          params={params}
           name={name}
           helperText={errorText}
           label={label}

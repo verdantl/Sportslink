@@ -6,6 +6,9 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import Checkbox from "@material-ui/core/Checkbox"
+import countryData from '../../country_data/countries.json'
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import TextField from '@material-ui/core/TextField'
 import { onboard} from "../../actions/user.js";
 
 class Onboarding extends React.Component{
@@ -62,6 +65,7 @@ class Onboarding extends React.Component{
 
     render(){
         const { app } = this.props
+        console.log(this.state)
         return <div className="signUpPage">
             <div className="signUpTitle"><h1>Sportslink</h1> <p>Bringing together the greatest athletic community around the globe.</p></div>
         {/* <Onboarding/> */}
@@ -76,13 +80,18 @@ class Onboarding extends React.Component{
                 label="Email"
             />
 
-            <Input
-                error ={this.state.locationError !== "" ? true : false }
-                errorText={this.state.locationError}
-                name="location"
-                onChange={this.handleChange}
-                onKeyPress={this.handleEnter}
-                label="Location"
+            <Autocomplete
+                id="profileLocationDropdown"
+                options={countryData}
+                getOptionLabel={(option) => option.country}
+                onSelect={this.handleChange}
+                renderInput={(params) => 
+                <TextField {...params} 
+                    name="location" 
+                    label="Location"
+                    error ={this.state.locationError !== "" ? true : false }
+                    errorText={this.state.locationError}
+                />}
             />
 
             <Input
