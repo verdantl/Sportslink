@@ -145,7 +145,7 @@ app.get("/users/check-session", (req, res) => {
 
 /*** API Routes below ************************************/
 // Account API Route
-//SIGNUP FOR AN ACCOUNTCreate a new account - sign up for the first time -- after this call, we'll want to make a user signup profile page.
+//SIGNUP FOR AN ACCOUNT Create a new account - sign up for the first time -- after this call, we'll want to make a user signup profile page.
 app.post('/api/accounts', mongoChecker, async (req, res) => {
     log(req.body)
     // Create a new user

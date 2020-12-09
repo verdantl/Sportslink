@@ -3,13 +3,30 @@ import './TextList.css';
 import { uid } from 'react-uid';
 
 class TextList extends React.Component{
+
+    constructor (props) {
+        super(props)
+    }
+
+    moveToSearch() {
+        // do this later
+    }
+
     render() {
+        if (Array.isArray(this.props.conversation.messages)) {
+            return (
+                <ul>
+                    {
+                        this.props.conversation.messages.map(this.displayMessage)
+                    }
+                </ul>
+            )
+        }
         return (
-            <ul>
-                {
-                    this.props.conversation.messages.map(this.displayMessage)
-                }
-            </ul>
+            <div className="nothingHere">
+                There's nothing here! Would you like to start a new conversation?
+                <button className="moveButton" onClick={this.moveToSearch}>Click here</button>
+            </div>
         )
     }
 
