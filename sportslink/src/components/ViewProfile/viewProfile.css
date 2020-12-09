@@ -130,6 +130,7 @@
     text-align: center;
     margin: auto;
     font-size: large;
+    min-width: 500px;
 }
 
 

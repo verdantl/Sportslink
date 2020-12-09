@@ -63,23 +63,7 @@ const authenticate = (req, res, next) => {
     }
 }
 
-// Middleware for authentication of resources -- unfinished
-const authenticateAdmin = (req, res, next) => {
-    if (req.session.user) {
-        User.findOne({username: req.session.username}).then((user) => {
-            if (!user) {
-                return Promise.reject()
-            } else {
-                req.user = user
-                next()
-            }
-        }).catch((error) => {
-            res.status(401).send("Unauthorized")
-        })
-    } else {
-        res.status(401).send("Unauthorized")
-    }
-}
+
 
 
 /*** Session handling **************************************/
@@ -90,7 +74,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60000,
+            expires: 100000,
             httpOnly: true
         }
     })
@@ -153,6 +137,9 @@ app.post('/api/accounts', mongoChecker, async (req, res) => {
     try {
         // Save the user
         const newAccount = await account.save()
+        req.session.user = account._id;
+        req.session.email = account.email; 
+        req.session.username = account.username;
         res.send(newAccount)
     } catch (error) {
         if (isMongoError(error)) { // check for if mongo server suddenly disconnected before this request.
@@ -219,11 +206,6 @@ app.patch('/api/accounts/:user', mongoChecker, async (req, res) => {
                     return
                 }
             }
-            // if (req.body.password) {
-            
-            //     res.send(hashed)
-            //     return
-            // } 
             res.send(account)
 		}
 	} catch (error) {
@@ -239,7 +221,7 @@ app.patch('/api/accounts/:user', mongoChecker, async (req, res) => {
 
 
 //Deletes an account, we need to authenticate for admin, function for updating account settings information
-app.delete('/api/accounts/:username', mongoChecker, async (req, res) => {
+app.delete('/api/accounts/:username', mongoChecker, authenticate, async (req, res) => {
 	const username = req.params.username
 
 	// check mongoose connection established.
@@ -510,13 +492,9 @@ app.delete('/api/experience/:username/:experience', mongoChecker, authenticate, 
 })
 
 //add a new career accomplishment - input req.body should be {"career": "stuff"} ---- have not solved for duplicates
-app.post('/api/users/:id/career', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
-	// Validate id
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send('Resource not found')
-		return;
-	}
+//add a new experience -- completed --
+app.post('/api/career/:username', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
 
 	// check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -525,29 +503,29 @@ app.post('/api/users/:id/career', mongoChecker, authenticate, async (req, res) =
 		return;
     } 
     try {
-		const user = await User.findById(id)
+		const user = await User.findOne({username: username})
 		if (!user) {
-			res.status(404).send('Resource not found')  // could not find this
+			res.status(404).send('Resource not found')  // could not find this student
 		} else {
-            /// sometimes we might wrap returned object in another object:
-            user.career.push(req.body)
-            const result = await user.save()
-            res.send(result)
-
+			/// sometimes we might wrap returned object in another object:
+            const result = await User.updateOne({username: username}, {$push: {career: req.body}})
+			res.send(result)
 		}
 	} catch(error) {
 		log(error)
 		res.status(500).send('Internal Server Error')  // server error
 	}
+
 })
 
+
 //edit existing accomplishment -- replaces string only, expects form , MIGHT WANT TO REPLACE WITH SOMETHING BETTER
-app.patch('/api/users/:id/career/:careerid', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
+app.patch('/api/career/:username/:careerid', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
     const cid = req.params.careerid
 
 	// Validate id
-	if (!ObjectID.isValid(id)) {
+	if (!ObjectID.isValid(cid)) {
 		res.status(404).send('Resource not found')
 		return;
 	}
@@ -558,21 +536,20 @@ app.patch('/api/users/:id/career/:careerid', mongoChecker, authenticate, async (
 		res.status(500).send('Internal server error')
 		return;
     } 
+
     const fieldsToUpdate = {}
-    
-	req.body.map((change) => {
-		const propertyToChange = change.path.substr(1) // getting rid of the '/' character
-        const property = "career.$." + propertyToChange
-        fieldsToUpdate[property] = change.value
-    })
+	Object.keys(req.body).map((change) => {
+		const propertyToChange = "career.$." + change
+		fieldsToUpdate[propertyToChange] = req.body[change]
+	})
 
     try {
-        const user = await User.findById(id)
+        const user = await User.findOne({username: username})
 
 		if (!user) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
-            const updated = await User.findOneAndUpdate({"_id": id, "career._id" : cid}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
+            const updated = await User.findOneAndUpdate({username: username, "career._id" : cid}, {$set: fieldsToUpdate}, {new: true, useFindAndModify: false})
 			res.send(updated)
 		}
 	} catch(error) {
@@ -580,16 +557,17 @@ app.patch('/api/users/:id/career/:careerid', mongoChecker, authenticate, async (
 		res.status(500).send('Internal Server Error')  // server error
 	}
 
+
 })
 
 //delete existing accomplishment
-app.delete('/api/users/:id/career/:cid', mongoChecker, authenticate, async (req, res) => {
-    const id = req.params.id
+app.delete('/api/career/:username/:cid', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
 
     const cid = req.params.cid
 
 	// Validate id
-	if (!ObjectID.isValid(id)) {
+	if (!ObjectID.isValid(cid)) {
 		res.status(404).send('Resource not found')
 		return;
 	}
@@ -602,14 +580,14 @@ app.delete('/api/users/:id/career/:cid', mongoChecker, authenticate, async (req,
     } 
 
     try {
-        const user = await User.findByIdAndUpdate(
-            id,
+        const user = await User.updateOne(
+            {username: username},
            { $pull: { 'career': {  _id: cid} } })
 
 		if (!user) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
-			res.send(user.career) // this will be the array of the experience before deletion 
+			res.send(user) // this will be the array of the experience before deletion 
 		}
 	} catch(error) {
 		log(error)
@@ -661,6 +639,7 @@ app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
         }
     }
 })
+
 
 app.delete('/api/posts/:postid', mongoChecker, authenticate, async (req, res) => {
     const pid = req.params.postid
@@ -716,6 +695,7 @@ app.delete('/api/deletePosts/:username', mongoChecker, async (req, res) => {
 	}
 })
 
+
 // adding a comment -- untested
 app.post('/api/posts/:postid', mongoChecker, async (req, res) => {
     const pid = req.params.postid
@@ -750,7 +730,59 @@ app.post('/api/posts/:postid', mongoChecker, async (req, res) => {
 	}
 
 })
+// adding a username to the list of likes - username will be in req.body.username
+app.post('/api/likes/:postid', mongoChecker, authenticate, async (req, res) => {
+    const pid = req.params.postid
+    // Save student to the database
+    // async-await version:
+    if (!ObjectID.isValid(pid)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+    try {
+		const post = await Post.findById(pid)
+		if (!post) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			/// sometimes we might wrap returned object in another object:
+            const result = await Post.findByIdAndUpdate(pid, {$push: {likes: req.body.username}})
+			res.send(result)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+app.delete('/api/likes/:postid', mongoChecker, authenticate, async (req, res) => {
+    const pid = req.params.postid
+    	// Validate id
+	if (!ObjectID.isValid(pid)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
 
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+
+    try {
+        const post = await Post.findByIdAndUpdate(pid,
+           { $pull: { 'likes': req.body.username }})
+        
+
+		if (!post) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			res.send(post) // this will be the array of the experience before deletion 
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
 // API for messages
 // GET for getting all conversations by a specific user
 app.get('/api/conversation', mongoChecker, async (req, res) => {

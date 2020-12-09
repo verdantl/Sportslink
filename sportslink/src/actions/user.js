@@ -134,9 +134,9 @@ export const onboard = (user, app) => {
             }));
         }).then(function (data) {
             if (data[0] !== undefined && data[1] !== undefined) {
-                app.setState({ signUp: [] });
+                app.setState({ signUp: [], currentUser: data[0].username});
                 alert("Sign up success");
-                user.props.history.push("/");
+                user.props.history.push("/dashboard");
             }
         }).catch(error => {
             console.log(error);
@@ -184,7 +184,6 @@ export const updateAccount = (user) => {
     })
     .then(json => {
         // the resolved promise with the JSON body
-        console.log(json)
         getAccount(user)
     })
     .catch(error => {
@@ -198,7 +197,6 @@ export const getAccount = (user) => {
     fetch(url)
         .then(res => {
             if (res.status === 200) {
-                console.log(res)
                 // return a promise that resolves with the JSON body
                 return res.json();
                 
@@ -208,7 +206,9 @@ export const getAccount = (user) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
-            user.setState({ account: json});
+            if (json.user !== null) {
+                user.setState({ account: json.user});
+            } 
         })
         .catch(error => {
             console.log(error);

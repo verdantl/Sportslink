@@ -176,7 +176,7 @@ class InputBox extends React.Component{
     else if(this.state.boxState == 7){ 
       const accomplishment = this.props.getAccomplishmentById(this.state.idToEdit);
       this.setState({
-        accomplishmentText: accomplishment.text
+        accomplishmentText: accomplishment.career
       });
     }
     // no default value changes for state 8 (removing an accomplishment)

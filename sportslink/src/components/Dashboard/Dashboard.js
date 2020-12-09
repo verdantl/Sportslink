@@ -6,7 +6,7 @@ import lebron from '../images/lebron.jpg'
 import NewPost from './NewPost'
 import Posts from './Posts'
 import { getUser, getUsers } from '../../actions/profiles' 
-import { getPosts, newPost, newComment } from '../../actions/posts'
+import { getPosts, newPost, newComment, upvotePost, downvotePost} from '../../actions/posts'
 
 class Dashboard extends React.Component{
     constructor(props) {
@@ -26,10 +26,10 @@ class Dashboard extends React.Component{
     createNewPost = (postText) => {
         const post = {
             user: this.state.user,
-            text: postText
+            text: postText,
+            likes: []
         }
-        newPost(post)
-        getPosts(this)
+        newPost(post, this)
     }
 
     addNewComment = (commentText, postID) => {
@@ -41,8 +41,17 @@ class Dashboard extends React.Component{
     }
 
     upvotePost = (post, number) => {
-        this.state.posts[post].likes += number;
-        this.setState({posts: this.state.posts})
+        // editPostInfo()
+        const reqBody = {username: this.state.user.username}
+        if (number > 0){
+            //add the username to the list of post likes
+            upvotePost(reqBody, post._id, this)
+        }
+        else{
+            //remove the username from the list of post likes
+            downvotePost(reqBody, post._id, this)
+        }
+        this.setState({})
     }
 
     render(){
@@ -55,7 +64,7 @@ class Dashboard extends React.Component{
             <div className="dashboardRightColumn">
                 <NewPost createNewPost={this.createNewPost}/>
                 <Posts 
-                // user={this.state.user} 
+                user={this.state.user} 
                 upvote={this.upvotePost} 
                 newComment={this.addNewComment} 
                 posts={this.state.posts}/>

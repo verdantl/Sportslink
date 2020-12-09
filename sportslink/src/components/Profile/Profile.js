@@ -10,6 +10,7 @@ import {uid} from 'react-uid'
 import InputBox from './InputBox'
 import { getUser, updateUserInfo} from '../../actions/profiles'
 import {addExperience, removeExperience, updateExperience } from '../../actions/experience'
+import { addCareer, removeCareer, updateCareer } from '../../actions/career'
 
 // temporrat
 //import lebron from '../images/lebron.jpg'
@@ -119,7 +120,7 @@ class Profile extends React.Component{
     }
 
     getAccomplishmentIndexById = (id) =>{
-        const accomplishments = this.state.user.accomplishments
+        const accomplishments = this.state.user.career
         let i = 0;
         for (i = 0; i < accomplishments.length; i++){            
             if (accomplishments[i].id == id){
@@ -129,30 +130,31 @@ class Profile extends React.Component{
     }
 
     getAccomplishmentById = (id) =>{
-        return this.state.user.accomplishments[this.getAccomplishmentIndexById(id)]
+        let i = 0;
+        for (i = 0; i < this.state.user.career.length ; i ++){
+            if (this.state.user.career[i]._id === id){
+                return this.state.user.career[i]
+            }
+        }
     }
 
     getAccomplishments = () =>{
-        return this.state.user.accomplishments
+        return this.state.user.career
     }
 
-    addAccomplishment = (id, accomplishmentText) =>{
-        console.log(' --- this.props.global.accomplishments  --- ')
-        console.dir(this.props.global.accomplishments)
-        this.state.user.accomplishments.push({'id': id, 'text': accomplishmentText});
+    addAccomplishment = (id, accomplishment) =>{
+        addCareer(accomplishment, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience  
     }
 
     updateAccomplishment = (id, accomplishmentText) => {
-        const accomplishments = this.state.user.accomplishments
-        const index = this.getAccomplishmentIndexById(id);
-        accomplishments[index].text = accomplishmentText
+        const accomplishment = {_id: id, career: accomplishmentText}
+        updateCareer(accomplishment, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience  
     }
 
     removeAccomplishment = (id) => {
-        const index = this.getAccomplishmentIndexById(id);
-        this.state.user.accomplishments.splice(index, 1)
+        removeCareer(id, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience  
        // this.render();
         //this.setState({experience: experiences});
@@ -214,14 +216,14 @@ class Profile extends React.Component{
     }
 
     render(){
-        const {global} = this.state.user;
-        console.log('--------- Profile -----------------')
-        console.log('this.state')
-        console.dir(this.state)
-        console.log('this.props')
-        console.dir(this.props)
-        console.log('global')
-        console.dir(global)
+        // const {global} = this.state.user;
+        // console.log('--------- Profile -----------------')
+        // console.log('this.state')
+        // console.dir(this.state)
+        // console.log('this.props')
+        // console.dir(this.props)
+        // console.log('global')
+        // console.dir(global)
         return <div className={(this.state.user.player) ? "userProfile" : "recruiterProfile"}>
             <div className="profileCard">
                 <ProfileInfo user={this.state.user.name} global={this.state.user} setBoxState={this.setBoxState.bind(this)} />
@@ -230,6 +232,7 @@ class Profile extends React.Component{
                 <EditButton handleEditButtonClick={this.handleBiographyEditButtonClick.bind(this)}/>
                 </div>
             </div>
+
 
             <div className="achievements">
                 <div></div>
@@ -242,7 +245,7 @@ class Profile extends React.Component{
                     updateAccomplishment={this.updateAccomplishment.bind(this)} removeAccomplishment={this.removeAccomplishment.bind(this)} user={this.state.user}/> 
                 <div className="profileRightColumn">
                 <Images images={this.state.user.images}/>
-                <Career accomplishments={this.state.user.accomplishments} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
+                <Career accomplishments={this.state.user.career} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
                 </div>
                 
             </div>
