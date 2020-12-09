@@ -254,15 +254,30 @@ class App extends React.Component {
          {/*} <Route exact path = '/userprofile/TheRealLebronJames' render={() => 
                           (<div><AdminTopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
                           */}
-
-          <Route exact path = '/messaging' render={props => 
-                          (<div><TopBar {...props} app={this}/><Messaging className="messaging"/></div>)}/>
+          <Route exact path = {["/messaging" ] /* any of these URLs are accepted. */ }
+                 render={props=>
+                        <div className="app">
+                          { /* Different componenets rendered depending on if someone is logged in. */}
+                          {!currentUser ? <Login {...props} app={this} /> : <div><TopBar {...props}  app={this}/><Messaging className="messaging"/></div>}
+                      </div> 
+                      }
+                      />
+          <Route exact path = {["/settings" ] /* any of these URLs are accepted. */ }
+                 render={props=>
+                        <div className="app">
+                          { /* Different componenets rendered depending on if someone is logged in. */}
+                          {!currentUser ? <Login {...props} app={this} /> : <div><TopBar {...props}  app={this}/><Settings {...props} app={this}/></div>}
+                      </div> 
+                      }
+                      />
+          {/* <Route exact path = '/messaging' render={props => 
+                          (<div><TopBar {...props} app={this}/><Messaging className="messaging"/></div>)}/> */}
           <Route exact path = '/signup' render={props => 
                           (<Signup {...props} app={this} className="signup"/>)}/>
           <Route exact path = '/onboarding' render={props => 
                           (<Onboarding {...props} app={this} className="onboarding"/>)}/>
-          <Route exact path = '/settings' render={props => 
-                          (<div> <TopBar {...props} app={this}/><Settings {...props} app={this}/></div>)}/>
+          {/* <Route exact path = '/settings' render={props => 
+                          (<div> <TopBar {...props} app={this}/><Settings {...props} app={this}/></div>)}/> */}
           <Route exact path = '/forgotpassword' render={() => 
                           (<ForgotPass/>)}/>
 
