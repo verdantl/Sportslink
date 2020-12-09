@@ -93,6 +93,17 @@
     border: 1px black solid;
 }
 
+#selfProfilePic:hover{
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.changePicText{
+    position: absolute;
+    top: 50%;
+    left: 23%;
+    z-index: 3;
+}
 
 .profileRightColumn{
     display: inline-block;

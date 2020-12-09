@@ -636,7 +636,7 @@ app.post('/api/posts', mongoChecker, authenticate, async (req, res) => {
         user: req.body.user,
         text: req.body.text,
         date: today,
-        likes: 0,
+        likes: [],
         comments: []
     })
     // Save student to the database

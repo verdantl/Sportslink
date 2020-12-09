@@ -9,7 +9,9 @@ class AdminSearchResults extends React.Component{
         if (this.props.filter === 'athlete'){
             return <div>
             {this.props.users.map((user) => {
-              return <SingleAdminBox key={uid(user)} adminAction={this.props.adminAction} user={user}/>
+                if (user.player){
+                    return <SingleAdminBox key={uid(user)} adminAction={this.props.adminAction} user={user}/>
+                }
             }
             )}
         </div>
@@ -18,8 +20,17 @@ class AdminSearchResults extends React.Component{
         else if (this.props.filter === 'posts'){
             return <AdminPosts removePost={this.props.removePost} posts={this.props.posts} clickProfile={this.props.clickProfile}/>
         }
+        
         else{
-            return <div></div>
+            return <div>
+            {this.props.users.map((user) => {
+                if (!user.player){
+                    return <SingleAdminBox key={uid(user)} adminAction={this.props.adminAction} user={user}/>
+                }
+            }
+            )}
+        </div>
+
         }
 
 
