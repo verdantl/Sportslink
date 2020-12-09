@@ -2,17 +2,19 @@ import React from 'react'
 import FormControlLabel from "@material-ui/core/FormControlLabel"
 import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import IconButton from '@material-ui/core/IconButton'
 import ClearIcon from '@material-ui/icons/Clear';
 import RadioGroup from '@material-ui/core/RadioGroup'
 import Radio from '@material-ui/core/Radio'
 import "./FilterBox.css"
+import countryData from '../country_data/countries.json'
 import {uid} from 'react-uid'
 
 
 
 class FilterBox extends React.Component{
-
+        
     removePreference = (event) => {
         let object = event.target
         while (object.getAttribute('name') === null){
@@ -88,9 +90,15 @@ class FilterBox extends React.Component{
         </FormControl>  
 
         <div className="table">
-        <div>
-        <TextField name="location" label="Location" onKeyDown={this._handleKeyDown}/>
-            
+        <div className="eachFilter" >
+        <Autocomplete
+            id="combo-box-demo"
+            options={countryData}
+            getOptionLabel={(option) => option.country}
+            onClick={this._handleKeyDown}
+            renderInput={(params) => <TextField {...params} name="location" label="Location" onKeyDown={this._handleKeyDown} variant="outlined" />}
+            />
+
 
         <div className="locations">
             {this.props.filters.locations.map((location) => {
@@ -107,7 +115,7 @@ class FilterBox extends React.Component{
         </div>
         </div>
 
-        <div>
+        <div className="eachFilter">
     
             <TextField name="organization" label="Organization" onKeyDown={this._handleKeyDown}/>
             <div className="organizations">
@@ -124,9 +132,9 @@ class FilterBox extends React.Component{
                 )}
             </div>
         
-        </div>
+        </div >
     
-        <div>
+        <div className="eachFilter">
             <TextField name="sport" label="Sport" onKeyDown={this._handleKeyDown}/>
             <div className="sports">
             {this.props.filters.sports.map((sport) => {
