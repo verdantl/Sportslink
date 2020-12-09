@@ -8,7 +8,7 @@ export const getUsers = (dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                alert("Could not get students");
+                alert("Could not get users");
             }
         })
         .then(json => {

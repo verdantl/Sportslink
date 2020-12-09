@@ -49,7 +49,6 @@ class TopBar extends React.Component{
     };
 
     logoutUser = (app) => {
-        this.props.history.push("/login");
         logout(app);
     };
 
