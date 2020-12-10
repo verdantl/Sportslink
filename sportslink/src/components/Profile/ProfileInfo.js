@@ -24,7 +24,7 @@ class ProfileInfo extends React.Component{
     render(){
         const {global} = this.props;
         return  <div className="profileInfo">
-        <ProfilePicture image={global.image} name={global.name}/>
+        <ProfilePicture image={global.image} changePic={this.props.changePic} name={global.name}/>
             <div className="contactDetails"> 
             <div className="editSection">
             <EditButton handleEditButtonClick={this.handleProfileInfoEditClick.bind(this)} />

@@ -1,12 +1,10 @@
 import React from 'react'
 import UploadPictureDialog from './UploadPictureDialog'
-import lebron from '../images/lebron.jpg'
 
 class ProfilePicture extends React.Component{
     state = {
         hovered: false,
-        openDialog: false,
-        image: lebron
+        openDialog: false
     }
 
     setHovered = () => {
@@ -26,12 +24,11 @@ class ProfilePicture extends React.Component{
         reader.onload = () => {
             this.setState({
                 openDialog: false,
-                image: reader.result,
             });
+            this.props.changePic(reader.result)
         }
         reader.readAsDataURL(picture[0])
 
-        console.log(picture)
     }
 
     closeDialog = () =>{
@@ -41,7 +38,7 @@ class ProfilePicture extends React.Component{
     render(){
         return <div className="profilePictureName">
             <div className="profilePicture" >            
-            <img id="selfProfilePic" src={this.state.image} className="image" onClick={this.changeProfilePicture} onMouseEnter={this.setHovered}  onMouseLeave={this.setHovered}/>
+            <img id="selfProfilePic" src={this.props.image} className="image" onClick={this.changeProfilePicture} onMouseEnter={this.setHovered}  onMouseLeave={this.setHovered}/>
             <div className="changePicText" hidden={!this.getHovered()}>
                 Change Profile Picture
                 </div>

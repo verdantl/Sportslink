@@ -29,6 +29,11 @@ class Profile extends React.Component{
             images: []
         }
     }
+    changePicture = (image) => {
+        const changes = {image: image}
+        updateUserInfo(changes, this.state.user.username, this)
+    }
+
 
     handleButtonOff = (event) => {
         this.setState({addButtonClass: 'addExperienceButton'})
@@ -177,7 +182,7 @@ class Profile extends React.Component{
     render(){
         return <div className={(this.state.user.player) ? "userProfile" : "recruiterProfile"}>
             <div className="profileCard">
-                <ProfileInfo user={this.state.user.name} global={this.state.user} setBoxState={this.setBoxState.bind(this)} />
+                <ProfileInfo user={this.state.user.name} changePic={this.changePicture} global={this.state.user} setBoxState={this.setBoxState.bind(this)} />
                 <div className='editSection'>
                 <Biography description={this.state.user.description}/>
                 <EditButton handleEditButtonClick={this.handleBiographyEditButtonClick.bind(this)}/>
