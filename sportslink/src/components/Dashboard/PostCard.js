@@ -112,11 +112,13 @@ class PostCard extends React.Component{
 
             <div className="postIntermediary">
                 <div>
-            <span> {this.props.post.likes.length + " Likes"} </span>
-            <span>
-                {this.props.post.comments.length + " Comments"}
-            </span>
-                <IconButton onClick={this.upvote} className="thumbsUpButton"> <ThumbUpIcon className={this.getUpvotedClass()}/></IconButton>
+                <span>
+                    {this.props.post.comments.length + " Comments"}
+                </span>
+                <span> 
+                    {this.props.post.likes.length + " Likes"} 
+                </span>
+                    <IconButton onClick={this.upvote} className="thumbsUpButton"> <ThumbUpIcon className={this.getUpvotedClass()}/></IconButton>
                 </div>
 
             </div>
