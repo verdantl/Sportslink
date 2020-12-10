@@ -72,6 +72,7 @@ export function createNewMessage(currUser, conversationID, messageData, messagin
                         type: "success"
                     }
                 });
+                getConversations(currUser, messaging)
             } else {
                 messaging.setState({
                     message: {
