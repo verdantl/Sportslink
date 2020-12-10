@@ -7,7 +7,7 @@ import Experience from './Experience'
 import './profile.css'
 import EditButton from './EditButton'
 import InputBox from './InputBox'
-import { getUser, updateUserInfo} from '../../actions/profiles'
+import { getUser, updateUserInfo, addImage, removeImage } from '../../actions/profiles'
 import {addExperience, removeExperience, updateExperience } from '../../actions/experience'
 import { addCareer, removeCareer, updateCareer } from '../../actions/career'
 
@@ -34,6 +34,14 @@ class Profile extends React.Component{
         updateUserInfo(changes, this.state.user.username, this)
     }
 
+    removeImage = (image) => {
+        removeImage(image._id, this.state.user.username, this)
+    }
+
+    addImage = (image) => {
+        const imageStuff = {image: image}
+        addImage(imageStuff, this.state.user.username, this)
+    }
 
     handleButtonOff = (event) => {
         this.setState({addButtonClass: 'addExperienceButton'})
@@ -200,7 +208,7 @@ class Profile extends React.Component{
                     updateOrganization={this.updateOrganization.bind(this)} updateSports={this.updateSports.bind(this)} getAccomplishmentById={this.getAccomplishmentById.bind(this)}
                     updateAccomplishment={this.updateAccomplishment.bind(this)} removeAccomplishment={this.removeAccomplishment.bind(this)} user={this.state.user}/> 
                 <div className="profileRightColumn">
-                <Images images={this.state.user.images}/>
+                <Images images={this.state.user.images} addPic={this.addImage} removePic={this.removeImage}/>
                 <Career accomplishments={this.state.user.career} setBoxState={this.setBoxState.bind(this)} setIdToEdit={this.setIdToEdit.bind(this)}/>
                 </div>
                 

@@ -21,7 +21,7 @@ class ConfirmationDialog extends React.Component{
         </DialogContentText>
         </DialogContent>
         <DialogActions>
-        <Button onClick={this.props.handleAgreeClose} color="primary" autoFocus>
+        <Button onClick={this.props.handleAgreeClose} color="primary">
         Confirm
         </Button>
         <Button onClick={this.props.handleCancelClose} color="primary">

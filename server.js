@@ -609,6 +609,65 @@ app.delete('/api/career/:username/:cid', mongoChecker, authenticate, async (req,
 	}
 })
 
+//API for IMAGES
+//add a new career accomplishment - input req.body should be {"career": "stuff"} ---- have not solved for duplicates
+//add a new experience -- completed --
+app.post('/api/images/:username', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    try {
+		const user = await User.findOne({username: username})
+		if (!user) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			/// sometimes we might wrap returned object in another object:
+            const result = await User.updateOne({username: username}, {$push: {images: req.body}})
+			res.send(result)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
+app.delete('/api/images/:username/:imageid', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username 
+    const id = req.params.imageid
+    	// Validate id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+
+    try {
+        const user = await User.updateOne(
+            {username: username},
+           { $pull: { 'images': {  _id: id} } })
+
+		if (!user) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			res.send(user) // this will be the array of the experience before deletion 
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
 
 //API for POSTS
 // a GET route to get all posts
@@ -799,7 +858,8 @@ app.delete('/api/likes/:postid', mongoChecker, authenticate, async (req, res) =>
 })
 // API for messages
 // GET for getting all conversations by a specific user
-app.get('/api/conversation', mongoChecker, async (req, res) => {
+app.get('/api/conversation/:username', mongoChecker, async (req, res) => {
+    const username = req.params.username
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -807,7 +867,7 @@ app.get('/api/conversation', mongoChecker, async (req, res) => {
     }
     try {
         const conversations = await Conversation.find({ 
-            sentUsername: req.body.currUser
+            sentUsername: username
         }).sort({date: 'ascending'})
         res.send(conversations)
     } catch (error) {
@@ -848,13 +908,12 @@ app.post('/api/conversation', mongoChecker, async (req, res) => {
 })
 
 // Add a new message to a conversation
-app.post('api/conversation/:id/message', mongoChecker, async (req, res) => {
+app.post('/api/message/:id', mongoChecker, async (req, res) => {
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
 		return
     }
-
     const id = req.params.id
     
     // Validate id
@@ -864,11 +923,12 @@ app.post('api/conversation/:id/message', mongoChecker, async (req, res) => {
     }
     
     const currDate = new Date()
-    const message = new Message({
+    console.log(req.body)
+    const message = {
         sentUsername: req.body.sentUsername,
         messageData: req.body.messageData,
-        sendDate: currDate
-    })
+        sentDate: currDate
+    }
     
     // Check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -878,8 +938,8 @@ app.post('api/conversation/:id/message', mongoChecker, async (req, res) => {
     }
     
     try {
-        const converation = await Conversation.findById(id)
-        if (!converation) {
+        const conversation = await Conversation.findById(id)
+        if (!conversation) {
             res.status(404).send('Resource not found') // Could not find this conversation
         } else {
             conversation.messages.push(message)
