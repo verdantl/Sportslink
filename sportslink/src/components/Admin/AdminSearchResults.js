@@ -10,7 +10,7 @@ class AdminSearchResults extends React.Component{
             return <div>
             {this.props.users.map((user) => {
                 if (user.player){
-                    return <SingleAdminBox key={uid(user)} adminAction={this.props.adminAction} user={user}/>
+                    return <SingleAdminBox history={this.props.history} key={uid(user)} adminAction={this.props.adminAction} user={user}/>
                 }
             }
             )}
@@ -25,7 +25,7 @@ class AdminSearchResults extends React.Component{
             return <div>
             {this.props.users.map((user) => {
                 if (!user.player){
-                    return <SingleAdminBox key={uid(user)} adminAction={this.props.adminAction} user={user}/>
+                    return <SingleAdminBox history={this.props.history} key={uid(user)} adminAction={this.props.adminAction} user={user}/>
                 }
             }
             )}

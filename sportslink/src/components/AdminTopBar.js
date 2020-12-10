@@ -9,26 +9,18 @@ class AdminTopBar extends React.Component{
     state = {
         homeIcon: 'homeIcon',
     }
-    handleHomeHover = (event) => {
-        this.setState({homeIcon: 'homeIconLight'})
-    }
-
-
-    handleHomeHoverOff = (event) => {
-        this.setState({homeIcon: 'homeIcon'})
-    }
-
-    handleClick = (event) => {
-        window.location.href = '/admin'
-    }
-
+    
+    home = (app) => {
+        this.props.history.push("/");
+    };
     
     render(){
+        console.log(this.props)
         return <div className="topBar">
             <ul>
 
             <li>
-            <HomeIcon className={this.state.homeIcon} onMouseEnter={this.handleHomeHover} onMouseLeave={this.handleHomeHoverOff} onClick={this.handleClick}/>
+            <HomeIcon className={this.state.homeIcon} onClick={() => this.home(this)}/>
             </li>
 
             </ul>
