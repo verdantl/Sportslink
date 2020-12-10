@@ -254,6 +254,8 @@ class App extends React.Component {
          {/*} <Route exact path = '/userprofile/TheRealLebronJames' render={() => 
                           (<div><AdminTopBar/><Profile className="profile" global={this.state.users[0]}/></div>)}/>
                           */}
+          
+          
           <Route exact path = {["/messaging" ] /* any of these URLs are accepted. */ }
                  render={props=>
                         <div className="app">
