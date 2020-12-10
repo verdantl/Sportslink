@@ -4,11 +4,21 @@ import Comment from '../Dashboard/Comment'
 import IconButton from '@material-ui/core/IconButton'
 import Delete from "@material-ui/icons/Delete"
 import ConfirmationDialog from '../ConfirmationDialog'
+import { getUser } from '../../actions/profiles'
 
 class AdminPostCard extends React.Component{
-    state ={
+    constructor(props){
+        super(props)
+        getUser(this.props.post.user.username, this)
+
+    }
+    state = {
         hideComments: true,
-        openDialog: false 
+        openDialog: false,
+        user: {
+            name: '',
+            image: null
+        }
     }
     alterComments = (event) =>{
         this.setState({hideComments: !this.state.hideComments})
@@ -47,10 +57,10 @@ class AdminPostCard extends React.Component{
             <div className="postInfo">
             <div className="posterInfo">
                 <div className="posterPic">
-                <img src={this.props.post.user.image}></img>
+                <img src={this.state.user.image}></img>
                 </div>
                 <div className='posterName'>
-                {this.props.post.user.name}
+                {this.state.user.name}
                 </div>
             </div>
             <div className="postText">

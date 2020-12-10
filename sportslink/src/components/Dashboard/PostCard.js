@@ -3,10 +3,12 @@ import {uid} from 'react-uid'
 import Comment from './Comment'
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import IconButton from '@material-ui/core/IconButton'
+import { getUser } from '../../actions/profiles';
 
 class PostCard extends React.Component{
     constructor(props){
         super(props)
+        getUser(this.props.post.user.username, this)
     }
 
     state ={
@@ -14,7 +16,9 @@ class PostCard extends React.Component{
         hideComments: false,
         upvoted: false,
         thumbsUp: "thumbsUp",
-        post: {likes: []}
+        post: {likes: []},
+        user: {image: null,
+                name: ''}
     }
     alterComments = () =>{
         this.setState({hideComments: !this.state.hideComments})
@@ -95,7 +99,7 @@ class PostCard extends React.Component{
             <div className="postInfo">
             <div className="posterInfo" onClick={this.handleClick}>
                 <div className="posterPic">
-                <img src={this.props.post.user.image}></img>
+                <img src={this.state.user.image}></img>
                 </div>
                 <div className='posterName'>
                 {this.props.post.user.name}

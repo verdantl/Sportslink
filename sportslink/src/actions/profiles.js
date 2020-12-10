@@ -1,5 +1,3 @@
-import { getPosts } from "./posts";
-
 export const getUsers = (dashboard) => {
     const url = '/api/users';
     fetch(url)
