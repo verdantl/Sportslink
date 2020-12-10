@@ -141,8 +141,16 @@
     margin-bottom: 10px;
     color: darkcyan;
     position: absolute;
-    left: 5vw;
+    left: 4vw;
     top: 6vw
+}
+
+.addPictureButton:hover{
+    transform: scale(2);
+    margin-bottom: 10px;
+    color: aliceblue;
+    cursor: pointer;
+
 }
 
 #imageDeleteButton{

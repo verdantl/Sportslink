@@ -118,7 +118,7 @@ class Images extends React.Component{
             <img hidden={this.props.images.length === 0} onClick={this.deleteImageDialog} onMouseEnter={this.showDelete} onMouseLeave={this.hideDelete} src={this.props.images[this.state.imageNum]  ? this.props.images[this.state.imageNum].image : null} className="oneImage"/>
             <div hidden={!this.getHideUploader}>
             <AddCircleIcon className={"addPictureButton"} onClick={this.handleAddButtonClick}/>
-            <UploadPictureDialog open={!this.state.hideAddDialog} close={this.state.hideAddDialog} onDrop={this.onDrop.bind(this)} />
+            <UploadPictureDialog open={!this.state.hideAddDialog} close={this.hideAddDialog} onDrop={this.onDrop.bind(this)} />
             </div>
             <ConfirmationDialog open={!this.state.hideDialog} handleClose={this.handleClose} handleAgreeClose={this.handleAgreeClose} handleCancelClose={this.handleDisagreeClose} confirmation={{title: "Are you sure you want to delete this image?", description: "This action cannot be undone."}}/>
             <div onClick={this.nextImage}
