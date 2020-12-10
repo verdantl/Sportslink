@@ -5,6 +5,8 @@ import ImageUploader from 'react-images-upload'
 import DeleteButton from './DeleteButton'
 import ConfirmationDialog from '../ConfirmationDialog'
 import DeleteIcon from '@material-ui/icons/Delete'
+import AddCircleIcon from "@material-ui/icons/AddCircle"
+import UploadPictureDialog from './UploadPictureDialog'
 
 class Images extends React.Component{    
     constructor(props){
@@ -14,7 +16,8 @@ class Images extends React.Component{
     state = {
         imageNum: 0,
         hideDialog: true,
-        hideDelete: true
+        hideDelete: true,
+        hideAddDialog: true
     }
 
     nextImage = () => {
@@ -76,6 +79,26 @@ class Images extends React.Component{
     hideDelete = () => {
         this.setState({hideDelete: true})
     }
+
+    handleAddButtonClick = () => {
+        this.setState({hideAddDialog: false})
+    }
+
+    hideAddDialog = () => {
+        this.setState({hideAddDialog: true})
+    }
+
+    onDrop(picture) {
+        const reader = new FileReader()
+        reader.onload = () => {
+            this.setState({
+                hideAddDialog: true,
+            });
+            this.props.addPic(reader.result)
+        }
+        reader.readAsDataURL(picture[0])
+
+    }
     render(){
         return <div className='profileImages'>
 
@@ -93,11 +116,14 @@ class Images extends React.Component{
             </div>
             <div hidden={this.state.hideDelete} id="imageDeleteButton" >Delete Image</div>
             <img hidden={this.props.images.length === 0} onClick={this.deleteImageDialog} onMouseEnter={this.showDelete} onMouseLeave={this.hideDelete} src={this.props.images[this.state.imageNum]  ? this.props.images[this.state.imageNum].image : null} className="oneImage"/>
-
+            <div hidden={!this.getHideUploader}>
+            <AddCircleIcon className={"addPictureButton"} onClick={this.handleAddButtonClick}/>
+            <UploadPictureDialog open={!this.state.hideAddDialog} close={this.state.hideAddDialog} onDrop={this.onDrop.bind(this)} />
+            </div>
             <ConfirmationDialog open={!this.state.hideDialog} handleClose={this.handleClose} handleAgreeClose={this.handleAgreeClose} handleCancelClose={this.handleDisagreeClose} confirmation={{title: "Are you sure you want to delete this image?", description: "This action cannot be undone."}}/>
             <div onClick={this.nextImage}
              className={'rightarrow'}>
-            <ArrowRightIcon className="arrow"/>
+            <ArrowRightIcon hidden={this.getHideUploader} className="arrow"/>
             </div>
 
         </div>

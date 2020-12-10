@@ -136,6 +136,15 @@
     cursor: pointer;
 }
 
+.addPictureButton{
+    transform: scale(2);
+    margin-bottom: 10px;
+    color: darkcyan;
+    position: absolute;
+    left: 5vw;
+    top: 6vw
+}
+
 #imageDeleteButton{
     position: absolute;
     top: 10%;
