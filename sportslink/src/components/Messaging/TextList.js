@@ -12,8 +12,30 @@ class TextList extends React.Component{
         // do this later
     }
 
+    displayMessage (message) {
+        return (
+            <li className={message.sentUsername === "currUserID" ? 'sentTextDiv' : 'recievedTextDiv'} key={"message-" + uid(message._id)}>
+                <div className={message.sentUsername === "currUserID" ? 'sentName' : 'recievedName'}>
+                    {message.sentUsername}
+                </div>
+                <div className={message.sentUsername === "currUserID" ? 'sentMessage' : 'recievedMessage'}>
+                    {message.messageData}
+                </div>
+            </li>
+        )
+    }
+
+    askToSendMessage () {
+        return (
+            <div className="defaultMessage">
+                Neither of you have sent a message yet. Send one now!
+            </div>
+        )
+    }
+
     render() {
-        if (Array.isArray(this.props.conversation.messages)) {
+         if (Array.isArray(this.props.conversation.messages)) {
+             console.log(this.props.conversation)
             if (this.props.conversation.messages.length === 0) {
                 return (
                     <div className="defaultMessage">
@@ -40,26 +62,7 @@ class TextList extends React.Component{
         )
     }
 
-    displayMessage (message) {
-        return (
-            <li className={message.sentUsername === "currUserID" ? 'sentTextDiv' : 'recievedTextDiv'} key={"message-" + uid(message._id)}>
-                <div className={message.sentUsername === "currUserID" ? 'sentName' : 'recievedName'}>
-                    {message.sentUsername}
-                </div>
-                <div className={message.sentUsername === "currUserID" ? 'sentMessage' : 'recievedMessage'}>
-                    {message.messageData}
-                </div>
-            </li>
-        )
-    }
 
-    askToSendMessage () {
-        return (
-            <div className="defaultMessage">
-                Neither of you have sent a message yet. Send one now!
-            </div>
-        )
-    }
 }
 
 export default TextList
