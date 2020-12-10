@@ -1,4 +1,6 @@
+import blankpic from '../components/images/blankpic.jpg'
 const validator = require('validator')
+
 
 // Send a request to check if a user is logged in through the session cookie
 export const checkSession = (app) => {
@@ -95,7 +97,7 @@ export const onboard = (user, app) => {
         user.setState({emailError : "Please enter a valid email."})
     } else if (user.state.sportError === "" && user.state.organizationError === "" && user.state.locationError === "" && user.state.emailError === "" && (user.state.checkedRecruiters || user.state.checkedAthlete)){
         let newAccount = {email: user.state.email, username: app.state.signUp[0].uname, password: app.state.signUp[0].pwd}
-        let newUser = {player: user.state.checkedAthlete, username: app.state.signUp[0].uname, name: app.state.signUp[0].fname + " " + app.state.signUp[0].lname, location: user.state.location, organization: user.state.organization, sports: user.state.sport}
+        let newUser = {player: user.state.checkedAthlete, username: app.state.signUp[0].uname, name: app.state.signUp[0].fname + " " + app.state.signUp[0].lname, location: user.state.location, organization: user.state.organization, sports: user.state.sport, image: blankpic}
         
         const accRequest = new Request("/api/accounts", {
             method: "post",

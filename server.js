@@ -312,7 +312,7 @@ app.post('/api/users', mongoChecker, async (req, res) => {
         username: req.body.username, //login username
         suspended: false,
         name: req.body.name,
-        image: null,
+        image: req.body.image,
         description: "Description",
         location: req.body.location,
         organization: req.body.organization,
