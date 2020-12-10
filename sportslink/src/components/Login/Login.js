@@ -73,15 +73,34 @@ class Login extends React.Component{
                         variant="contained"
                         onClick={() => login(this, app)}
                         className="loginButton"
+                        color="primary"
                     > 
                         Log In    
                     </Button>
 
-                    <br/><br/>
-                    
-                    <Link to="/signup">Sign up for an account here.</Link>
-                    <br/><br/>
-                    <Link to="/forgotpassword">Forgot password?</Link>
+                    <div className="buttonContainer">
+                        <Link to="/signup">
+                            <Button
+                                variant="contained"
+                                className="signupButton"
+                            > 
+                                Make an account!
+                            </Button>
+                        </Link>
+                        
+                        <div className="rightContainer">
+                            <Link to="/forgotpassword">
+                                <Button
+                                    variant="contained"
+                                    className="forgotButton"
+                                > 
+                                    Forgot Password?  
+                                </Button>
+                            </Link>  
+                            
+                        </div>
+                    </div>
+                        
                 </div>
             </div>
         )

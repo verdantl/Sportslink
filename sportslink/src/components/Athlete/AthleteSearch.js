@@ -3,6 +3,8 @@ import FilterBox from '../FilterBox'
 import DashProfileBox from './DashProfileBox'
 import "./AthleteSearch.css"
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
 import SearchResults from "./SearchResults"
 
 import {getUsers, getUser} from "../../actions/profiles"
@@ -83,6 +85,7 @@ class AthleteSearch extends React.Component{
 
     }
 
+
     handleChange = (e) => {
         this.setState({searchText: e.target.value})
     }
@@ -101,27 +104,43 @@ class AthleteSearch extends React.Component{
             </div>
 
             <div className="searchContainer">
+                <div className="searchBarContainer">    
+                    <TextField 
+                        className="searchBar" 
+                        onKeyPress={this.handleEnter} 
+                        onChange={this.handleChange}
+                        value={this.state.searchText}
+                        label="Search"
+                    />
+                    <div className="searchButtonContainer">
+                        <Button
+                            variant="contained"
+                            className="searchButton"
+                            onClick={()=>this.search(this.state.searchText)}
+                            color="primary"
+                        > 
+                            Search 
+                        </Button>
+                    </div>
+                </div>
+
+                <div className="filter">
+                    <FilterBox 
+                    updatePref={this.updatePreferences} 
+                    filters={filters} 
+                    changeFilter={this.changeFilter}/>
+                </div>
                 
-            <TextField 
-                className="searchBar" 
-                onKeyPress={this.handleEnter} 
-                onChange={this.handleChange}
-                value={this.state.searchText}
-                label="Search"/>
-                <FilterBox 
-                updatePref={this.updatePreferences} 
-                filters={filters} 
-                changeFilter={this.changeFilter}/>
                 <div hidden={this.state.search.length === 0}className="searchResultsTitle"> Search Results For: {this.state.search}</div>
                
-                <SearchResults 
-                history={this.props.history}
-                user={this.state.user} 
-                upvote={this.upvotePost} 
-                filter={this.state.filters} 
-                posts={this.filterPreferences().posts} 
-                users={this.filterPreferences().users}/>
-            </div>
+                    <SearchResults 
+                    history={this.props.history}
+                    user={this.state.user} 
+                    upvote={this.upvotePost} 
+                    filter={this.state.filters} 
+                    posts={this.filterPreferences().posts} 
+                    users={this.filterPreferences().users}/>
+                </div>
 
             </div>
     }

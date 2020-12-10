@@ -1,5 +1,6 @@
 import React from 'react'
 import './DashProfileBox.css'
+import Button from '@material-ui/core/Button'
 import {Link} from "react-router-dom";
 import blankPic from '../images/blankpic.jpg'
 
@@ -28,7 +29,14 @@ class DashProfileBox extends React.Component{
                     <div className="personalProfileName">
                         {this.props.user.name}
                     </div>
-                    <Link to="/profile/TheRealLebronJames">View your profile</Link>
+                    <Link to={"/profile"}>
+                        <Button
+                            variant="contained"
+                            className="signUpButton"
+                        > 
+                            View your profile  
+                        </Button>
+                    </Link>
                 </div>
     }
 }

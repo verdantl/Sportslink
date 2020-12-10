@@ -24,6 +24,25 @@
     
 
 }
+
+.adminSearchBox{
+   display:flex; 
+   flex-direction:row;
+   background-color: antiquewhite;
+   border-radius: 5px;
+   margin-top: 30px;
+   height: auto;
+   width: 60%;
+   padding: 10px;
+  
+   box-shadow: 2px 2px 8px #888888;
+}
+
+.searchButtonContainer {
+   margin-left: 15px;
+   padding: 30px;
+}
+
  .choice{
     background-color: antiquewhite;
     margin: 10px;
@@ -66,21 +85,27 @@
  .MuiFormControl-root.MuiTextField-root.adminSearchBar{
     background-color: antiquewhite;
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 30px;
     height: auto;
     width: 50%;
     padding: 10px;
-   
-    box-shadow: 2px 2px 8px #888888;
- 
+    
  }
 
  .MuiFormControl-root.MuiTextField-root.adminSearchBar label{
    padding: 10px;
 }
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.searchButton{
+   width: 50px;
+   height: 20px;
+   font-size: 10px;
+}
  
  .logout{
-   padding-top: 45vh;
+   padding-top: 40vh;
 }
 
 .exitIcon{
