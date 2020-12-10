@@ -6,7 +6,7 @@ class NewsCard extends React.Component{
     render(){
         return (
             <div className='newsCard'>
-                <a className='newsCardLink' href={this.props.news.link}>
+                <a className='newsCardLink' href={this.props.news.link} target="_blank">
                     <h2>{this.props.news.title}</h2>
                     <span className="gray">{this.props.news.date}</span>
                     <span className="gray">{this.props.news.source}</span>
