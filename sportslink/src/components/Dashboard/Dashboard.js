@@ -20,7 +20,8 @@ class Dashboard extends React.Component{
     state = {
         user: {},
         users: [],
-        posts: []
+        posts: [],
+        videoOfTheDay: "https://www.youtube.com/embed/AqspfYQ-pN8"
       }
 
     createNewPost = (postText) => {
@@ -60,6 +61,12 @@ class Dashboard extends React.Component{
             <div className="dashboardLeftColumn">
                 <DashProfileBox user={this.state.user} className="personalProfile"/>
                 <NewsBox/>                
+                </div>
+                <div className='videoOfTheDay'>
+                    <div><span className='videoOfTheDayTitle'>Video of the Day</span></div>
+                    <iframe width="560" height="315" src={this.state.videoOfTheDay} 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                    gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             <div className="dashboardRightColumn">
                 <NewPost createNewPost={this.createNewPost}/>
