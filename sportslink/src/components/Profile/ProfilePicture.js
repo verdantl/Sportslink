@@ -8,7 +8,11 @@ class ProfilePicture extends React.Component{
     }
 
     setHovered = () => {
-        this.setState({hovered: !this.state.hovered})
+        this.setState({hovered: true})
+    }
+
+    setNotHovered = () => {
+        this.setState({hovered: false})
     }
     
     getHovered = () => {
@@ -38,8 +42,8 @@ class ProfilePicture extends React.Component{
     render(){
         return <div className="profilePictureName">
             <div className="profilePicture" >            
-            <img id="selfProfilePic" src={this.props.image} className="image" onClick={this.changeProfilePicture} onMouseEnter={this.setHovered}  onMouseLeave={this.setHovered}/>
-            <div className="changePicText" hidden={!this.getHovered()}>
+            <img id="selfProfilePic" src={this.props.image} className="image" onClick={this.changeProfilePicture} onMouseEnter={this.setHovered}  onMouseLeave={this.setNotHovered}/>
+            <div className="changePicText" hidden={!this.state.hovered}>
                 Change Profile Picture
                 </div>
             </div>
