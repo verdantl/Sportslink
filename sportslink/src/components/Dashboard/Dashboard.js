@@ -65,6 +65,7 @@ class Dashboard extends React.Component{
             <div className="dashboardRightColumn">
                 <NewPost createNewPost={this.createNewPost}/>
                 <Posts 
+                history={this.props.history}
                 user={this.state.user} 
                 upvote={this.upvotePost} 
                 newComment={this.addNewComment} 
