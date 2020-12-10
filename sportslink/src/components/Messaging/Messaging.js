@@ -22,6 +22,11 @@ class Messaging extends React.Component{
     state = {
         user: {username: ''},
         currContact: 'kentomomota26',
+        currentConversation: {
+            messages: [],
+            toUsername: '',
+            sentUsername: ''
+        },
         conversations: [],
         contacts: []
     }
@@ -61,6 +66,12 @@ class Messaging extends React.Component{
         this.setContacts(this.state.conversations)
     }
 
+    setCurrentConversation = () => {
+        const conversation = this.state.conversations.filter(this.conversationFilter)
+        this.setState({currentConversation: conversation[0]})
+        this.forceUpdate()
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
         if (nextState === this.state) {
             return false
@@ -69,6 +80,7 @@ class Messaging extends React.Component{
         }
         return true
     }
+
 
     render() {
         return <div className="messaging">
@@ -86,7 +98,7 @@ class Messaging extends React.Component{
                     <ContactHeader currContact={this.state.currContact}/>
                 </div>
                 <div className="texts">
-                    <TextList conversation={this.state.conversations.filter(this.conversationFilter)} currUser={this.state.currUser}/>
+                    <TextList key={this.state.currentConversation} conversation={this.state.currentConversation} currentContact={this.state.currContact} currUser={this.state.user.username}/>
                 </div>
                 <div className="sendMessageForm">
                     <SendMessageForm sendMessage={this.sendMessage}/>
