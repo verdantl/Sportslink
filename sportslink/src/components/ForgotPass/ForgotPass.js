@@ -16,7 +16,8 @@ class ForgotPass extends React.Component{
             {usern: "user", password: "user"},
             {usern: "admin", password: "admin"}
         ],
-        email:""
+        email:"",
+        emailError: "",
     };
 
     handleChange = event => {
@@ -31,6 +32,12 @@ class ForgotPass extends React.Component{
         });
     };
 
+    handleEnter = (event) => {
+        if (event.key === 'Enter'){
+            forgot(this)
+        }
+    }
+
     render() {
         return (
             <div className="forgotPage">
@@ -43,6 +50,10 @@ class ForgotPass extends React.Component{
                         name="email"
                         onChange={this.handleChange}
                         label="Enter email"
+                        error ={this.state.emailError !== "" ? true : false }
+                        errorText={this.state.emailError}
+                        onChange={this.handleChange}
+                        onKeyPress={this.handleEnter}
                     />
 
                     <br/>
@@ -51,12 +62,21 @@ class ForgotPass extends React.Component{
                         variant="contained"
                         onClick={() => forgot(this)}
                         className="loginButton"
+                        color="primary"
                     > 
                         Send me an email!   
                     </Button>
                         
                     <br/><br/>
-                    <Link to="/">Wait, I remember!</Link>
+                    
+                    <Link to="/">
+                        <Button
+                            variant="contained"
+                            className="loginButton"
+                        > 
+                            Wait, I remember!  
+                        </Button>
+                    </Link>
                 </div>
              </div>
            

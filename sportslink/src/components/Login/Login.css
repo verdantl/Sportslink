@@ -40,3 +40,13 @@
     font-size: large;
     
 }
+
+.buttonContainer {
+    margin-top: 50px;
+    display:flex; 
+    flex-direction:row;
+}
+
+.rightContainer {
+    margin-left: 20px;
+}

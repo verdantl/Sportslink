@@ -130,6 +130,7 @@ class Onboarding extends React.Component{
                 variant="contained"
                 onClick={() => onboard(this, app)}
                 className="signUpButton"
+                color="primary"
             > 
                 Finish  
             </Button>

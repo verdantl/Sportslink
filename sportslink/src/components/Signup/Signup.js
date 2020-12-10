@@ -144,6 +144,7 @@ class Signup extends React.Component{
                         variant="contained"
                         onClick={this.checkUsername}
                         className="checkButton"
+                        color="secondary"
                     > 
                         Check  
                     </Button>
@@ -155,12 +156,21 @@ class Signup extends React.Component{
                 variant="contained"
                 onClick={() => signupNext(this, app)}
                 className="signUpButton"
+                color="primary"
             > 
                 Next  
             </Button>
 
             <br/><br/>
-            <Link to="/">Already have an account?</Link>
+            
+            <Link to="/">
+                <Button
+                    variant="contained"
+                    className="backButton"
+                > 
+                    Already have an account?  
+                </Button>
+            </Link>
         </div>
     </div>
     }
