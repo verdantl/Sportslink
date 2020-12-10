@@ -209,10 +209,14 @@ export const getAccount = (user, app) => {
 
 export const forgot = user => {
     if (user.state.email !== "") {
-        alert("We'll send you an email.");
+        if (!validator.isEmail(user.state.email)){
+            user.setState({emailError : "Please enter a valid email."})
+        } else {
+            alert("We'll send you an email.");
+        }
     }
     else {
-        alert("Please enter an email.");
+        user.setState({emailError : "Please enter an email."})
     }
 
 };

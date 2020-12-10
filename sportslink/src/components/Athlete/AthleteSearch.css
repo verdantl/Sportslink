@@ -35,15 +35,41 @@
 }
 .MuiFormControl-root.MuiTextField-root.searchBar{
     background-color: lavender;
-    border-radius: 5px;
     width: 70%;
     margin: 20px;
-    margin-left: 40px;
+    margin-left: 20px;
     padding: 10px;
-    box-shadow: 2px 2px 8px #888888;
 }
 .MuiFormControl-root.MuiTextField-root.searchBar label{
     margin-left: 10px;
     padding: 5px;
 
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.searchButton{
+    width: 50px;
+    height: 20px;
+    font-size: 10px;
+}
+
+.filter {
+    margin-left: 4%;
+}
+
+.searchBarContainer {
+    display:flex; 
+    flex-direction:row;
+    background-color: lavender;
+    border-radius: 5px;
+    width: 70%;
+    margin: 20px;
+    margin-left: 11%;
+    padding: 5px;
+    box-shadow: 2px 2px 8px #888888;
+}
+
+.searchButtonContainer {
+    margin-left: 15px;
+    margin-top: 15px;
+    padding: 30px;
 }
