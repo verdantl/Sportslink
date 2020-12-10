@@ -65,6 +65,10 @@
     margin-bottom: 0px;
     font-size: small;
     border: 1px gray solid;
+}
+.postIntermediary div span{
+    margin-left: 10px;
+    margin-right: 10px;
     
 }
 .comments{
