@@ -35,7 +35,7 @@ class ViewProfile extends React.Component{
             <ProfilePicture image={this.state.user.image} name={this.state.user.name}/>
             
             <div className="contactDetails"> 
-            <div className={"contact"} >Contact </div>
+            <div className={"contact"} ><p>Contact</p></div>
 
             <PersonalInfo user={this.state.user}/>
             </div>

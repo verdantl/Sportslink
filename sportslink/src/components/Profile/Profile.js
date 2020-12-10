@@ -16,7 +16,12 @@ class Profile extends React.Component{
     constructor(props){
         super(props);
         this.inputBox = React.createRef();
-        getUser(this.props.currentUser, this)
+        if (this.props.currentUser === "admin"){
+            getUser(this.props.match.params.username, this)
+        } else {
+            getUser(this.props.currentUser, this)
+        }
+        
     }
 
     state = {

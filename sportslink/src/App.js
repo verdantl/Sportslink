@@ -6,7 +6,7 @@ import AdminDashboard from './components/Admin/AdminDashboard'
 import Login from './components/Login/Login'
 import Messaging from './components/Messaging/Messaging'
 import TopBar from './components/TopBar'
-
+import AdminTopBar from './components/AdminTopBar'
 import Profile from './components/Profile/Profile'
 import ViewProfile from './components/ViewProfile/Profile'
 import Signup from './components/Signup/Signup'
@@ -46,14 +46,14 @@ class App extends React.Component {
                  render={props=>
                         <div className="app">
                           { /* Different componenets rendered depending on if someone is logged in. */}
-                          {!currentUser ? <Login {...props} app={this} /> : currentUser==='admin' ? <AdminDashboard {...props} app={this} className="adminDashboard"/> : <div><TopBar {...props}  app={this}/><Profile {...props} currentUser={this.state.currentUser} app={this} /></div>}
+                          {!currentUser ? <Login {...props} app={this} /> : currentUser==='admin' ? <div><AdminTopBar {...props}  app={this}/> <Profile {...props} currentUser={this.state.currentUser} app={this} /></div>: <div><TopBar {...props}  app={this}/><Profile {...props} currentUser={this.state.currentUser} app={this} /></div>}
                       </div> 
                       }
                       />
                       
           <Route exact path="/viewprofile/:username" render={ props => 
           <div className="app">
-          {!currentUser ? <ViewProfile {...props} app={this}/> :  <div><TopBar {...props}  app={this}/><ViewProfile {...props} app={this}/></div>} 
+            {!currentUser ? <Login {...props} app={this} /> : currentUser==='admin' ? <div><AdminTopBar {...props}  app={this}/> <ViewProfile {...props} app={this}/> </div>: <div><TopBar {...props}  app={this}/><ViewProfile {...props} app={this}/></div>}
           </div> 
           }
           /> 

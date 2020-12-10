@@ -1,5 +1,5 @@
 .userProfile{
-    background-color: aliceblue;
+    background-color: linen;
     padding: 5px;
     text-align: center;
     height: 100%;
@@ -73,7 +73,7 @@
     display: inline-block;
     margin: 10px;
     font-size: large;
-    background-color: aliceblue;
+    background-color: linen;
     border-radius: 5px;
     padding: 10px;
     border: 1px gray solid;
@@ -84,7 +84,7 @@
     padding: 8px;
     border-radius: 10px;
     width: fit-content;
-    background-color: white;
+    background-color: darkcyan;
     border: 1px white solid;
 
 
@@ -96,8 +96,12 @@
     border-radius: 10px;
     width: fit-content;
     cursor: pointer;
-    background-color: lavender;
+    background-color: mediumseagreen;
     border: 1px white solid;
+}
+
+.contact p{
+    color:white;
 }
 
 .personalInfo{
@@ -125,7 +129,7 @@
 .profileBio{
     color: black;
     padding: 10px;
-    background-color: aliceblue;
+    background-color: linen;
     border: 1px black solid;
     border-radius: 5px;
     max-width: 55vw;

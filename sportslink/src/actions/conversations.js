@@ -11,11 +11,14 @@ export function getConversations(username, messaging) {
         })
         .then(json => {
             messaging.setState({conversations: json})
-        })
+
+        }).then(() =>{ console.log('hi') ;
+        messaging.setCurrentConversation()})
         .catch(error => {
             console.log(error);
         });
 }
+
 
 export function createNewConversation(currUser, otherUser, messaging) {
     const url = "/api/conversation"

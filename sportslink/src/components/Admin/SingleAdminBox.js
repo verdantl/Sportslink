@@ -46,7 +46,8 @@ class SingleAdminBox extends React.Component{
     }
 
     handleEdit = (event) => {
-        window.location.href = '/userprofile/' + this.props.user.username
+        this.props.history.push('/profile/' + this.props.user.username);
+        // window.location.href = '/profile/' + this.props.user.username
     }
 
     handleAgreeClose = () => {

@@ -111,7 +111,8 @@ class AdminDashboard extends React.Component{
             Search Results For: {this.state.search}
           </div>
 
-          <AdminSearchResults 
+          <AdminSearchResults
+            history={this.props.history} 
             adminAction={this.adminAction} 
             removePost={this.removePost} 
             filter={this.state.filters} 

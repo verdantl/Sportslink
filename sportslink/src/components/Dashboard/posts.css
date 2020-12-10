@@ -47,13 +47,13 @@
 .postText{
     padding: 10px;
     margin: 10px;
-    background-color: lavender;
+    background-color: darksalmon;
     text-align: center;
     border-radius: 3px;
     box-shadow: 1px 1px 3px gray;
 }
 .postInfo{
-    background-color: antiquewhite;
+    background-color: indianred;
     padding: 10px;
     font-size: large;
 
@@ -82,7 +82,7 @@
 }
 
 .commentText{
-    background-color: aliceblue;
+    background-color: aliceablue;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 1px 1px 3px #888888;
@@ -145,7 +145,7 @@ button.MuiButtonBase-root.MuiIconButton-root.thumbsUpButton{
     padding-left: 10px;
     border-radius: 10px;
     width: 90%;
-    background-color: lavender;
+    background-color: antiquewhite;
 }
 .viewComments{
     text-align: center;
