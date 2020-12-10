@@ -5,6 +5,7 @@ import ContactHeader from './ContactHeader';
 import SendMessageForm from './SendMessageForm'
 import "./Messaging.css";
 import { getConversations, createNewMessage } from '../../actions/conversations'
+import { getUser } from '../../actions/profiles';
 
 // TODO: Fix issue where switching contacts with the same text filled in the send message box carries over
 
@@ -12,15 +13,17 @@ class Messaging extends React.Component{
 
     constructor(props) {
         super(props)
-        this.state = {
-            currUser : 'arjun',
-            currContact: 'UserIDGoesHere1',
-            conversations: [],
-            contacts: []
-        }
-        getConversations(this)
+
+        getUser(this.props.currentUser, this)
+        getConversations(this.props.currentUser, this)
         this.setContacts()
-        console.log(this.state.conversations)
+    }
+
+    state = {
+        user: {username: ''},
+        currContact: 'kentomomota26',
+        conversations: [],
+        contacts: []
     }
 
     contactClick = (e) => {
@@ -43,7 +46,7 @@ class Messaging extends React.Component{
     setContacts = () => {
         let contacts = []
         for (let i = 0; i < this.state.conversations.length; i++) {
-            contacts.push({ userID: this.state.conversations[i].toUsername, icon: '', lastMessage: this.state.conversations[i].messages[0].messageData })
+            // contacts.push({ userID: this.state.conversations[i].toUsername, icon: '', lastMessage: this.state.conversations[i].messages[0].messageData })
         }
         this.setState({contacts: contacts})
     }
@@ -53,7 +56,8 @@ class Messaging extends React.Component{
     }
 
     sendMessage = (message) => {
-        createNewMessage(this.state.currUser, this.state.currContact, this.state.messageData, this)
+        const conversationID = this.state.conversations.filter(this.conversationFilter)[0]._id
+        createNewMessage(this.state.user.username, conversationID, message, this)
         this.setContacts(this.state.conversations)
     }
 

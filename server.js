@@ -858,7 +858,8 @@ app.delete('/api/likes/:postid', mongoChecker, authenticate, async (req, res) =>
 })
 // API for messages
 // GET for getting all conversations by a specific user
-app.get('/api/conversation', mongoChecker, async (req, res) => {
+app.get('/api/conversation/:username', mongoChecker, async (req, res) => {
+    const username = req.params.username
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -866,7 +867,7 @@ app.get('/api/conversation', mongoChecker, async (req, res) => {
     }
     try {
         const conversations = await Conversation.find({ 
-            sentUsername: req.body.currUser
+            sentUsername: username
         }).sort({date: 'ascending'})
         res.send(conversations)
     } catch (error) {
@@ -907,13 +908,12 @@ app.post('/api/conversation', mongoChecker, async (req, res) => {
 })
 
 // Add a new message to a conversation
-app.post('api/conversation/:id/message', mongoChecker, async (req, res) => {
+app.post('/api/message/:id', mongoChecker, async (req, res) => {
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
 		return
     }
-
     const id = req.params.id
     
     // Validate id
@@ -923,11 +923,12 @@ app.post('api/conversation/:id/message', mongoChecker, async (req, res) => {
     }
     
     const currDate = new Date()
-    const message = new Message({
+    console.log(req.body)
+    const message = {
         sentUsername: req.body.sentUsername,
         messageData: req.body.messageData,
-        sendDate: currDate
-    })
+        sentDate: currDate
+    }
     
     // Check mongoose connection established.
 	if (mongoose.connection.readyState != 1) {
@@ -937,8 +938,8 @@ app.post('api/conversation/:id/message', mongoChecker, async (req, res) => {
     }
     
     try {
-        const converation = await Conversation.findById(id)
-        if (!converation) {
+        const conversation = await Conversation.findById(id)
+        if (!conversation) {
             res.status(404).send('Resource not found') // Could not find this conversation
         } else {
             conversation.messages.push(message)

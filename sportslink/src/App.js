@@ -111,7 +111,7 @@ class App extends React.Component {
                  render={props=>
                         <div className="app">
                           { /* Different componenets rendered depending on if someone is logged in. */}
-                          {!currentUser ? <Login {...props} app={this} /> : <div><TopBar {...props}  app={this}/><Messaging className="messaging"/></div>}
+                          {!currentUser ? <Login {...props} app={this} /> : <div><TopBar {...props}  app={this}/><Messaging className="messaging" {...props} currentUser={this.state.currentUser} app={this}/></div>}
                       </div> 
                       }
                       />
