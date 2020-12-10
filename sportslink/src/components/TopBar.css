@@ -30,20 +30,21 @@ li{
 .homeIcon{
     transform: scale(1.4);
     vertical-align: middle;
-
+    transition: color 200ms
 }
 
 .homeIcon:hover{
-    transform: scale(1.4);
     cursor: pointer;
     color: aliceblue;
     vertical-align: middle;
+    transition: color 200ms
 }
 
 
 .settingsIcon{
     transform: scale(1.5);
     vertical-align: middle;
+    transition: color 200ms
 }
 
 .settingsIcon:hover{
@@ -51,6 +52,7 @@ li{
     cursor: pointer;
     color: aliceblue;
     vertical-align: middle;
+    transition: color 200ms
 }
 
 
@@ -58,17 +60,20 @@ li{
     transform: scale(1.4);
     text-align: center;
     vertical-align: middle;
+    transition: color 200ms
 }
 .userIcon:hover{
     cursor: pointer;
     transform: scale(1.4);
     color: aliceblue;
     vertical-align: middle;
+    transition: color 200ms
 }
 
 .messageIcon{
     transform: scale(1.3);
     vertical-align: middle;
+    transition: color 200ms
 }
 
 .messageIcon:hover{
@@ -76,11 +81,13 @@ li{
     cursor: pointer;
     color: aliceblue;
     vertical-align: middle;
+    transition: color 200ms
 }
 
 .searchIcon{
     transform: scale(1.3);
     vertical-align: middle;
+    transition: color 200ms
 }
 
 .searchIcon:hover{
@@ -88,11 +95,13 @@ li{
     cursor: pointer;
     color: aliceblue;
     vertical-align: middle;
+    transition: color 200ms
 }
 
 .exitIcon{
     transform: scale(1.3);
     vertical-align: middle;
+    transition: color 200ms
 }
 
 .exitIcon:hover{
@@ -100,4 +109,5 @@ li{
     cursor: pointer;
     color: aliceblue;
     vertical-align: middle;
+    transition: color 200ms
 }
