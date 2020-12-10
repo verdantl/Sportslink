@@ -62,12 +62,6 @@ class Dashboard extends React.Component{
                 <DashProfileBox user={this.state.user} className="personalProfile"/>
                 <NewsBox/>                
                 </div>
-                <div className='videoOfTheDay'>
-                    <div><span className='videoOfTheDayTitle'>Video of the Day</span></div>
-                    <iframe width="560" height="315" src={this.state.videoOfTheDay} 
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-                    gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
             <div className="dashboardRightColumn">
                 <NewPost createNewPost={this.createNewPost}/>
                 <Posts 
@@ -76,7 +70,12 @@ class Dashboard extends React.Component{
                 newComment={this.addNewComment} 
                 posts={this.state.posts}/>
             </div>
-
+            <div className='videoOfTheDay'>
+                    <div><span className='videoOfTheDayTitle'>Video of the Day</span></div>
+                    <iframe className={'video'} src={this.state.videoOfTheDay} 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                    gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
         </div>
     }
 }
