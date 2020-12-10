@@ -143,15 +143,21 @@ export const updateAccount = (user) => {
     let changes = {}
 
     if (user.state.newEmail !== '') {
-        changes.email = user.state.newEmail
+        if (!validator.isEmail(user.state.newEmail)){
+            user.setState({newEmailError: "Invalid email."})
+        } else {
+            changes.email = user.state.newEmail
+            user.setState({newEmailError: ""})
+        }
     }
     if (user.state.newPass !== ''){
         if (user.state.newPass === user.state.newPass2){
             changes.oldpassword = user.state.oldPass
             changes.password = user.state.newPass
+            user.setState({newPassError: "", newPass2Error: ""})
         }
         else {
-            alert("Passwords not the same")
+            user.setState({newPassError: "Passwords do not match.", newPass2Error: "Passwords do not match."})
         }
     }
     

@@ -30,3 +30,14 @@
     background-color: aliceblue;
 }
 
+.inputContainer {
+    margin-top: 5px;
+    display:flex; 
+    flex-direction:row;
+}
+
+.updatebuttonContainer {
+    margin-left: 20px;
+    margin-top: 10%;
+}
+

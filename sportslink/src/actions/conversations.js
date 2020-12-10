@@ -1,17 +1,15 @@
-export function getConversations(messaging) {
-    const url = "/api/conversation"
+export function getConversations(username, messaging) {
+    const url = "/api/conversation/" + username
     fetch(url)
         .then(res => {
             if (res.status === 200) {
                 // return a promise that resolves with the JSON body
-                console.log(res.json)
                 return res.json();
             } else {
                 alert("Could not get conversations");
             }
         })
         .then(json => {
-            console.log(json)
             messaging.setState({conversations: json})
         })
         .catch(error => {
@@ -23,7 +21,7 @@ export function createNewConversation(currUser, otherUser, messaging) {
     const url = "/api/conversation"
 
     const request = new Request(url, {
-        "method": "post",
+        "method": "POST",
         "body": {"sentUsername": currUser, "toUsername": otherUser},
         "headers": {
             Accept: "application/json, text/plain, */*",
@@ -55,11 +53,10 @@ export function createNewConversation(currUser, otherUser, messaging) {
 }
 
 export function createNewMessage(currUser, conversationID, messageData, messaging) {
-    const url = "/api/conversation/" + conversationID + "/message"
-
+    const url = "/api/message/" + conversationID
     const request = new Request(url, {
-        "method": "post",
-        "body": {id: conversationID, sentUsername: currUser, messageData: messageData},
+        "method": "POST",
+        "body": JSON.stringify({sentUsername: currUser, messageData: messageData}),
         "headers": {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -75,6 +72,7 @@ export function createNewMessage(currUser, conversationID, messageData, messagin
                         type: "success"
                     }
                 });
+                getConversations(currUser, messaging)
             } else {
                 messaging.setState({
                     message: {
