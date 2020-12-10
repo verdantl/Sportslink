@@ -44,7 +44,7 @@ class ProfilePicture extends React.Component{
                 </div>
             </div>
 
-            <UploadPictureDialog open={this.state.openDialog} onDrop={this.onDrop.bind(this)}/>
+            <UploadPictureDialog open={this.state.openDialog} close={this.closeDialog} onDrop={this.onDrop.bind(this)}/>
 
 
             <div className="profileName">

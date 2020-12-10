@@ -609,6 +609,65 @@ app.delete('/api/career/:username/:cid', mongoChecker, authenticate, async (req,
 	}
 })
 
+//API for IMAGES
+//add a new career accomplishment - input req.body should be {"career": "stuff"} ---- have not solved for duplicates
+//add a new experience -- completed --
+app.post('/api/images/:username', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+    try {
+		const user = await User.findOne({username: username})
+		if (!user) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			/// sometimes we might wrap returned object in another object:
+            const result = await User.updateOne({username: username}, {$push: {images: req.body}})
+			res.send(result)
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
+app.delete('/api/images/:username/:imageid', mongoChecker, authenticate, async (req, res) => {
+    const username = req.params.username 
+    const id = req.params.imageid
+    	// Validate id
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send('Resource not found')
+		return;
+	}
+
+	// check mongoose connection established.
+	if (mongoose.connection.readyState != 1) {
+		log('Issue with mongoose connection')
+		res.status(500).send('Internal server error')
+		return;
+    } 
+
+    try {
+        const user = await User.updateOne(
+            {username: username},
+           { $pull: { 'images': {  _id: id} } })
+
+		if (!user) {
+			res.status(404).send('Resource not found')  // could not find this student
+		} else {
+			res.send(user) // this will be the array of the experience before deletion 
+		}
+	} catch(error) {
+		log(error)
+		res.status(500).send('Internal Server Error')  // server error
+	}
+})
+
 
 //API for POSTS
 // a GET route to get all posts

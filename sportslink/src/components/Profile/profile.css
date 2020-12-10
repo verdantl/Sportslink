@@ -127,6 +127,23 @@
 .oneImage{
     border-radius: 5px;
     margin-top: 5%;
+    max-width: 25vw;
+    max-height: 12vw;
+}
+
+.oneImage:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#imageDeleteButton{
+    position: absolute;
+    top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 .addExperienceButton{

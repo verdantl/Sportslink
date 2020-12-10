@@ -90,10 +90,17 @@ const UserSchema = new mongoose.Schema({
                 minlength: 1,
                 trim: true
                 }
-        }
-
+                }
         ],
-        experience: [ExperienceSchema]
+        experience: [ExperienceSchema],
+        images: [
+                {image: {
+                        type: String,
+                        required: false,
+                        minlength: 1
+                }
+        }
+        ]
 
 })
 
