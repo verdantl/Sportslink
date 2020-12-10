@@ -11,19 +11,18 @@ class ViewProfile extends React.Component{
     constructor(props){
         super(props)
         getUser(this.props.match.params.username, this)
-        console.log(this.state.user)
     }
 
     state = {
-        images: [],
+        
         user: {
             experience: [],
-            career: []
+            career: [],
+            images: [],
         }
     }
 
     render(){
-        console.log(this.state.user.career)
         if (!this.state.user.username){
             return <div className="userProfile">
                 Username does not exist in the database.
@@ -48,7 +47,7 @@ class ViewProfile extends React.Component{
                 <div></div>
                 <Experience experience={this.state.user.experience}/>
                 <div className="profileRightColumn">
-                <Images images={this.state.images}/>
+                <Images images={this.state.user.images}/>
                 <Career accomplishments={this.state.user.career}/>
                 </div>
 
