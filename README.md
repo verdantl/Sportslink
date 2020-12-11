@@ -22,11 +22,9 @@ open on:            http://localhost:5000/
 
 
 ## Instructions
-Please use the login page with the username user and password user to login to the application. A signup page will be available
-but not entirely functional since that involves back-end manipulation.
+Please use the login page with the username user and password user to login to the application with the user Lebron James. A signup page will also be available where you can sign up for an account.
 
-Following log in, you will be sent to the dashboard page where you can view the News box (but can't click on them to access
-an external site since we're just using dummy data here), click on "view your profile" to access your personal profile.
+Following log in, you will be sent to the dashboard page where you can view the News box and click to access external data. Click on "view your profile" to access your personal profile.
 At the dashboard (home page), you can see all your posts and other peoples' posts as well as write a new post and comment on 
 other peoples' posts. 
 
@@ -72,4 +70,7 @@ Messages API Routes
 /api/message - POST : Create a new message
 
 ## 3rd party libraries
-We are using React as well as some Material UI components (i.e. checkboxes, icons etc.) for the front-end of this project.
+We are using React as well as some Material UI components (i.e. checkboxes, icons, dialogs etc.) for the front-end of this project.
+Additional 3rd party libraries:
+react-country-region-selector for the Location Dropdown component
+react-loading for the loading animation
