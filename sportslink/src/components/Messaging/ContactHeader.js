@@ -4,20 +4,20 @@ import './ContactHeader.css';
 
 
 class ContactHeader extends React.Component{
-
     constructor(props){
         super(props)
-        getUser(this.props.currContact, this);
-    }
-
-    state={
-        user: {
-            image: null,
-            username: ''
+        this.state = {
+            user: {
+                image: null,
+                username: ''
+            }
         }
 
     }
+    
+
     render() {
+        getUser(this.props.currContact, this);
         return (
             <div className="returnDiv">
                 <div className="header">

@@ -1,4 +1,4 @@
-export function getConversations(username, messaging) {
+export const getConversations = (username, messaging) => {
     const url = "/api/conversation/" + username
     fetch(url)
         .then(res => {
@@ -24,7 +24,7 @@ export function getConversations(username, messaging) {
 }
 
 
-export function createNewConversation(currUser, otherUser, messaging) {
+export const createNewConversation = (currUser, otherUser, messaging) => {
     const url = "/api/conversation"
 
     const request = new Request(url, {
@@ -59,7 +59,7 @@ export function createNewConversation(currUser, otherUser, messaging) {
         });
 }
 
-export function createNewMessage(currUser, conversationID, messageData, messaging) {
+export const createNewMessage = (currUser, conversationID, messageData, messaging) => {
     const url = "/api/message/" + conversationID
     const request = new Request(url, {
         "method": "POST",

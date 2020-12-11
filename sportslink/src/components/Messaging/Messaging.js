@@ -100,8 +100,9 @@ class Messaging extends React.Component{
                 this.setState({currContact: conversation.toUsername})
             }
             this.setState({currentConversation: conversation})
-            this.forceUpdate()
+
         }
+        
 
 
     }
