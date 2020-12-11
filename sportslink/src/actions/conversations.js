@@ -8,7 +8,7 @@ export const getConversations = (username, messaging) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                alert("Could not get conversations");
+                window.location.reload();
             }
         })
         .then(json => {
@@ -44,6 +44,7 @@ export const createNewConversation = (currUser, otherUser, dashboard) => {
                 dashboard.props.history.push("/messaging");
                 // return a promise that resolves with the JSON body
             } else {
+                window.location.reload();
             }
         })
         .catch(error => {

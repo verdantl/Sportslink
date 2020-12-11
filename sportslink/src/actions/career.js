@@ -16,7 +16,7 @@ export const addCareer = (career, username, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            alert("Could not update user");
+            window.location.reload();
         }
     })
     .then(json => {
@@ -44,7 +44,7 @@ export const removeCareer = (careerID, username, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            alert("Could not update user");
+            window.location.reload();
         }
     })
     .then(json => {
@@ -72,7 +72,7 @@ export const removeExperience = (experienceID, username, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            alert("Could not update user");
+            window.location.reload();
         }
     })
     .then(json => {
@@ -103,7 +103,7 @@ export const updateCareer = (attributes, username, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            alert("Could not update user");
+            window.location.reload();
         }
     })
     .then(json => {
