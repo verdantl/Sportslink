@@ -14,14 +14,10 @@ export const getConversations = (username, messaging) => {
         .then(json => {
             messaging.setState({conversations: json})
 
-<<<<<<< HEAD
-        }).then(() =>{ 
-=======
         }).then(() => {
             getUsers(messaging)
         })
         .then(() =>{ 
->>>>>>> 07d56f92276a95169986d1968ee37c2cfd414197
             messaging.setContacts()
         })
 

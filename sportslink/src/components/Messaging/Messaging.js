@@ -123,11 +123,7 @@ class Messaging extends React.Component{
             //     this.setState({currContact: conversation.toUsername})
             // }
             this.setState({currentConversation: conversation})
-<<<<<<< HEAD
         }
-=======
-        }   
->>>>>>> 07d56f92276a95169986d1968ee37c2cfd414197
     }
 
     render() {
