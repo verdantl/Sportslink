@@ -104,7 +104,6 @@ app.post("/users/login", async(req, res) => {
     try {
         if (usern === "admin") {
             const account = await Account.findByUsernamePassword(usern, password)
-                log(account)
                 if (!account) {
                     res.status(404).send('Resource not found')
                 } else {
