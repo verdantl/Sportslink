@@ -13,6 +13,8 @@ export const getUsers = (dashboard) => {
             // the resolved promise with the JSON body
             dashboard.setState({ users: json.users});
 
+        }).then(() => {
+            dashboard.forceUpdate()
         })
         .catch(error => {
             console.log(error);

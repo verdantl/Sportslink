@@ -13,7 +13,6 @@ class ContactHeader extends React.Component{
                 name:''
             }
         }
-
     }
     
 

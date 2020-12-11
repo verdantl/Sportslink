@@ -96,6 +96,7 @@
 #selfProfilePic:hover{
     opacity: 0.4;
     cursor: pointer;
+    transition: opacity 200ms;
 }
 
 .changePicText{
@@ -134,6 +135,7 @@
 .oneImage:hover{
     opacity: 0.5;
     cursor: pointer;
+    transition: opacity 200ms;
 }
 
 .addPictureButton{
@@ -150,6 +152,7 @@
     margin-bottom: 10px;
     color: aliceblue;
     cursor: pointer;
+    transition: color 200ms;
 
 }
 
@@ -167,6 +170,7 @@
     transform: scale(2);
     margin-bottom: 10px;
     color: darkcyan;
+    transition: color 300ms;
 }
 
 .addExperienceButton:hover{
@@ -191,6 +195,7 @@
     padding: 5px;
     vertical-align: middle;
     color: red;
+    transition: background-color 200ms;
 }
 
 .deleteButton:hover{
@@ -211,6 +216,7 @@
     vertical-align: middle;
     cursor: pointer;
     color: green;
+    transition: background-color 200ms;
 }
 
 .editSection{
@@ -223,11 +229,13 @@
 
 .editDelete{
     position: absolute;
+    background-color: white;
+    border-radius: 5px;
     top: 0px;
     right: 0px;
     width: auto;
     margin: auto;
-    padding: 10px;
+    transition: visibility 400ms, opacity 400ms;
 }
 
 .experienceTileH2{
@@ -296,33 +304,6 @@
     resize: vertical;
 }
 
-.button-save {
-    background:green;
-    border: 0;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    line-height: 1;
-    margin: 5px;
-}
-
-.button-save:hover {
-    cursor: pointer;
-}
-
-.button-cancel {
-    background: red;
-    border: 0;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    line-height: 1;
-    margin: 5px;
-}
-
-.button-cancel:hover {
-    cursor: pointer;
-}
 
 /* modal styling adapted from https://codepen.io/chriscoyier/pen/NgNymx*/
 .modal {
@@ -359,26 +340,37 @@
 }
 .modal .actions {
     border-top: 1px solid #ccc;
-    background: #eee;
+    background-color: #eee;
     padding: 0.5rem 1rem;
 }
 .modal .actions .button-save {
-    background: #78f89f;
+    background-color: #78f89f;
     border: 0;
     border-radius: 5px;
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
     line-height: 1;
     margin: 5px;
+    transition: background-color 400ms;
+}
+
+.modal .actions .button-save:hover {
+    cursor: pointer;
+    background-color: aquamarine;
 }
 
 .modal .actions .button-cancel {
-    background: red;
+    background-color: red;
     border: 0;
     border-radius: 5px;
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
     line-height: 1;
     margin: 5px;
+    transition: background-color 400ms;
 }
     
+.modal .actions .button-cancel:hover {
+    cursor: pointer;
+    background-color: indianred;
+}

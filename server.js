@@ -912,7 +912,8 @@ app.get('/api/conversation/:username', mongoChecker, async (req, res) => {
 })
 
 // Create a new conversation
-app.post('/api/conversation', mongoChecker, async (req, res) => {
+app.post('/api/conversation', mongoChecker, authenticate, async (req, res) => {
+
     if (mongoose.connection.readyState != 1) {
 		log('Issue with mongoose connection')
 		res.status(500).send('Internal server error')
@@ -925,11 +926,11 @@ app.post('/api/conversation', mongoChecker, async (req, res) => {
         messages: [],
         date: new Date()
     })
-    // Saving the conversation to the database:
+
     try {
         const convo = await Conversation.find({$or: [{sentUsername: req.body.sentUsername, toUsername: req.body.toUsername}, 
             {sentUsername: req.body.toUsername, toUsername: req.body.sentUsername}]})
-        if (convo){
+        if (convo.length > 0){
             res.status(200).send('Good')
         }
         else{

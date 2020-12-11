@@ -1,12 +1,12 @@
 .userProfile{
-    background-color: linen;
+    background-color: gainsboro;
     padding: 5px;
     text-align: center;
     height: 100%;
 }
 
 .recruiterProfile{
-    background-color: antiquewhite;
+    background-color: honeydew;
     padding: 5px;
     text-align: center;
     height: 100%;
@@ -156,7 +156,7 @@
     margin: 10px;
     padding: 10px;
     font-size: large;
-    background-color: white;
+    background-color: salmon;
     border: 1px gray solid; 
     border-radius: 5px;
 
@@ -173,10 +173,11 @@
 }
 
 .experienceCard{
+    background-color: salmon;
     position: relative;
     padding: 10px;
     margin: 10px;
-    border-top: 1px gray solid; 
+    border: 1px gray solid; 
 }
 
 
@@ -213,6 +214,7 @@
     display: flex;
     height: 100%;
     position: absolute;
+    transition: background-color 200ms;
 
 }
 
@@ -244,6 +246,7 @@
     height: 100%;   
     display: flex;
     position: absolute;
+    transition: background-color 200ms;
     
 }
 
