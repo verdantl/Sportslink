@@ -9,7 +9,8 @@ class ContactHeader extends React.Component{
         this.state = {
             user: {
                 image: null,
-                username: ''
+                username: '',
+                name:''
             }
         }
 
@@ -22,7 +23,7 @@ class ContactHeader extends React.Component{
             <div className="returnDiv">
                 <div className="header">
                     <img className="contactImage" src={this.state.user.image} alt="Profile Pic"></img>
-                    <p>{this.state.user.username}</p>
+                    <p>{this.state.user.name}</p>
                 </div>
                 <br/>
                 <hr/>

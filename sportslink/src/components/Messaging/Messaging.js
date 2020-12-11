@@ -20,7 +20,7 @@ class Messaging extends React.Component{
     }
 
     state = {
-        users: {},
+        users: [],
         user: {username: ''
             },
         currContact: '',
@@ -54,20 +54,36 @@ class Messaging extends React.Component{
         const contacts = []
         for (let i = 0; i < this.state.conversations.length; i++){
             if (this.state.conversations[i].toUsername !== this.state.user.username){
-                if (this.state.conversations[i].messages.length === 0){
-                    contacts.push({ userID: this.state.conversations[i].toUsername, icon:'', lastMessage: '' })
+                let inter = this.state.users.filter(user => user.username === this.state.conversations[i].toUsername);
+                let icon;
+                if (inter[0]){
+                    icon = inter[0].image
                 }
                 else{
-                    contacts.push({ userID: this.state.conversations[i].toUsername, icon:'', lastMessage: this.state.conversations[i].messages[0].messageData})
+                    icon = null
+                }
+                if (this.state.conversations[i].messages.length === 0){
+                    contacts.push({ userID: this.state.conversations[i].toUsername, icon: icon, lastMessage: '' })
+                }
+                else{
+                    contacts.push({ userID: this.state.conversations[i].toUsername, icon: icon, lastMessage: this.state.conversations[i].messages[0].messageData})
                 }
                 
             }
             else{
-                if (this.state.conversations[i].messages.length === 0){
-                    contacts.push({ userID: this.state.conversations[i].sentUsername, icon:'', lastMessage: '' })
+                let inter = this.state.users.filter(user => user.username === this.state.conversations[i].sentUsername)
+                let icon;
+                if (inter[0]){
+                    icon = inter[0].image
                 }
                 else{
-                    contacts.push({ userID: this.state.conversations[i].sentUsername, icon:'', lastMessage: this.state.conversations[i].messages[0].messageData})
+                    icon = null
+                }
+                if (this.state.conversations[i].messages.length === 0){
+                    contacts.push({userID: this.state.conversations[i].sentUsername, icon: icon, lastMessage: '' })
+                }
+                else{
+                    contacts.push({ userID: this.state.conversations[i].sentUsername, icon: icon, lastMessage: this.state.conversations[i].messages[0].messageData})
                 }
             }
             
@@ -105,15 +121,6 @@ class Messaging extends React.Component{
         
 
 
-    }
-
-    shouldComponentUpdate = (nextProps, nextState) => {
-        if (nextState === this.state) {
-            return false
-        } else if (nextProps === this.props) {
-            return false
-        }
-        return true
     }
 
 
