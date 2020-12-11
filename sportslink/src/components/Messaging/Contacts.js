@@ -14,9 +14,10 @@ class Contacts extends React.Component{
                 <div className="contactItem">
                     <img className="contactImage" src={contact.icon} alt="Profile Pic"></img>
                     <h6 className="contactName">{contact.userID}</h6>
-                    <p className="contactText">{contact.lastMessage}</p>
                     <hr/>
+                    <p className="contactText">{contact.lastMessage}</p>
                 </div>
+                <hr className="bottomBar"/>
             </div>
         )
     }

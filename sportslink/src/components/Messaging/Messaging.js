@@ -50,7 +50,7 @@ class Messaging extends React.Component{
         } else if (target === '') {
             return
         } else {
-            console.log("CURRENT CONTACT BEFORE: " + this.state.currContact)
+            // console.log("CURRENT CONTACT BEFORE: " + this.state.currContact)
             this.setState({currContact : target.slice(8)}, () => {this.setCurrentConversation()})
         }
     }
@@ -71,7 +71,7 @@ class Messaging extends React.Component{
                     contacts.push({ userID: this.state.conversations[i].toUsername, icon: icon, lastMessage: '' })
                 }
                 else{
-                    contacts.push({ userID: this.state.conversations[i].toUsername, icon: icon, lastMessage: this.state.conversations[i].messages[0].messageData})
+                    contacts.push({ userID: this.state.conversations[i].toUsername, icon: icon, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
                 }
                 
             }
@@ -88,7 +88,7 @@ class Messaging extends React.Component{
                     contacts.push({userID: this.state.conversations[i].sentUsername, icon: icon, lastMessage: '' })
                 }
                 else{
-                    contacts.push({ userID: this.state.conversations[i].sentUsername, icon: icon, lastMessage: this.state.conversations[i].messages[0].messageData})
+                    contacts.push({ userID: this.state.conversations[i].sentUsername, icon: icon, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
                 }
             }
             
@@ -112,7 +112,7 @@ class Messaging extends React.Component{
     }
 
     setCurrentConversation = () => {
-        console.log(this.state.currContact)
+        // console.log(this.state.currContact)
         const conversation = this.state.conversations.filter(this.conversationFilter)[0]
         
         if (conversation){
@@ -127,7 +127,7 @@ class Messaging extends React.Component{
     }
 
     render() {
-        console.log(this.state.users)
+        // console.log(this.state.users)
         return <div className="messaging">
             <div className="contacts" onClick={this.contactClick}>
                 {

@@ -2,7 +2,7 @@
     float: left;
     width: 300px;
     min-height: fit-content;
-    background-color: gainsboro;
+    background-color: #F1FAEE;
     overflow-y: auto;
     overflow-x: hidden;
 }
