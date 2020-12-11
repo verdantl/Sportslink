@@ -31,7 +31,9 @@ class ProfilePicture extends React.Component{
             });
             this.props.changePic(reader.result)
         }
-        reader.readAsDataURL(picture[0])
+        if (picture[0]){
+            reader.readAsDataURL(picture[0])
+        }
 
     }
 

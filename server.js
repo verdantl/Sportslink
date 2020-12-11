@@ -22,7 +22,7 @@ const { ObjectID } = require("mongodb");
 
 // body-parser: middleware for parsing HTTP JSON body into a usable object
 const bodyParser = require("body-parser");
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 // multipart middleware: allows you to access uploaded file from req.file
 const multipart = require('connect-multiparty');
@@ -40,8 +40,7 @@ cloudinary.config({
 // express-session for managing user sessions
 const session = require("express-session");
 const { mongo } = require("mongoose");
-const conversation = require("./models/conversation");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb'}));
 
 function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
     return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"

@@ -10,7 +10,6 @@ class Experience extends React.Component{
     }
 
     render(){
-        console.dir(this);
         return <div className="experience">
            <span><h1>Experience </h1> </span> <span>  <AddCircleIcon className={"addExperienceButton"} onClick={this.handleAddButtonClick}/></span> 
            {this.props.experience.map((entry) => {

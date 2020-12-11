@@ -8,8 +8,8 @@ class UploadPictureDialog extends React.Component{
 
     render(){
         return <div>
-            <Dialog open={this.props.open} close={this.props.close}>
-            <DialogTitle > Upload Profile Picture </DialogTitle>
+            <Dialog open={this.props.open} onClose={this.props.close}>
+            <DialogTitle > Upload Picture </DialogTitle>
             <ImageUploader
                 withIcon={true}
                 buttonText='Choose Image'
