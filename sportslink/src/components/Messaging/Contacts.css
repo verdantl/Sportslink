@@ -1,5 +1,6 @@
 .contactItem{
     width: 100%;
+    min-height: 75px;
     max-height: 100px;
     background-color: gainsboro;
     padding: 2px;

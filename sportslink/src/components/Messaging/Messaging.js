@@ -17,6 +17,10 @@ class Messaging extends React.Component{
         getUser(this.props.currentUser, this)
         getUsers(this)
         getConversations(this.props.currentUser, this)
+        const thing = this
+        // setInterval( function() {
+        //     getConversations(thing.props.currentUser, thing)
+        // }, 1000)
     }
 
     state = {
@@ -46,7 +50,8 @@ class Messaging extends React.Component{
         } else if (target === '') {
             return
         } else {
-            this.setState({currContact : target.slice(8)})
+            console.log("CURRENT CONTACT BEFORE: " + this.state.currContact)
+            this.setState({currContact : target.slice(8)}, () => {this.setCurrentConversation()})
         }
     }
 
@@ -97,7 +102,7 @@ class Messaging extends React.Component{
     }
 
     conversationFilter = (conversation) => {
-        return conversation.toUsername === this.state.currContact || conversation.sentUsername === this.state.currContact
+        return (conversation.toUsername === this.state.currContact || conversation.sentUsername === this.state.currContact) && (conversation.toUsername === this.state.user.username || conversation.sentUsername === this.state.user.username)
     }
 
     sendMessage = (message) => {
@@ -107,20 +112,18 @@ class Messaging extends React.Component{
     }
 
     setCurrentConversation = () => {
+        console.log(this.state.currContact)
         const conversation = this.state.conversations.filter(this.conversationFilter)[0]
-        if (conversation){
-            if (conversation.toUsername === this.state.user.username){
-                this.setState({currContact: conversation.sentUsername})
-            }
-            else{
-                this.setState({currContact: conversation.toUsername})
-            }
-            this.setState({currentConversation: conversation})
-
-        }
         
-
-
+        if (conversation){
+            // if (conversation.toUsername === this.state.user.username){
+            //     this.setState({currContact: conversation.sentUsername})
+            // }
+            // else{
+            //     this.setState({currContact: conversation.toUsername})
+            // }
+            this.setState({currentConversation: conversation})
+        }
     }
 
 

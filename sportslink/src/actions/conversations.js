@@ -13,8 +13,6 @@ export const getConversations = (username, messaging) => {
             messaging.setState({conversations: json})
 
         }).then(() =>{ 
-
-            messaging.setCurrentConversation()
             messaging.setContacts()
         })
 
