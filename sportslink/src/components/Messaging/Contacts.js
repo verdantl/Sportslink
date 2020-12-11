@@ -19,11 +19,9 @@ class Contacts extends React.Component{
                 <div className="contactItem">
                     <img className="contactImage" src={!this.state.users.filter(user => user.username === contact.userID)[0]? null : this.state.users.filter(user => user.username === contact.userID)[0].image} alt="Profile Pic"></img>
                     <h6 className="contactName">{!this.state.users.filter(user => user.username === contact.userID)[0]? null : this.state.users.filter(user => user.username === contact.userID)[0].name}</h6>
-                    <p className="contactText">{contact.lastMessage}</p>
                     <hr/>
                     <p className="contactText">{contact.lastMessage}</p>
                 </div>
-                <hr className="bottomBar"/>
             </div>
         )
     }
