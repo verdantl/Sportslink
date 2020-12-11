@@ -7,14 +7,8 @@ import DeleteButton from './DeleteButton'
 class ExperienceCard extends React.Component{
     constructor(props) {
         super(props);
-        this.state={
-            /*title: this.props.experience.title,
-            organization: this.props.experience.organization, 
-            league: this.props.experience.league, 
-            stats: this.props.experience.stats, 
-            description: this.props.experience.description, 
-            years: this.props.experience.years,*/
-            hideButtons: false,
+        this.state = {
+            hideButtons: true,
             editing: false
         };
     }
@@ -27,21 +21,8 @@ class ExperienceCard extends React.Component{
     }
 
     handleHide = (event) => {
-        //this.setState({hideButtons: true})
+        this.setState({hideButtons: true})
     }
-
-   /* updateInfo = (event) =>{
-        console.dir( this)
-        console.log('this.state.league', this.state.league);
-        this.props.updateExperience(this.props.experience.id, 
-            this.state.title, 
-            this.state.organization, 
-            this.state.league, 
-            this.state.stats, 
-            this.state.description, 
-            this.state.years);
-        this.toggleEditing(event);
-    }*/
 
     toggleEditing = (event) =>{
         this.setState({editing: !this.state.editing});
@@ -78,38 +59,12 @@ class ExperienceCard extends React.Component{
         this.updateInputBoxId();
     }
     
-
-    /*renderInputFields(){
-        return(
-            <div className={this.props.className} onMouseEnter={this.handleDisplay} onMouseLeave={this.handleHide}>
-                <input type="text" className="experienceTileH2" name="title" defaultValue={this.state.title} onChange={this.handleChange}/>
-                <input type="text" className="experienceTileH3" name="organization" defaultValue={this.state.organization} onChange={this.handleChange}/>
-                <input type="text" className="experienceTileH3" name="years" defaultValue={this.state.years} onChange={this.handleChange}/>
-                <input type="text" className="experienceTileH4" name="league" defaultValue={this.state.league} onChange={this.handleChange} />
-                <textarea className="experienceTileP" name="description" defaultValue={this.state.description} onChange={this.handleChange}/>
-                <button className="button-cancel" onClick={this.toggleEditing}>
-                    Cancel
-                </button>
-                <button className="button-save" onClick={this.updateInfo}>
-                    Save
-                </button>
-            </div>
-        );
-    }*/
-
-
     render(){
-        //console.log('this.state.editing', this.state.editing)
-        //console.dir(this.state)
-        //console.dir(this.props)
-       // if(this.state.editing){
-            //return this.renderInputFields();
-        //}
         return( 
             <div>
                 <div className={this.props.className} onMouseEnter={this.handleDisplay} onMouseLeave={this.handleHide}>
                     <span><h2>{this.props.experience.title}</h2></span>
-                    <span className="editDelete" hidden={this.props.experience.hideButtons}>
+                    <span className="editDelete" hidden={this.state.hideButtons}>
                         <EditButton  handleEditButtonClick={this.handleEditButtonClick.bind(this)} toggleEditing ={this.toggleEditing.bind(this)} setBoxState={this.props.setBoxState.bind(this)} updateInputBoxId = {this.updateInputBoxId.bind(this)} />
                         <DeleteButton handleRemoveButtonClick={this.handleRemoveButtonClick.bind(this)}/>
                     </span>

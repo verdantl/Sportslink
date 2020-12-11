@@ -842,9 +842,16 @@ app.post('/api/likes/:postid', mongoChecker, authenticate, async (req, res) => {
 		if (!post) {
 			res.status(404).send('Resource not found')  // could not find this student
 		} else {
-			/// sometimes we might wrap returned object in another object:
-            const result = await Post.findByIdAndUpdate(pid, {$push: {likes: req.body.username}})
-			res.send(result)
+            /// sometimes we might wrap returned object in another object:
+            const furtherPost = await Post.findOne({_id: pid, "likes": req.body.username})
+            if (furtherPost){
+                res.send("Already liked")
+            }
+            else{
+                const result = await Post.findByIdAndUpdate(pid, {$push: {likes: req.body.username}})
+                res.send(result)
+            }
+
 		}
 	} catch(error) {
 		log(error)
