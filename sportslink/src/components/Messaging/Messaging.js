@@ -116,15 +116,11 @@ class Messaging extends React.Component{
                 this.setState({currContact: conversation.toUsername})
             }
             this.setState({currentConversation: conversation})
-
-        }
-        
-
-
+        }   
     }
 
-
     render() {
+        console.log(this.state.users)
         return <div className="messaging">
             <div className="contacts" onClick={this.contactClick}>
                 {

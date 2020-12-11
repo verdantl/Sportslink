@@ -1,3 +1,5 @@
+import { getUsers } from '../actions/profiles'
+
 export const getConversations = (username, messaging) => {
     const url = "/api/conversation/" + username
     fetch(url)
@@ -12,9 +14,10 @@ export const getConversations = (username, messaging) => {
         .then(json => {
             messaging.setState({conversations: json})
 
-        }).then(() =>{ 
-
-            messaging.setCurrentConversation()
+        }).then(() => {
+            getUsers(messaging)
+        })
+        .then(() =>{ 
             messaging.setContacts()
         })
 
