@@ -223,11 +223,13 @@
 
 .editDelete{
     position: absolute;
+    background-color: white;
+    border-radius: 5px;
     top: 0px;
     right: 0px;
     width: auto;
     margin: auto;
-    padding: 10px;
+    transition: visibility 400ms, opacity 400ms;
 }
 
 .experienceTileH2{
