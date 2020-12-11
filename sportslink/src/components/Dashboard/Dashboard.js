@@ -69,8 +69,8 @@ class Dashboard extends React.Component{
                 <NewPost createNewPost={this.createNewPost}/>
                 </div>
                
-            <div hidden={this.state.hideLoading} className='loadingAnimation'>
-                <ReactLoading type={'spinningBubbles'} color={'black'} />
+            <div hidden={this.state.hideLoading}>
+                <ReactLoading type={'spinningBubbles'} color={'black'} className='loadingAnimation'/>
                 </div>
 
                 <Posts 

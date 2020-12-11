@@ -17,9 +17,9 @@
 
 .loadingAnimation{
     color: black;
-    margin: auto;
-    margin-left: 20px;
-    width: auto;
+    position: fixed;
+    left: 50vw;
+    top: 50vw;
 }
 
 .newsBox{
