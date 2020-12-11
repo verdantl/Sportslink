@@ -36,39 +36,18 @@ class Images extends React.Component{
         }
     }
 
-    lightUp = (event) => {
-        if (event.target.classList[0] == ('leftarrow') | event.target.parentElement.classList[0] == ('leftarrow')){
-            this.setState({leftArrow: 'leftarrowLight'});
-        }
-        else if (event.target.classList[0] == ('rightarrow') | event.target.parentElement.classList[0] == 'rightarrow'){
-            this.setState({rightArrow: 'rightarrowLight'})
-        }
-    }
-
-    lightOff = (event) => {
-        if (event.target.classList[0] == ('leftarrowLight') | event.target.parentElement.classList[0] == 'leftarrowLight'){
-            this.setState({leftArrow: 'leftarrow'});
-        }
-        else if (event.target.classList[0] == ('rightarrowLight') | event.target.parentElement.classList[0] == 'rightarrowLight'){
-            this.setState({rightArrow: 'rightarrow'})
-        }
-    }
 
     render(){
         return <div className='profileImages'>
 
             <div onClick={this.previousImage} 
-            onMouseEnter={this.lightUp}
-            onMouseLeave={this.lightOff}
-            className={this.state.leftArrow}>
+            className={'leftarrow'}>
             <ArrowLeftIcon className="arrow"/>
             </div>
 
-            <img src={this.props.images[this.state.imageNum].image} className="oneImage"/>
+            <img src={this.props.images[this.state.imageNum]  ? this.props.images[this.state.imageNum].image : null} className="oneImage"/>
             <div onClick={this.nextImage}
-            onMouseEnter={this.lightUp}
-            onMouseLeave={this.lightOff}
-             className={this.state.rightArrow}>
+             className={'rightarrow'}>
             <ArrowRightIcon className="arrow"/>
             </div>
 

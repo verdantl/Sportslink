@@ -1,3 +1,5 @@
+import { getUsers } from '../actions/profiles'
+
 export const getConversations = (username, messaging) => {
     const url = "/api/conversation/" + username
     fetch(url)
@@ -12,7 +14,14 @@ export const getConversations = (username, messaging) => {
         .then(json => {
             messaging.setState({conversations: json})
 
+<<<<<<< HEAD
         }).then(() =>{ 
+=======
+        }).then(() => {
+            getUsers(messaging)
+        })
+        .then(() =>{ 
+>>>>>>> 07d56f92276a95169986d1968ee37c2cfd414197
             messaging.setContacts()
         })
 
@@ -22,12 +31,12 @@ export const getConversations = (username, messaging) => {
 }
 
 
-export const createNewConversation = (currUser, otherUser, messaging) => {
+export const createNewConversation = (currUser, otherUser, dashboard) => {
     const url = "/api/conversation"
 
     const request = new Request(url, {
         "method": "POST",
-        "body": {"sentUsername": currUser, "toUsername": otherUser},
+        "body": JSON.stringify({"sentUsername": currUser, "toUsername": otherUser}),
         "headers": {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -36,20 +45,9 @@ export const createNewConversation = (currUser, otherUser, messaging) => {
     fetch(request)
         .then(res => {
             if (res.status === 200) {
+                dashboard.props.history.push("/messaging");
                 // return a promise that resolves with the JSON body
-                messaging.setState({
-                    message: {
-                        body: "Success: Created a new conversation.",
-                        type: "success"
-                    }
-                });
             } else {
-                messaging.setState({
-                    message: {
-                        body: "Error: Could not create conversation.",
-                        type: "error"
-                    }
-                });
             }
         })
         .catch(error => {

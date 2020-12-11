@@ -7,6 +7,7 @@ import PersonalInfo from './PersonalInfo'
 import Experience from './Experience'
 import './viewProfile.css'
 import { getUser } from '../../actions/profiles'
+import {createNewConversation} from '../../actions/conversations'
 class ViewProfile extends React.Component{
     constructor(props){
         super(props)
@@ -14,12 +15,16 @@ class ViewProfile extends React.Component{
     }
 
     state = {
-        
+        currentUser : this.props.currentUser,
         user: {
             experience: [],
             career: [],
             images: [],
         }
+    }
+
+    startConversation = () => {
+        createNewConversation(this.state.currentUser, this.state.user.username, this)
     }
 
     render(){
@@ -34,7 +39,7 @@ class ViewProfile extends React.Component{
             <ProfilePicture image={this.state.user.image} name={this.state.user.name}/>
             
             <div className="contactDetails"> 
-            <div className={"contact"} ><p>Contact</p></div>
+            <div className={"contact"} onClick={this.startConversation} ><p>Contact</p></div>
 
             <PersonalInfo user={this.state.user}/>
             </div>
