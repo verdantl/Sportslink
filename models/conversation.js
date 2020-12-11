@@ -49,7 +49,11 @@ const ConversationSchema = new mongoose.Schema({
         minlength: 1,
         trim: true
     },
-    messages: [MessageSchema]
+    messages: [MessageSchema],
+    date: {
+        type: Date,
+        required: false
+    }
 })
 
 const Conversation = mongoose.model("conversation", ConversationSchema)

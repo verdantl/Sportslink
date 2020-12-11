@@ -868,7 +868,7 @@ app.get('/api/conversation/:username', mongoChecker, async (req, res) => {
     try {
         const conversations = await Conversation.find({$or:[
             {sentUsername: username}, {toUsername:username}]
-        }).sort({date: 'ascending'})
+        }).sort({date: 'descending'})
         res.send(conversations)
     } catch (error) {
         log(error)
@@ -891,7 +891,8 @@ app.post('/api/conversation', mongoChecker, async (req, res) => {
     const conversation = new Conversation({
         sentUsername: req.body.sentUsername,
         toUsername: req.body.toUsername,
-        messages: []
+        messages: [],
+        date: new Date()
     })
     // Saving the conversation to the database:
     try {
@@ -938,7 +939,7 @@ app.post('/api/message/:id', mongoChecker, async (req, res) => {
     }
     
     try {
-        const conversation = await Conversation.findById(id)
+        const conversation = await Conversation.findByIdAndUpdate(id, {$set:{date: currDate}})
         if (!conversation) {
             res.status(404).send('Resource not found') // Could not find this conversation
         } else {
