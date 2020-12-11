@@ -17,10 +17,6 @@ class Messaging extends React.Component{
         getUser(this.props.currentUser, this)
         getUsers(this)
         getConversations(this.props.currentUser, this)
-        const thing = this
-        // setInterval( function() {
-        //     getConversations(thing.props.currentUser, thing)
-        // }, 1000)
     }
 
     state = {
@@ -50,10 +46,6 @@ class Messaging extends React.Component{
         } else if (target === '') {
             return
         } else {
-<<<<<<< HEAD
-            // console.log("CURRENT CONTACT BEFORE: " + this.state.currContact)
-=======
->>>>>>> 29fc2f18042c633e75f8c7d3bfd8628f9a1690a5
             this.setState({currContact : target.slice(8)}, () => {this.setCurrentConversation()})
         }
     }
@@ -66,11 +58,7 @@ class Messaging extends React.Component{
                     contacts.push({ userID: this.state.conversations[i].toUsername,lastMessage: '' })
                 }
                 else{
-<<<<<<< HEAD
                     contacts.push({ userID: this.state.conversations[i].toUsername, icon: icon, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
-=======
-                    contacts.push({ userID: this.state.conversations[i].toUsername, lastMessage: this.state.conversations[i].messages[0].messageData})
->>>>>>> 29fc2f18042c633e75f8c7d3bfd8628f9a1690a5
                 }
                 
             }
@@ -80,11 +68,7 @@ class Messaging extends React.Component{
                     contacts.push({userID: this.state.conversations[i].sentUsername, lastMessage: '' })
                 }
                 else{
-<<<<<<< HEAD
                     contacts.push({ userID: this.state.conversations[i].sentUsername, icon: icon, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
-=======
-                    contacts.push({ userID: this.state.conversations[i].sentUsername, lastMessage: this.state.conversations[i].messages[0].messageData})
->>>>>>> 29fc2f18042c633e75f8c7d3bfd8628f9a1690a5
                 }
             }
             
@@ -108,10 +92,6 @@ class Messaging extends React.Component{
     }
 
     setCurrentConversation = () => {
-<<<<<<< HEAD
-        // console.log(this.state.currContact)
-=======
->>>>>>> 29fc2f18042c633e75f8c7d3bfd8628f9a1690a5
         const conversation = this.state.conversations.filter(this.conversationFilter)[0]
         
         if (conversation){
@@ -120,22 +100,12 @@ class Messaging extends React.Component{
     }
 
     render() {
-<<<<<<< HEAD
-        // console.log(this.state.users)
-=======
->>>>>>> 29fc2f18042c633e75f8c7d3bfd8628f9a1690a5
         return <div className="messaging">
             <div className="contacts" onClick={this.contactClick}>
-                {
-                    // TODO: Add search bar
-                }
                 <Contacts contacts={this.state.contacts} currUser={this.state.user.username}/>
             </div>
             <div className="rightContent">
                 <div className="contactHeader">
-                    {
-                        // TODO: Finish layout for Contact Header
-                    }
                     <ContactHeader currContact={this.state.currContact}/>
                 </div>
                 <div className="texts">
@@ -149,53 +119,3 @@ class Messaging extends React.Component{
     }
 }
 export default Messaging
-
-// The following is an example state
-// conversations: [
-        //     'UserIDGoesHere1': [
-        //         {
-        //             messageID: 100,
-        //             userID: 'UserIDGoesHere1',
-        //             messageData: 'This is an incoming message'
-        //         },
-        //         {
-        //             messageID: 101,
-        //             userID: 'currUserID',
-        //             messageData: 'This is an outgoing message'
-        //         }
-        //     ],
-        //     'UserIDGoesHere2': [
-        //         {
-        //             messageID: 102,
-        //             userID: 'UserIDGoesHere2',
-        //             messageData: 'This is an incoming message'
-        //         },
-        //         {
-        //             messageID: 103,
-        //             userID: 'currUserID',
-        //             messageData: 'This is an outgoing message'
-        //         },
-        //         {
-        //             messageID: 104,
-        //             userID: 'currUserID',
-        //             messageData: 'This is another outgoing message'
-        //         },
-        //         {
-        //             messageID: 105,
-        //             userID: 'UserIDGoesHere2',
-        //             messageData: 'Bruh'
-        //         }
-        //     ]
-        // ],
-        // contacts: [
-        //     {
-        //         userID: 'UserIDGoesHere1',
-        //         icon: '',
-        //         lastMessage: 'This was the last message sent by UserIDGoesHere1'
-        //     },
-        //     {
-        //         userID: 'UserIDGoesHere2',
-        //         icon: '',
-        //         lastMessage: 'This was the last message sent by UserIDGoesHere2'
-        //     }
-        // ]
