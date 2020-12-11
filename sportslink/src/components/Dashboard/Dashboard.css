@@ -15,6 +15,13 @@
     flex-grow: 1; 
 }
 
+.loadingAnimation{
+    color: black;
+    margin: auto;
+    margin-left: 20px;
+    width: auto;
+}
+
 .newsBox{
     background-color: indianred;
     padding: 10px;
