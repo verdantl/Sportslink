@@ -101,19 +101,45 @@ app.post("/users/login", async(req, res) => {
     // log(usern, password, "post");
     // Use the static method on the User model to find a user
     // by their email and password
-    Account.findByUsernamePassword(usern, password)
-        .then(user => {
-            // Add the user's id to the session.
-            // We can check later if this exists to ensure we are logged in.
-            req.session.user = user._id;
-            req.session.email = user.email; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
-            req.session.username = user.username;
-            res.send({ currentUser: user.username });
-        })
-        .catch(error => {
-            log(error)
-            res.status(400).send()
-        });
+    try {
+        if (usern === "admin") {
+            const account = await Account.findByUsernamePassword(usern, password)
+                log(account)
+                if (!account) {
+                    res.status(404).send('Resource not found')
+                } else {
+                    req.session.user = account._id;
+                    req.session.email = account.email; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
+                    req.session.username = account.username;
+                    res.send({ currentUser: account.username });
+                    return
+                }
+        } else {
+            const user = await User.findOne({username: usern})
+            if (!user) {
+                res.status(404).send('Resource not found')
+            } else { 
+                // Need to figure out hashing
+                if (!user.suspended) {
+                    const account = await Account.findByUsernamePassword(usern, password)
+                    if (!account) {
+                        res.status(404).send('Resource not found')
+                    } else {
+                        req.session.user = account._id;
+                        req.session.email = account.email; // we will later send the email to the browser when checking if someone is logged in through GET /check-session (we will display it on the frontend dashboard. You could however also just send a boolean flag).
+                        req.session.username = account.username;
+                        res.send({ currentUser: account.username });
+                        return
+                    }
+                } else {
+                    res.status(401).send("Account Suspended.")
+                }
+            }
+        }
+    } catch(error) {
+        log(error)
+        res.status(500).send("Internal Server Error")
+    }
 });
 
 // A route to logout a user
