@@ -8,24 +8,24 @@ class TextList extends React.Component{
         super(props)
     }
 
-    moveToSearch() {
+    moveToSearch = () => {
         // do this later
     }
 
-    displayMessage (message) {
+    displayMessage =  (message) => {
         return (
-            <li className={message.sentUsername === "currUserID" ? 'sentTextDiv' : 'recievedTextDiv'} key={"message-" + uid(message._id)}>
-                <div className={message.sentUsername === "currUserID" ? 'sentName' : 'recievedName'}>
+            <li className={message.sentUsername === this.props.currUser ? 'sentTextDiv' : 'recievedTextDiv'} key={"message-" + uid(message._id)}>
+                <div className={message.sentUsername === this.props.currUser ? 'sentName' : 'recievedName'}>
                     {message.sentUsername}
                 </div>
-                <div className={message.sentUsername === "currUserID" ? 'sentMessage' : 'recievedMessage'}>
+                <div className={message.sentUsername === this.props.currUser ? 'sentMessage' : 'recievedMessage'}>
                     {message.messageData}
                 </div>
             </li>
         )
     }
 
-    askToSendMessage () {
+    askToSendMessage =  () => {
         return (
             <div className="defaultMessage">
                 Neither of you have sent a message yet. Send one now!

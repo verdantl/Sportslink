@@ -866,8 +866,8 @@ app.get('/api/conversation/:username', mongoChecker, async (req, res) => {
 		return
     }
     try {
-        const conversations = await Conversation.find({ 
-            sentUsername: username
+        const conversations = await Conversation.find({$or:[
+            {sentUsername: username}, {toUsername:username}]
         }).sort({date: 'ascending'})
         res.send(conversations)
     } catch (error) {

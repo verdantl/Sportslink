@@ -21,7 +21,7 @@ class Messaging extends React.Component{
 
     state = {
         user: {username: ''},
-        currContact: 'kentomomota26',
+        currContact: 'user',
         currentConversation: {
             messages: [],
             toUsername: '',
@@ -51,13 +51,13 @@ class Messaging extends React.Component{
     setContacts = () => {
         let contacts = []
         for (let i = 0; i < this.state.conversations.length; i++) {
-            // contacts.push({ userID: this.state.conversations[i].toUsername, icon: '', lastMessage: this.state.conversations[i].messages[0].messageData })
+            contacts.push({ userID: this.state.conversations[i].toUsername, icon: '', lastMessage: this.state.conversations[i].messages[0].messageData })
         }
         this.setState({contacts: contacts})
     }
 
     conversationFilter = (conversation) => {
-        return conversation.toUsername === this.state.currContact
+        return conversation.toUsername === this.state.currContact || conversation.sentUsername === this.state.currContact
     }
 
     sendMessage = (message) => {
@@ -72,7 +72,7 @@ class Messaging extends React.Component{
         this.forceUpdate()
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate = (nextProps, nextState) => {
         if (nextState === this.state) {
             return false
         } else if (nextProps === this.props) {
@@ -88,7 +88,7 @@ class Messaging extends React.Component{
                 {
                     // TODO: Add search bar
                 }
-                <Contacts contacts={this.state.contacts} currUser={this.state.currUser}/>
+                <Contacts contacts={this.state.contacts} currUser={this.state.user.username}/>
             </div>
             <div className="rightContent">
                 <div className="contactHeader">

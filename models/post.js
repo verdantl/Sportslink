@@ -48,6 +48,7 @@ const Post = mongoose.model("Post", {
     likes: [{
 		type: String,
         required: false,
+        unique: true
     }],
     date: {
         type: String,
