@@ -1,8 +1,8 @@
 .posts{
-    margin: 23px;
-    width: 85%;
+    margin: 10px;
+    width: 50%;
     border-radius: 3px;
-    
+    padding-left: 10%;
 }
 
 .postCard{
