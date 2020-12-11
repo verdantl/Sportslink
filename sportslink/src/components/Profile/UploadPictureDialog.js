@@ -8,13 +8,13 @@ class UploadPictureDialog extends React.Component{
 
     render(){
         return <div>
-            <Dialog open={this.props.open} onClose={this.props.close}>
-            <DialogTitle > Upload Picture </DialogTitle>
+            <Dialog className={"uploadPicDialog"} open={this.props.open} onClose={this.props.close}>
+    <DialogTitle > {this.props.text} </DialogTitle>
             <ImageUploader
                 withIcon={true}
                 buttonText='Choose Image'
                 onChange={this.props.onDrop}
-                imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                imgExtension={['.jpg', '.png', '.gif']}
                 maxFileSize={5242880}
             />
             </Dialog>

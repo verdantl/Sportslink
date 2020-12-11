@@ -9,7 +9,7 @@
     margin-right: 50px;
 }
 
-.recievedMessage{
+.receivedMessage{
     min-height: 25px;
     border-radius: 10px;
     background-color: lightblue;
@@ -20,6 +20,10 @@
     margin-right: 50px;
 }
 
+#refMessage{
+    background-color: none;
+    min-height: 10px;
+}
 .sentName{
     text-align: right;
     display: block;
@@ -27,7 +31,7 @@
     margin-right: 50px;
 }
 
-.recievedName{
+.receivedName{
     text-align: left;
     display: block;
     margin-left: 50px;
@@ -49,7 +53,7 @@ ul{
     padding: 0;
 }
 
-.recievedTextDiv{
+.receivedTextDiv{
     width: 100%;
     min-height: 50px;
     display: block;
