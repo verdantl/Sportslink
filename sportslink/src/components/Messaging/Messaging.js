@@ -50,7 +50,6 @@ class Messaging extends React.Component{
         } else if (target === '') {
             return
         } else {
-            console.log("CURRENT CONTACT BEFORE: " + this.state.currContact)
             this.setState({currContact : target.slice(8)}, () => {this.setCurrentConversation()})
         }
     }

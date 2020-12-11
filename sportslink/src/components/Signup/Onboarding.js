@@ -65,7 +65,6 @@ class Onboarding extends React.Component{
 
     render(){
         const { app } = this.props
-        console.log(this.state)
         return <div className="signUpPage">
             <div className="signUpTitle"><h1>Sportslink</h1> <p>Bringing together the greatest athletic community around the globe.</p></div>
         {/* <Onboarding/> */}
