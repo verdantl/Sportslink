@@ -214,6 +214,7 @@
     display: flex;
     height: 100%;
     position: absolute;
+    transition: background-color 200ms;
 
 }
 
@@ -245,6 +246,7 @@
     height: 100%;   
     display: flex;
     position: absolute;
+    transition: background-color 200ms;
     
 }
 
