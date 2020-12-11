@@ -1,10 +1,6 @@
 'use strict'
 const mongoose = require('mongoose')
-// posts: [
-//     {user: {name: 'Lebron James', image: lebron, location: "Los Angeles CA, USA",
-//     organization: "Los Angeles Lakers",
-//     sports:"Basketball",}, text: "Finals MVP, 2020!!!", likes: 2, 
-//     comments: [{user: {name: 'Kawhi Leonard', username: 'rapsowemeone', image: kawhi}, text: "I wish I were a Laker..."}, {user: {name: 'Kevin Durant', username: 'coolguy123', image: durant}, text: "Great post!"}]}, 
+const uniqueValidator = require('mongoose-unique-validator');
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -45,16 +41,20 @@ const Post = mongoose.model("Post", {
         minlength: 1,
         trim: true,
     },
-    likes: [{
-		type: String,
-        required: false,
-        unique: true
-    }],
+    likes:[LikeSchema],
     date: {
         type: String,
         required: true
     },
     comments: [CommentSchema]
 })
+
+const LikeSchema = mongoose.Schema({
+		type: String,
+        required: false,
+        unique: true
+})
+
+LikeSchema.plugin(uniqueValidator);
 
 module.exports = { Post }
