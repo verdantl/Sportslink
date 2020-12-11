@@ -6,7 +6,7 @@ export const getUsers = (dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                alert("Could not get users");
+                window.location.reload();
             }
         })
         .then(json => {
@@ -28,7 +28,7 @@ export const getUser = (username, dashboard) => {
                 return res.json();
                 
             } else {
-                alert("Could not get user");
+                window.location.reload();
             }
         })
         .then(json => {
@@ -57,7 +57,7 @@ export const updateUserInfo = (attributes, userID, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            alert("Could not update user");
+            window.location.reload();
         }
     })
     .then(json => {
@@ -86,7 +86,7 @@ export const deleteUser = (user, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            alert("Could not delete user");
+            window.location.reload();
         }
     })
     .then(json => {
@@ -104,7 +104,7 @@ export const deleteUser = (user, dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                alert("Could not delete user");
+                window.location.reload();
             }
         })
         .then(json => {
@@ -134,7 +134,7 @@ export const addImage = (image, username, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            alert("Could not update user");
+            window.location.reload();
         }
     })
     .then(json => {
@@ -162,7 +162,7 @@ export const removeImage = (imageID, username, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            alert("Could not delete user");
+            window.location.reload();
         }
     })
     .then(json => {

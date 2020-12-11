@@ -7,7 +7,7 @@ export const getPosts = (dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                dashboard.props.history.push("/dashboard");
+                window.location.reload();
             }
         })
         .then(json => {
@@ -36,7 +36,7 @@ export const newPost = (post, dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                dashboard.props.history.push("/dashboard");
+                window.location.reload();
             }
         })
         .then(json => {
@@ -65,7 +65,7 @@ export const newComment = (postCard, postID, dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                dashboard.props.history.push("/dashboard");
+                window.location.reload();
             }
         })
         .then(json => {
@@ -93,7 +93,7 @@ export const upvotePost = (attributes, postID, dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                dashboard.props.history.push("/dashboard");
+                window.location.reload();
             }
         })
         .then(json => {
@@ -122,7 +122,7 @@ export const downvotePost = (attributes, postID, dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                dashboard.props.history.push("/dashboard");
+                window.location.reload();
             }
         })
         .then(json => {
@@ -152,7 +152,7 @@ export const editPostInfo = (attributes, postID, dashboard) => {
                 // return a promise that resolves with the JSON body
                 return res.json();
             } else {
-                dashboard.props.history.push("/dashboard");
+                window.location.reload();
             }
         })
         .then(json => {
@@ -180,7 +180,7 @@ export const deletePost = (postID, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            dashboard.props.history.push("/dashboard");
+            window.location.reload();
         }
     })
     .then(json => {
@@ -206,7 +206,7 @@ export const deletePostUsername = (user, dashboard) => {
             // return a promise that resolves with the JSON body
             return res.json();
         } else {
-            dashboard.props.history.push("/dashboard");
+            window.location.reload();
         }
     })
     .then(json => {
