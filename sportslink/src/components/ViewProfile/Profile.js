@@ -25,6 +25,7 @@ class ViewProfile extends React.Component{
 
     startConversation = () => {
         createNewConversation(this.state.currentUser, this.state.user.username, this)
+
     }
 
     render(){

@@ -29,10 +29,9 @@ export const getConversations = (username, messaging) => {
 
 export const createNewConversation = (currUser, otherUser, dashboard) => {
     const url = "/api/conversation"
-
     const request = new Request(url, {
         "method": "POST",
-        "body": JSON.stringify({"sentUsername": currUser, "toUsername": otherUser}),
+        "body": JSON.stringify({sentUsername: currUser, toUsername: otherUser}),
         "headers": {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
