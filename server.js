@@ -895,8 +895,16 @@ app.post('/api/conversation', mongoChecker, async (req, res) => {
     })
     // Saving the conversation to the database:
     try {
-        const result = await conversation.save()
-        res.send(result)
+        const convo = await Conversation.find({$or: [{sentUsername: req.body.sentUsername, toUsername: req.body.toUsername}, 
+            {sentUsername: req.body.toUsername, toUsername: req.body.sentUsername}]})
+        if (convo){
+            res.status(200).send('Good')
+        }
+        else{
+            const result = await conversation.save()
+            res.send(result)
+        }
+
     } catch(error) {
         log(error)
         if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
