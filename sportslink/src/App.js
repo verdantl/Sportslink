@@ -15,12 +15,13 @@ import Settings from './components/Settings/Settings'
 import ForgotPass from './components/ForgotPass/ForgotPass'
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
-import { checkSession } from "./actions/user";
+import { checkSession , logout} from "./actions/user";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     checkSession(this); // sees if a user is logged in.
+    this.handleUser()
   }
   
   state = {
@@ -28,6 +29,30 @@ class App extends React.Component {
     signUp: []
 
   }
+
+  handleUser = () => {
+    window.addEventListener("mousemove", (event) => {
+      this.countdown()
+    });
+    window.addEventListener("click", (event) => {
+      this.countdown()
+    });
+    window.addEventListener("keydown", (event) => {
+      this.countdown()
+    });
+  }
+
+  countdown = () => {
+    clearTimeout(this.logoutTimeout);
+    this.logoutTimeout = setTimeout(this.logout, 10*60*1000);
+  }
+
+  logout = () => {
+    if (this.state.currentUser !== null) {
+      logout(this)
+    }
+  }
+  
   render(){
     const { currentUser } = this.state;
     return (
