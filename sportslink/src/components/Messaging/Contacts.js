@@ -22,7 +22,6 @@ class Contacts extends React.Component{
                     <hr/>
                     <p className="contactText">{contact.lastMessage}</p>
                 </div>
-                <hr className="bottomBar"/>
             </div>
         )
     }
