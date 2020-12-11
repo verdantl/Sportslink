@@ -32,8 +32,7 @@ const CommentSchema = new mongoose.Schema({
     }
 })
 
-
-const Post = mongoose.model("Post", {
+const PostSchema = new mongoose.Schema({
     user: UserSchema,
     text: {
         type: String,
@@ -41,7 +40,11 @@ const Post = mongoose.model("Post", {
         minlength: 1,
         trim: true,
     },
-    likes:[LikeSchema],
+    likes:[{
+        type: String,
+        required: false,
+        unique: true
+    }],
     date: {
         type: String,
         required: true
@@ -49,12 +52,9 @@ const Post = mongoose.model("Post", {
     comments: [CommentSchema]
 })
 
-const LikeSchema = mongoose.Schema({
-		type: String,
-        required: false,
-        unique: true
-})
+PostSchema.plugin(uniqueValidator)
 
-LikeSchema.plugin(uniqueValidator);
+const Post = mongoose.model("Post", PostSchema)
+
 
 module.exports = { Post }

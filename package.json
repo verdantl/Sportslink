@@ -21,6 +21,7 @@
         "express-session": "^1.17.0",
         "mongodb": "^3.5.9",
         "mongoose": "^5.9.26",
+        "mongoose-unique-validator": "^2.0.3",
         "react-images-upload": "^1.2.8",
         "validator": "^13.1.1"
     }
