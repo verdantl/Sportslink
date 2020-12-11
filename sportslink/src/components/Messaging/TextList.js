@@ -35,7 +35,6 @@ class TextList extends React.Component{
 
     render() {
          if (Array.isArray(this.props.conversation.messages)) {
-             console.log(this.props.conversation)
             if (this.props.conversation.messages.length === 0) {
                 return (
                     <div className="defaultMessage">

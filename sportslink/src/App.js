@@ -78,7 +78,7 @@ class App extends React.Component {
                       
           <Route exact path="/viewprofile/:username" render={ props => 
           <div className="app">
-            {!currentUser ? <Login {...props} app={this} /> : currentUser==='admin' ? <div><AdminTopBar {...props}  app={this}/> <ViewProfile {...props} app={this}/> </div>: <div><TopBar {...props}  app={this}/><ViewProfile {...props} app={this}/></div>}
+            {!currentUser ? <Login {...props} app={this} /> : currentUser==='admin' ? <div><AdminTopBar {...props}  app={this}/> <ViewProfile {...props} currentUser={this.state.currentUser} app={this}/> </div>: <div><TopBar {...props}  app={this}/><ViewProfile {...props} currentUser={this.state.currentUser} app={this}/></div>}
           </div> 
           }
           /> 

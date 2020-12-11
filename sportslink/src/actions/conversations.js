@@ -1,3 +1,5 @@
+import { getUsers } from '../actions/profiles'
+
 export const getConversations = (username, messaging) => {
     const url = "/api/conversation/" + username
     fetch(url)
@@ -12,9 +14,10 @@ export const getConversations = (username, messaging) => {
         .then(json => {
             messaging.setState({conversations: json})
 
-        }).then(() =>{ 
-
-            messaging.setCurrentConversation()
+        }).then(() => {
+            getUsers(messaging)
+        })
+        .then(() =>{ 
             messaging.setContacts()
         })
 
@@ -24,12 +27,12 @@ export const getConversations = (username, messaging) => {
 }
 
 
-export const createNewConversation = (currUser, otherUser, messaging) => {
+export const createNewConversation = (currUser, otherUser, dashboard) => {
     const url = "/api/conversation"
 
     const request = new Request(url, {
         "method": "POST",
-        "body": {"sentUsername": currUser, "toUsername": otherUser},
+        "body": JSON.stringify({"sentUsername": currUser, "toUsername": otherUser}),
         "headers": {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"
@@ -38,20 +41,9 @@ export const createNewConversation = (currUser, otherUser, messaging) => {
     fetch(request)
         .then(res => {
             if (res.status === 200) {
+                dashboard.props.history.push("/messaging");
                 // return a promise that resolves with the JSON body
-                messaging.setState({
-                    message: {
-                        body: "Success: Created a new conversation.",
-                        type: "success"
-                    }
-                });
             } else {
-                messaging.setState({
-                    message: {
-                        body: "Error: Could not create conversation.",
-                        type: "error"
-                    }
-                });
             }
         })
         .catch(error => {
