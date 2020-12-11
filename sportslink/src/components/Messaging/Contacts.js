@@ -8,26 +8,7 @@ class Contacts extends React.Component{
         super(props)
     }
 
-    render(){
-        if (this.displayContacts !== []) {
-            return (
-                <div>
-                    {
-                        this.props.contacts.map(this.displayContacts)
-                    }
-                </div>
-            )
-        }
-        return (
-            <div>
-                {
-                    this.props.contacts.map(this.displayContacts)
-                }
-            </div>
-        )
-    }
-
-    displayContacts (contact) {
+    displayContacts = (contact) => {
         return(
             <div key={"contact-" + uid(contact.userID)} id={"contact-" + contact.userID}>
                 <div className="contactItem">
@@ -39,6 +20,17 @@ class Contacts extends React.Component{
             </div>
         )
     }
+
+    
+    render(){
+        return (
+            <div>
+                {
+                    this.props.contacts.map(this.displayContacts)
+                }
+            </div>
+        )
+    }   
 }
 
 export default Contacts

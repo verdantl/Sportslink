@@ -12,8 +12,12 @@ export function getConversations(username, messaging) {
         .then(json => {
             messaging.setState({conversations: json})
 
-        }).then(() =>{ console.log('hi') ;
-        messaging.setCurrentConversation()})
+        }).then(() =>{ 
+
+            messaging.setCurrentConversation()
+            messaging.setContacts()
+        })
+
         .catch(error => {
             console.log(error);
         });

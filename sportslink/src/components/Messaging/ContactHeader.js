@@ -18,22 +18,10 @@ class ContactHeader extends React.Component{
 
     }
     render() {
-        if (this.props.currContact !== null) {
-            return (
-                <div className="returnDiv">
-                    <div className="header">
-                        <img className="contactImage" src={this.state.user.image} alt="Profile Pic"></img>
-                        <p>{this.state.user.username}</p>
-                    </div>
-                    <br/>
-                    <hr/>
-                </div>
-            )
-        }
         return (
             <div className="returnDiv">
                 <div className="header">
-                    <img className="contactImage" src="logo512.png" alt="Profile Pic"></img>
+                    <img className="contactImage" src={this.state.user.image} alt="Profile Pic"></img>
                     <p>{this.state.user.username}</p>
                 </div>
                 <br/>

@@ -5,7 +5,7 @@ import ContactHeader from './ContactHeader';
 import SendMessageForm from './SendMessageForm'
 import "./Messaging.css";
 import { getConversations, createNewMessage } from '../../actions/conversations'
-import { getUser } from '../../actions/profiles';
+import { getUser, getUsers } from '../../actions/profiles';
 
 // TODO: Fix issue where switching contacts with the same text filled in the send message box carries over
 
@@ -15,13 +15,15 @@ class Messaging extends React.Component{
         super(props)
 
         getUser(this.props.currentUser, this)
+        getUsers(this)
         getConversations(this.props.currentUser, this)
-        this.setContacts()
     }
 
     state = {
-        user: {username: ''},
-        currContact: 'user',
+        users: {},
+        user: {username: ''
+            },
+        currContact: '',
         currentConversation: {
             messages: [],
             toUsername: '',
@@ -49,11 +51,33 @@ class Messaging extends React.Component{
     }
 
     setContacts = () => {
-        let contacts = []
-        for (let i = 0; i < this.state.conversations.length; i++) {
-            contacts.push({ userID: this.state.conversations[i].toUsername, icon: '', lastMessage: this.state.conversations[i].messages[0].messageData })
+        const contacts = []
+        for (let i = 0; i < this.state.conversations.length; i++){
+            if (this.state.conversations[i].toUsername !== this.state.user.username){
+                if (this.state.conversations[i].messages.length === 0){
+                    contacts.push({ userID: this.state.conversations[i].toUsername, icon:'', lastMessage: '' })
+                }
+                else{
+                    contacts.push({ userID: this.state.conversations[i].toUsername, icon:'', lastMessage: this.state.conversations[i].messages[0].messageData})
+                }
+                
+            }
+            else{
+                if (this.state.conversations[i].messages.length === 0){
+                    contacts.push({ userID: this.state.conversations[i].sentUsername, icon:'', lastMessage: '' })
+                }
+                else{
+                    contacts.push({ userID: this.state.conversations[i].sentUsername, icon:'', lastMessage: this.state.conversations[i].messages[0].messageData})
+                }
+            }
+            
         }
         this.setState({contacts: contacts})
+        if (contacts.length > 0){
+            this.setState({currContact: contacts[0].userID})
+        }
+        this.setCurrentConversation()
+        this.forceUpdate()
     }
 
     conversationFilter = (conversation) => {
@@ -63,13 +87,23 @@ class Messaging extends React.Component{
     sendMessage = (message) => {
         const conversationID = this.state.conversations.filter(this.conversationFilter)[0]._id
         createNewMessage(this.state.user.username, conversationID, message, this)
-        this.setContacts(this.state.conversations)
+        this.setContacts()
     }
 
     setCurrentConversation = () => {
-        const conversation = this.state.conversations.filter(this.conversationFilter)
-        this.setState({currentConversation: conversation[0]})
-        this.forceUpdate()
+        const conversation = this.state.conversations.filter(this.conversationFilter)[0]
+        if (conversation){
+            if (conversation.toUsername === this.state.user.username){
+                this.setState({currContact: conversation.sentUsername})
+            }
+            else{
+                this.setState({currContact: conversation.toUsername})
+            }
+            this.setState({currentConversation: conversation})
+            this.forceUpdate()
+        }
+
+
     }
 
     shouldComponentUpdate = (nextProps, nextState) => {
