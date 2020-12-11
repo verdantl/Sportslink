@@ -43,8 +43,8 @@
     padding: 3px;
 }
 
-.locationDropdown{
-
+.MuiAutocomplete-root{
+    width: 200px;
 }
 
 
