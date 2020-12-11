@@ -58,7 +58,7 @@ class Messaging extends React.Component{
                     contacts.push({ userID: this.state.conversations[i].toUsername,lastMessage: '' })
                 }
                 else{
-                    contacts.push({ userID: this.state.conversations[i].toUsername, icon: icon, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
+                    contacts.push({ userID: this.state.conversations[i].toUsername, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
                 }
                 
             }
@@ -68,7 +68,7 @@ class Messaging extends React.Component{
                     contacts.push({userID: this.state.conversations[i].sentUsername, lastMessage: '' })
                 }
                 else{
-                    contacts.push({ userID: this.state.conversations[i].sentUsername, icon: icon, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
+                    contacts.push({ userID: this.state.conversations[i].sentUsername, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
                 }
             }
             
