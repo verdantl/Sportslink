@@ -29,23 +29,19 @@ open on:            http://localhost:5000/
 
 
 ## Instructions
-Please use the login page with the username user and password user to login to the application with the user Lebron James. A signup page will also be available where you can sign up for an account. You can sign up for two types of accounts. One as an athelete and one as a recruiter. 
+Please use the login page with the username user and password user to login to the application with the user Lebron James. A signup page will also be available where you can sign up for an account. You can sign up for two types of accounts. One as an athelete and one as a recruiter. Your choice of account slightly alters the aesthetics of your account and also allows the search feature to filter by athlete vs recruiter.
 
-Following log in, you will be sent to the dashboard page where you can view the News box and click to access external data. Click on "view your profile" to access your personal profile.
-At the dashboard (home page), you can see all your posts and other peoples' posts as well as write a new post. You can also comment and like on other peoples' posts. 
+Following log in, you will be sent to the dashboard page where you can view the News box and click to be redirected to external new articles. You can also view the video of the day. In addition, at the dashboard (home page), you can see all your posts and other peoples' posts as well as write a new post and comment on other peoples' posts. You also have the option to add a post, which similarly gets added to the dashboard. In addition, by clicking on a given user's profile, you can view their profile page.
 
-You can also use the Top Bar for navigation.
+Click on the profile icon to access your personal profile. At your profile page, you can add or edit events and accomplishments to your profile and also upload person details and photos. 
 
-On the personal profile page, you are able to add, edit, and delete your profile information (personal information, experience, achievements, and images).
+To edit more intimate details about your account, you can click on the settings icon and edit account details.
 
-You can also search up people on the search page which you can access through the top navigation bar. You can toggle between athletes, sponsors, and posts to be searched up. If you'd like, please search up 'Kawhi Leonard" and click on his name to view his proile.
-You can also enter in a location, organization, or sport (but only one at a time) and the search results will be filtered.
+To find other users, you can click on their profile in the dashboard, or use the search fuction. The search function allows for filtering by several parameters including user type, location, organization and sport, as well as the ability to search for posts (instead of users) using the same parameters. Upon viewing another user's profile, you can choose to contact them, which opens up a 
+chat screen to initiate a chat with the other user. 
 
-A user can also access their messaging, where they can type in messages to other users (for now only the DOM manipulations occur).
-In addition, the user can go to settings and change their personal information.
+To log in as an administrator, use the log-in credentials admin and admin. Upo logging in, you have access to that admin dashboard where you have superuser privelages. You are able to search for athletes, recruiters, or posts. You can view user profiles and also edit them completely. In addition, you have the ability to delete accounts or suspend users. Users that have been suspended can no longer log in to the site and are intentionally not told the reason for their suspension.
 
-On the Admin side, please use the username admin and the password admin. Once logging in, you will be sent to the Admin screen where you can search for users and take actions like suspending, deleting, or editing their accounts. The editing of the accounts is similar
-to the editing of the profile for a personal profile page. You can also delete posts and filter what to look for using the filter column on the left side (but only one at a time, like the User)
 
 ## Overview of Routes
 ### Session API Routes
