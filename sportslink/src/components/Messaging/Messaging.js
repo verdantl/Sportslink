@@ -99,13 +99,17 @@ class Messaging extends React.Component{
         }
     }
 
+    contactHeaderClick = () => {
+        this.props.history.push('/viewprofile/' + this.state.currContact);
+    }
+
     render() {
         return <div className="messaging">
             <div className="contacts" onClick={this.contactClick}>
                 <Contacts contacts={this.state.contacts} currUser={this.state.user.username}/>
             </div>
             <div className="rightContent">
-                <div className="contactHeader">
+                <div className="contactHeader" onClick={this.contactHeaderClick}>
                     <ContactHeader currContact={this.state.currContact}/>
                 </div>
                 <div className="texts">
