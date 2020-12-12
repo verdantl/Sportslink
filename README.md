@@ -22,7 +22,7 @@ open on:            http://localhost:5000/
 
 
 ## Instructions
-Please use the login page with the username user and password user to login to the application with the user Lebron James. A signup page will also be available where you can sign up for an account.
+Please use the login page with the username user and password user to login to the application with the user Lebron James. A signup page will also be available where you can sign up for an account. You can sign up for two types of accounts. One as an athelete and one as a recruiter. 
 
 Following log in, you will be sent to the dashboard page where you can view the News box and click to access external data. Click on "view your profile" to access your personal profile.
 At the dashboard (home page), you can see all your posts and other peoples' posts as well as write a new post and comment on 

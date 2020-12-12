@@ -36,27 +36,23 @@ class ViewProfile extends React.Component{
         }
         return <div className={(this.state.user.player) ? "userProfile" : "recruiterProfile"}>
             <div className="profileCard">
-            <div className="profileInfo">
-            <ProfilePicture image={this.state.user.image} name={this.state.user.name}/>
-            
-            <div className="contactDetails"> 
-            <div className={"contact"} onClick={this.startConversation} ><p>Contact</p></div>
-
-            <PersonalInfo user={this.state.user}/>
-            </div>
-            
-            </div>
-            <Biography description={this.state.user.description}/>
+                <div className="profileInfo">
+                    <ProfilePicture image={this.state.user.image} name={this.state.user.name}/>
+                    <div className="contactDetails"> 
+                        <div className={"contact"} onClick={this.startConversation} ><p>Contact</p></div>
+                        <PersonalInfo user={this.state.user}/>
+                    </div>
+                </div>
+                <Biography description={this.state.user.description}/>
             </div>
 
             <div className="achievements">
                 <div></div>
                 <Experience experience={this.state.user.experience}/>
                 <div className="profileRightColumn">
-                <Images images={this.state.user.images}/>
-                <Career accomplishments={this.state.user.career}/>
+                    <Images images={this.state.user.images}/>
+                    <Career accomplishments={this.state.user.career}/>
                 </div>
-
             </div>
         </div>
     }
