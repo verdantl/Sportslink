@@ -187,6 +187,7 @@ export const deletePost = (postID, dashboard) => {
     .then(json => {
         // the resolved promise with the JSON body
         getPosts(dashboard)
+        dashboard.setState({hideLoading: true})
     })
 }
 

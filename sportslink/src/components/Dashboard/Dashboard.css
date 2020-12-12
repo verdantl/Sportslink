@@ -18,8 +18,8 @@
 .loadingAnimation{
     color: black;
     position: fixed;
-    left: 50vw;
-    top: 50vw;
+    left: 50%;
+    top: 50%;
 }
 
 .newsBox{

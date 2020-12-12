@@ -1,6 +1,7 @@
 import React from 'react'
 import SingleAdminBox from './SingleAdminBox'
 import { uid } from "react-uid";
+import ReactLoading from 'react-loading';
 import AdminPosts from './AdminPosts'
 
 class AdminSearchResults extends React.Component{
@@ -8,6 +9,9 @@ class AdminSearchResults extends React.Component{
     render(){
         if (this.props.filter === 'athlete'){
             return <div>
+                <div hidden={this.props.hideLoading}>
+                <ReactLoading type={'spinningBubbles'} color={'black'} className='loadingAnimation'/>
+                </div>
             {this.props.users.map((user) => {
                 if (user.player){
                     return <SingleAdminBox history={this.props.history} key={uid(user)} adminAction={this.props.adminAction} user={user}/>
@@ -23,6 +27,9 @@ class AdminSearchResults extends React.Component{
         
         else{
             return <div>
+            <div hidden={this.props.hideLoading}>
+                <ReactLoading type={'spinningBubbles'} color={'black'} className='loadingAnimation'/>
+                </div>
             {this.props.users.map((user) => {
                 if (!user.player){
                     return <SingleAdminBox history={this.props.history} key={uid(user)} adminAction={this.props.adminAction} user={user}/>
