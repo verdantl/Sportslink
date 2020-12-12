@@ -95,12 +95,8 @@ class Images extends React.Component{
 
     }
     render(){
-        return <div className='profileImages'>
-
-            <div hidden={!this.getHideUploader()} onClick={this.previousImage} className={'leftarrow'}>
-            <ArrowLeftIcon className="arrow"/>
-            </div>
-            <div hidden={this.getHideUploader()}>
+        if (this.props.images.length === 0){
+             return <div >
             <ImageUploader
                 withIcon={true}
                 buttonText='Choose Image'
@@ -109,18 +105,27 @@ class Images extends React.Component{
                 maxFileSize={5242880}
             />
             </div>
-            <div hidden={this.state.hideDelete} id="imageDeleteButton" >Delete Image</div>
-            <img hidden={this.props.images.length === 0} onClick={this.deleteImageDialog} onMouseEnter={this.showDelete} onMouseLeave={this.hideDelete} src={this.props.images[this.state.imageNum]  ? this.props.images[this.state.imageNum].image : null} className="oneImage"/>
-            <div hidden={!this.getHideUploader()}>
-            <AddCircleIcon hidden={!this.getHideUploader()} className={"addPictureButton"} onClick={this.handleAddButtonClick}/>
-            <UploadPictureDialog open={!this.state.hideAddDialog} text="Upload a new picture" close={this.hideAddDialog} onDrop={this.onDrop.bind(this)} />
-            </div>
-            <ConfirmationDialog open={!this.state.hideDialog} handleClose={this.handleClose} handleAgreeClose={this.handleAgreeClose} handleCancelClose={this.handleDisagreeClose} confirmation={{title: "Are you sure you want to delete this image?", description: "This action cannot be undone."}}/>
-            <div hidden={!this.getHideUploader()} onClick={this.nextImage}className={'rightarrow'}>
-            <ArrowRightIcon  className="arrow"/>
-            </div>
+        }
+        else{
+            return <div className='profileImages'>
 
-        </div>
+                <div hidden={this.props.images.length === 0} onClick={this.previousImage} className={'leftarrow'}>
+                <ArrowLeftIcon className="arrow"/>
+                </div>
+
+                <div hidden={this.state.hideDelete} id="imageDeleteButton" >Delete Image</div>
+                <img onClick={this.deleteImageDialog} onMouseEnter={this.showDelete} onMouseLeave={this.hideDelete} src={this.props.images[this.state.imageNum]  ? this.props.images[this.state.imageNum].image : null} className="oneImage"/>
+                <div>
+                <AddCircleIcon className={"addPictureButton"} onClick={this.handleAddButtonClick}/>
+                <UploadPictureDialog open={!this.state.hideAddDialog} text="Upload a new picture" close={this.hideAddDialog} onDrop={this.onDrop.bind(this)} />
+                </div>
+                <ConfirmationDialog open={!this.state.hideDialog} handleClose={this.handleClose} handleAgreeClose={this.handleAgreeClose} handleCancelClose={this.handleDisagreeClose} confirmation={{title: "Are you sure you want to delete this image?", description: "This action cannot be undone."}}/>
+                <div onClick={this.nextImage} className={'rightarrow'}>
+                <ArrowRightIcon  className="arrow"/>
+                </div>
+
+            </div>
+        }
     }
 }
 export default Images;

@@ -65,11 +65,11 @@ class Dashboard extends React.Component{
                 <NewsBox/>                
                 </div>
             <div className="dashboardRightColumn">
-                <div hidden={this.state.hideLoading}>
+                <div hidden={!this.state.hideLoading}>
                 <NewPost createNewPost={this.createNewPost}/>
                 </div>
                
-            <div hidden={!this.state.hideLoading}>
+            <div hidden={this.state.hideLoading}>
                 <ReactLoading type={'spinningBubbles'} color={'black'} className='loadingAnimation'/>
                 </div>
 
