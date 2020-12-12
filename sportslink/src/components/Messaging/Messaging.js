@@ -62,7 +62,7 @@ class Messaging extends React.Component{
                 }
                 
             }
-            else{
+            else if (this.state.conversations[i].sentUsername !== this.state.user.username){
                 if (this.state.conversations[i].messages.length === 0){
                     contacts.push({userID: this.state.conversations[i].sentUsername, lastMessage: '' })
                 }
@@ -106,6 +106,7 @@ class Messaging extends React.Component{
         return <div className="messaging">
             <div className="contacts" onClick={this.contactClick}>
                 <Contacts contacts={this.state.contacts} currUser={this.state.user.username}/>
+                
             </div>
             <div className="rightContent">
                 <div className="contactHeader" onClick={this.contactHeaderClick}>
