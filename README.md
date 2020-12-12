@@ -4,6 +4,9 @@ This web application allows athletes and sports recruiters to showcase their acc
 # Link to deployed app on Heroku 
 https://guarded-hamlet-25028.herokuapp.com/
 
+Please note that messaging connection to database works and messages are sent, however there are some issue with the contact sidebar. 
+There is a bug with retrieving contacts which causes the conversation to show up as the current user logged in.
+
 ## Opening the app
 cd sportslink
 
