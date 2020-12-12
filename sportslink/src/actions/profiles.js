@@ -36,6 +36,7 @@ export const getUser = (username, dashboard) => {
         .then(json => {
             // the resolved promise with the JSON body
             dashboard.setState({user: json});
+            dashboard.forceUpdate()
         })
         .catch(error => {
             console.log(error);
