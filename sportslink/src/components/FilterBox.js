@@ -14,6 +14,10 @@ import {uid} from 'react-uid'
 
 
 class FilterBox extends React.Component{
+
+    state = {
+        filter : this.props.filter
+    }
         
     removePreference = (event) => {
         let object = event.target
@@ -83,7 +87,7 @@ class FilterBox extends React.Component{
             <h3>Filter by Preference</h3>
             </div>
         <FormControl className="table" component="fieldset">
-            <RadioGroup aria-label="filters" name="filters" value={this.props.filter} onChange={this.handleChange} row>
+            <RadioGroup aria-label="filters" name="filters" defaultValue='athlete' onChange={this.handleChange} row>
                 <FormControlLabel value="athlete" control={<Radio/>} label="Athletes" />
                 <FormControlLabel value="sponsor" control={<Radio />} label="Sponsors" />
                 <FormControlLabel value="posts" control={<Radio />} label="Posts" />
