@@ -20,7 +20,7 @@ class Contacts extends React.Component{
                     <img className="contactImage" src={!this.state.users.filter(user => user.username === contact.userID)[0]? null : this.state.users.filter(user => user.username === contact.userID)[0].image} alt="Profile Pic"></img>
                     <h6 className="contactName">{contact.userID}</h6>
                     <hr/>
-                    <p className="contactText">{contact.lastMessage}</p>
+                    <p className="contactText">{contact.lastMessage.substring(0, Math.min(20, contact.lastMessage.length))}</p>
                 </div>
             </div>
         )
