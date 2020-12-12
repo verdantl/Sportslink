@@ -1,6 +1,6 @@
 .filterBox{
     height: fit-content;
-    background-color: darksalmon;
+    background-color: #d6d6d6;
     border-radius: 2px;
     margin: 20px;
     padding: 10px;
@@ -27,7 +27,7 @@
 
 .searchButton{
     transform: scale(1.4);
-    background-color: antiquewhite;
+    background-color: #272727;
     vertical-align: middle ;
     margin-left: 10px;
     border-radius: 50%;

@@ -9,7 +9,7 @@
 
     box-shadow: 2px 2px 8px #888888;
     height: 100vh;
-    background-color: antiquewhite;
+    background-color: #D6DEDE;
     padding-left: 20px;
     padding-top: 20px;
 }
@@ -28,7 +28,7 @@
 .adminSearchBox{
    display:flex; 
    flex-direction:row;
-   background-color: antiquewhite;
+   background-color: #D6DEDE;
    border-radius: 5px;
    margin-top: 30px;
    height: auto;
@@ -44,7 +44,7 @@
 }
 
  .choice{
-    background-color: antiquewhite;
+    background-color: #D6DEDE;
     margin: 10px;
     border-radius: 3px;
     box-shadow: 2px 2px 8px goldenrod;
@@ -54,7 +54,7 @@
     margin: 20px;
 }
  .locations .choice{
-    background-color: darkcyan;
+    background-color: #E93541;
     padding-left: 10px;
     margin: 5px;
     border-radius: 3px;
@@ -64,7 +64,7 @@
     margin: 20px;
 }
  .organizations .choice{
-    background-color: antiquewhite;
+    background-color: #D6DEDE;
     padding-left: 10px;
     margin: 5px;
     border-radius: 3px;
@@ -75,7 +75,7 @@
     margin: 20px;
 }
  .sports .choice{
-    background-color: indianred;
+    background-color: #E93541;
     padding-left: 10px;
     margin: 5px;
     border-radius: 3px;
@@ -83,7 +83,7 @@
  }
 
  .MuiFormControl-root.MuiTextField-root.adminSearchBar{
-    background-color: antiquewhite;
+    background-color: #D6DEDE;
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -116,10 +116,10 @@
 .exitIconLight{
    transform: scale(1.3);
    cursor: pointer;
-   color: aliceblue;
+   color: #D6DEDE;
    vertical-align: middle;
 }
 
 .MuiRadio-colorSecondary.Mui-checked{
-   color: black;
+   color: #272727;
 }

@@ -4,10 +4,10 @@
   }
   
   .input .MuiInput-underline:after {
-    border-color: darkslategray;
+    border-color: #272727;
   }
   
   .input .MuiFormLabel-root,
   .input .MuiFormLabel-root.Mui-focused {
-    color: darkslategray;
+    color: #272727;
   }

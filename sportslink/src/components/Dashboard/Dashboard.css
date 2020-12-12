@@ -1,6 +1,6 @@
 .dashboard{
     display: flex;
-    background-color: linen;
+    background-color: #F1FAEE;
     height: 100%;
 }
 
@@ -16,14 +16,14 @@
 }
 
 .loadingAnimation{
-    color: black;
+    color: #272727;
     position: fixed;
     left: 50%;
     top: 50%;
 }
 
 .newsBox{
-    background-color:#F6C4A3;
+    background-color:#d6d6d6;
     padding: 10px;
     width: 300px;
     margin: auto;
@@ -33,7 +33,7 @@
 
 }
 .newsCard{
-    background-color: #F9B32F;
+    background-color: #D6DEDE;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
@@ -41,7 +41,7 @@
     transition: background-color 200ms;
 }
 .newsCard:hover{
-    background-color: #ff9f43;
+    background-color:#b2b8b8;
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
@@ -55,7 +55,7 @@
     padding-right: 10px;
 }
 .newsCardLink{
-    color: black; 
+    color: #272727; 
     text-decoration: 'none';
 }
 h2{
@@ -64,7 +64,7 @@ h2{
 }
 .gray{
     margin: 20px;
-    color: #2B2C2D;
+    color: #272727;
     padding: 5px;
 }
 .videoOfTheDayTitle{

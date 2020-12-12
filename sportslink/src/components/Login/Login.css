@@ -1,5 +1,5 @@
 .loginContainer{
-    background-color: antiquewhite;
+    background-color: #D6DEDE;
     text-align: center;
 
     align-items: center;
@@ -17,7 +17,7 @@
     align-items: center;
     border-radius: 10px;
     height: 100vh;
-    background-color: linen;
+    background-color: #F1FAEE;
 }
 
 .loginTitle{
@@ -31,12 +31,12 @@
 }
 
 .loginTitle h1{
-    color: crimson;
+    color: #E93541;
     text-shadow: 2px 2px rosybrown;
 }
 
 .loginTitle p{
-    color: black;
+    color: #272727;
     font-size: large;
     
 }

@@ -11,6 +11,6 @@ border-radius: 5px;
   
 /* Handle */
 ::-webkit-scrollbar-thumb {
-background: darkcyan;
+background: #E93541;
 border-radius: 5px;
 }
