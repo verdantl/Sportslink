@@ -1,5 +1,5 @@
 .unfocusedDiv {
-    background-color: indianred;
+    background-color: #d6d6d6;
     height: auto;
     width: 450px;
     padding: 10px;
@@ -10,7 +10,7 @@
 }
 
 .focusedDiv {
-    background-color: indianred;
+    background-color: #d6d6d6;
     height: auto;
     width: 450px;
     padding: 15px;
@@ -29,7 +29,7 @@
 }
 
 .startNewPostButton {
-    background-color: antiquewhite;
+    background-color: #D6DEDE;
     padding: 10px 20px;
     border: none;
     font-size: 16px;

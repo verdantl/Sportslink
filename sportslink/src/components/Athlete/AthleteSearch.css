@@ -1,7 +1,7 @@
 .athleteSearch{
     display: flex;
     width: 100%;
-    background-color: linen;
+    background-color: #F1FAEE;
     height: auto;
     min-height: 90vh;
 }
@@ -34,7 +34,7 @@
     font-size: small;
 }
 .MuiFormControl-root.MuiTextField-root.searchBar{
-    background-color: darksalmon;
+    background-color: #E93541;
     width: 70%;
     margin: 20px;
     margin-left: 20px;
@@ -59,7 +59,7 @@
 .searchBarContainer {
     display:flex; 
     flex-direction:row;
-    background-color: darksalmon;
+    background-color: #d6d6d6;
     border-radius: 5px;
     width: 70%;
     margin: 20px;

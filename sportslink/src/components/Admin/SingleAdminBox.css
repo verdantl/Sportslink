@@ -6,7 +6,7 @@
     width: fit-content;
     margin-left: 0px;
     margin-right: auto;
-    background-color: aliceblue;
+    background-color: #D6DEDE;
     border-radius: 2px;
     box-shadow: 2px 2px 8px #888888;
     cursor: pointer;
@@ -47,7 +47,7 @@
     padding-left: 10px;
     text-align: left;
     font-size: medium;
-    color: gray;
+    color: #272727;
     overflow: hidden;
 }
 .adminProfileSport{
@@ -58,7 +58,7 @@
     padding-left: 10px;
     text-align: left;
     font-size: medium;
-    color: red;
+    color: #E93541;
     overflow: hidden;
 }
 
@@ -76,7 +76,7 @@
     padding: 10px;
     border-radius: 10px;
     margin: 20px;
-    background-color: white;
+    background-color: #D6DEDE;
     float: left;
     color: cadetblue;
     font-size: large;
@@ -86,8 +86,8 @@
     padding: 10px;
     border-radius: 10px;
     margin: 20px;
-    background-color: white;
-    color: red;
+    background-color: #D6DEDE;
+    color: #E93541;
     float: left;
     font-size: large;
     box-shadow: 2px 2px 8px #888888;
@@ -96,7 +96,7 @@
     padding: 10px;
     border-radius: 5px;
     margin: 20px;
-    background-color: white;
+    background-color: #D6DEDE;
     float: left;
     font-size: large;
     box-shadow: 2px 2px 8px #888888;
@@ -118,7 +118,7 @@
     border-radius: 10px;
     margin: 20px;
     background-color: lightgray;
-    color: red;
+    color: #E93541;
     float: left;
     font-size: large;
     box-shadow: 2px 2px 8px #888888;

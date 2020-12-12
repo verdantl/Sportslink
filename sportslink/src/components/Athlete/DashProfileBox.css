@@ -1,6 +1,5 @@
 .personalProfileBox{
-    background-color: #DFAD8C
-   ;
+    background-color: #d6d6d6;
     margin: auto;
     padding: 30px;
     width: fit-content;
@@ -53,7 +52,7 @@ a {
 .buttonLight{
     margin: 10px;
     padding: 10px;
-    background-color: lightgray;
+    background-color: #D6DEDE;
     width: fit-content;
     height: fit-content;
     text-align: center;
@@ -72,7 +71,7 @@ a {
 
 .personalProfileBox p{
     font-size: small;
-    color: cadetblue;
+    color: #E93541;
     margin: 0px;
     padding: 0px;
     cursor: pointer;

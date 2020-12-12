@@ -54,13 +54,13 @@
     box-shadow: 1px 1px 3px gray;
 }
 .postInfo{
-    background-color: #DFAD8C;
+    background-color: #d6d6d6;
     padding: 10px;
     font-size: large;
 
 }
 .postIntermediary{
-    background-color: white;
+    background-color: #D6DEDE;
     padding: 5px;
     padding-bottom: 0px;
     margin-bottom: 0px;
@@ -87,7 +87,7 @@
 }
 
 .commentText{
-    background-color: aliceablue;
+    background-color: #D6DEDE;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 1px 1px 3px #888888;
@@ -126,10 +126,10 @@
 }
 
 .thumbsUp{
-    color: black;
+    color: #272727;
 }
 .thumbsUpLight{
-    color: crimson;
+    color: #E93541;
 }
 
 .thumbsUpButton{
@@ -150,13 +150,13 @@ button.MuiButtonBase-root.MuiIconButton-root.thumbsUpButton{
     padding-left: 10px;
     border-radius: 10px;
     width: 90%;
-    background-color: antiquewhite;
+    background-color: #F1FAEE;
 }
 .viewComments{
     text-align: center;
     cursor: pointer;
     padding: 5px;
     font-size: small;
-    border-top: 1px gray solid;
+    border-top: 1px #D6DEDE solid;
     
 }
