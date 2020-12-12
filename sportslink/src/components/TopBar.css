@@ -1,5 +1,5 @@
 .topBar{
-    background-color: indianred;
+    background-color:#BE8C6B;
     padding: 5px;
     height: 50px;
     margin: auto;  
@@ -30,7 +30,8 @@ li{
 .homeIcon{
     transform: scale(1.4);
     vertical-align: middle;
-    transition: color 200ms
+    transition: color 200ms;
+    /*color: aliceblue*/
 }
 
 .homeIcon:hover{
