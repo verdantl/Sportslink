@@ -53,21 +53,21 @@ class Messaging extends React.Component{
     setContacts = () => {
         const contacts = []
         for (let i = 0; i < this.state.conversations.length; i++){
-            if (this.state.conversations[i].toUsername === this.state.user.username){
+            if (this.state.conversations[i].toUsername !== this.state.user.username){
                 if (this.state.conversations[i].messages.length === 0){
-                    contacts.push({ userID: this.state.conversations[i].sentUsername,lastMessage: '' })
-                }
-                else{
-                    contacts.push({ userID: this.state.conversations[i].sentUsername, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
-                }
-                
-            }
-            else if (this.state.conversations[i].sentUsername === this.state.user.username){
-                if (this.state.conversations[i].messages.length === 0){
-                    contacts.push({userID: this.state.conversations[i].toUsername, lastMessage: '' })
+                    contacts.push({ userID: this.state.conversations[i].toUsername,lastMessage: '' })
                 }
                 else{
                     contacts.push({ userID: this.state.conversations[i].toUsername, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
+                }
+                
+            }
+            else if (this.state.conversations[i].toUsername !== this.state.user.username){
+                if (this.state.conversations[i].messages.length === 0){
+                    contacts.push({userID: this.state.conversations[i].sentUsername, lastMessage: '' })
+                }
+                else{
+                    contacts.push({ userID: this.state.conversations[i].sentUsername, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
                 }
             }
             
