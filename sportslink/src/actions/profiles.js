@@ -64,6 +64,7 @@ export const updateUserInfo = (attributes, userID, dashboard) => {
     })
     .then(json => {
         // the resolved promise with the JSON body
+        dashboard.setState({hideLoading: true})
         getUser(userID, dashboard);
         getUsers(dashboard);
         
@@ -110,6 +111,7 @@ export const deleteUser = (user, dashboard) => {
             }
         })
         .then(json => {
+            dashboard.setState({hideLoading: true})
             getUsers(dashboard)
             // the resolved promise with the JSON body
         })
@@ -142,6 +144,7 @@ export const addImage = (image, username, dashboard) => {
     .then(json => {
         // the resolved promise with the JSON body
         getUser(username, dashboard);
+        dashboard.setState({hideLoading: true})
         
     })
     .catch(error => {
@@ -165,10 +168,12 @@ export const removeImage = (imageID, username, dashboard) => {
             return res.json();
         } else {
             window.location.reload();
+            
         }
     })
     .then(json => {
             getUser(username, dashboard)
+            dashboard.setState({hideLoading: true})
             // the resolved promise with the JSON body
         })
     .catch(error => {

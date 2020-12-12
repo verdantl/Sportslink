@@ -22,6 +22,7 @@ export const addExperience = (experience, username, dashboard) => {
     .then(json => {
         // the resolved promise with the JSON body
         getUser(username, dashboard)
+        dashboard.setState({hideLoading: true})
         
     })
     .catch(error => {
@@ -50,6 +51,7 @@ export const removeExperience = (experienceID, username, dashboard) => {
     .then(json => {
         // the resolved promise with the JSON body
         getUser(username, dashboard)
+        dashboard.setState({hideLoading: true})
         
     })
     .catch(error => {
@@ -81,6 +83,7 @@ export const updateExperience = (attributes, username, dashboard) => {
     .then(json => {
         // the resolved promise with the JSON body
         getUser(username, dashboard)
+        dashboard.setState({hideLoading: true})
         
     })
     .catch(error => {

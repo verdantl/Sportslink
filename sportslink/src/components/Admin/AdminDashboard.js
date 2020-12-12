@@ -14,6 +14,7 @@ class AdminDashboard extends React.Component{
         getUsers(this)
     }
     state = {
+        hideLoading: true,
       filters: 'athlete',
       locations: [],
       organizations: [],
@@ -25,6 +26,7 @@ class AdminDashboard extends React.Component{
     }
 
     removePost = (postID) => {
+      this.setState({hideLoading: false})
       deletePost(postID, this)
     }
 
@@ -112,6 +114,7 @@ class AdminDashboard extends React.Component{
           </div>
 
           <AdminSearchResults
+            hideLoading={this.state.loading}
             history={this.props.history} 
             adminAction={this.adminAction} 
             removePost={this.removePost} 
