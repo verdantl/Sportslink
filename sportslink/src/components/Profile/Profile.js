@@ -25,6 +25,7 @@ class Profile extends React.Component{
     }
 
     state = {
+        hideLoading: false,
         user: {
             player: true,
             name: "",
@@ -35,15 +36,18 @@ class Profile extends React.Component{
         }
     }
     changePicture = (image) => {
+        this.setState({hideLoading: false})
         const changes = {image: image}
         updateUserInfo(changes, this.state.user.username, this)
     }
 
     removeImage = (image) => {
+        this.setState({hideLoading: false})
         removeImage(image._id, this.state.user.username, this)
     }
 
     addImage = (image) => {
+        this.setState({hideLoading: false})
         const imageStuff = {image: image}
         addImage(imageStuff, this.state.user.username, this)
     }
@@ -54,6 +58,7 @@ class Profile extends React.Component{
     }
     
     updateExperience = (id, title, organization, league, stats, description, years) => {
+        this.setState({hideLoading: false})
         const experience = {
             _id: id,
             title: title,
@@ -71,7 +76,7 @@ class Profile extends React.Component{
     }
 
     addExperience = (id, title, organization, league, stats, description, years) => {
-
+        this.setState({hideLoading: false})
         const experience= {
             title: title,
             organization: organization,
@@ -85,13 +90,14 @@ class Profile extends React.Component{
     }
 
     removeExperience = (id) => {
-        console.log(id)
+        this.setState({hideLoading: false})
         removeExperience(id, this.state.user.username, this)
 
         this.setState({}); 
     }
 
     getExperienceById = (id) =>{
+        
         const experiences = this.state.user.experience
         let i;
         for (i in experiences){            
@@ -125,40 +131,47 @@ class Profile extends React.Component{
     }
 
     addAccomplishment = (id, accomplishment) =>{
+        this.setState({hideLoading: false})
         addCareer(accomplishment, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience  
     }
 
     updateAccomplishment = (id, accomplishmentText) => {
+        this.setState({hideLoading: false})
         const accomplishment = {_id: id, career: accomplishmentText}
         updateCareer(accomplishment, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience  
     }
 
     removeAccomplishment = (id) => {
+        this.setState({hideLoading: false})
         removeCareer(id, this.state.user.username, this)
         this.setState({});
     }
 
     updateDescription = (newDescription) =>{
+        this.setState({hideLoading: false})
         const updateUser = {description: newDescription}
         updateUserInfo(updateUser, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience  
     }
 
     updateLocation = (location) =>{
+        this.setState({hideLoading: false})
         const updateUser = {location: location}
         updateUserInfo(updateUser, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience 
     }
 
     updateOrganization = (organization) =>{
+        this.setState({hideLoading: false})
         const updateUser = {organization: organization}
         updateUserInfo(updateUser, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience 
     }
 
     updateSports = (sports) =>{
+        this.setState({hideLoading: false})
         const updateUser = {sports: sports}
         updateUserInfo(updateUser, this.state.user.username, this)
         this.setState({}); // used to cause a page refresh upon adding the experience 
@@ -201,7 +214,10 @@ class Profile extends React.Component{
                 <EditButton handleEditButtonClick={this.handleBiographyEditButtonClick.bind(this)}/>
                 </div>
             </div>
-
+            
+            <div hidden={!this.state.hideLoading}>
+                <ReactLoading type={'spinningBubbles'} color={'black'} className='loadingAnimation'/>
+            </div>
 
             <div className="achievements">
                 <div></div>
