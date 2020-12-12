@@ -4,6 +4,7 @@ import './profile.css'
 import EditButton from './EditButton'
 import DeleteButton from './DeleteButton'
 import countryData from '../../country_data/countries.json'
+import yearsData from '../../years_data/years.json'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import TextField from '@material-ui/core/TextField'
 
@@ -51,6 +52,16 @@ class InputBox extends React.Component{
     }
 
     handleSave = () =>{
+      var newYearsData = this.state.years;
+      var valid = 0;
+      for (var i = 0; i < yearsData.length; i++){
+        if(newYearsData == yearsData[i].years){
+          valid = 1;
+        }
+      }
+      if (valid != 1) {
+        newYearsData = "";
+      }
       if(this.state.boxState === 1){
           this.props.updateExperience(
               this.state.idToEdit, 
@@ -59,7 +70,7 @@ class InputBox extends React.Component{
               this.state.league, 
               this.state.stats, 
               this.state.description, 
-              this.state.years);
+              newYearsData);
           this.setBoxState(0);
       }
       else if(this.state.boxState === 2){
@@ -70,7 +81,7 @@ class InputBox extends React.Component{
             this.state.league, 
             this.state.stats, 
             this.state.description, 
-            this.state.years);
+            newYearsData);
         this.setBoxState(0);
       }
       else if(this.state.boxState === 3){
@@ -199,11 +210,18 @@ class InputBox extends React.Component{
       return (
         <div className="modal" id="modal">
           <h2>The Experience</h2> {/* Can enter a title here for the window (between the h2 tags) */} 
-          <div className="content">
+          <div className="content" display="grid" place-items="center"> 
                {/* Experience to edit: {this.state.idToEdit} */}
               <input type="text" className="experienceTileH2" name="title" placeholder="Title" value={this.state.title} onChange={this.handleChange}/>
               <input type="text" className="experienceTileH3" name="organization" placeholder="Organization" value={this.state.organization} onChange={this.handleChange}/>
-              <input type="text" className="experienceTileH3" name="years" placeholder="Year(s)" value={this.state.years} onChange={this.handleChange}/>
+              {/*<input type="text" className="experienceTileH3" name="years" placeholder="Year(s)" value={this.state.years} onChange={this.handleChange}/>*/}
+              <Autocomplete
+                    id="profileYearDropdown"
+                    options={yearsData}
+                    getOptionLabel={(option) => option.years}
+                    onSelect={this.handleChange}
+                    renderInput={(params) => <TextField {...params} className="experienceTileH3" name="years" placeholder="Years" />}
+                    />
               <input type="text" className="experienceTileH4" name="league" placeholder="League" value={this.state.league} onChange={this.handleChange} />
               <textarea className="experienceTileP" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange}/>
 

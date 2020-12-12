@@ -26,7 +26,12 @@
     width: 100%;
     display: block;
     clear: both;
-    height: 3vh;
+    height: 58px;
+}
+
+.contactHeader:hover{
+    background-color: #D6DEDE;
+    cursor: pointer;
 }
 
 .rightContent{

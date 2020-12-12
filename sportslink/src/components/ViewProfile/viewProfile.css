@@ -1,12 +1,12 @@
 .userProfile{
-    background-color: gainsboro;
+    background-color:#F1FAEE;
     padding: 5px;
     text-align: center;
     height: 100%;
 }
 
 .recruiterProfile{
-    background-color: honeydew;
+    background-color:#D6DEDE;
     padding: 5px;
     text-align: center;
     height: 100%;
@@ -15,7 +15,7 @@
 .profilePicture{
     display: inline-block;
     position: relative;
-    border: 1px black solid;
+    border: 1px #272727;
     width: 270px;
     height: 270px;
     overflow: hidden;
@@ -64,7 +64,7 @@
     border-radius: 2px;
     width: 80vw;
     padding: 30px;
-    border: 1px black solid;
+    border: 1px#272727;
     margin: auto;
     box-shadow: 2px 2px 8px #888888;
 }
@@ -73,7 +73,7 @@
     display: inline-block;
     margin: 10px;
     font-size: large;
-    background-color: linen;
+    background-color: #F1FAEE;
     border-radius: 5px;
     padding: 10px;
     border: 1px gray solid;
@@ -116,14 +116,11 @@
 }
 
 .achievements{
-
     width: fit-content;
     height: fit-content;
     display: grid;
     grid-template-columns: 1fr 8fr 5fr;
     margin: auto;
-
-    
 }
 
 .profileBio{
@@ -142,9 +139,8 @@
 
 .profileCareer{
     background-color: white;
-    margin: 10px;
+    margin-top: 10px;
     width: 30vw;
-    padding: 10px;
     color: black;
     border: 1px      solid;
     border-radius: 10px;
@@ -192,9 +188,9 @@
 .profileImages{
     background-color: white;
     border: 1px black solid;
-    width: 31vw;
+    width: 30vw;
     height: 15vw;
-    margin: 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 2px 2px 8px #888888;

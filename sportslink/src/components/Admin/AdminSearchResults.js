@@ -1,6 +1,7 @@
 import React from 'react'
 import SingleAdminBox from './SingleAdminBox'
 import { uid } from "react-uid";
+
 import AdminPosts from './AdminPosts'
 
 class AdminSearchResults extends React.Component{
@@ -18,7 +19,7 @@ class AdminSearchResults extends React.Component{
 
         }
         else if (this.props.filter === 'posts'){
-            return <AdminPosts removePost={this.props.removePost} posts={this.props.posts} clickProfile={this.props.clickProfile}/>
+            return <AdminPosts history={this.props.history} removePost={this.props.removePost} posts={this.props.posts} clickProfile={this.props.clickProfile}/>
         }
         
         else{

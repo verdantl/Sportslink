@@ -3,6 +3,7 @@ import './AdminDashboard.css'
 import AdminSearchResults from "./AdminSearchResults"
 import AdminSearchBox from './AdminSearchBox'
 import AdminSideFilters from './AdminSideFilters'
+import ReactLoading from 'react-loading';
 import {getUsers, updateUserInfo, deleteUser} from "../../actions/profiles"
 import {getPosts, deletePost, deletePostUsername} from "../../actions/posts"
 
@@ -14,6 +15,7 @@ class AdminDashboard extends React.Component{
         getUsers(this)
     }
     state = {
+      hideLoading: true,
       filters: 'athlete',
       locations: [],
       organizations: [],
@@ -25,6 +27,7 @@ class AdminDashboard extends React.Component{
     }
 
     removePost = (postID) => {
+      this.setState({hideLoading: false})
       deletePost(postID, this)
     }
 
@@ -104,7 +107,11 @@ class AdminDashboard extends React.Component{
           filters={filters}
           updatePref={this.updatePreferences} 
           changeFilter={this.changeFilter}/>
-          
+
+          <div hidden={this.state.hideLoading}>
+          <ReactLoading type={'spinningBubbles'} color={'black'} className='loadingAnimation'/>
+          </div>
+
           <div className="adminRightColumn">
           <AdminSearchBox search={this.search}/>
           <div hidden={this.state.search.length === 0} className='searchResultTitle'>          
@@ -112,6 +119,7 @@ class AdminDashboard extends React.Component{
           </div>
 
           <AdminSearchResults
+            hideLoading={this.state.loading}
             history={this.props.history} 
             adminAction={this.adminAction} 
             removePost={this.removePost} 

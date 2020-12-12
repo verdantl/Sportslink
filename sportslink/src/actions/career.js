@@ -22,6 +22,7 @@ export const addCareer = (career, username, dashboard) => {
     .then(json => {
         // the resolved promise with the JSON body
         getUser(username, dashboard)
+        dashboard.setState({hideLoading: true})
         
     })
     .catch(error => {
@@ -50,6 +51,7 @@ export const removeCareer = (careerID, username, dashboard) => {
     .then(json => {
         // the resolved promise with the JSON body
         getUser(username, dashboard)
+        dashboard.setState({hideLoading: true})
         
     })
     .catch(error => {
@@ -78,6 +80,7 @@ export const removeExperience = (experienceID, username, dashboard) => {
     .then(json => {
         // the resolved promise with the JSON body
         getUser(username, dashboard)
+        dashboard.setState({hideLoading: true})
         
     })
     .catch(error => {
@@ -109,7 +112,7 @@ export const updateCareer = (attributes, username, dashboard) => {
     .then(json => {
         // the resolved promise with the JSON body
         getUser(username, dashboard)
-        
+        dashboard.setState({hideLoading: true})
     })
     .catch(error => {
         console.log(error);

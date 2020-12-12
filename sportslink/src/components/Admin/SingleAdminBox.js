@@ -67,6 +67,10 @@ class SingleAdminBox extends React.Component{
             return "Suspend"
         }
     }
+    handleClick = () => {
+        this.props.history.push('/viewprofile/' + this.props.user.username);
+        // window.location.href = '/viewprofile/' + this.props.post.user.username
+    }
 
     render(){
         return <div className="adminBox">
@@ -74,7 +78,7 @@ class SingleAdminBox extends React.Component{
             handleAgreeClose={this.handleAgreeClose} 
             handleCancelClose={this.handleDisagreeClose}
             confirmation={{title: "Confirmation", description: "Are you sure?"}}/>
-            <div className="adminProfileBox">
+            <div className="adminProfileBox" onClick={this.handleClick}>
             <div className='profilePic'> <img src={this.props.user.image}/></div>
 
             <div className='adminSubBox'>

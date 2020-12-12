@@ -48,13 +48,13 @@
 .postText{
     padding: 10px;
     margin: 10px;
-    background-color: darksalmon;
+    background-color: #ECF0F1;
     text-align: center;
     border-radius: 3px;
     box-shadow: 1px 1px 3px gray;
 }
 .postInfo{
-    background-color: indianred;
+    background-color: #DFAD8C;
     padding: 10px;
     font-size: large;
 
