@@ -17,10 +17,6 @@ class Messaging extends React.Component{
         getUser(this.props.currentUser, this)
         getUsers(this)
         getConversations(this.props.currentUser, this)
-        const thing = this
-        // setInterval( function() {
-        //     getConversations(thing.props.currentUser, thing)
-        // }, 1000)
     }
 
     state = {
@@ -58,36 +54,21 @@ class Messaging extends React.Component{
         const contacts = []
         for (let i = 0; i < this.state.conversations.length; i++){
             if (this.state.conversations[i].toUsername !== this.state.user.username){
-                let inter = this.state.users.filter(user => user.username === this.state.conversations[i].toUsername);
-                let icon;
-                if (inter[0]){
-                    icon = inter[0].image
-                }
-                else{
-                    icon = null
-                }
                 if (this.state.conversations[i].messages.length === 0){
-                    contacts.push({ userID: this.state.conversations[i].toUsername, icon: icon, lastMessage: '' })
+                    contacts.push({ userID: this.state.conversations[i].toUsername,lastMessage: '' })
                 }
                 else{
-                    contacts.push({ userID: this.state.conversations[i].toUsername, icon: icon, lastMessage: this.state.conversations[i].messages[0].messageData})
+                    contacts.push({ userID: this.state.conversations[i].toUsername, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
                 }
                 
             }
             else{
-                let inter = this.state.users.filter(user => user.username === this.state.conversations[i].sentUsername)
-                let icon;
-                if (inter[0]){
-                    icon = inter[0].image
-                }
-                else{
-                    icon = null
-                }
+
                 if (this.state.conversations[i].messages.length === 0){
-                    contacts.push({userID: this.state.conversations[i].sentUsername, icon: icon, lastMessage: '' })
+                    contacts.push({userID: this.state.conversations[i].sentUsername, lastMessage: '' })
                 }
                 else{
-                    contacts.push({ userID: this.state.conversations[i].sentUsername, icon: icon, lastMessage: this.state.conversations[i].messages[0].messageData})
+                    contacts.push({ userID: this.state.conversations[i].sentUsername, lastMessage: this.state.conversations[i].messages[this.state.conversations[i].messages.length - 1].messageData})
                 }
             }
             
@@ -118,19 +99,17 @@ class Messaging extends React.Component{
         }
     }
 
+    contactHeaderClick = () => {
+        this.props.history.push('/viewprofile/' + this.state.currContact);
+    }
+
     render() {
         return <div className="messaging">
             <div className="contacts" onClick={this.contactClick}>
-                {
-                    // TODO: Add search bar
-                }
                 <Contacts contacts={this.state.contacts} currUser={this.state.user.username}/>
             </div>
             <div className="rightContent">
-                <div className="contactHeader">
-                    {
-                        // TODO: Finish layout for Contact Header
-                    }
+                <div className="contactHeader" onClick={this.contactHeaderClick}>
                     <ContactHeader currContact={this.state.currContact}/>
                 </div>
                 <div className="texts">
@@ -144,53 +123,3 @@ class Messaging extends React.Component{
     }
 }
 export default Messaging
-
-// The following is an example state
-// conversations: [
-        //     'UserIDGoesHere1': [
-        //         {
-        //             messageID: 100,
-        //             userID: 'UserIDGoesHere1',
-        //             messageData: 'This is an incoming message'
-        //         },
-        //         {
-        //             messageID: 101,
-        //             userID: 'currUserID',
-        //             messageData: 'This is an outgoing message'
-        //         }
-        //     ],
-        //     'UserIDGoesHere2': [
-        //         {
-        //             messageID: 102,
-        //             userID: 'UserIDGoesHere2',
-        //             messageData: 'This is an incoming message'
-        //         },
-        //         {
-        //             messageID: 103,
-        //             userID: 'currUserID',
-        //             messageData: 'This is an outgoing message'
-        //         },
-        //         {
-        //             messageID: 104,
-        //             userID: 'currUserID',
-        //             messageData: 'This is another outgoing message'
-        //         },
-        //         {
-        //             messageID: 105,
-        //             userID: 'UserIDGoesHere2',
-        //             messageData: 'Bruh'
-        //         }
-        //     ]
-        // ],
-        // contacts: [
-        //     {
-        //         userID: 'UserIDGoesHere1',
-        //         icon: '',
-        //         lastMessage: 'This was the last message sent by UserIDGoesHere1'
-        //     },
-        //     {
-        //         userID: 'UserIDGoesHere2',
-        //         icon: '',
-        //         lastMessage: 'This was the last message sent by UserIDGoesHere2'
-        //     }
-        // ]

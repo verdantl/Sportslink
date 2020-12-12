@@ -70,7 +70,7 @@ class AdminPostCard extends React.Component{
 
             <div className="postIntermediary">
                 <div>
-            <span> {this.props.post.likes + " Likes"} </span>
+            <span> {this.props.post.likes.length + " Likes"} </span>
             <span>
                 {this.props.post.comments.length + " Comments"}
             </span>

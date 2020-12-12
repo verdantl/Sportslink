@@ -1,13 +1,20 @@
 .contactItem{
     width: 100%;
-    min-height: 75px;
-    max-height: 100px;
-    background-color: gainsboro;
+    height: 58px;
+    background-color: #F1FAEE;
     padding: 2px;
+    transition-property: background-color;
+    border-bottom: 3px solid #bbb;
+    border-right: 3px solid #bbb;
+}
+
+.contactItem:hover{
+    background-color: #D6DEDE;
+    cursor: pointer;
 }
 
 .contactImage{
-    padding: 2px;
+    padding: 4px;
     width: 50px;
     height: 50px;
     word-wrap: normal;
@@ -28,4 +35,8 @@
 hr {
     border-top: 3px solid #bbb;
     margin: 0;
+}
+
+.bottomBar {
+    float: bottom;
 }

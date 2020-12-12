@@ -41,6 +41,7 @@ export const newPost = (post, dashboard) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
+            dashboard.setState({hideLoading: true})
             getPosts(dashboard)
         })
         .catch(error => {
@@ -186,6 +187,7 @@ export const deletePost = (postID, dashboard) => {
     .then(json => {
         // the resolved promise with the JSON body
         getPosts(dashboard)
+        dashboard.setState({hideLoading: true})
     })
 }
 

@@ -13,20 +13,19 @@ class ContactHeader extends React.Component{
                 name:''
             }
         }
-
     }
     
 
     render() {
         getUser(this.props.currContact, this);
         return (
-            <div className="returnDiv">
-                <div className="header">
-                    <img className="contactImage" src={this.state.user.image} alt="Profile Pic"></img>
-                    <p>{this.state.user.name}</p>
+            <div>
+                <div className="returnDiv">
+                    <div className="header">
+                        <img className="contactImage" src={this.state.user.image} alt="Profile Pic"></img>
+                        <p>{this.state.user.name}</p>
+                    </div>
                 </div>
-                <br/>
-                <hr/>
             </div>
         )
     }

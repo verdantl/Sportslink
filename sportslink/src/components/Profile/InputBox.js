@@ -42,7 +42,7 @@ class InputBox extends React.Component{
     }
 
     handleCancel = () =>{
-      if(this.state.boxState == 8){
+      if(this.state.boxState === 8){
         this.setBoxState(7)
       }
       else{
@@ -51,7 +51,7 @@ class InputBox extends React.Component{
     }
 
     handleSave = () =>{
-      if(this.state.boxState == 1){
+      if(this.state.boxState === 1){
           this.props.updateExperience(
               this.state.idToEdit, 
               this.state.title, 
@@ -62,7 +62,7 @@ class InputBox extends React.Component{
               this.state.years);
           this.setBoxState(0);
       }
-      else if(this.state.boxState == 2){
+      else if(this.state.boxState === 2){
         this.props.addExperience(
             this.state.idToEdit, 
             this.state.title, 
@@ -73,31 +73,31 @@ class InputBox extends React.Component{
             this.state.years);
         this.setBoxState(0);
       }
-      else if(this.state.boxState == 3){
+      else if(this.state.boxState === 3){
         this.props.removeExperience(this.state.idToEdit);
         this.setBoxState(0);
       }
-      else if(this.state.boxState == 4){
+      else if(this.state.boxState === 4){
         this.props.addAccomplishment(this.state.idToEdit, this.state.accomplishmentText);
         this.setBoxState(0);
       }
-      else if(this.state.boxState == 5){
+      else if(this.state.boxState === 5){
         this.props.updateDescription(this.state.descriptionMain);
         this.setBoxState(0);
       }
-      else if(this.state.boxState == 6){
+      else if(this.state.boxState === 6){
         this.props.updateLocation(this.state.location);
         this.props.updateOrganization(this.state.organization);
         this.props.updateSports(this.state.sports);
         this.setBoxState(0);
       }
-      else if(this.state.boxState == 7){
+      else if(this.state.boxState === 7){
         this.props.updateAccomplishment(
             this.state.idToEdit, 
             this.state.accomplishmentText);
         this.setBoxState(0);
       }
-      else if(this.state.boxState == 8){
+      else if(this.state.boxState === 8){
         this.props.removeAccomplishment(this.state.idToEdit);
         this.setBoxState(0);
       }
@@ -125,7 +125,7 @@ class InputBox extends React.Component{
   }
 
   setDefaultValuesForState = () =>{
-    if(this.state.boxState == 1){
+    if(this.state.boxState === 1){
       const experience = this.props.getExperienceById(this.state.idToEdit);
       this.setState({
         title: experience.title,
@@ -136,7 +136,7 @@ class InputBox extends React.Component{
         years: experience.years
       });
     }
-    else if(this.state.boxState == 2){
+    else if(this.state.boxState === 2){
       const nextIdNum = this.getNextExperienceId();
       this.setState({
         title: "",
@@ -150,26 +150,26 @@ class InputBox extends React.Component{
     }
     // no default value changes for state 3 (removing an experience)
     // adding an accomplishment
-    else if(this.state.boxState == 4){ 
+    else if(this.state.boxState === 4){ 
       const nextIdNum = this.props.getAccomplishments().length;
       this.setState({
         accomplishmentText: 'Accomplishment',
         idToEdit: nextIdNum
       });
     }
-    else if(this.state.boxState == 5){ 
+    else if(this.state.boxState === 5){ 
       this.setState({
         descriptionMain: this.props.user.description,
       });
     }
-    else if(this.state.boxState == 6){ 
+    else if(this.state.boxState === 6){ 
       this.setState({
         location: this.props.user.location,
         organization: this.props.user.organization,
         sports: this.props.user.sports,
       });
     }
-    else if(this.state.boxState == 7){ 
+    else if(this.state.boxState === 7){ 
       const accomplishment = this.props.getAccomplishmentById(this.state.idToEdit);
       this.setState({
         accomplishmentText: accomplishment.career
@@ -361,32 +361,32 @@ class InputBox extends React.Component{
 
     render(){
         // does not render
-        if(this.state.boxState == 0){
+        if(this.state.boxState === 0){
             return this.renderState0();
         }
 
-        else if (this.state.boxState == 1){
+        else if (this.state.boxState === 1){
           return this.renderState1();
         }
-        else if (this.state.boxState == 2){
+        else if (this.state.boxState === 2){
           return this.renderState1(); // because they look the same
         }
-        else if (this.state.boxState == 3){
+        else if (this.state.boxState === 3){
           return this.renderState3(); 
         }
-        else if (this.state.boxState == 4){
+        else if (this.state.boxState === 4){
           return this.renderState4(); 
         }
-        else if (this.state.boxState == 5){
+        else if (this.state.boxState === 5){
           return this.renderState5(); 
         }
-        else if (this.state.boxState == 6){
+        else if (this.state.boxState === 6){
           return this.renderState6(); 
         }
-        else if (this.state.boxState == 7){
+        else if (this.state.boxState === 7){
           return this.renderState7(); 
         }
-        else if (this.state.boxState == 8){
+        else if (this.state.boxState === 8){
           return this.renderState8(); 
         }
         else{

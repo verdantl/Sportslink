@@ -2,7 +2,7 @@ import React from 'react'
 import './Dashboard.css'
 import DashProfileBox from '../Athlete/DashProfileBox'
 import NewsBox from './NewsBox'
-import lebron from '../images/lebron.jpg'
+import ReactLoading from 'react-loading';
 import NewPost from './NewPost'
 import Posts from './Posts'
 import { getUser, getUsers } from '../../actions/profiles' 
@@ -18,6 +18,7 @@ class Dashboard extends React.Component{
     }
     
     state = {
+        hideLoading: true,
         user: {},
         users: [],
         posts: [],
@@ -25,6 +26,7 @@ class Dashboard extends React.Component{
       }
 
     createNewPost = (postText) => {
+        this.setState({hideLoading: false})
         const post = {
             user: this.state.user,
             text: postText,
@@ -63,7 +65,14 @@ class Dashboard extends React.Component{
                 <NewsBox/>                
                 </div>
             <div className="dashboardRightColumn">
+                <div hidden={this.state.hideLoading}>
                 <NewPost createNewPost={this.createNewPost}/>
+                </div>
+               
+            <div hidden={!this.state.hideLoading}>
+                <ReactLoading type={'spinningBubbles'} color={'black'} className='loadingAnimation'/>
+                </div>
+
                 <Posts 
                 history={this.props.history}
                 user={this.state.user} 

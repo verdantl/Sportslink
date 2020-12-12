@@ -1,6 +1,5 @@
 'use strict'
 const mongoose = require('mongoose')
-const uniqueValidator = require('mongoose-unique-validator');
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -42,8 +41,7 @@ const PostSchema = new mongoose.Schema({
     },
     likes:[{
         type: String,
-        required: false,
-        unique: true
+        required: false
     }],
     date: {
         type: String,
@@ -51,8 +49,6 @@ const PostSchema = new mongoose.Schema({
     },
     comments: [CommentSchema]
 })
-
-PostSchema.plugin(uniqueValidator)
 
 const Post = mongoose.model("Post", PostSchema)
 
