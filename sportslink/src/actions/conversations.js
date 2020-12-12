@@ -41,6 +41,7 @@ export const createNewConversation = (currUser, otherUser, dashboard) => {
         .then(res => {
             if (res.status === 200) {
                 dashboard.props.history.push("/messaging");
+                return res.json()
                 // return a promise that resolves with the JSON body
             } else {
                 window.location.reload();

@@ -29,11 +29,6 @@ class ViewProfile extends React.Component{
     }
 
     render(){
-        if (!this.state.user.username){
-            return <div className="userProfile">
-                Username does not exist in the database.
-            </div>
-        }
         return <div className={(this.state.user.player) ? "userProfile" : "recruiterProfile"}>
             <div className="profileCard">
                 <div className="profileInfo">
