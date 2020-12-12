@@ -52,11 +52,6 @@ class Profile extends React.Component{
         const imageStuff = {image: image}
         addImage(imageStuff, this.state.user.username, this)
     }
-
-    handleButtonOff = (event) => {
-        this.setState({addButtonClass: 'addExperienceButton'})
-
-    }
     
     updateExperience = (id, title, organization, league, stats, description, years) => {
         this.setState({hideLoading: false})
@@ -71,9 +66,6 @@ class Profile extends React.Component{
         }
 
         updateExperience(experience, this.state.user.username, this)
-        console.dir(global.experience)
-       // this.render();
-        //this.setState({experience: experiences});
     }
 
     addExperience = (id, title, organization, league, stats, description, years) => {
