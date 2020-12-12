@@ -126,6 +126,7 @@ class AthleteSearch extends React.Component{
 
                 <div className="filter">
                     <FilterBox 
+                    filter={'athlete'}
                     updatePref={this.updatePreferences} 
                     filters={filters} 
                     changeFilter={this.changeFilter}/>

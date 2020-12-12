@@ -45,6 +45,11 @@ class AdminPostCard extends React.Component{
     handleDisagreeClose = () => {
         this.setState({openDialog: false})
     }
+
+    handleClick = () => {
+        this.props.history.push('/viewprofile/' + this.props.post.user.username);
+        // window.location.href = '/viewprofile/' + this.props.post.user.username
+    }
     render(){
         return <div className="postCard">
             <ConfirmationDialog open={this.state.openDialog} 
@@ -55,7 +60,7 @@ class AdminPostCard extends React.Component{
                 <Delete/>
             </IconButton>
             <div className="postInfo">
-            <div className="posterInfo">
+            <div className="posterInfo" onClick={this.handleClick}>
                 <div className="posterPic">
                 <img src={this.state.user.image}></img>
                 </div>
@@ -80,7 +85,7 @@ class AdminPostCard extends React.Component{
 
             <div className="comments" hidden={this.state.hideComments}>
             {this.props.post.comments.map((comment) => {
-              return <Comment key={uid(comment)} comment={comment} clickProfile={this.props.clickProfile}/>
+              return <Comment key={uid(comment)} history={this.props.history} comment={comment} clickProfile={this.props.clickProfile}/>
             }
             )}
 

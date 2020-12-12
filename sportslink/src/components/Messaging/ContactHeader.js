@@ -13,17 +13,17 @@ class ContactHeader extends React.Component{
                 name:''
             }
         }
+        getUser(this.props.currContact, this);
     }
     
 
     render() {
-        getUser(this.props.currContact, this);
         return (
             <div>
                 <div className="returnDiv">
                     <div className="header">
-                        <img className="contactImage" src={this.state.user.image} alt="Profile Pic"></img>
-                        <p>{this.state.user.name}</p>
+                        <div className="contactImage"></div>
+                        <p>{this.props.currContact}</p>
                     </div>
                 </div>
             </div>

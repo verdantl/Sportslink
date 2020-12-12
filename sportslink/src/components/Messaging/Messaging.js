@@ -63,7 +63,6 @@ class Messaging extends React.Component{
                 
             }
             else{
-
                 if (this.state.conversations[i].messages.length === 0){
                     contacts.push({userID: this.state.conversations[i].sentUsername, lastMessage: '' })
                 }
