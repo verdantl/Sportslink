@@ -28,6 +28,7 @@ class Contacts extends React.Component{
 
     
     render(){
+        console.log(this.props.contacts)
         return (
             <div>
                 {
