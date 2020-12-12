@@ -64,11 +64,11 @@
 
 
 .profileCareer{
-    background-color: white;
+    background-color: #D6DEDE;
     margin: 10px;
     width: 30vw;
     padding: 10px;
-    color: black;
+    color: #272727;
     border: 1px grey solid;
     border-radius: 10px;
 }
@@ -84,13 +84,13 @@
 }
 
 .experience{
-    background-color: white;
+    background-color:  #D6DEDE;
 
     margin: 10px;
     display: inline-block;
     padding: 20px;
     border-radius: 10px;
-    border: 1px black solid;
+    border: 1px #272727 solid;
 }
 
 #selfProfilePic:hover{
@@ -115,8 +115,8 @@
 }
 
 .profileImages{
-    background-color: lavender;
-    border: 1px grey solid;
+    background-color: #D6DEDE;
+    border: 1px #272727;
     width: 31vw;
     height: 15vw;
     margin: 10px;
@@ -141,7 +141,7 @@
 .addPictureButton{
     transform: scale(2);
     margin-bottom: 10px;
-    color: darkcyan;
+    color: #E93541;
     position: absolute;
     left: 4vw;
     top: 6vw
@@ -150,7 +150,7 @@
 .addPictureButton:hover{
     transform: scale(2);
     margin-bottom: 10px;
-    color: aliceblue;
+    color: #91232a;
     cursor: pointer;
     transition: color 200ms;
 
@@ -169,14 +169,14 @@
 .addExperienceButton{
     transform: scale(2);
     margin-bottom: 10px;
-    color: darkcyan;
+    color:#E93541;
     transition: color 300ms;
 }
 
 .addExperienceButton:hover{
     transform: scale(2);
     margin-bottom: 10px;
-    color: aliceblue;
+    color: #91232a;
     cursor: pointer;
 
 }
@@ -194,7 +194,7 @@
     margin: 10px;
     padding: 5px;
     vertical-align: middle;
-    color: red;
+    color: #E93541;
     transition: background-color 200ms;
 }
 
@@ -203,13 +203,13 @@
     margin: 10px;
     padding: 5px;
     vertical-align: middle;
-    background-color: lightgray;
+    background-color: #D6DEDE;
     cursor: pointer;
-    color: red;
+    color: #E93541;
 }
 
 .editButton:hover{
-    background-color: lightgray;
+    background-color: #D6DEDE;
     border-radius: 50%;
     margin: 10px;
     padding: 5px;
@@ -229,7 +229,7 @@
 
 .editDelete{
     position: absolute;
-    background-color: white;
+    background-color: #D6DEDE;
     border-radius: 5px;
     top: 0px;
     right: 0px;
@@ -240,7 +240,7 @@
 
 .experienceTileH2{
     padding: 12px 12px 12px 12px;
-    background-color: white;
+    background-color: #D6DEDE;
     margin-left:  auto;
     margin-right:  auto;
     margin-top:  5px;
@@ -256,14 +256,14 @@
 
 .experienceTileH3{
     padding: 12px 12px 12px 12px;
-    background-color: white;
+    background-color: #D6DEDE;
     margin-left:  auto;
     margin-right:  auto;
     margin-top:  5px;
     margin-bottom:  5px;
     display: inline-block;
     border-radius: 10px;
-    border: 1px black solid;
+    border: 1px #272727 solid;
     font-size: 1.17em;
     font-weight: bold;
     text-align: center;
@@ -272,14 +272,14 @@
 
 .experienceTileH4{
     padding: 12px 12px 12px 12px;
-    background-color: white;
+    background-color:#D6DEDE;
     margin-left:  auto;
     margin-right:  auto;
     margin-top:  5px;
     margin-bottom:  5px;
     display: inline-block;
     border-radius: 10px;
-    border: 1px black solid;
+    border: 1px #272727 solid;
     font-size: 1em;
     font-weight: bold;
     text-align: center;
@@ -289,14 +289,14 @@
 .experienceTileP{
     width: 100%;
     padding: 12px 12px 12px 12px;
-    background-color: white;
+    background-color: #D6DEDE;
     margin-left:  auto;
     margin-right:  auto;
     margin-top:  5px;
     margin-bottom:  5px;
     display: inline-block;
     border-radius: 10px;
-    border: 1px black solid;
+    border: 1px #F1FAEE solid;
     font-size: 1em;
     font-family: Arial, Helvetica, sans-serif ;
     text-align: center;
@@ -360,7 +360,7 @@
 }
 
 .modal .actions .button-cancel {
-    background-color: red;
+    background-color: #E93541;
     border: 0;
     border-radius: 5px;
     padding: 0.5rem 1rem;
