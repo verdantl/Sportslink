@@ -7,6 +7,7 @@ import Experience from './Experience'
 import './profile.css'
 import EditButton from './EditButton'
 import InputBox from './InputBox'
+import ReactLoading from 'react-loading'
 import { getUser, updateUserInfo, addImage, removeImage } from '../../actions/profiles'
 import {addExperience, removeExperience, updateExperience } from '../../actions/experience'
 import { addCareer, removeCareer, updateCareer } from '../../actions/career'
@@ -214,7 +215,7 @@ class Profile extends React.Component{
                 <EditButton handleEditButtonClick={this.handleBiographyEditButtonClick.bind(this)}/>
                 </div>
             </div>
-            
+
             <div hidden={!this.state.hideLoading}>
                 <ReactLoading type={'spinningBubbles'} color={'black'} className='loadingAnimation'/>
             </div>
