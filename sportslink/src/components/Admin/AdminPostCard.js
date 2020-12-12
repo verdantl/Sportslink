@@ -80,7 +80,7 @@ class AdminPostCard extends React.Component{
 
             <div className="comments" hidden={this.state.hideComments}>
             {this.props.post.comments.map((comment) => {
-              return <Comment key={uid(comment)} comment={comment} clickProfile={this.props.clickProfile}/>
+              return <Comment key={uid(comment)} history={this.props.history} comment={comment} clickProfile={this.props.clickProfile}/>
             }
             )}
 

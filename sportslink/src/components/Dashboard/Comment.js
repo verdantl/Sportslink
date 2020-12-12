@@ -3,7 +3,7 @@ import React from 'react'
 class Comment extends React.Component{
     handleClick = () => {
         if (this.props.clickProfile !== false){
-            window.location.href = '/viewprofile/' + this.props.comment.user.username
+            this.props.history.push('/viewprofile/' + this.props.comment.user.username);
         }
         
     }

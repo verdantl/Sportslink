@@ -8,13 +8,9 @@ class AdminPosts extends React.Component{
 
 
     render(){
-        console.log(this.props)
         return <div className="posts">
-            <div hidden={this.props.hideLoading}>
-                <ReactLoading type={'spinningBubbles'} color={'black'} className='loadingAnimation'/>
-                </div>
             {this.props.posts.map((post) => {
-              return <AdminPostCard key={uid(post)} removePost={this.props.removePost} post={post} clickProfile={this.props.clickProfile}/>
+              return <AdminPostCard key={uid(post)} history={this.props.history} removePost={this.props.removePost} post={post} clickProfile={this.props.clickProfile}/>
             }
             )}
         </div>
