@@ -26,7 +26,7 @@ class Profile extends React.Component{
     }
 
     state = {
-        hideLoading: false,
+        hideLoading: true,
         user: {
             player: true,
             name: "",
@@ -216,7 +216,7 @@ class Profile extends React.Component{
                 </div>
             </div>
 
-            <div hidden={!this.state.hideLoading}>
+            <div hidden={this.state.hideLoading}>
                 <ReactLoading type={'spinningBubbles'} color={'black'} className='loadingAnimation'/>
             </div>
 
