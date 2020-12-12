@@ -15,7 +15,6 @@ class Messaging extends React.Component{
         super(props)
 
         getUser(this.props.currentUser, this)
-        getUsers(this)
         getConversations(this.props.currentUser, this)
     }
 

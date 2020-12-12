@@ -74,9 +74,10 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 100000,
+            maxAge: 10 * 60 * 1000,
             httpOnly: true
-        }
+        },
+        rolling: true
     })
 );
 
