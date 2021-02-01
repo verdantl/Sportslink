@@ -1,4 +1,4 @@
-# team44
+# Sportslink
 This web application allows athletes and sports recruiters to showcase their accomplishments and abilities on a personal profile page. 
 
 # Link to deployed app on Heroku 
